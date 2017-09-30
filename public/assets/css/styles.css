@@ -1,0 +1,113 @@
+div.row{
+}
+
+div#columnaboton.col-md-4{
+  text-align:center;
+}
+
+div#formulario.row{
+  text-align:center;
+}
+
+span.label.label-default{
+  background-color:#0e68af;
+  font-size:large;
+}
+
+img.img-responsive-logo{
+  margin-top:-5px;
+}
+
+div#columnageneral.col-md-5.col-md-offset-4{
+  padding-top:15px;
+  padding-bottom:10px;
+}
+
+body{
+  background-color:rgb(198,198,198);
+}
+
+ul.nav.navbar-nav.navbar-right{
+}
+
+a.a-menu{
+}
+
+div.col-md-4.footer{
+}
+
+div.row.footer{
+  height:200px;
+  background-color:black;
+}
+
+i.fa.fa-twitter-square{
+}
+
+a.btn.btn-default.menu{
+  float:left;
+  width:100%;
+  margin:0;
+  height:80px;
+  line-height:2.8;
+  font-size:x-large;
+  color:#7fb850;
+}
+
+div.col-md-12.menu{
+  padding:0;
+}
+
+nav.navbar.navbar-default{
+  margin-bottom:0px;
+  min-height:70px;
+}
+
+div#navcol-1.collapse.navbar-collapse{
+  margin-top:10px;
+  padding:0;
+}
+
+div.container{
+  margin-top:70px;
+}
+
+h1.h1-tabla{
+  text-align:center;
+  color:#0e68af;
+}
+
+div.table-striped{
+}
+
+button.btn.btn-default.btn-lg.volver{
+  width:500px;
+}
+
+div.container-fluid{
+}
+
+img.img-logo-ctes{
+  width:70px;
+  float:left;
+}
+
+h4.text-right{
+}
+
+div.row.precios{
+}
+
+div.table-responsive.precios{
+}
+
+.table-responsive.th{
+}
+
+div.col-md-4.col-sm-6.footer-navigation{
+}
+
+p.links{
+  margin-top:40px;
+}
+
