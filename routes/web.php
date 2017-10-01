@@ -26,6 +26,9 @@ Route::get('demandas', 'PaginasController@demandas');
 Route::get('operaciones', 'PaginasController@operaciones');
 Route::get('operadores', 'PaginasController@operadores');
 
+Route::resource('despachante', 'DespachanteController');
+Route::resource('representante', 'RepresentanteController');
+
 
 // Para proteger una clausula:
 // Route::get('admin/catalog', function() {

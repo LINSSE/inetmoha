@@ -152,7 +152,8 @@
                             <label for="despachante" class="col-md-4 control-label">Despachante</label>
 
                             <div class="col-md-6">
-                            <select class="form-control" name="id_des" value="{{ old('id_des') }}" required>
+                            <select class="form-control" name="id_des" value="{{ old('id_rep') }}">
+                                <option disable selected value> -- Seleccione un Despachante -- </option>
                                 <option value="1">Gonzalez Jose</option>
                                 <option value="2">Rodriguez Luis</option>
                             </select>
@@ -171,6 +172,7 @@
                             <label for="representante" class="col-md-4 control-label">Representante</label>
                             <div class="col-md-6">
                             <select class="form-control" name="id_rep" value="{{ old('id_rep') }}" required>
+                                <option disabled selected value> -- Seleccione un Representante -- </option>
                                 <option value="1">Mendoza Jorge</option>
                                 <option value="2">Lopez Raul</option>
                             </select>
