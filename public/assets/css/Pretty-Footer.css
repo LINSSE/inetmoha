@@ -53,6 +53,7 @@ footer{
 .footer-contacts p a{
   color:#0e68af;
   text-decoration:none;
+  font-size: small;
 }
 
 .fa.footer-contacts-icon{
@@ -81,7 +82,8 @@ span.new-line-span{
   color:#fff;
   font-size:14px;
   font-weight:bold;
-  margin-bottom:20px;
+  margin-bottom: 0px;
+  padding-top: 30px;
 }
 
 .footer-about p{
@@ -93,7 +95,8 @@ span.new-line-span{
 }
 
 div.social-links{
-  margin-top:20px;
+  margin-top:100px;
+  padding-left: 100px;
   color:#fff;
 }
 

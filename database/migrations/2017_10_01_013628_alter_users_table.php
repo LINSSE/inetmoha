@@ -23,6 +23,7 @@ class AlterUsersTable extends Migration
             $table->string('provincia')->after('ciudad');
             $table->integer('id_des')->unsigned()->nullable()->after('provincia');
             $table->integer('id_rep')->unsigned()->after('id_des');
+            $table->integer('activo')->unsigned()->after('id_rep');
 
             $table->foreign('id_des')->references('id')->on('despachantes');
             $table->foreign('id_rep')->references('id')->on('representantes');

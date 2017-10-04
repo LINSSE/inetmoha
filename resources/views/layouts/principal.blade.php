@@ -25,7 +25,7 @@
     <nav class="navbar navbar-default">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand navbar-link" href="/" target="_parent"> <img src="{{ asset('assets/img/logo-inet.png')}}" width="350px" class="img-responsive-logo"></a>
+                <a class="navbar-brand navbar-link" href="/" target="_parent"><h3>MOHA</h3></a>
                 <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
             </div>
 
@@ -41,6 +41,7 @@
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
+                                    <li role="presentation"><a href="/usuario/show/{{Auth::user()->id}}">Perfil</a></li>
                                     <li>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
@@ -76,29 +77,29 @@
     <footer>
         <div class="row">
             <div class="col-md-4 col-sm-6 footer-navigation">
-                <h3><a href="index">INET<span>MOHA </span></a></h3>
+                <h3><a href="index"><span>MOHA </span></a></h3>
                 <p class="links"><a href="/">Inicio </a><strong> · </strong><a href="/ofertas">Ofertas </a><strong> · </strong><a href="/demandas">Demandas </a><strong> · </strong><a href="/precios">Precios </a><strong> · </strong><a href="/operadores">Operadores </a><strong> · </strong><a href="/operaciones">Operaciones </a></p>
                 <p
                 class="company-name">INET MOHA © 2017</p>
             </div>
             <div class="col-md-4 col-sm-6 footer-contacts">
                 <div><span class="fa fa-map-marker footer-contacts-icon"> </span>
-                    <p>Corrientes, Argentina</p>
+                    <p>San Martín 2224, Corrientes, Argentina</p>
                 </div>
                 <div><i class="fa fa-phone footer-contacts-icon"></i>
-                    <p class="footer-center-info email text-left">+54 3794 111111</p>
+                    <p class="footer-center-info email text-left">+54 0379-4476047</p>
                 </div>
                 <div><i class="fa fa-envelope footer-contacts-icon"></i>
-                    <p> <a href="#" target="_blank">info@produccion.gov</a></p>
+                    <p> <a href="#" target="_blank">secretariadeproduccion.mptt@corrientes.gov.ar</a></p>
                 </div>
             </div>
             <div class="clearfix visible-sm-block"></div>
             <div class="col-md-4 footer-about">
                 <img class="img-responsive img-logo-ctes" src="assets/img/logo.png"><span><h4>Ministerio de Produccion</h4></span>
                 
-                <p> Lorem ipsum dolor sit amet, consectateur adispicing elit. Fusce euismod convallis velit, eu auctor lacus vehicula sit amet.
+                <p> 
                 </p>
-                <div class="social-links social-icons"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-linkedin"></i></a><a href="#"><i class="fa fa-github"></i></a></div>
+                <div class="social-links social-icons"><a href="https://www.facebook.com/Ministerio-de-Producción-de-Corrientes-1424236394481898/"><i class="fa fa-facebook"></i></a><a href="https://twitter.com/uopcorrientes"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-linkedin"></i></a></div>
             </div>
         </div>
     </footer>

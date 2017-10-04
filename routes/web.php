@@ -30,6 +30,20 @@ Route::resource('despachante', 'DespachanteController');
 Route::resource('representante', 'RepresentanteController');
 
 
+Route::group(['middleware' => 'auth'], function() {
+
+	Route::get('usuario/index', 'UserController@index');
+	Route::get('usuario/show/{id}', 'UserController@show');
+	Route::get('usuario/edit/{id}', 'UserController@edit');
+	Route::get('usuario/update/{id}', 'UserController@update');
+	Route::get('usuario/ofertas', 'UserController@ofertas');
+	Route::get('usuario/demandas', 'UserController@demandas');
+	Route::get('usuario/operaciones', 'UserController@operaciones');
+});
+
+
+
+
 // Para proteger una clausula:
 // Route::get('admin/catalog', function() {
 // Solo se permite el acceso a usuarios autenticados
@@ -44,3 +58,4 @@ Route::resource('representante', 'RepresentanteController');
 // Route::get('catalog/create', 'CatalogController@getCreate');
 // // ...
 // });
+?>

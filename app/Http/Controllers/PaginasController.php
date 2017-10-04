@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\User;
 class PaginasController extends Controller
 {
     public function index () {
@@ -11,7 +11,9 @@ class PaginasController extends Controller
 	}
 
 	public function operadores () {
-		return view('operadores');
+
+		$users = User::All();
+        return view('operadores', compact('users'));
 	}
 
 	public function operaciones () {

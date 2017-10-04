@@ -111,3 +111,13 @@ p.links{
   margin-top:40px;
 }
 
+form.form-horizontal{
+  margin-top: 10px;
+}
+
+.navbar-brand h3 {
+  color: #0e68af;
+  margin: 0px;
+  font-size: 40px;
+}
+

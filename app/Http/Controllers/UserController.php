@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
+
 
 class UserController extends Controller
 {
@@ -13,7 +15,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**
@@ -45,7 +47,12 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        
+        //$users = User::All()->where('id', $id);
+        $user = User::find($id);
+        return view('usuario/perfil', array('user' => $user ));
+        //return view('usuario.perfil', compact('users') );
+        //return view('usuario.perfil', array('id'=>$id));
     }
 
     /**
@@ -80,5 +87,35 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function ofertas()
+    {
+        return view('usuario/ofertas');
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function demandas()
+    {
+        return view('usuario.demandas');
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function operaciones()
+    {
+        return view('usuario.operaciones');
     }
 }
