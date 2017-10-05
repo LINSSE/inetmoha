@@ -18,6 +18,8 @@ class CreateProvinciasTable extends Migration
             $table->string('nombre');
             $table->string('codigo');
             $table->timestamps();
+
+            $table->primary('id');
         });
     }
 

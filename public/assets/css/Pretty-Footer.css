@@ -82,7 +82,6 @@ span.new-line-span{
   color:#fff;
   font-size:14px;
   font-weight:bold;
-  margin-bottom: 0px;
   padding-top: 30px;
 }
 
@@ -95,9 +94,10 @@ span.new-line-span{
 }
 
 div.social-links{
-  margin-top:100px;
-  padding-left: 100px;
+  margin-top:20px;
   color:#fff;
+  margin-top: 100px;
+  padding-left: 100px;
 }
 
 .social-links a{
@@ -113,5 +113,11 @@ div.social-links{
   line-height:35px;
   margin-right:5px;
   margin-bottom:5px;
+}
+
+.navbar-brand h3 {
+  color: #0e68af;
+  margin: 0px;
+  font-size: 40px;
 }
 

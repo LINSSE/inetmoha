@@ -70,10 +70,10 @@ class RegisterController extends Controller
             'dni' => $data['dni'],
             'telefono' => $data['telefono'],
             'domicilio' => $data['domicilio'],
-            'ciudad' => $data['ciudad'],
-            'provincia' => $data['provincia'],
+            'id_ciudad' => $data['id_ciudad'],
+            'id_provincia' => $data['id_provincia'],
             'id_des' => $data['id_des'],
-            'id_rep' => $data['id_rep'],
+            'id_rep' => $data['id_rep'],   
         ]);
     }
 }

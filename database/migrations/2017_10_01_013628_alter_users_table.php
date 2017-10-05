@@ -19,11 +19,11 @@ class AlterUsersTable extends Migration
             $table->integer('dni')->after('password');
             $table->bigInteger('telefono')->after('dni');
             $table->string('domicilio')->after('telefono');
-            $table->string('ciudad')->after('domicilio');
-            $table->string('provincia')->after('ciudad');
-            $table->integer('id_des')->unsigned()->nullable()->after('provincia');
+            $table->integer('id_ciudad')->after('domicilio');
+            $table->integer('id_provincia')->after('id_ciudad');
+            $table->integer('id_des')->unsigned()->nullable()->default(1)->after('id_provincia');
             $table->integer('id_rep')->unsigned()->after('id_des');
-            $table->integer('activo')->unsigned()->after('id_rep');
+            $table->boolean('activo')->default(false)->after('id_rep');
 
             $table->foreign('id_des')->references('id')->on('despachantes');
             $table->foreign('id_rep')->references('id')->on('representantes');
@@ -43,10 +43,11 @@ class AlterUsersTable extends Migration
             $table->dropColumn('dni');
             $table->dropColumn('telefono');
             $table->dropColumn('domicilio');
-            $table->dropColumn('ciudad');
-            $table->dropColumn('provincia');
+            $table->dropColumn('id_ciudad');
+            $table->dropColumn('id_provincia');
             $table->dropColumn('id_des');
             $table->dropColumn('id_rep');
+            $table->dropColumn('activo');
 
             $table->dropForeign('users_id_des_foreign');
             $table->dropForeign('users_id_rep_foreign');            

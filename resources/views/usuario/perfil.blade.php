@@ -3,8 +3,12 @@
 @section('content')
         
         @include('usuario.menu')
-        <div class="row">
-            <div class="col-md-12">
+    <div class="container datos">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-default">
+                <div class="panel-heading">Mis Datos</div>
+
+                <div class="panel-body">
                 <form class="form-horizontal" method="POST" >
                         {{ csrf_field() }}
 
@@ -12,7 +16,7 @@
                             <label for="name" class="col-md-4 control-label">Nombre</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control" name="name" value="{{ $user->name }}" required autofocus>
+                                <input id="name" type="text" class="form-control" name="name" value="{{ $user->name }}" disabled autofocus>
 
                                 @if ($errors->has('name'))
                                     <span class="help-block">
@@ -26,7 +30,7 @@
                             <label for="apellido" class="col-md-4 control-label">Apellido</label>
 
                             <div class="col-md-6">
-                                <input id="apellido" type="text" class="form-control" name="apellido" value="{{ $user->apellido }}" required>
+                                <input id="apellido" type="text" class="form-control" name="apellido" value="{{ $user->apellido }}" disabled>
 
                                 @if ($errors->has('apellido'))
                                     <span class="help-block">
@@ -40,7 +44,7 @@
                             <label for="email" class="col-md-4 control-label">E-Mail</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ $user->email }}" required>
+                                <input id="email" type="email" class="form-control" name="email" value="{{ $user->email }}" disabled>
 
                                 @if ($errors->has('email'))
                                     <span class="help-block">
@@ -54,7 +58,7 @@
                             <label for="password" class="col-md-4 control-label">Contraseña</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" value="{{ $user->password }}" required>
+                                <input id="password" type="password" class="form-control" name="password" value="{{ $user->password }}" disabled>
 
                                 @if ($errors->has('password'))
                                     <span class="help-block">
@@ -68,7 +72,7 @@
                             <label for="password-confirm" class="col-md-4 control-label">Confirme Contraseña</label>
 
                             <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" disabled>
                             </div>
                         </div> -->
 
@@ -76,7 +80,7 @@
                             <label for="dni" class="col-md-4 control-label">DNI</label>
 
                             <div class="col-md-6">
-                                <input id="dni" type="text" class="form-control" name="dni" value="{{ $user->dni }}" required maxlength="8" minlength="8" inputmode="numeric">
+                                <input id="dni" type="text" class="form-control" name="dni" value="{{ $user->dni }}" disabled maxlength="8" minlength="8" inputmode="numeric">
 
                                 @if ($errors->has('dni'))
                                     <span class="help-block">
@@ -90,7 +94,7 @@
                             <label for="telefono" class="col-md-4 control-label">Teléfono</label>
 
                             <div class="col-md-6">
-                                <input id="telefono" type="text" class="form-control" name="telefono" value="{{ $user->telefono }}" required maxlength="13" inputmode="numeric">
+                                <input id="telefono" type="text" class="form-control" name="telefono" value="{{ $user->telefono }}" disabled maxlength="13" inputmode="numeric">
 
                                 @if ($errors->has('telefono'))
                                     <span class="help-block">
@@ -104,7 +108,7 @@
                             <label for="domicilio" class="col-md-4 control-label">Domicilio</label>
 
                             <div class="col-md-6">
-                                <input id="domicilio" type="text" class="form-control" name="domicilio" value="{{ $user->domicilio }}" required>
+                                <input id="domicilio" type="text" class="form-control" name="domicilio" value="{{ $user->domicilio }}" disabled>
 
                                 @if ($errors->has('domicilio'))
                                     <span class="help-block">
@@ -114,29 +118,29 @@
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('ciudad') ? ' has-error' : '' }}">
-                            <label for="ciudad" class="col-md-4 control-label">Ciudad</label>
+                        <div class="form-group{{ $errors->has('id_provincia') ? ' has-error' : '' }}">
+                            <label for="id_provincia" class="col-md-4 control-label">Provincia</label>
 
                             <div class="col-md-6">
-                                <input id="ciudad" type="text" class="form-control" name="ciudad" value="{{ $user->ciudad }}" required>
+                            <input id="id_provincia" type="text" class="form-control" name="id_provincia" value="{{ $provincia->nombre }}" disabled>
 
-                                @if ($errors->has('ciudad'))
+                                @if ($errors->has('id_provincia'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('ciudad') }}</strong>
+                                        <strong>{{ $errors->first('id_provincia') }}</strong>
                                     </span>
                                 @endif
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('provincia') ? ' has-error' : '' }}">
-                            <label for="provincia" class="col-md-4 control-label">Provincia</label>
+                        <div class="form-group{{ $errors->has('id_ciudad') ? ' has-error' : '' }}">
+                            <label for="id_ciudad" class="col-md-4 control-label">Ciudad</label>
 
                             <div class="col-md-6">
-                                <input id="provincia" type="text" class="form-control" name="provincia" value="{{ $user->provincia }}" required>
+                            <input id="id_ciudad" type="text" class="form-control" name="id_ciudad" value="{{ $ciudad->nombre }}" disabled>
 
-                                @if ($errors->has('provincia'))
+                                @if ($errors->has('id_ciudad'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('provincia') }}</strong>
+                                        <strong>{{ $errors->first('id_ciudad') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -148,11 +152,7 @@
                             <label for="despachante" class="col-md-4 control-label">Despachante</label>
 
                             <div class="col-md-6">
-                            <select class="form-control" name="id_des" value="{{ old('id_rep') }}">
-                                <option disable selected value> -- Seleccione un Despachante -- </option>
-                                <option value="1">Gonzalez Jose</option>
-                                <option value="2">Rodriguez Luis</option>
-                            </select>
+                            <input id="id_des" type="text" class="form-control" name="id_des" value="{{ $despachante->apellido, $despachante->nombre }}" disabled>
 
                                 @if ($errors->has('despachante'))
                                     <span class="help-block">
@@ -167,11 +167,7 @@
                         <div class="form-group{{ $errors->has('representante') ? ' has-error' : '' }}">
                             <label for="representante" class="col-md-4 control-label">Representante</label>
                             <div class="col-md-6">
-                            <select class="form-control" name="id_rep" value="{{ old('id_rep') }}" required>
-                                <option disabled selected value> -- Seleccione un Representante -- </option>
-                                <option value="1">Mendoza Jorge</option>
-                                <option value="2">Lopez Raul</option>
-                            </select>
+                            <input id="id_rep" type="text" class="form-control" name="id_rep" value="{{ $representante->apellido}} {{ $representante->nombre }}" disabled>
 
                                 @if ($errors->has('representante'))
                                     <span class="help-block">
@@ -191,5 +187,9 @@
                     </form>
             </div>
         </div>
-        
+        </div>
+        </div>
+    </div>
+
+     </div>   
 @endsection

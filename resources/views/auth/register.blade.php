@@ -118,29 +118,42 @@
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('ciudad') ? ' has-error' : '' }}">
-                            <label for="ciudad" class="col-md-4 control-label">Ciudad</label>
+                        
+                        <div class="form-group{{ $errors->has('id_provincia') ? ' has-error' : '' }}">
+                            <label for="id_provincia" class="col-md-4 control-label">Provincia</label>
 
                             <div class="col-md-6">
-                                <input id="ciudad" type="text" class="form-control" name="ciudad" value="{{ old('ciudad') }}" required>
+                            <select class="form-control" name="id_provincia" value="{{ old('id_provincia') }}">
+                                <option disabled selected value> -- Seleccione una Provincia -- </option>
+                                @foreach($provincias as $provincia)
+                                <option value="{{$provincia->id}}">{{$provincia->nombre}}</option>
+                                
+                                @endforeach
+                            </select>
 
-                                @if ($errors->has('ciudad'))
+                                @if ($errors->has('id_provincia'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('ciudad') }}</strong>
+                                        <strong>{{ $errors->first('id_provincia') }}</strong>
                                     </span>
                                 @endif
                             </div>
                         </div>
-
-                        <div class="form-group{{ $errors->has('provincia') ? ' has-error' : '' }}">
-                            <label for="provincia" class="col-md-4 control-label">Provincia</label>
+                        
+                        <div class="form-group{{ $errors->has('id_ciudad') ? ' has-error' : '' }}">
+                            <label for="id_ciudad" class="col-md-4 control-label">Ciudad</label>
 
                             <div class="col-md-6">
-                                <input id="provincia" type="text" class="form-control" name="provincia" value="{{ old('provincia') }}" required>
+                            <select class="form-control" name="id_ciudad" value="{{ old('id_ciudad') }}">
+                                <option disabled selected value> -- Seleccione una Ciudad -- </option>
+                                @foreach($ciudades as $ciudad)
+                                <option value="{{$ciudad->id}}">{{$ciudad->nombre}}</option>
+                                
+                                @endforeach
+                            </select>
 
-                                @if ($errors->has('provincia'))
+                                @if ($errors->has('id_ciudad'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('provincia') }}</strong>
+                                        <strong>{{ $errors->first('id_ciudad') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -148,41 +161,51 @@
 
                         <hr>
                         
-                        <div class="form-group{{ $errors->has('despachante') ? ' has-error' : '' }}">
-                            <label for="despachante" class="col-md-4 control-label">Despachante</label>
+                        <div class="form-group{{ $errors->has('id_des') ? ' has-error' : '' }}">
+                            <label for="id_des" class="col-md-4 control-label">Despachante</label>
 
                             <div class="col-md-6">
-                            <select class="form-control" name="id_des" value="{{ old('id_rep') }}">
-                                <option disable selected value> -- Seleccione un Despachante -- </option>
-                                <option value="1">Gonzalez Jose</option>
-                                <option value="2">Rodriguez Luis</option>
+                            <select class="form-control" name="id_des" value="{{ old('id_des') }}" required>
+                                <option disabled selected value> -- Seleccione un Despachante -- </option>
+                                @foreach($despachantes as $despachante)
+                                <option value="{{$despachante->id}}">{{$despachante->apellido, $despachante->nombre}}</option>
+                                
+                                @endforeach
                             </select>
 
-                                @if ($errors->has('despachante'))
+
+                                @if ($errors->has('id_des'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('despachante') }}</strong>
+                                        <strong>{{ $errors->first('id_des') }}</strong>
                                     </span>
                                 @endif
                             </div>
+                            <span class="glyphicon glyphicon-info-sign" alt="Puede indicar un despachante luego, o agregar uno nuevo si no encuentra su despachante" title="Puede indicar un despachante luego, o agregar uno nuevo si no encuentra su despachante"></span>
+                            <a type="button" href="#" class="btn btn-success">Agregar</a>
                         </div>
 
                         <hr>
 
-                        <div class="form-group{{ $errors->has('representante') ? ' has-error' : '' }}">
-                            <label for="representante" class="col-md-4 control-label">Representante</label>
+                        <div class="form-group{{ $errors->has('id_rep') ? ' has-error' : '' }}">
+                            <label for="id_rep" class="col-md-4 control-label">Representante</label>
+
                             <div class="col-md-6">
-                            <select class="form-control" name="id_rep" value="{{ old('id_rep') }}" required>
-                                <option disabled selected value> -- Seleccione un Representante -- </option>
-                                <option value="1">Mendoza Jorge</option>
-                                <option value="2">Lopez Raul</option>
+                            <select class="form-control" name="id_rep" value="{{ old('id_rep') }}"  required>
+                                <option value disabled selected> -- Seleccione un Representante -- </option>
+                                @foreach($representantes as $representante)
+                                <option value="{{$representante->id}}">{{$representante->apellido}} {{$representante->nombre}}</option>
+                                
+                                @endforeach
                             </select>
 
-                                @if ($errors->has('representante'))
+                                @if ($errors->has('id_rep'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('representante') }}</strong>
+                                        <strong>{{ $errors->first('id_rep') }}</strong>
                                     </span>
                                 @endif
                             </div>
+                            <span class="glyphicon glyphicon-info-sign" alt="Puede agregar un Representante nuevo, si no encuentra su Representante" title="Puede agregar un Representante nuevo, si no encuentra su Representante"></span>
+                            <a type="button" href="#" class="btn btn-success">Agregar</a>
                         </div>
 
                         <div class="form-group">
