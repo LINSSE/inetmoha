@@ -124,4 +124,10 @@ class UserController extends Controller
     {
         return view('usuario.operaciones');
     }
+
+    public function prueba()
+    {
+
+        return view('prueba');
+    }
 }

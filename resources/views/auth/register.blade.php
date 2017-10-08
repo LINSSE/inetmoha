@@ -123,7 +123,7 @@
                             <label for="id_provincia" class="col-md-4 control-label">Provincia</label>
 
                             <div class="col-md-6">
-                            <select class="form-control" name="id_provincia" value="{{ old('id_provincia') }}">
+                            <select class="form-control" id="provincias" name="id_provincia" value="{{ old('id_provincia') }}">
                                 <option disabled selected value> -- Seleccione una Provincia -- </option>
                                 @foreach($provincias as $provincia)
                                 <option value="{{$provincia->id}}">{{$provincia->nombre}}</option>
@@ -143,12 +143,8 @@
                             <label for="id_ciudad" class="col-md-4 control-label">Ciudad</label>
 
                             <div class="col-md-6">
-                            <select class="form-control" name="id_ciudad" value="{{ old('id_ciudad') }}">
+                            <select class="form-control" id="ciudades" name="id_ciudad" value="{{ old('id_ciudad') }}" placeholder=" -- Selleccione una Ciudad -- ">
                                 <option disabled selected value> -- Seleccione una Ciudad -- </option>
-                                @foreach($ciudades as $ciudad)
-                                <option value="{{$ciudad->id}}">{{$ciudad->nombre}}</option>
-                                
-                                @endforeach
                             </select>
 
                                 @if ($errors->has('id_ciudad'))
@@ -180,7 +176,7 @@
                                     </span>
                                 @endif
                             </div>
-                            <span class="glyphicon glyphicon-info-sign" alt="Puede indicar un despachante luego, o agregar uno nuevo si no encuentra su despachante" title="Puede indicar un despachante luego, o agregar uno nuevo si no encuentra su despachante"></span>
+                            <span class="glyphicon glyphicon-info-sign" alt="Puede indicar un Despachante luego, o agregar uno nuevo si no encuentra su Despachante" title="Puede indicar un Despachante luego, o agregar uno nuevo si no encuentra su Despachante"></span>
                             <a type="button" href="#" class="btn btn-success">Agregar</a>
                         </div>
 

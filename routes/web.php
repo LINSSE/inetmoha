@@ -40,14 +40,18 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::get('usuario/demandas', 'UserController@demandas');
 	Route::get('usuario/operaciones', 'UserController@operaciones');
 
+
 	Route::get('admin/principal', 'AdminController@index');
 	Route::get('admin/operadores', 'AdminController@listarOperadores');
 	Route::get('admin/ofertas', 'AdminController@ofertas');
 	Route::get('admin/demandas', 'AdminController@demandas');
 	Route::get('admin/productos', 'AdminController@productos');
 	Route::get('admin/operaciones', 'AdminController@operaciones');
+
 });
 
+Route::get('ciudades/{id}', 'ProvinciasController@getCiudades');
+Route::get('prueba', 'UserController@prueba');
 
 
 
