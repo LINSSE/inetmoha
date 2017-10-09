@@ -25,12 +25,8 @@ div#columnageneral.col-md-5.col-md-offset-4{
 }
 
 body{
-  background-color:rgb(198,198,198);
-  background-image: url('/assets/img/fondo.jpg');
+  background-color: rgba(255,255,255,1) !important;
   min-height: 200px;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: 100%;
 }
 
 ul.nav.navbar-nav.navbar-right{
@@ -113,7 +109,7 @@ h1.h1-tabla{
 }
 
 h1 small {
-  color: #fff !important;
+  color: #8c8c8c !important;
 }
 
 div.table-striped{
@@ -208,7 +204,7 @@ ul.nav.navbar-nav {
 }
 
 ul.nav.nav-tabs.nav-justified {
-  background-color: rgba(0, 0, 0, 0.51);
+  background-color: rgb(5, 1, 255);
 }
 
 .nav-tabs>li>a {
@@ -235,7 +231,7 @@ ul.nav.nav-tabs.nav-justified {
 }
 
 div.container-fluid.trans {
-  background-color: rgba(111, 111, 111, 0.62);
+  background-color: rgb(255, 255, 255);
   width: 100%;
   margin-top: 0px;
   padding: 0px;
@@ -259,4 +255,12 @@ div.container-fluid.trans {
 
 .row.model {
   margin-left: 200px !important;
+}
+
+.h4tit {
+  padding-left: 10px;
+}
+
+.btn.btn-success.admin {
+  margin-left: 10px;
 }

@@ -201,7 +201,7 @@
                                 @endif
                             </div>
                             <span class="glyphicon glyphicon-info-sign" alt="Puede agregar un Representante nuevo, si no encuentra su Representante" title="Puede agregar un Representante nuevo, si no encuentra su Representante"></span>
-                            <a type="button" id="agregarDesp" data-toggle="modal" data_target="#agregarDespachante" class="btn btn-success">Agregar</a>
+                            <a type="button" id="agregarRep" data-toggle="modal" data_target="#agregarRepresentante" class="btn btn-success">Agregar</a>
                         </div>
 
                         <div class="form-group">
@@ -230,7 +230,7 @@
                 <div class="col-md-12">
                     <div class="panel panel-default">
                         <div class="panel-body">
-                            <form class="form-horizontal" name="agregarRepresentante" method="POST" action="{{ url('representante.store') }}">
+                            <form class="form-horizontal" name="agregarRepresentante" method="POST" action="{{ url('representante/store') }}">
                                 {{ csrf_field() }}
 
                                 <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
@@ -323,10 +323,10 @@
                                 {{ csrf_field() }}
 
                                 <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                                    <label for="nombre" class="col-md-4 control-label">Nombre</label>
+                                    <label for="name" class="col-md-4 control-label">Nombre</label>
 
                                     <div class="col-md-6">
-                                        <input id="nombr" type="text" class="form-control" name="nombre" value="{{ old('name') }}" required autofocus>
+                                        <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
 
                                         @if ($errors->has('name'))
                                             <span class="help-block">
@@ -348,20 +348,6 @@
                                             </span>
                                         @endif
                                     </div>
-                                </div>                          
-
-                                <div class="form-group{{ $errors->has('telefono') ? ' has-error' : '' }}">
-                                    <label for="telefono" class="col-md-4 control-label">Teléfono</label>
-
-                                    <div class="col-md-6">
-                                        <input id="telefono" type="text" class="form-control" name="telefono" value="{{ old('telefono') }}" required maxlength="13" inputmode="numeric">
-
-                                        @if ($errors->has('telefono'))
-                                            <span class="help-block">
-                                                <strong>{{ $errors->first('telefono') }}</strong>
-                                            </span>
-                                        @endif
-                                    </div>
                                 </div>
 
                                 <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
@@ -373,6 +359,22 @@
                                         @if ($errors->has('email'))
                                             <span class="help-block">
                                                 <strong>{{ $errors->first('email') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+                                </div>
+
+                                
+
+                                <div class="form-group{{ $errors->has('telefono') ? ' has-error' : '' }}">
+                                    <label for="telefono" class="col-md-4 control-label">Teléfono</label>
+
+                                    <div class="col-md-6">
+                                        <input id="telefono" type="text" class="form-control" name="telefono" value="{{ old('telefono') }}" required maxlength="13" inputmode="numeric">
+
+                                        @if ($errors->has('telefono'))
+                                            <span class="help-block">
+                                                <strong>{{ $errors->first('telefono') }}</strong>
                                             </span>
                                         @endif
                                     </div>
@@ -395,12 +397,13 @@
 </div><!-- /.modal -->
 <script type="text/javascript">
     $('#agregarDesp').on('click', function () {
-    //var id = $(this).attr("id"); //get the id from the line
- 
         $('#agregarDespachante').load("agregarDespachante")//load a view into a modal
-
     $('#agregarDespachante').modal('show'); //show the modal
-
   });
-</script></center>
+
+    $('#agregarRep').on('click', function () {
+        $('#agregarRepresentante').load("agregarRepresentante")//load a view into a modal
+    $('#agregarRepresentante').modal('show'); //show the modal
+  });
+</script>
 @endsection

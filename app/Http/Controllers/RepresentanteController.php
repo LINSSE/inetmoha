@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Representante;
 
 class RepresentanteController extends Controller
 {
@@ -34,9 +35,13 @@ class RepresentanteController extends Controller
      */
     public function store(Request $request)
     {
-        $rep = new Representante($request->all());
+        $rep = new Representante();
+        $rep->nombre = $request->name;
+        $rep->apellido = $request->apellido;
+        $rep->email = $request->email;
+        $rep->telefono = $request->telefono;
         $rep->save();
-        return redirect('register');
+        return back();
     }
 
     /**

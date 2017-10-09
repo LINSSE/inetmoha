@@ -47,6 +47,10 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::get('admin/demandas', 'AdminController@demandas');
 	Route::get('admin/productos', 'AdminController@productos');
 	Route::get('admin/operaciones', 'AdminController@operaciones');
+	Route::post('admin/activar/{id}', 'AdminController@activar');
+	Route::post('admin/desactivar/{id}', 'AdminController@desactivar');
+	Route::get('admin/despachantes', 'AdminController@despachantes');
+	Route::get('admin/representantes', 'AdminController@representantes');
 
 });
 
@@ -54,6 +58,7 @@ Route::get('ciudades/{id}', 'ProvinciasController@getCiudades');
 
 
 Route::post('despachante/store', 'DespachanteController@store');
+Route::post('representante/store', 'RepresentanteController@store');
 
 
 

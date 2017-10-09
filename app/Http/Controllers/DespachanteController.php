@@ -35,9 +35,14 @@ class DespachanteController extends Controller
      */
     public function store(Request $request)
     {
-        $desp = new Despachante($request->all());
-        $desp->save();
-        return redirect('register');
+        $des = new Despachante();
+        $des->nombre = $request->name;
+        $des->apellido = $request->apellido;
+        $des->email = $request->email;
+        $des->telefono = $request->telefono;
+        $des->save();
+        return back();
+        
     }
 
     /**
