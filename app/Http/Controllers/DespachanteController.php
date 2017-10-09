@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Despachante;
 
 class DespachanteController extends Controller
 {
@@ -23,7 +24,7 @@ class DespachanteController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -34,7 +35,9 @@ class DespachanteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $desp = new Despachante($request->all());
+        $desp->save();
+        return redirect('register');
     }
 
     /**

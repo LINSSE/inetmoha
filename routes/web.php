@@ -26,7 +26,7 @@ Route::get('demandas', 'PaginasController@demandas');
 Route::get('operaciones', 'PaginasController@operaciones');
 Route::get('operadores', 'PaginasController@operadores');
 
-Route::resource('despachante', 'DespachanteController');
+
 Route::resource('representante', 'RepresentanteController');
 
 
@@ -51,7 +51,9 @@ Route::group(['middleware' => 'auth'], function() {
 });
 
 Route::get('ciudades/{id}', 'ProvinciasController@getCiudades');
-Route::get('prueba', 'UserController@prueba');
+
+
+Route::post('despachante/store', 'DespachanteController@store');
 
 
 

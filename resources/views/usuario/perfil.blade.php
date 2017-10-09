@@ -41,7 +41,7 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail</label>
+                            <label for="email" class="col-md-4 control-label">Correo Electrónico</label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control" name="email" value="{{ $user->email }}" disabled>
@@ -67,14 +67,6 @@
                                 @endif
                             </div>
                         </div>
-
-                        <!-- <div class="form-group">
-                            <label for="password-confirm" class="col-md-4 control-label">Confirme Contraseña</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" disabled>
-                            </div>
-                        </div> -->
 
                         <div class="form-group{{ $errors->has('dni') ? ' has-error' : '' }}">
                             <label for="dni" class="col-md-4 control-label">DNI</label>
@@ -152,7 +144,7 @@
                             <label for="despachante" class="col-md-4 control-label">Despachante</label>
 
                             <div class="col-md-6">
-                            <input id="id_des" type="text" class="form-control" name="id_des" value="{{ $despachante->apellido, $despachante->nombre }}" disabled>
+                            <input id="id_des" type="text" class="form-control" name="id_des" value="{{ $despachante->apellido}} {{$despachante->nombre }}" disabled>
 
                                 @if ($errors->has('despachante'))
                                     <span class="help-block">

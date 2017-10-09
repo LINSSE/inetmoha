@@ -34,7 +34,9 @@ class RepresentanteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $rep = new Representante($request->all());
+        $rep->save();
+        return redirect('register');
     }
 
     /**

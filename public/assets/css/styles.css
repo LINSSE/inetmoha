@@ -252,3 +252,11 @@ div.container-fluid.trans {
   border: 0px; 
   border-radius: 0px; 
 }
+
+.modal-body {
+  min-height: 320px;
+}
+
+.row.model {
+  margin-left: 200px !important;
+}
