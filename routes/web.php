@@ -51,9 +51,16 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::post('admin/desactivar/{id}', 'AdminController@desactivar');
 	Route::get('admin/despachantes', 'AdminController@despachantes');
 	Route::get('admin/representantes', 'AdminController@representantes');
+	
 
 });
 
+Route::get('test', function()
+{
+    dd(Config::get('mail'));
+});
+
+Route::get('email/nuevoOperador', 'AdminController@enviarMail');
 Route::get('ciudades/{id}', 'ProvinciasController@getCiudades');
 
 

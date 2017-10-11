@@ -78,4 +78,13 @@ class AdminController extends Controller
     	
     	return view('/admin/operaciones');
     }
+
+    public function nuevoOperador() {
+        return view('admin/nuevoOperador');
+    }
+
+    public function enviarMail() {
+       $this->call('GET','email/nuevoOperador');
+        return View('email/nuevoOperador');
+    }
 }

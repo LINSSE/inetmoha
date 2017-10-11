@@ -6,6 +6,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
+use App\User;
 
 class UsuarioRegistrado extends Notification
 {
@@ -46,8 +47,7 @@ class UsuarioRegistrado extends Notification
                     ->line('Nuevo Usuario Registrado.')
                     ->line('Se ha registrado un nuevo usuario en la pagina Web.')
                     ->line('Ingresa al sistema para verificar sus datos.')
-                    ->action('Ingresar', url('http:'))
-                    ->line('Thank you for using our application!');
+                    ->action('Ingresar', url('http://localhost:8000/admin/operadores'));
     }
 
     /**
