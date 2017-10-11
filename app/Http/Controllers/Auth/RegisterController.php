@@ -66,13 +66,13 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         $user = User::create([
-            'name' => $data['name'],
-            'apellido' => $data['apellido'],
+            'name' => ucwords(strtolower($data['name'])),
+            'apellido' => ucwords(strtolower($data['apellido'])),
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
             'dni' => $data['dni'],
             'telefono' => $data['telefono'],
-            'domicilio' => $data['domicilio'],
+            'domicilio' => ucwords(strtolower($data['domicilio'])),
             'id_ciudad' => $data['id_ciudad'],
             'id_provincia' => $data['id_provincia'],
             'id_des' => $data['id_des'],

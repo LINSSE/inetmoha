@@ -36,8 +36,8 @@ class DespachanteController extends Controller
     public function store(Request $request)
     {
         $des = new Despachante();
-        $des->nombre = $request->name;
-        $des->apellido = $request->apellido;
+        $des->nombre = ucwords(strtolower($request->name));
+        $des->apellido = ucwords(strtolower($request->apellido));
         $des->email = $request->email;
         $des->telefono = $request->telefono;
         $des->save();

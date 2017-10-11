@@ -120,10 +120,4 @@
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
-<script type="text/javascript">
-    $('#agregarDesp').on('click', function () {
-        $('#agregarDespachante').load("agregarDespachante")//load a view into a modal
-    $('#agregarDespachante').modal('show'); //show the modal
-  });
-</script>
 @endsection

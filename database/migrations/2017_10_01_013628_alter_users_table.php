@@ -24,6 +24,7 @@ class AlterUsersTable extends Migration
             $table->integer('id_des')->unsigned()->nullable()->default(1)->after('id_provincia');
             $table->integer('id_rep')->unsigned()->after('id_des');
             $table->boolean('activo')->default(false)->after('id_rep');
+            $table->boolean('admin')->default(false)->after('activo');
 
             $table->foreign('id_des')->references('id')->on('despachantes');
             $table->foreign('id_rep')->references('id')->on('representantes');
@@ -48,6 +49,7 @@ class AlterUsersTable extends Migration
             $table->dropColumn('id_des');
             $table->dropColumn('id_rep');
             $table->dropColumn('activo');
+            $table->dropColumn('admin');
 
             $table->dropForeign('users_id_des_foreign');
             $table->dropForeign('users_id_rep_foreign');            

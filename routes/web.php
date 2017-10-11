@@ -19,17 +19,21 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+
+//Rutas Publicas
 Route::get('/index', 'PaginasController@index');
 Route::get('ofertas', 'PaginasController@ofertas');
 Route::get('precios', 'PaginasController@precios');
 Route::get('demandas', 'PaginasController@demandas');
 Route::get('operaciones', 'PaginasController@operaciones');
 Route::get('operadores', 'PaginasController@operadores');
+Route::get('email/nuevoOperador', 'AdminController@enviarMail');
+Route::get('ciudades/{id}', 'ProvinciasController@getCiudades');
+Route::post('despachante/store', 'DespachanteController@store');
+Route::post('representante/store', 'RepresentanteController@store');
 
 
-Route::resource('representante', 'RepresentanteController');
-
-
+//Rutas para usuruarios autenticados
 Route::group(['middleware' => 'auth'], function() {
 
 	Route::get('usuario/index', 'UserController@index');
@@ -39,7 +43,11 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::get('usuario/ofertas', 'UserController@ofertas');
 	Route::get('usuario/demandas', 'UserController@demandas');
 	Route::get('usuario/operaciones', 'UserController@operaciones');
+});
 
+
+//Rutas de Administrador
+Route::group(['middleware' => 'admin'], function() {
 
 	Route::get('admin/principal', 'AdminController@index');
 	Route::get('admin/operadores', 'AdminController@listarOperadores');
@@ -51,36 +59,14 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::post('admin/desactivar/{id}', 'AdminController@desactivar');
 	Route::get('admin/despachantes', 'AdminController@despachantes');
 	Route::get('admin/representantes', 'AdminController@representantes');
-	
-
 });
 
+
+//Rutas de pruebas
 Route::get('test', function()
 {
     dd(Config::get('mail'));
 });
 
-Route::get('email/nuevoOperador', 'AdminController@enviarMail');
-Route::get('ciudades/{id}', 'ProvinciasController@getCiudades');
 
-
-Route::post('despachante/store', 'DespachanteController@store');
-Route::post('representante/store', 'RepresentanteController@store');
-
-
-
-// Para proteger una clausula:
-// Route::get('admin/catalog', function() {
-// Solo se permite el acceso a usuarios autenticados
-// })->middleware('auth');
-// Para proteger una acción de un controlador:
-// Route::get('profile', 'ProfileController@show')->middleware('auth');
-
-
-// Para proteger acceso a grupo de rutas
-// Route::group(['middleware' => 'auth'], function() {
-// Route::get('catalog', 'CatalogController@getIndex');
-// Route::get('catalog/create', 'CatalogController@getCreate');
-// // ...
-// });
 ?>

@@ -7,4 +7,19 @@ $(document).ready(function(){
                 }
             });
         });
-    });
+});
+
+
+$(document).ready(function(){
+    $('#agregarRep').on('click', function () {
+        $('#agregarRepresentante').load("agregarRepresentante")//load a view into a modal
+    $('#agregarRepresentante').modal('show'); //show the modal
+  });
+});
+
+$(document).ready(function(){
+	$('#agregarDesp').on('click', function () {
+	        $('#agregarDespachante').load("agregarDespachante")//load a view into a modal
+	    $('#agregarDespachante').modal('show'); //show the modal
+	  });
+});

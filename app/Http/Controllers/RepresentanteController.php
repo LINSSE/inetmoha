@@ -36,8 +36,8 @@ class RepresentanteController extends Controller
     public function store(Request $request)
     {
         $rep = new Representante();
-        $rep->nombre = $request->name;
-        $rep->apellido = $request->apellido;
+        $rep->nombre = ucwords(strtolower($request->name));
+        $rep->apellido = ucwords(strtolower($request->apellido));
         $rep->email = $request->email;
         $rep->telefono = $request->telefono;
         $rep->save();

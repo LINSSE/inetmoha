@@ -120,10 +120,5 @@
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
-<script type="text/javascript">
-    $('#agregarRep').on('click', function () {
-        $('#agregarRepresentante').load("agregarRepresentante")//load a view into a modal
-    $('#agregarRepresentante').modal('show'); //show the modal
-  });
-</script>
+
 @endsection
