@@ -17,7 +17,7 @@
     
     
     <script type="text/javascript" src="{{ asset('assets/js/jquery.min.js')}}"></script>
-    <script type="text/javascript" src="{{ asset('assets/js/dropdown.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/miscript.js')}}"></script>
     <script type="text/javascript" src="{{ asset('assets/bootstrap/js/bootstrap.min.js')}}"></script>
 
 </head>
