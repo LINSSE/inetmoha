@@ -21,10 +21,10 @@
                     @foreach($representantes as $rep)        
                             <tbody>
                                 <tr>
-                                    <td>{{$rep->apellido}}</td>
-                                    <td>{{$rep->nombre}}</td>
-                                    <td>{{$rep->email}}</td>
-                                    <td>{{$rep->telefono}}</td>
+                                    <td><input type="text" class="input-table" name="apellido" value="{{$rep->apellido}}" disabled></td>
+                                    <td><input type="text" class="input-table" name="nombre" value="{{$rep->nombre}}" disabled></td>
+                                    <td><input type="text" class="input-table" name="email" value="{{$rep->email}}" disabled></td>
+                                    <td><input type="text" class="input-table" name="telefono" maxlength="8" minlength="8" inputmode="numeric" value="{{$rep->telefono}}" disabled></td>
                                 </tr>
                             </tbody>
                     @endforeach

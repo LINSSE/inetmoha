@@ -21,10 +21,10 @@
                     @foreach($despachantes as $desp)        
                             <tbody>
                                 <tr>
-                                    <td>{{$desp->apellido}}</td>
-                                    <td>{{$desp->nombre}}</td>
-                                    <td>{{$desp->email}}</td>
-                                    <td>{{$desp->telefono}}</td>
+                                    <td><input type="text" class="input-table" name="apellido" value="{{$desp->apellido}}" disabled></td>
+                                    <td><input type="text" class="input-table" name="nombre" value="{{$desp->nombre}}" disabled></td>
+                                    <td><input type="text" class="input-table" name="email" value="{{$desp->email}}" disabled></td>
+                                    <td><input type="text" class="input-table" name="telefono" maxlength="8" minlength="8" inputmode="numeric" value="{{$desp->telefono}}" disabled></td>
                                 </tr>
                             </tbody>
                     @endforeach

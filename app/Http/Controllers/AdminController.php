@@ -9,6 +9,7 @@ use App\Provincia;
 use App\Despachante;
 use App\Representante;
 use Illuminate\Support\Facades\Auth;
+use App\Producto;
 
 class AdminController extends Controller
 {
@@ -60,23 +61,24 @@ class AdminController extends Controller
     }
 
     public function despachantes() {
-        $despachantes = Despachante::All();
+        $despachantes = Despachante::orderBy('apellido', 'ASC')->get();
         return view('admin/despachantes', array('despachantes' => $despachantes));
     }
 
     public function representantes() {
-        $representantes = Representante::All();
+        $representantes = Representante::orderBy('apellido', 'ASC')->get();
         return view('admin/representantes', array('representantes' => $representantes));
     }
 
     public function productos(){
     	
-    	return view('/admin/productos');
+        $productos = Producto::orderBy('descripcion', 'ASC')->get();
+    	return view('admin/productos', array('productos' => $productos));
     }
 
     public function operaciones(){
     	
-    	return view('/admin/operaciones');
+    	return view('admin/operaciones');
     }
 
     public function nuevoOperador() {

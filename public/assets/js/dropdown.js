@@ -23,3 +23,10 @@ $(document).ready(function(){
 	    $('#agregarDespachante').modal('show'); //show the modal
 	  });
 });
+
+$(document).ready(function(){
+    $('#agregarProd').on('click', function () {
+            $('#agregarProducto').load("agregarProducto")//load a view into a modal
+        $('#agregarProducto').modal('show'); //show the modal
+      });
+});

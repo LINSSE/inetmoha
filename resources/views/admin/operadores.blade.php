@@ -28,16 +28,32 @@
                             <input type="hidden" name="id" value="{{$user->id}}">
                             <tbody>
                                 <tr>
-                                    <td>{{$user->apellido}}</td>
-                                    <td>{{$user->name}}</td>
-                                    <td>{{$user->email}}</td>
-                                    <td>{{$user->dni}}</td>
-                                    <td>{{$user->telefono}}</td>
-                                    <td>{{$user->domicilio}}</td>
-                                    <td>{{$user->id_ciudad}}</td>
-                                    <td>{{$user->id_provincia}}</td>
-                                    <td>{{$user->id_des}}</td>
-                                    <td>{{$user->id_rep}}</td>
+                                    <td><input type="text" class="input-table" name="apellido" value="{{$user->apellido}}" disabled></td>
+                                    <td><input type="text" class="input-table" name="name" value="{{$user->name}}" disabled></td>
+                                    <td><input type="email" class="input-table" name="email" value="{{$user->email}}" disabled></td>
+                                    <td><input type="text" class="input-table" name="dni" value="{{ $user->dni }}" disabled maxlength="8" minlength="8" inputmode="numeric"></td>
+                                    <td><input id="telefono" type="text" class="input-table" name="telefono" value="{{ $user->telefono }}" disabled maxlength="13" inputmode="numeric"></td>
+                                    <td><input id="domicilio" type="text" class="input-table" name="domicilio" value="{{ $user->domicilio }}" disabled></td>
+                                    @foreach($ciudades as $ciudad)
+                                    @if($ciudad->id === $user->id_ciudad)
+                                        <td><input id="id_ciudad" type="text" class="input-table" name="id_ciudad" value="{{ $ciudad->nombre }}" disabled></td>
+                                    @endif
+                                    @endforeach
+                                    @foreach($provincias as $provincia)
+                                    @if($provincia->id === $user->id_provincia)
+                                        <td><input id="id_provincia" type="text" class="input-table" name="id_provincia" value="{{ $provincia->nombre }}" disabled></td>
+                                    @endif
+                                    @endforeach
+                                    @foreach($despachantes as $des)
+                                    @if($des->id === $user->id_des)
+                                        <td><input id="id_des" type="text" class="input-table" name="id_des" value="{{ $des->apellido}} {{$des->nombre }}" disabled></td>
+                                    @endif
+                                    @endforeach
+                                    @foreach($representantes as $rep)
+                                    @if($rep->id === $user->id_rep)
+                                        <td><input id="id_rep" type="text" class="input-table" name="id_rep" value="{{ $rep->apellido}} {{ $rep->nombre }}" disabled></td>
+                                    @endif
+                                    @endforeach
                                     <td><button type="submit" class="btn btn-primary" >Activar</button></td>
                                 </tr>
                             </tbody>
@@ -74,16 +90,32 @@
                             <input type="hidden" name="id" value="{{$user->id}}">
                             <tbody>
                                 <tr>
-                                    <td>{{$user->apellido}}</td>
-                                    <td>{{$user->name}}</td>
-                                    <td>{{$user->email}}</td>
-                                    <td>{{$user->dni}}</td>
-                                    <td>{{$user->telefono}}</td>
-                                    <td>{{$user->domicilio}}</td>
-                                    <td>{{$user->id_ciudad}}</td>
-                                    <td>{{$user->id_provincia}}</td>
-                                    <td>{{$user->id_des}}</td>
-                                    <td>{{$user->id_rep}}</td>
+                                    <td><input type="text" class="input-table" name="apellido" value="{{$user->apellido}}" disabled></td>
+                                    <td><input type="text" class="input-table" name="name" value="{{$user->name}}" disabled></td>
+                                    <td><input type="email" class="input-table" name="email" value="{{$user->email}}" disabled></td>
+                                    <td><input type="text" class="input-table" name="dni" value="{{ $user->dni }}" disabled maxlength="8" minlength="8" inputmode="numeric"></td>
+                                    <td><input id="telefono" type="text" class="input-table" name="telefono" value="{{ $user->telefono }}" disabled maxlength="13" inputmode="numeric"></td>
+                                    <td><input id="domicilio" type="text" class="input-table" name="domicilio" value="{{ $user->domicilio }}" disabled></td>
+                                    @foreach($ciudades as $ciudad)
+                                    @if($ciudad->id === $user->id_ciudad)
+                                        <td><input id="id_ciudad" type="text" class="input-table" name="id_ciudad" value="{{ $ciudad->nombre }}" disabled></td>
+                                    @endif
+                                    @endforeach
+                                    @foreach($provincias as $provincia)
+                                    @if($provincia->id === $user->id_provincia)
+                                        <td><input id="id_provincia" type="text" class="input-table" name="id_provincia" value="{{ $provincia->nombre }}" disabled></td>
+                                    @endif
+                                    @endforeach
+                                    @foreach($despachantes as $des)
+                                    @if($des->id === $user->id_des)
+                                        <td><input id="id_des" type="text" class="input-table" name="id_des" value="{{ $des->apellido}} {{$des->nombre }}" disabled></td>
+                                    @endif
+                                    @endforeach
+                                    @foreach($representantes as $rep)
+                                    @if($rep->id === $user->id_rep)
+                                        <td><input id="id_rep" type="text" class="input-table" name="id_rep" value="{{ $rep->apellido}} {{ $rep->nombre }}" disabled></td>
+                                    @endif
+                                    @endforeach
                                     <td><button type="submit" class="btn btn-primary" >Desactivar</button></td>
                                 </tr>
                             </tbody>

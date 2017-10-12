@@ -264,3 +264,10 @@ div.container-fluid.trans {
 .btn.btn-success.admin {
   margin-left: 10px;
 }
+
+.input-table {
+  color: black;
+  background-color: transparent;
+  border: none;
+  width: 100%;
+}
