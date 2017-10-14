@@ -36,9 +36,8 @@ class ProductoController extends Controller
     public function store(Request $request)
     {
         $prod = new Producto();
-        $prod->descripcion = ucwords(strtolower($request->descripcion));
-        $prod->cantidad = $request->cantidad;
-        $prod->precio = $request->precio;
+        $prod->nombre = ucwords(strtolower($request->nombre));
+        $prod->descripcion = ucwords($request->descripcion);
         $prod->save();
         return back();
     }

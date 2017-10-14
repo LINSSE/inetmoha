@@ -64,6 +64,11 @@ div.col-md-12.admin {
   padding: 10px;
 }
 
+div.col-md-6.admin {
+  width: 70%;
+  padding: 10px;
+}
+
 div.table-responsive.admin {
   border: 1px solid;
   border-radius: 2px;
