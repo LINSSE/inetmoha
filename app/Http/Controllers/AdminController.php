@@ -60,6 +60,15 @@ class AdminController extends Controller
 
     }
 
+    public function reasignar(Request $request)
+    {
+        $id = $request->id;
+        $user = User::FindOrFail($id);
+        $user->id_des = $request->id_des;
+        $user->save();
+        return redirect('admin/operadores');
+    }
+
     public function despachantes() {
         $despachantes = Despachante::orderBy('apellido', 'ASC')->get();
         return view('admin/despachantes', array('despachantes' => $despachantes));

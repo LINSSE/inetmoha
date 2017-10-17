@@ -16,6 +16,7 @@
                             <th>Nombre </th>
                             <th>Email </th>
                             <th>Telefono </th>
+                            <th></th>
                         </tr>
                     </thead>
                     @foreach($despachantes as $desp)        
@@ -25,6 +26,8 @@
                                     <td><input type="text" class="input-table" name="nombre" value="{{$desp->nombre}}" disabled></td>
                                     <td><input type="text" class="input-table" name="email" value="{{$desp->email}}" disabled></td>
                                     <td><input type="text" class="input-table" name="telefono" maxlength="8" minlength="8" inputmode="numeric" value="{{$desp->telefono}}" disabled></td>
+                                    <td><a type="button" id="eliminarDesp" data-toggle="modal" data_target="#eliminarDespachante" data-id="{{$desp->id}}" class="btn btn-success admin">Eliminar</a>
+                                    </td>
                                 </tr>
                             </tbody>
                     @endforeach
@@ -120,4 +123,34 @@
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+
+<!-- Modal Eliminar Despachante -->
+<div class="modal fade" id="eliminarDespachante" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Eliminar Despachante</h4>
+        </div>
+        <div class="modal-body">
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <form class="form-horizontal" name="eliminarDespachante" method="POST" action="{{ url('despachante/eliminar') }}">
+                                {{ csrf_field() }}
+
+                                
+                                    
+                                    <div class="row model">
+                                        <button type="submit" class="btn btn-primary">Agregar</button>
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                                    </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+   </div>
+</div>
 @endsection

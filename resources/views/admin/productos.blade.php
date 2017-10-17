@@ -14,6 +14,7 @@
                         <tr>
                             <th>Nombre </th>
                             <th>Descripcion </th>
+                            <th></th>
                         </tr>
                     </thead>
                     @foreach($productos as $prod)        
@@ -21,6 +22,13 @@
                                 <tr>
                                     <td><input type="text" class="input-table" name="nombre" value="{{$prod->nombre}}" disabled></td>
                                     <td><input type="text" class="input-table" name="descripcion" value="{{$prod->descripcion}}" disabled></td>
+                                    <td>
+                                        <form class="form-horizontal" method="POST" action="producto/eliminar/{{$prod->id}}">
+                                        {{ csrf_field() }}
+                                        
+                                        <a type="submit" name="eliminarProd" class="btn btn-success admin">Eliminar</a>
+                                        </form>
+                                    </td>
                                 </tr>
                             </tbody>
                     @endforeach

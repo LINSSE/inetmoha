@@ -26,5 +26,20 @@ $(document).ready(function(){
         $('#agregarProducto').modal('show'); //show the modal
       });
 
+    $('#eliminarDesp').on('click', function () {
+
+            var id = $(this).data('id');
+            
+            $('#eliminarDespachante #id-des').val(id);//load a view into a modal
+        $('#eliminarDespachante').modal('show'); //show the modal
+      });
+
+    // function eliminarDesp(id) {
+    //     var id = $(this).data('id');
+            
+    //         $('#eliminarDespachante #id-des').val(id);//load a view into a modal
+    //     $('#eliminarDespachante').modal('show'); //show the modal
+    // }
+    
 
 });

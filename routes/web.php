@@ -60,6 +60,9 @@ Route::group(['middleware' => 'admin'], function() {
 	Route::get('admin/despachantes', 'AdminController@despachantes');
 	Route::get('admin/representantes', 'AdminController@representantes');
 	Route::post('producto/store', 'ProductoController@store');
+	Route::post('producto/eliminar/{id}', 'ProductoController@destroy');
+	Route::post('admin/reasignar', 'AdminController@reasignar');
+		
 });
 
 

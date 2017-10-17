@@ -108,7 +108,8 @@
                                     @endforeach
                                     @foreach($despachantes as $des)
                                     @if($des->id === $user->id_des)
-                                        <td><input id="id_des" type="text" class="input-table" name="id_des" value="{{ $des->apellido}} {{$des->nombre }}" disabled></td>
+                                        <td><input id="id_des" type="text" class="input-table" name="id_des" value="{{ $des->apellido}} {{$des->nombre }}" disabled><br>
+                                        <a type="button" data-toggle="modal" onclick="eliminarDesp({{$user->id}})" class="btn btn-success admin">Reasignar</a></td>
                                     @endif
                                     @endforeach
                                     @foreach($representantes as $rep)
@@ -125,5 +126,55 @@
                 </table>
             </div>
         </div>
+<!-- Modal Eliminar Despachante -->
+<div class="modal fade" id="eliminarDespachante" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Reasignar Despachante</h4>
+        </div>
+        <div class="modal-body">
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                           
+                            <form class="form-horizontal" method="POST" action="/admin/reasignar">
+                                {{ csrf_field() }}
 
+                                    <input type="hidden" id="id" name="id" value="">
+                                    <h4>Elija un Despachante a reasignar</h4>
+                                    <div class="col-md-12">
+                                        <select class="form-control" name="id_des" value="{{ old('id_des') }}" required>
+                                            <option disabled selected value> -- Seleccione un Despachante -- </option>
+                                            @foreach($despachantes as $despachante)
+                                            <option value="{{$despachante->id}}">{{$despachante->apellido}} {{$despachante->nombre}}</option>
+                                            @endforeach
+                                        </select>
+                                            @if ($errors->has('id_des'))
+                                                <span class="help-block">
+                                                    <strong>{{ $errors->first('id_des') }}</strong>
+                                                </span>
+                                            @endif
+                                    <hr>
+                                    <div class="row model">
+                                        <button type="submit" class="btn btn-primary">Reasignar</button>
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                                    </div>
+                                    </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+   </div>
+</div>
+<script type="text/javascript">
+    function eliminarDesp(id) {
+
+            $('#eliminarDespachante #id').val(id);//load a view into a modal
+        $('#eliminarDespachante').modal('show'); //show the modal
+    }
+</script>
 @endsection

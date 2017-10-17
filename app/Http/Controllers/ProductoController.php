@@ -84,6 +84,7 @@ class ProductoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Producto::destroy($id);
+        return redirect('admin/productos');
     }
 }
