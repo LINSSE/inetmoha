@@ -62,6 +62,7 @@ Route::group(['middleware' => 'admin'], function() {
 	Route::post('producto/store', 'ProductoController@store');
 	Route::post('producto/eliminar/{id}', 'ProductoController@destroy');
 	Route::post('admin/reasignar', 'AdminController@reasignar');
+	Route::post('admin/despachante/eliminar', 'AdminController@eliminarDesp');
 		
 });
 
