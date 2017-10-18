@@ -23,10 +23,10 @@
                                     <td><input type="text" class="input-table" name="nombre" value="{{$prod->nombre}}" disabled></td>
                                     <td><input type="text" class="input-table" name="descripcion" value="{{$prod->descripcion}}" disabled></td>
                                     <td>
-                                        <form class="form-horizontal" method="POST" action="producto/eliminar/{{$prod->id}}">
+                                        <form class="form-horizontal" method="POST" action="{{ url('producto/eliminar') }}">
                                         {{ csrf_field() }}
-                                        
-                                        <a type="submit" name="eliminarProd" class="btn btn-success admin">Eliminar</a>
+                                        <input type="hidden" name="id" value="{{$prod->id}}">
+                                        <a type="submit" class="btn btn-success admin">Eliminar</a>
                                         </form>
                                     </td>
                                 </tr>
@@ -81,12 +81,11 @@
                                         <button type="submit" class="btn btn-primary">Agregar</button>
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                                     </div>
-                                    </div>
-                                </div>
+                                
                             </form>
+                        </div>
                     </div>
                 </div>
-        </div>
       
       </div>
     </div><!-- /.modal-content -->

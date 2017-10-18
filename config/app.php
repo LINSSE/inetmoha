@@ -172,6 +172,7 @@ return [
          * Mis Providers...
          */
         Collective\Html\HtmlServiceProvider::class,
+        Orangehill\Iseed\IseedServiceProvider::class,
 
         /*
          * Application Service Providers...

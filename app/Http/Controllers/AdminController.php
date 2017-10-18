@@ -108,4 +108,6 @@ class AdminController extends Controller
        $this->call('GET','email/nuevoOperador');
         return View('email/nuevoOperador');
     }
+
+    
 }
