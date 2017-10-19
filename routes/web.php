@@ -70,8 +70,11 @@ Route::group(['middleware' => 'admin'], function() {
 //Rutas de pruebas
 Route::get('test', function()
 {
-    dd(Config::get('mail'));
+    //dd(Config::get('mail'));
+	
 });
+
+Route::get('prueba', 'AdminController@descargarZIP');
 
 
 ?>
