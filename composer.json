@@ -10,7 +10,8 @@
         "laravel/framework": "5.5.*",
         "laravel/tinker": "~1.0",
         "laravelcollective/html": "^5.4.0",
-        "orangehill/iseed": "dev-master"
+        "orangehill/iseed": "dev-master",
+        "chumper/zipper": "1.0.x"
     },
     "require-dev": {
         "filp/whoops": "~2.0",
@@ -22,6 +23,7 @@
         "classmap": [
             "database/seeds",
             "database/factories"
+
         ],
         "psr-4": {
             "App\\": "app/"

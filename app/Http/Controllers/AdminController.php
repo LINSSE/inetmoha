@@ -10,6 +10,7 @@ use App\Despachante;
 use App\Representante;
 use Illuminate\Support\Facades\Auth;
 use App\Producto;
+use \Chumper\Zipper\Zipper;
 
 class AdminController extends Controller
 {
@@ -112,7 +113,7 @@ class AdminController extends Controller
     public function descargarZip() {
         /*Obtener ultimo archivo de precios Mayoristas de Productos Horticolas
         del Mercado de Buenos Aires*/
-
+        
         $ch = curl_init();
         $source = "http://www.mercadocentral.gob.ar/sites/default/files/precios_mayoristas/PM-Hortalizas-17-Oct-2017.zip"; // URL del archivo a descargar
         curl_setopt($ch, CURLOPT_URL, $source);
@@ -122,25 +123,23 @@ class AdminController extends Controller
         
         // Guardar archivo
         $date = date("d-m-Y");
-        $destination = "precios-" . $date . ".zip"; // Guardar en local
-        //echo $destination;
+        $destination = "precios-" . $date . ".zip"; //Formato de nombre: precios-25-10-2017.zip
         $file = fopen($destination, "w+");
         fputs($file, $data);
         fclose($file);
-        //echo $destination . " descargado ";
 
         //Descomprimir
-        /*$zip = new ZipArchive;
-        $res = $zip->open($destination); // zip
-        if ($res === TRUE) {
-            $zip->extractTo('.'); // descomprimir
-            $zip->close();
-            echo $destination . ' extraido; ';
-            unlink($destination);
-            echo $destination . ' eliminado; ';
-        } else {
-            echo ' Fallo al descomprimir; ';
-        }*/
+        $zipper = new Zipper();
+        $zipper->make($destination)->extractTo('recursos'); //Descomprimo en /public/recursos
+        $res = $zipper->getStatus();
+        if($res != 'No error'){
+            echo 'Ocurrio un error al descomprimir.';
+            echo $res;
+            redirect('/');
+        }
+        
+        $zipper->close();
+        unlink($destination); //Elimino el .zip
     }
 
     
