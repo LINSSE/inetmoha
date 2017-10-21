@@ -95,9 +95,9 @@ class ProductoController extends Controller
      */
     public function eliminar(Request $request)
     {
-        // $id = $request->id;
-        // $prod = Producto::FindOrFail($id);
-        // $prod->delete();
-        return redirect('/');
+        $id = $request->id;
+        $prod = Producto::FindOrFail($id);
+        $prod->delete();
+        return redirect('/admin/productos');
     }
 }

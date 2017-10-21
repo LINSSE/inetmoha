@@ -20,15 +20,13 @@
                     @foreach($productos as $prod)        
                             <tbody>
                                 <tr>
+                                    <form class="form-horizontal" name="eliminarProducto" method="POST" action="/producto/eliminar">
+                                    {{ csrf_field() }}
+                                    <input type="hidden" name="id" value="{{$prod->id}}">
                                     <td><input type="text" class="input-table" name="nombre" value="{{$prod->nombre}}" disabled></td>
                                     <td><input type="text" class="input-table" name="descripcion" value="{{$prod->descripcion}}" disabled></td>
-                                    <td>
-                                        <form class="form-horizontal" method="POST" action="{{ url('producto/eliminar') }}">
-                                        {{ csrf_field() }}
-                                        <input type="hidden" name="id" value="{{$prod->id}}">
-                                        <a type="submit" class="btn btn-success admin">Eliminar</a>
-                                        </form>
-                                    </td>
+                                    <td><button type="submit" class="btn btn-success admin">Eliminar</button></td>
+                                    </form>
                                 </tr>
                             </tbody>
                     @endforeach

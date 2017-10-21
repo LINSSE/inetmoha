@@ -165,11 +165,4 @@
     </div>
    </div>
 </div>
-<script type="text/javascript">
-    function eliminarDesp(id) {
-
-            $('#eliminarDespachante #id').val(id);//load a view into a modal
-        $('#eliminarDespachante').modal('show'); //show the modal
-    }
-</script>
 @endsection

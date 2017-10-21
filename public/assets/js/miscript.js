@@ -33,13 +33,12 @@ $(document).ready(function(){
             $('#eliminarDespachante #id-des').val(id);//load a view into a modal
         $('#eliminarDespachante').modal('show'); //show the modal
       });
+ 
 
-    // function eliminarDesp(id) {
-    //     var id = $(this).data('id');
-            
-    //         $('#eliminarDespachante #id-des').val(id);//load a view into a modal
-    //     $('#eliminarDespachante').modal('show'); //show the modal
-    // }
+    eliminarDesp = function (id) {
+             $('#id').val(id);//load a view into a modal
+        $('#eliminarDespachante').modal('show'); //show the modal
+    }
     
 
 });
