@@ -66,6 +66,7 @@ Route::group(['middleware' => 'admin'], function() {
 		
 });
 
+Route::get('preciosba', 'ProductoController@preciosba');
 
 //Rutas de pruebas
 Route::get('test', function()

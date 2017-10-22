@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Producto;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ProductoController extends Controller
 {
@@ -99,5 +100,43 @@ class ProductoController extends Controller
         $prod = Producto::FindOrFail($id);
         $prod->delete();
         return redirect('/admin/productos');
+    }
+
+
+    
+
+    public function preciosba() 
+    {
+        $path = 'public/recursos/PM-Hortalizas-17-Oct-2017.xlsx';
+
+        Excel::load('public/recursos/archivo.xls', function($reader) {
+            
+            $result = $reader->get();
+
+            foreach ($result as $key => $value) {
+                    
+                    //$datos[] = ['nombre' => $value->esp];
+                    //echo 'Entra';
+                    echo $value->nombre . '<br>';
+                }
+
+        })->get();
+            // iteracción
+            /*foreach ($data as $prod) {
+                
+                //$productos[] = 0;
+
+                if($prod->ESP === 'TOMATE') {
+                    $pd = new Producto;
+                    $pd->nombre = $prod->ESP;
+                }
+                else{
+                    $pd = new Producto;
+                    $pd->nombre = 'noEntro';
+                }
+            }*/
+ 
+ 
+        //return view('preciosba', array('datos' => $datos));
     }
 }
