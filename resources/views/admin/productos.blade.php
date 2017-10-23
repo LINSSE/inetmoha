@@ -25,7 +25,7 @@
                                     <input type="hidden" name="id" value="{{$prod->id}}">
                                     <td><input type="text" class="input-table" name="nombre" value="{{$prod->nombre}}" disabled></td>
                                     <td><input type="text" class="input-table" name="descripcion" value="{{$prod->descripcion}}" disabled></td>
-                                    <td><button type="submit" class="btn btn-success admin">Eliminar</button></td>
+                                    <td><button type="submit" class="btn btn-success admin tabla">Eliminar</button></td>
                                     </form>
                                 </tr>
                             </tbody>

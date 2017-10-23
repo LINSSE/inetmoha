@@ -87,7 +87,7 @@ div.table-responsive.admin {
 .table>thead>tr>th {
   padding: 4px !important;
   line-height: 1.42857143;
-  vertical-align: top;
+  vertical-align: middle !important;
   border-top: 1px solid #ddd;
   color: white;
   background: rgba(0, 0, 0, 0.39);
@@ -267,7 +267,11 @@ div.container-fluid.trans {
 }
 
 .btn.btn-success.admin {
-  margin-left: 10px;
+  margin: 10px;
+}
+
+.btn.btn-success.admin.tabla {
+  margin: 0px;
 }
 
 .input-table {
@@ -275,4 +279,8 @@ div.container-fluid.trans {
   background-color: transparent;
   border: none;
   width: 100%;
+}
+
+.modal-content.oferta {
+  min-height: 500px;
 }

@@ -8,6 +8,7 @@ use App\Ciudad;
 use App\Provincia;
 use App\Despachante;
 use App\Representante;
+use App\Producto;
 
 
 class UserController extends Controller
@@ -93,16 +94,6 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function ofertas()
-    {
-        return view('usuario/ofertas');
     }
 
     /**

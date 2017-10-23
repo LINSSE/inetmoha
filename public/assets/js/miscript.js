@@ -13,7 +13,7 @@ $(document).ready(function(){
     $('#agregarRep').on('click', function () {
         $('#agregarRepresentante').load("agregarRepresentante")//load a view into a modal
     $('#agregarRepresentante').modal('show'); 
-  });
+    });
 
 
 	$('#agregarDesp').on('click', function () {
@@ -32,6 +32,11 @@ $(document).ready(function(){
             
             $('#eliminarDespachante #id-des').val(id);//load a view into a modal
         $('#eliminarDespachante').modal('show'); //show the modal
+      });
+
+    $('#agregarOferta').on('click', function () {
+            //$('#nuevaOferta').load("agregarDespachante")//load a view into a modal
+        $('#nuevaOferta').modal('show'); //show the modal
       });
  
 

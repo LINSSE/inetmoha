@@ -40,7 +40,9 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::get('usuario/show/{id}', 'UserController@show');
 	Route::get('usuario/edit/{id}', 'UserController@edit');
 	Route::get('usuario/update/{id}', 'UserController@update');
-	Route::get('usuario/ofertas', 'UserController@ofertas');
+	Route::get('usuario/ofertas', 'OfertasController@ofertas');
+	Route::post('usuario/nuevaOferta', 'OfertasController@store');
+	Route::post('usuario/eliminarOferta', 'OfertasController@eliminar');
 	Route::get('usuario/demandas', 'UserController@demandas');
 	Route::get('usuario/operaciones', 'UserController@operaciones');
 });

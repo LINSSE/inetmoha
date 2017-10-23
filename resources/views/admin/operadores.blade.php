@@ -109,7 +109,7 @@
                                     @foreach($despachantes as $des)
                                     @if($des->id === $user->id_des)
                                         <td><input id="id_des" type="text" class="input-table" name="id_des" value="{{ $des->apellido}} {{$des->nombre }}" disabled><br>
-                                        <a type="button" data-toggle="modal" onclick="eliminarDesp({{$user->id}})" class="btn btn-success admin">Reasignar</a></td>
+                                        <a type="button" data-toggle="modal" onclick="eliminarDesp({{$user->id}})" class="btn btn-success admin tabla">Reasignar</a></td>
                                     @endif
                                     @endforeach
                                     @foreach($representantes as $rep)

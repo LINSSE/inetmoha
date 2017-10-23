@@ -26,7 +26,7 @@
                                     <td><input type="text" class="input-table" name="nombre" value="{{$desp->nombre}}" disabled></td>
                                     <td><input type="text" class="input-table" name="email" value="{{$desp->email}}" disabled></td>
                                     <td><input type="text" class="input-table" name="telefono" maxlength="8" minlength="8" inputmode="numeric" value="{{$desp->telefono}}" disabled></td>
-                                    <td><a type="button" data-toggle="modal" onclick="eliminarDesp({{$desp->id}})" class="btn btn-success admin">Eliminar</a></td>
+                                    <td><a type="button" data-toggle="modal" onclick="eliminarDesp({{$desp->id}})" class="btn btn-success admin tabla">Eliminar</a></td>
                                     </td>
                                 </tr>
                             </tbody>
