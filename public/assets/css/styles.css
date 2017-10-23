@@ -85,12 +85,16 @@ div.table-responsive.admin {
 .table>tfoot>tr>th, 
 .table>thead>tr>td, 
 .table>thead>tr>th {
-  padding: 4px !important;
+  padding: 1px 2px 4px 1px !important;
   line-height: 1.42857143;
   vertical-align: middle !important;
   border-top: 1px solid #ddd;
   color: white;
   background: rgba(0, 0, 0, 0.39);
+}
+
+.table>tbody>tr>td a{
+  text-align: justify;
 }
 
 nav.navbar.navbar-default{
@@ -274,13 +278,41 @@ div.container-fluid.trans {
   margin: 0px;
 }
 
+.btn.btn-danger.admin.tabla {
+  margin: 0px;
+}
+
 .input-table {
   color: black;
   background-color: transparent;
   border: none;
-  width: 100%;
+  width: 85%;
 }
 
 .modal-content.oferta {
   min-height: 500px;
+}
+
+h4.info {
+  color: red;
+  text-align: justify;
+}
+
+.table>tbody>tr>td a.glyphicon.glyphicon-pencil {
+  color: gold;
+}
+
+a.glyphicon.glyphicon-remove {
+  color: red;
+  padding-right: 2px;
+}
+
+.table>tbody>tr>td a.glyphicon.glyphicon-ok {
+  color: green;
+  padding-right: 2px;
+}
+
+table.ofertas {
+  width: 70%;
+  margin: 0 auto !important;
 }

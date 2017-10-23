@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Oferta;
+use App\Producto;
+
 class PaginasController extends Controller
 {
     public function index () {
@@ -21,7 +24,9 @@ class PaginasController extends Controller
 	}
 
 	public function ofertas () {
-		return view('ofertas');
+		$ofertas = Oferta::All();
+		$productos = Producto::All();
+		return view('ofertas', array('ofertas' => $ofertas, 'productos' => $productos));
 	}
 
 	public function demandas () {

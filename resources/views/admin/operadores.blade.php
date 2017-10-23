@@ -18,7 +18,7 @@
                             <th>Provincia </th>
                             <th>Despachante </th>
                             <th>Representante </th>
-                            <th>Estado </th>
+                            <th>Est</th>
                         </tr>
                     </thead>
                     @foreach($users as $user)
@@ -54,7 +54,7 @@
                                         <td><input id="id_rep" type="text" class="input-table" name="id_rep" value="{{ $rep->apellido}} {{ $rep->nombre }}" disabled></td>
                                     @endif
                                     @endforeach
-                                    <td><button type="submit" class="btn btn-primary" >Activar</button></td>
+                                    <td><a type="submit" class="glyphicon glyphicon-ok" title="Haga click para ACTIVAR éste Operador"></a></td>
                                 </tr>
                             </tbody>
                         </form>
@@ -80,7 +80,7 @@
                             <th>Provincia </th>
                             <th>Despachante </th>
                             <th>Representante </th>
-                            <th>Estado </th>
+                            <th>Est</th>
                         </tr>
                     </thead>
                     @foreach($users as $user)
@@ -108,8 +108,7 @@
                                     @endforeach
                                     @foreach($despachantes as $des)
                                     @if($des->id === $user->id_des)
-                                        <td><input id="id_des" type="text" class="input-table" name="id_des" value="{{ $des->apellido}} {{$des->nombre }}" disabled><br>
-                                        <a type="button" data-toggle="modal" onclick="eliminarDesp({{$user->id}})" class="btn btn-success admin tabla">Reasignar</a></td>
+                                        <td><a type="button" data-toggle="modal" onclick="eliminarDesp({{$user->id}})" class="glyphicon glyphicon-pencil" title="Haga click para Asignar otro Despachante a este Operador"></a><input id="id_des" type="text" class="input-table" name="id_des" value="{{ $des->apellido}} {{$des->nombre }}" disabled></td>
                                     @endif
                                     @endforeach
                                     @foreach($representantes as $rep)
@@ -117,7 +116,7 @@
                                         <td><input id="id_rep" type="text" class="input-table" name="id_rep" value="{{ $rep->apellido}} {{ $rep->nombre }}" disabled></td>
                                     @endif
                                     @endforeach
-                                    <td><button type="submit" class="btn btn-primary" >Desactivar</button></td>
+                                    <td><a type="submit" class="glyphicon glyphicon-remove" title="Haga click para DESACTIVAR éste Operador"></a></td>
                                 </tr>
                             </tbody>
                         </form>
@@ -132,7 +131,7 @@
     <div class="modal-content">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title">Reasignar Despachante</h4>
+            <h4 class="modal-title">Asignar Despachante</h4>
         </div>
         <div class="modal-body">
                 <div class="col-md-12">
@@ -143,7 +142,7 @@
                                 {{ csrf_field() }}
 
                                     <input type="hidden" id="id" name="id" value="">
-                                    <h4>Elija un Despachante a reasignar</h4>
+                                    <h4>Asignar un Despachante</h4>
                                     <div class="col-md-12">
                                         <select class="form-control" name="id_des" value="{{ old('id_des') }}" required>
                                             <option disabled selected value> -- Seleccione un Despachante -- </option>

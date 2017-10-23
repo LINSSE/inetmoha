@@ -26,7 +26,7 @@
                                     <td><input type="text" class="input-table" name="nombre" value="{{$desp->nombre}}" disabled></td>
                                     <td><input type="text" class="input-table" name="email" value="{{$desp->email}}" disabled></td>
                                     <td><input type="text" class="input-table" name="telefono" maxlength="8" minlength="8" inputmode="numeric" value="{{$desp->telefono}}" disabled></td>
-                                    <td><a type="button" data-toggle="modal" onclick="eliminarDesp({{$desp->id}})" class="btn btn-success admin tabla">Eliminar</a></td>
+                                    <td><a type="button" data-toggle="modal" onclick="eliminarDesp({{$desp->id}})" class="btn btn-danger admin tabla">Eliminar</a></td>
                                     </td>
                                 </tr>
                             </tbody>
@@ -138,8 +138,11 @@
                         <div class="panel-body">
                             <form class="form-horizontal" name="eliminarDespachante" method="POST" action="/admin/despachante/eliminar">
                                 {{ csrf_field() }}
-                                    <h4>Debe seleccionar un Despachante para reemplazar</h4>
+                                    <h4 class="info">El Despachante a eliminar está asignado a uno o más oferentes. Su eliminación hará que estos oferentes pierdan esta asignación.
+
+Si continúa con la eliminación es necesario elegir otro Despachante para la reasignación.</h4>
                                     <input type="hidden" id="id" name="id" value="">
+                                    <br>
                                     <div class="col-md-12">
                                         <select class="form-control" name="id_des" value="{{ old('id_des') }}" required>
                                             <option disabled selected value> -- Seleccione un Despachante -- </option>
@@ -154,7 +157,7 @@
                                             @endif
                                     <hr>
                                     <div class="row model">
-                                        <button type="submit" class="btn btn-primary">Eliminar</button>
+                                        <button type="submit" class="btn btn-danger">Eliminar</button>
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                                     </div>
                             </form>
