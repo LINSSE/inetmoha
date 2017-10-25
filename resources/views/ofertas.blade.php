@@ -6,14 +6,14 @@
             <div class="col-md-12">
                 <h1 class="h1-tabla">Ofertas sin Tomar</h1>
                 <div class="table-responsive">
-                    <table class="table ofertas">
+                    <table class="table chica">
                         <thead>
                             <thead>
                             <tr>
                                 <th>Producto</th>
                                 <th>Cantidad</th>
                                 <th>Precio</th>
-                                <th>Fecha</th>
+                                <th>Fecha Fin</th>
                                 <th>Puesto</th>
                                 <th>Cobro</th>
                                 <th>Modo</th>
@@ -33,11 +33,15 @@
                                     @endforeach
                                     <td><input type="text" class="input-table" name="producto" value="{{$of->cantidad}}" disabled></td>
                                     <td><input type="text" class="input-table" name="producto" value="{{$of->precio}}" disabled></td>
-                                    <td><input type="text" class="input-table" name="producto" value="{{$of->fecha}}" disabled></td>
+                                    <td><input type="text" class="input-table" name="producto" value="{{$of->fechaFin}}" disabled></td>
                                     <td><input type="text" class="input-table" name="producto" value="{{$of->puesto}}" disabled></td>
                                     <td><input type="text" class="input-table" name="producto" value="{{$of->cobro}}" disabled></td>
-                                    <td><input type="text" class="input-table" name="producto" value="{{$of->modo}}" disabled></td>
-                                    <td><button type="" class="btn btn-success admin tabla">Ofertar</button></td>
+                                    <td><input type="text" class="input-table" name="producto" value="{{$of->modo}}" readonly="true"></td>
+                                    <td>@if($activo === 1)
+                                            <button type="button" name="ofertar" class="btn btn-success admin">Ofertar</button>
+                                        @else
+                                            <button type="button" name="ofertar" disabled="" class="btn btn-success admin">Ofertar</button>
+                                        @endif</td>
                                     <!-- </form> -->
                                 </tr>
                             </tbody>

@@ -18,7 +18,8 @@ class OfertasController extends Controller
     	$oferta->id_prod = $request->id_prod;
     	$oferta->cantidad = $request->cantidad;
     	$oferta->precio = $request->precio;
-    	$oferta->fecha = $request->fecha;
+    	$oferta->fechaInicio = $request->fecha;
+        $oferta->fechaFin = $request->fechaf;
     	$oferta->puesto = $request->puesto;
     	$oferta->cobro = $request->cobro;
     	$oferta->modo = $request->modo;
@@ -32,8 +33,13 @@ class OfertasController extends Controller
 
     	$ofertas = Oferta::where('id_op', '=', (Auth::user()->id))->get();
     	$productos = Producto::All();
+        if(Auth::user()->activo === 1){
+            $activo = 1;
+        }else{
+            $activ = 0;
+        }
 
-    	return view('usuario/ofertas', array('ofertas' => $ofertas, 'productos' => $productos));
+    	return view('usuario/ofertas', array('ofertas' => $ofertas, 'productos' => $productos, 'activo' => $activo));
     }
 
     public function eliminar(Request $request) {

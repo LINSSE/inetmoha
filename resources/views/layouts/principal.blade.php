@@ -59,6 +59,7 @@
                                     </li>
                                 </ul>
                             </li>
+
                     @else
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -90,7 +91,23 @@
         </div>
 
     </nav>
-    
+    @guest
+
+    @elseif(Auth::user()->admin === 1)
+        @include('admin.menu')
+    @else
+        @include('usuario.menu')
+        @if(Auth::user()->activo === 0)
+                            
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="alert alert-danger activo" role="alert">
+                            <strong>Su cuenta aún no esta activa para realizar operaciones. Un Administrador verificará sus datos.</strong>
+                            </div>
+                        </div>
+                    </div>
+        @endif
+    @endguest
     <div class="container-fluid principal">
         <?php
             $message=Session::get('message');

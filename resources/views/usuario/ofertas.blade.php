@@ -1,14 +1,18 @@
 @extends('layouts.principal')
 
 @section('content')
-@include('usuario.menu')
 	
 	<div class="row">
-		<a type="button" id="agregarOferta" data-toggle="modal" data_target="#nuevaOferta" class="btn btn-success admin">Nueva Oferta</a>
+        @if($activo === 1)
+            <button type="button" id="agregarOferta" data-toggle="modal" data_target="#nuevaOferta" class="btn btn-success admin">Nueva Oferta</button>
+        @else
+            <button type="button" id="agregarOferta" data-toggle="modal" disabled="" data_target="#nuevaOferta" class="btn btn-success admin">Nueva Oferta</button>
+        @endif
+		
             <div class="col-md-12">
                 <h1 class="h1-tabla">Mis Ofertas</h1>
                 <div class="table-responsive">
-                    <table class="table table-striped table-bordered table-condensed">
+                    <table class="table chica">
                         <thead>
                             <tr>
                                 <th>Producto</th>
@@ -38,7 +42,7 @@
 	                            	<td><input type="text" class="input-table" name="producto" value="{{$of->puesto}}" disabled></td>
 	                            	<td><input type="text" class="input-table" name="producto" value="{{$of->cobro}}" disabled></td>
 	                            	<td><input type="text" class="input-table" name="producto" value="{{$of->modo}}" disabled></td>
-	                            	<td><button type="submit" class="btn btn-success admin tabla">Eliminar</button></td>
+	                            	<td><button type="submit" class="btn btn-danger admin tabla" title="Eliminar Oferta">X</button></td>
 	                            	</form>
 	                            </tr>
 	                        </tbody>
@@ -85,7 +89,7 @@
                                     <label for="cantidad" class="col-md-4 control-label">Cantidad</label>
 
                                     <div class="col-md-6">
-                                        <input id="cantidad" type="number" class="form-control" name="cantidad" value="{{ old('cantidad') }}" required autofocus>
+                                        <input id="cantidad" placeholder="Cantidad Ofrecida" type="number" class="form-control" name="cantidad" min="1" value="{{ old('cantidad') }}" required autofocus>
 
                                         @if ($errors->has('cantidad'))
                                             <span class="help-block">
@@ -99,7 +103,7 @@
                                     <label for="precio" class="col-md-4 control-label">Precio</label>
 
                                     <div class="col-md-6">
-                                        <input id="precio" type="number" class="form-control" name="precio" value="{{ old('precio') }}" required autofocus>
+                                        <input id="precio" placeholder="Precio" type="number" class="form-control" name="precio" min="1" value="{{ old('precio') }}" required autofocus>
 
                                         @if ($errors->has('precio'))
                                             <span class="help-block">
@@ -110,10 +114,10 @@
                                 </div>
 
                                 <div class="form-group{{ $errors->has('fecha') ? ' has-error' : '' }}">
-                                    <label for="fecha" class="col-md-4 control-label">Fecha</label>
+                                    <label for="fecha" class="col-md-4 control-label">Fecha Inicio</label>
 
                                     <div class="col-md-6">
-                                        <input id="fecha" type="date" class="form-control" name="fecha" value="{{ old('fecha') }}" required autofocus>
+                                        <input id="fecha" placeholder="Fecha Inicio de Oferta" onfocus="(this.type='date')" type="text" class="form-control" onblur="if(this.value==''){this.type='text'}" name="fecha" min="<?php $hoy=date("Y-m-d"); echo $hoy;?>" value=""  required autofocus>
 
                                         @if ($errors->has('fecha'))
                                             <span class="help-block">
@@ -123,11 +127,25 @@
                                     </div>
                                 </div>
 
+                                <div class="form-group{{ $errors->has('fechaf') ? ' has-error' : '' }}">
+                                    <label for="fechaf" class="col-md-4 control-label">Fecha Fin</label>
+
+                                    <div class="col-md-6">
+                                        <input id="fechaf" placeholder="Fecha Fin de Oferta" onfocus="(this.type='date')" type="text" class="form-control" onblur="if(this.value==''){this.type='text'}" name="fechaf" value="{{ old('fechaf') }}" min="" disabled="true" title="Primero seleccione una Fecha de Inicio de la Oferta" required autofocus>
+
+                                        @if ($errors->has('fechaf'))
+                                            <span class="help-block">
+                                                <strong>{{ $errors->first('fechaf') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+                                </div>
+
                                 <div class="form-group{{ $errors->has('puesto') ? ' has-error' : '' }}">
                                     <label for="puesto" class="col-md-4 control-label">Puesto</label>
 
                                     <div class="col-md-6">
-	                                <select class="form-control" name="puesto" value="{{ old('puesto') }}" required>
+	                                <select class="form-control" placeholder="Puesto en..." name="puesto" value="{{ old('puesto') }}" required>
 	                                    <option disabled selected value> -- Producto Puesto en -- </option>
 	                                    <option value="1" >Finq</option>
 	                                    <option value="2">Epq</option>
@@ -146,7 +164,7 @@
 
                                     <div class="col-md-6">
 	                                <select class="form-control" name="cobro" value="{{ old('cobro') }}" required>
-	                                    <option disabled selected value> -- Modo de Cobro -- </option>
+	                                    <option disabled selected value> -- Forma de Cobro -- </option>
 	                                    <option value="1" >Contado</option>
 	                                    <option value="2">CPD</option>
 	                                    <option value="3">Com</option>

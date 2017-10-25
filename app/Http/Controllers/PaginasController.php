@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Oferta;
 use App\Producto;
+use Auth;
 
 class PaginasController extends Controller
 {
@@ -26,7 +27,12 @@ class PaginasController extends Controller
 	public function ofertas () {
 		$ofertas = Oferta::All();
 		$productos = Producto::All();
-		return view('ofertas', array('ofertas' => $ofertas, 'productos' => $productos));
+		if(Auth::user()->activo === 1){
+            $activo = 1;
+        }else{
+            $activ = 0;
+        }
+		return view('ofertas', array('ofertas' => $ofertas, 'productos' => $productos, 'activo' => $activo));
 	}
 
 	public function demandas () {
@@ -37,3 +43,4 @@ class PaginasController extends Controller
 		return view('precios');
 	}
 }
+

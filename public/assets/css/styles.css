@@ -69,10 +69,9 @@ div.col-md-6.admin {
   padding: 10px;
 }
 
-div.table-responsive.admin {
-  border: 1px solid;
-  border-radius: 2px;
-  border-color: grey;
+.table.chica {
+  margin: 0px auto !important;
+  width: 75%;
 }
 
 .table {
@@ -137,21 +136,6 @@ div.container-fluid.principal{
 img.img-logo-ctes{
   width:70px;
   float:left;
-}
-
-h4.text-right{
-}
-
-div.row.precios{
-}
-
-div.table-responsive.precios{
-}
-
-.table-responsive.th{
-}
-
-div.col-md-4.col-sm-6.footer-navigation{
 }
 
 p.links{
@@ -290,7 +274,7 @@ div.container-fluid.trans {
 }
 
 .modal-content.oferta {
-  min-height: 500px;
+  min-height: 550px;
 }
 
 h4.info {
@@ -300,19 +284,4 @@ h4.info {
 
 .table>tbody>tr>td a.glyphicon.glyphicon-pencil {
   color: gold;
-}
-
-a.glyphicon.glyphicon-remove {
-  color: red;
-  padding-right: 2px;
-}
-
-.table>tbody>tr>td a.glyphicon.glyphicon-ok {
-  color: green;
-  padding-right: 2px;
-}
-
-table.ofertas {
-  width: 70%;
-  margin: 0 auto !important;
 }

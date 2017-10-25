@@ -1,15 +1,12 @@
 @extends('layouts.principal')
 
 @section('content')
-    @include('admin.menu')
     <div class="row">
-    <h4 class="h4tit">Representante</h4>
-    <br>
     <a type="button" id="agregarRep" data-toggle="modal" data_target="#agregarRepresentante" class="btn btn-success admin">Agregar</a>
 	</div>
 	<div class="col-md-12 admin">
-            <div class="table-responsive admin">
-                <table class="table">
+            <div class="table-responsive">
+                <table class="table chica">
                     <thead>
                         <tr>
                             <th>Apellido </th>

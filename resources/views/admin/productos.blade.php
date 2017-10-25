@@ -1,15 +1,12 @@
 @extends('layouts.principal')
 
 @section('content')
-    @include('admin.menu')
     <div class="row">
-    <h4 class="h4tit">Productos</h4>
-    <br>
     <a type="button" id="agregarProd" data-toggle="modal" data_target="#agregarProducto" class="btn btn-success admin">Agregar</a>
 	</div>
-	<div class="col-md-6 admin">
-            <div class="table-responsive admin">
-                <table class="table">
+	<div class="col-md-12 admin">
+            <div class="table-responsive">
+                <table class="table chica">
                     <thead>
                         <tr>
                             <th>Nombre </th>
@@ -25,7 +22,7 @@
                                     <input type="hidden" name="id" value="{{$prod->id}}">
                                     <td><input type="text" class="input-table" name="nombre" value="{{$prod->nombre}}" disabled></td>
                                     <td><input type="text" class="input-table" name="descripcion" value="{{$prod->descripcion}}" disabled></td>
-                                    <td><button type="submit" class="btn btn-success admin tabla">Eliminar</button></td>
+                                    <td><button type="submit" class="btn btn-danger admin tabla" title="Eliminar Producto">X</button></td>
                                     </form>
                                 </tr>
                             </tbody>

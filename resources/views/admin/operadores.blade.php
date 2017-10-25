@@ -1,7 +1,6 @@
 @extends('layouts.principal')
 
 @section('content')
-    @include('admin.menu')
     <h4 class="h4tit">Operadores Inactivos</h4>
 	<div class="col-md-12 admin">
             <div class="table-responsive admin">
@@ -18,7 +17,7 @@
                             <th>Provincia </th>
                             <th>Despachante </th>
                             <th>Representante </th>
-                            <th>Est</th>
+                            <th></th>
                         </tr>
                     </thead>
                     @foreach($users as $user)
@@ -54,7 +53,7 @@
                                         <td><input id="id_rep" type="text" class="input-table" name="id_rep" value="{{ $rep->apellido}} {{ $rep->nombre }}" disabled></td>
                                     @endif
                                     @endforeach
-                                    <td><a type="submit" class="glyphicon glyphicon-ok" title="Haga click para ACTIVAR éste Operador"></a></td>
+                                    <td><button type="submit" class="btn btn-success" title="Haga click para ACTIVAR éste Operador">Activar</button></td>
                                 </tr>
                             </tbody>
                         </form>
@@ -80,7 +79,7 @@
                             <th>Provincia </th>
                             <th>Despachante </th>
                             <th>Representante </th>
-                            <th>Est</th>
+                            <th></th>
                         </tr>
                     </thead>
                     @foreach($users as $user)
@@ -116,7 +115,7 @@
                                         <td><input id="id_rep" type="text" class="input-table" name="id_rep" value="{{ $rep->apellido}} {{ $rep->nombre }}" disabled></td>
                                     @endif
                                     @endforeach
-                                    <td><a type="submit" class="glyphicon glyphicon-remove" title="Haga click para DESACTIVAR éste Operador"></a></td>
+                                    <td><button type="submit" class="btn btn-danger" title="Haga click para DESACTIVAR éste Operador">Desactivar</button></a></td>
                                 </tr>
                             </tbody>
                         </form>
@@ -157,7 +156,7 @@
                                             @endif
                                     <hr>
                                     <div class="row model">
-                                        <button type="submit" class="btn btn-primary">Reasignar</button>
+                                        <button type="submit" class="btn btn-primary">Asignar</button>
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                                     </div>
                                     </div>

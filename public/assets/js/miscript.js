@@ -8,6 +8,11 @@ $(document).ready(function(){
             });
         });
 
+    $("#fecha").change(function(event){
+        var fecha = document.getElementById("fecha").value;
+        $("#fechaf").attr("disabled", false);
+        $("#fechaf").attr("min", fecha);
+    });
 
 
     $('#agregarRep').on('click', function () {

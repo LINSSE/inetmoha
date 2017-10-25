@@ -1,15 +1,13 @@
 @extends('layouts.principal')
 
 @section('content')
-    @include('admin.menu')
+    
     <div class="row">
-    <h4 class="h4tit">Despachantes</h4>
-    <br>
     <a type="button" id="agregarDesp" data-toggle="modal" data_target="#agregarDespachante" class="btn btn-success admin">Agregar</a>
 	</div>
 	<div class="col-md-12 admin">
-            <div class="table-responsive admin">
-                <table class="table">
+            <div class="table-responsive">
+                <table class="table chica">
                     <thead>
                         <tr>
                             <th>Apellido </th>
@@ -26,7 +24,7 @@
                                     <td><input type="text" class="input-table" name="nombre" value="{{$desp->nombre}}" disabled></td>
                                     <td><input type="text" class="input-table" name="email" value="{{$desp->email}}" disabled></td>
                                     <td><input type="text" class="input-table" name="telefono" maxlength="8" minlength="8" inputmode="numeric" value="{{$desp->telefono}}" disabled></td>
-                                    <td><a type="button" data-toggle="modal" onclick="eliminarDesp({{$desp->id}})" class="btn btn-danger admin tabla">Eliminar</a></td>
+                                    <td><a type="button" data-toggle="modal" onclick="eliminarDesp({{$desp->id}})" class="btn btn-danger admin tabla" title="Eliminar Despachante">X</a></td>
                                     </td>
                                 </tr>
                             </tbody>

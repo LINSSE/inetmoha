@@ -19,7 +19,8 @@ class CreateOfertasTable extends Migration
             $table->integer('id_prod')->unsigned();
             $table->integer('cantidad');
             $table->double('precio');
-            $table->date('fecha');
+            $table->date('fechaInicio');
+            $table->date('fechaFin');
             $table->enum('puesto', ['Finq', 'Epq']);
             $table->enum('cobro', ['Cdo', 'CPD', 'Com', 'Efec']);
             $table->enum('modo', ['Raso', 'Emb', 'Abie']);

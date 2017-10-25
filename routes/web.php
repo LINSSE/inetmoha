@@ -76,9 +76,12 @@ Route::get('test', function()
 {
     //dd(Config::get('mail'));
 	
+	
 });
 
-Route::get('prueba', 'AdminController@descargarZIP');
+Route::get('prueba', function(){
+	return view('prueba');
+});
 
 
 ?>
