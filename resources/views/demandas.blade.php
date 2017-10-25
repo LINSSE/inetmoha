@@ -6,56 +6,50 @@
             <div class="col-md-12">
                 <h1 class="h1-tabla">Demandas sin Tomar</h1>
                 <div class="table-responsive">
-                    <table class="table table-striped table-bordered table-condensed">
+                    <table class="table chica">
                         <thead>
+                            <thead>
                             <tr>
-                                <th>Producto </th>
-                                <th>Precio </th>
-                                <th>Cant </th>
-                                <th>Operador </th>
-                                <th>Pago </th>
-                                <th>Destino </th>
-                                <th>Modo </th>
+                                <th>Producto</th>
+                                <th>Cantidad</th>
+                                <th>Precio</th>
+                                <th>Operador</th>
+                                <th>Pago</th>
+                                <th>Destino</th>
+                                <th>Modo</th>
+                                <th></th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>Zapallito x 10kg</td>
-                                <td>200 </td>
-                                <td>1.000 </td>
-                                <td>La Anonima</td>
-                                <td>Efect </td>
-                                <td>Bs. As.</td>
-                                <td>Emb </td>
-                            </tr>
-                            <tr>
-                                <td>Tomate x 20kg</td>
-                                <td>185 </td>
-                                <td>3.000 </td>
-                                <td>Los 3 Hnos.</td>
-                                <td>CPD </td>
-                                <td>Rosario </td>
-                                <td>Raso </td>
-                            </tr>
-                            <tr>
-                                <td>Tomate x 20kg</td>
-                                <td>210 </td>
-                                <td>3.000 </td>
-                                <td>Est. AAA</td>
-                                <td>Com </td>
-                                <td>B. Blanca</td>
-                                <td>Abierto </td>
-                            </tr>
-                            <tr>
-                                <td>Tomate x 20kg</td>
-                                <td>200 </td>
-                                <td>3.000 </td>
-                                <td>Perez Juan</td>
-                                <td>Efect </td>
-                                <td>Barranquera </td>
-                                <td>Raso </td>
-                            </tr>
-                        </tbody>
+                        @foreach($demandas as $dem)
+                            <tbody>
+                                <tr>
+                                    <!-- <form class="form-horizontal" name="" method="POST" action=""> -->
+                                    {{ csrf_field() }}
+                                    <input type="hidden" name="id" value="{{$dem->id}}">
+                                    @foreach($productos as $prod)
+                                    @if($dem->id_prod === $prod->id)
+                                    <td><input type="text" class="input-table" name="producto" value="{{$prod->nombre}}" readonly="true"></td>
+                                    @endif
+                                    @endforeach
+                                    <td><input type="text" class="input-table" name="producto" value="{{$dem->cantidad}}" readonly="true"></td>
+                                    <td><input type="text" class="input-table" name="producto" value="{{$dem->precio}}" readonly="true"></td>
+                                    @foreach($operadores as $op)
+                                    @if($dem->id_op === $op->id)
+                                    <td><input type="text" class="input-table" name="id_op" value="{{$op->apellido}} {{$op->apellido}}" readonly="true"></td>
+                                    @endif
+                                    @endforeach
+                                    <td><input type="text" class="input-table" name="producto" value="{{$dem->pago}}" readonly="true"></td>
+                                    <td><input type="text" class="input-table" name="producto" value="{{$dem->destino}}" readonly="true"></td>
+                                    <td><input type="text" class="input-table" name="producto" value="{{$dem->modo}}" readonly="true"></td>
+                                    <td>@if($activo === 1)
+                                            <button type="button" name="ofertar" class="btn btn-success admin">Ofertar</button>
+                                        @else
+                                            <button type="button" name="ofertar" disabled="" class="btn btn-success admin">Ofertar</button>
+                                        @endif</td>
+                                    <!-- </form> -->
+                                </tr>
+                            </tbody>
+                        @endforeach
                     </table>
                 </div>
             </div>

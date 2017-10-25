@@ -36,12 +36,12 @@
 	                            	<td><input type="text" class="input-table" name="producto" value="{{$prod->nombre}}" disabled></td>
 	                            	@endif
 	                            	@endforeach
-	                            	<td><input type="text" class="input-table" name="producto" value="{{$of->cantidad}}" disabled></td>
-	                            	<td><input type="text" class="input-table" name="producto" value="{{$of->precio}}" disabled></td>
-	                            	<td><input type="text" class="input-table" name="producto" value="{{$of->fecha}}" disabled></td>
-	                            	<td><input type="text" class="input-table" name="producto" value="{{$of->puesto}}" disabled></td>
-	                            	<td><input type="text" class="input-table" name="producto" value="{{$of->cobro}}" disabled></td>
-	                            	<td><input type="text" class="input-table" name="producto" value="{{$of->modo}}" disabled></td>
+	                            	<td><input type="text" class="input-table" name="producto" value="{{$of->cantidad}}" readonly="true"></td>
+	                            	<td><input type="text" class="input-table" name="producto" value="{{$of->precio}}" readonly="true"></td>
+	                            	<td><input type="text" class="input-table" name="producto" value="{{$of->fecha}}" readonly="true"></td>
+	                            	<td><input type="text" class="input-table" name="producto" value="{{$of->puesto}}" readonly="true"></td>
+	                            	<td><input type="text" class="input-table" name="producto" value="{{$of->cobro}}" readonly="true"></td>
+	                            	<td><input type="text" class="input-table" name="producto" value="{{$of->modo}}" readonly="true"></td>
 	                            	<td><button type="submit" class="btn btn-danger admin tabla" title="Eliminar Oferta">X</button></td>
 	                            	</form>
 	                            </tr>

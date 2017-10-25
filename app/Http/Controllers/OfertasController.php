@@ -36,7 +36,7 @@ class OfertasController extends Controller
         if(Auth::user()->activo === 1){
             $activo = 1;
         }else{
-            $activ = 0;
+            $activo = 0;
         }
 
     	return view('usuario/ofertas', array('ofertas' => $ofertas, 'productos' => $productos, 'activo' => $activo));

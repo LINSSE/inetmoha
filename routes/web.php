@@ -43,7 +43,9 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::get('usuario/ofertas', 'OfertasController@ofertas');
 	Route::post('usuario/nuevaOferta', 'OfertasController@store');
 	Route::post('usuario/eliminarOferta', 'OfertasController@eliminar');
-	Route::get('usuario/demandas', 'UserController@demandas');
+	Route::get('usuario/demandas', 'DemandasController@demandas');
+	Route::post('usuario/nuevaDemanda', 'DemandasController@store');
+	Route::post('usuario/eliminarDemanda', 'DemandasController@eliminar');
 	Route::get('usuario/operaciones', 'UserController@operaciones');
 });
 

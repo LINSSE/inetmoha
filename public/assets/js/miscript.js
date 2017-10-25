@@ -40,8 +40,11 @@ $(document).ready(function(){
       });
 
     $('#agregarOferta').on('click', function () {
-            //$('#nuevaOferta').load("agregarDespachante")//load a view into a modal
         $('#nuevaOferta').modal('show'); //show the modal
+      });
+
+    $('#agregarDemanda').on('click', function () {
+        $('#nuevaDemanda').modal('show'); //show the modal
       });
  
 
