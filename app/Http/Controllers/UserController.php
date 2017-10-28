@@ -62,6 +62,23 @@ class UserController extends Controller
         return view('usuario/perfil', array('user' => $user, 'provincia' => $provincia, 'ciudad' => $ciudad, 'despachante' => $despachante, 'representante' => $representante ));
     }
 
+    public function buscarOperadores(Request $request) {
+        $buscar = $request->buscar;
+        $ad = User::where('admin', '=', 1)->first();
+        $users = User::where('name', 'like', '%'.ucwords(strtolower($buscar)).'%')
+                                     ->orwhere('apellido', 'like', '%'.ucwords(strtolower($buscar)).'%')
+                                     ->orwhere('email', 'like', '%'.$buscar.'%')
+                                     ->orwhere('telefono', 'like', '%'.$buscar.'%')
+                                     ->orderBy('apellido', 'ASC')->get();
+
+        $despachantes = Despachante::All();
+        $representantes = Representante::All();
+        $provincias = Provincia::All();
+        $ciudades = Ciudad::All();
+        
+        return view('/admin/operadores', array('users' => $users, 'despachantes' => $despachantes, 'representantes' => $representantes, 'provincias' => $provincias, 'ciudades' => $ciudades));
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

@@ -1,6 +1,23 @@
 @extends('layouts.principal')
 
 @section('content')
+    <div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+            <div id="imaginary_container"> 
+                <form class="form-horizontal" method="GET" action="/admin/buscarOperadores">
+                <div class="input-group stylish-input-group">
+                    <input type="text" class="form-control" autofocus="autofocus" name="buscar" placeholder="Buscar..." >
+                    <span class="input-group-addon">
+                        <button type="submit">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>  
+                    </span>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <br>
     <h4 class="h4tit">Operadores Inactivos</h4>
 	<div class="col-md-12 admin">
             <div class="table-responsive admin">
@@ -60,9 +77,9 @@
                     @endif
                     @endforeach
                 </table>
-            </div>
-    <hr>
+        </div>
     </div>
+    <hr>
     <h4 class="h4tit">Operadores Activos</h4>
     <div class="col-md-12 admin">
             <div class="table-responsive admin">

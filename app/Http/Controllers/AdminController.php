@@ -70,21 +70,6 @@ class AdminController extends Controller
         return redirect('admin/operadores');
     }
 
-    public function eliminarDesp(Request $request)
-    {
-        $id_ant = $request->id; //id del Despachante a Eliminar
-        $id_nuevo = $request->id_des; //id del Despachante de reemplazo
-        $rows = User::where('id_des', '=', $id_ant)->update(['id_des' => $id_nuevo]);
-        $desp = Despachante::destroy($id_ant);
-        
-        return redirect('admin/despachantes');
-    }
-
-    public function despachantes() {
-        $despachantes = Despachante::orderBy('apellido', 'ASC')->get();
-        return view('admin/despachantes', array('despachantes' => $despachantes));
-    }
-
     public function representantes() {
         $representantes = Representante::orderBy('apellido', 'ASC')->get();
         return view('admin/representantes', array('representantes' => $representantes));

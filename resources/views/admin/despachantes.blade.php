@@ -3,11 +3,25 @@
 @section('content')
     
     <div class="row">
-    <a type="button" id="agregarDesp" data-toggle="modal" data_target="#agregarDespachante" class="btn btn-success admin">Agregar</a>
+        <div class="col-sm-6 col-sm-offset-3">
+            <div id="imaginary_container"> 
+                <form class="form-horizontal" method="GET" action="/admin/buscarDespachantes">
+                <div class="input-group stylish-input-group">
+                    <input type="text" class="form-control" autofocus="autofocus" name="buscar" placeholder="Buscar..." >
+                    <span class="input-group-addon">
+                        <button type="submit">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>  
+                    </span>
+                </div>
+                </form>
+            </div>
+        </div>
 	</div>
 	<div class="col-md-12 admin">
-            <div class="table-responsive">
-                <table class="table chica">
+        <a type="button" id="agregarDesp" data-toggle="modal" data_target="#agregarDespachante" class="btn btn-success admin">Agregar</a>
+            <div class="table-responsive admin">
+                <table class="table">
                     <thead>
                         <tr>
                             <th>Apellido </th>
@@ -30,7 +44,7 @@
                             </tbody>
                     @endforeach
                 </table>
-            </div>
+            </div>    
     </div>
 
     <!-- Modal Despachante -->

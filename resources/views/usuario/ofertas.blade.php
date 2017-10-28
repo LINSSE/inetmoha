@@ -11,7 +11,6 @@
 		
             <div class="col-md-12">
                 <h1 class="h1-tabla">Mis Ofertas</h1>
-                <div class="table-responsive">
                     <table class="table chica">
                         <thead>
                             <tr>
@@ -48,7 +47,6 @@
 	                        </tbody>
 	                    @endforeach
                     </table>
-                </div>
             </div>
         </div>
 

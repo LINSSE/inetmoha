@@ -88,8 +88,8 @@ div.col-md-6.admin {
   line-height: 1.42857143;
   vertical-align: middle !important;
   border-top: 1px solid #ddd;
-  color: white;
-  background: rgba(0, 0, 0, 0.39);
+  color: black;
+  background: rgba(218, 218, 218, 0.38);
 }
 
 .table>tbody>tr>td a{
@@ -284,4 +284,23 @@ h4.info {
 
 .table>tbody>tr>td a.glyphicon.glyphicon-pencil {
   color: gold;
+}
+
+#imaginary_container {
+    margin-top:1%;
+}
+
+.stylish-input-group .input-group-addon {
+    background: white !important; 
+}
+
+.stylish-input-group .form-control {
+  border-right:0; 
+  box-shadow:0 0 0; 
+  border-color:#ccc;
+}
+
+.stylish-input-group button {
+    border:0;
+    background:transparent;
 }

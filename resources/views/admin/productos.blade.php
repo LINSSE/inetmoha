@@ -5,7 +5,6 @@
     <a type="button" id="agregarProd" data-toggle="modal" data_target="#agregarProducto" class="btn btn-success admin">Agregar</a>
 	</div>
 	<div class="col-md-12 admin">
-            <div class="table-responsive">
                 <table class="table chica">
                     <thead>
                         <tr>
@@ -28,7 +27,6 @@
                             </tbody>
                     @endforeach
                 </table>
-            </div>
     </div>
 
 <!-- Modal Producto -->

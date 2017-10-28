@@ -54,32 +54,37 @@ Route::group(['middleware' => 'auth'], function() {
 Route::group(['middleware' => 'admin'], function() {
 
 	Route::get('admin/principal', 'AdminController@index');
+
+	//Rutas de Administrador con Respecto a Operadores
+	Route::post('admin/activar/{id}', 'AdminController@activar');
+	Route::post('admin/desactivar/{id}', 'AdminController@desactivar');
+	Route::post('admin/reasignar', 'AdminController@reasignar');
+	Route::get('admin/buscarOperadores', 'UserController@buscarOperadores');
+
 	Route::get('admin/operadores', 'AdminController@listarOperadores');
 	Route::get('admin/ofertas', 'AdminController@ofertas');
 	Route::get('admin/demandas', 'AdminController@demandas');
 	Route::get('admin/productos', 'AdminController@productos');
 	Route::get('admin/operaciones', 'AdminController@operaciones');
-	Route::post('admin/activar/{id}', 'AdminController@activar');
-	Route::post('admin/desactivar/{id}', 'AdminController@desactivar');
-	Route::get('admin/despachantes', 'AdminController@despachantes');
+		
+	//Rutas de Administrador con Respecto a Productos
 	Route::get('admin/representantes', 'AdminController@representantes');
+
+	//Rutas de Administrador con Respecto a Productos
 	Route::post('producto/store', 'ProductoController@store');
 	Route::post('producto/eliminar', 'ProductoController@eliminar');
-	Route::post('admin/reasignar', 'AdminController@reasignar');
-	Route::post('admin/despachante/eliminar', 'AdminController@eliminarDesp');
-		
+	
+	//Rutas de Administrador con Respecto a Despachantes
+	Route::post('admin/despachante/eliminar', 'DespachanteController@eliminarDesp');
+	Route::get('admin/buscarDespachantes', 'DespachanteController@buscarDesp');
+	Route::get('admin/despachantes', 'DespachanteController@despachantes');	
 });
 
 //Route::get('preciosba', 'ProductoController@preciosba');
 Route::get('url', 'UrlController@showResults');
 
 //Rutas de pruebas
-Route::get('test', function()
-{
-    //dd(Config::get('mail'));
-	
-	
-});
+
 
 Route::get('prueba', function(){
 	return view('prueba');
