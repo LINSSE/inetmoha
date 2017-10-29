@@ -42,6 +42,23 @@ class OfertasController extends Controller
     	return view('usuario/ofertas', array('ofertas' => $ofertas, 'productos' => $productos, 'activo' => $activo));
     }
 
+    public function buscarOfertas(Request $request) {
+        $buscar = $request->buscar;
+        $ofertas = Oferta::leftjoin('productos','ofertas.id_prod','=','productos.id')
+                                     ->where('productos.nombre', 'like', '%'.ucwords(strtolower($buscar)).'%')
+                                     ->get();
+
+        if(Auth::user()->activo === 1){
+            $activo = 1;
+        }else{
+            $activo = 0;
+        }
+
+        $productos = Producto::All();
+        
+        return view('ofertas', array('ofertas' => $ofertas, 'activo' => $activo, 'productos' => $productos));
+    }
+
     public function eliminar(Request $request) {
 
     	$id = $request->id;

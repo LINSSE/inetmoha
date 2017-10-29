@@ -26,14 +26,21 @@ class PaginasController extends Controller
 	}
 
 	public function ofertas () {
+
+		if(Auth::check()) {
 		$ofertas = Oferta::All();
-		$productos = Producto::All();
+		/*$productos = Producto::All();*/
 		if(Auth::user()->activo === 1){
             $activo = 1;
         }else{
             $activ = 0;
         }
-		return view('ofertas', array('ofertas' => $ofertas, 'productos' => $productos, 'activo' => $activo));
+		return view('ofertas', array('ofertas' => $ofertas, 'activo' => $activo));
+		}else{
+			
+			return view('ofertas');
+
+		}
 	}
 
 	public function demandas () {

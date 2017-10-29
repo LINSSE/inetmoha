@@ -1,8 +1,24 @@
 @extends('layouts.principal')
 
 @section('content')
-
+    @guest
+        <center><h4>Debe Regstrarse para Acceder a esta seccion</h4></center>
+    @else
     <div class="row">
+        <div class="col-sm-6 col-sm-offset-3">
+            <div id="imaginary_container"> 
+                <form class="form-horizontal" method="GET" action="/usuario/buscarOfertas">
+                <div class="input-group stylish-input-group">
+                    <input type="text" class="form-control" autofocus="autofocus" name="buscar" placeholder="Buscar..." >
+                    <span class="input-group-addon">
+                        <button type="submit">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>  
+                    </span>
+                </div>
+                </form>
+            </div>
+        </div>
             <div class="col-md-12">
                 <h1 class="h1-tabla">Ofertas sin Tomar</h1>
                 <div class="table-responsive">
@@ -26,11 +42,7 @@
                                     <!-- <form class="form-horizontal" name="" method="POST" action=""> -->
                                     {{ csrf_field() }}
                                     <input type="hidden" name="id" value="{{$of->id}}">
-                                    @foreach($productos as $prod)
-                                    @if($of->id_prod === $prod->id)
-                                    <td><input type="text" class="input-table" name="producto" value="{{$prod->nombre}}" disabled></td>
-                                    @endif
-                                    @endforeach
+                                    <td><input type="text" class="input-table" name="producto" value="{{$of->producto->nombre}}" disabled></td>
                                     <td><input type="text" class="input-table" name="producto" value="{{$of->cantidad}}" disabled></td>
                                     <td><input type="text" class="input-table" name="producto" value="{{$of->precio}}" disabled></td>
                                     <td><input type="text" class="input-table" name="producto" value="{{$of->fechaFin}}" disabled></td>
@@ -119,5 +131,6 @@
             </div>
         </div>
     </div>
+    @endguest
 
 @stop

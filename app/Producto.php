@@ -12,4 +12,13 @@ class Producto extends Model
         'nombre', 'descripcion',
     ];
 
+    public function oferta()
+    {
+        return $this->belongsTo('App\Oferta', 'id_prod');
+    }
+
+    public function demanda()
+    {
+        return $this->belongsTo('App\Demand', 'id_prod');
+    }
 }

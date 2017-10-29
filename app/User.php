@@ -27,4 +27,13 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public function oferta()
+    {
+        return $this->hasMany('App\Oferta', 'id', 'id_op');
+    }
+
+    public function demanda()
+    {
+        return $this->hasMany('App\Demanda', 'id', 'id_op');
+    }
 }
