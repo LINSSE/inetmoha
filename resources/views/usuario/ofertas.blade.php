@@ -17,7 +17,7 @@
                                 <th>Producto</th>
                                 <th>Cantidad</th>
                                 <th>Precio</th>
-                                <th>Fecha</th>
+                                <th>Fecha Fin</th>
                                 <th>Puesto</th>
                                 <th>Cobro</th>
                                 <th>Modo</th>
@@ -30,17 +30,13 @@
 	                            	<form class="form-horizontal" name="eliminarOferta" method="POST" action="/usuario/eliminarOferta">
                                     {{ csrf_field() }}
                                     <input type="hidden" name="id" value="{{$of->id}}">
-	                            	@foreach($productos as $prod)
-	                            	@if($of->id_prod === $prod->id)
-	                            	<td><input type="text" class="input-table" name="producto" value="{{$prod->nombre}}" disabled></td>
-	                            	@endif
-	                            	@endforeach
-	                            	<td><input type="text" class="input-table" name="producto" value="{{$of->cantidad}}" readonly="true"></td>
-	                            	<td><input type="text" class="input-table" name="producto" value="{{$of->precio}}" readonly="true"></td>
-	                            	<td><input type="text" class="input-table" name="producto" value="{{$of->fecha}}" readonly="true"></td>
-	                            	<td><input type="text" class="input-table" name="producto" value="{{$of->puesto}}" readonly="true"></td>
-	                            	<td><input type="text" class="input-table" name="producto" value="{{$of->cobro}}" readonly="true"></td>
-	                            	<td><input type="text" class="input-table" name="producto" value="{{$of->modo}}" readonly="true"></td>
+	                            	<td><input type="text" class="input-table" name="producto" value="{{$of->producto->nombre}}" disabled></td>
+	                            	<td><input type="text" class="input-table" name="cantidad" value="{{$of->cantidad}}" readonly="true"></td>
+	                            	<td><input type="text" class="input-table" name="precio" value="{{$of->precio}}" readonly="true"></td>
+	                            	<td><input type="text" class="input-table" name="fechafin" value="{{$of->fechaFin}}" readonly="true"></td>
+	                            	<td><input type="text" class="input-table" name="puesto" value="{{$of->puesto}}" readonly="true"></td>
+	                            	<td><input type="text" class="input-table" name="cobro" value="{{$of->cobro}}" readonly="true"></td>
+	                            	<td><input type="text" class="input-table" name="modo" value="{{$of->modo}}" readonly="true"></td>
 	                            	<td><button type="submit" class="btn btn-danger admin tabla" title="Eliminar Oferta">X</button></td>
 	                            	</form>
 	                            </tr>

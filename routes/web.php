@@ -48,6 +48,7 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::post('usuario/eliminarDemanda', 'DemandasController@eliminar');
 	Route::get('usuario/operaciones', 'UserController@operaciones');
 	Route::get('usuario/buscarOfertas', 'OfertasController@buscarOfertas');
+	Route::get('usuario/buscarDemandas', 'DemandasController@buscarDemandas');
 });
 
 

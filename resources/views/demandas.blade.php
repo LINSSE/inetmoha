@@ -1,8 +1,24 @@
 @extends('layouts.principal')
 
 @section('content')
-
+    @guest
+        <center><h4>Debe Regstrarse para Acceder a esta seccion</h4></center>
+    @else
     <div class="row">
+        <div class="col-sm-6 col-sm-offset-3">
+            <div id="imaginary_container"> 
+                <form class="form-horizontal" method="GET" action="/usuario/buscarDemandas">
+                <div class="input-group stylish-input-group">
+                    <input type="text" class="form-control" autofocus="autofocus" name="buscar" placeholder="Buscar..." >
+                    <span class="input-group-addon">
+                        <button type="submit">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>  
+                    </span>
+                </div>
+                </form>
+            </div>
+        </div>
             <div class="col-md-12">
                 <h1 class="h1-tabla">Demandas sin Tomar</h1>
                 <div class="table-responsive">
@@ -26,21 +42,14 @@
                                     <!-- <form class="form-horizontal" name="" method="POST" action=""> -->
                                     {{ csrf_field() }}
                                     <input type="hidden" name="id" value="{{$dem->id}}">
-                                    @foreach($productos as $prod)
-                                    @if($dem->id_prod === $prod->id)
-                                    <td><input type="text" class="input-table" name="producto" value="{{$prod->nombre}}" readonly="true"></td>
-                                    @endif
-                                    @endforeach
-                                    <td><input type="text" class="input-table" name="producto" value="{{$dem->cantidad}}" readonly="true"></td>
-                                    <td><input type="text" class="input-table" name="producto" value="{{$dem->precio}}" readonly="true"></td>
-                                    @foreach($operadores as $op)
-                                    @if($dem->id_op === $op->id)
-                                    <td><input type="text" class="input-table" name="id_op" value="{{$op->apellido}} {{$op->apellido}}" readonly="true"></td>
-                                    @endif
-                                    @endforeach
-                                    <td><input type="text" class="input-table" name="producto" value="{{$dem->pago}}" readonly="true"></td>
-                                    <td><input type="text" class="input-table" name="producto" value="{{$dem->destino}}" readonly="true"></td>
-                                    <td><input type="text" class="input-table" name="producto" value="{{$dem->modo}}" readonly="true"></td>
+                                    <input type="hidden" name="id_op" value="{{$dem->user->id}}">
+                                    <td><input type="text" class="input-table" name="producto" value="{{$dem->producto->nombre}}" readonly="true"></td>
+                                    <td><input type="text" class="input-table" name="cantidad" value="{{$dem->cantidad}}" readonly="true"></td>
+                                    <td><input type="text" class="input-table" name="precio" value="{{$dem->precio}}" readonly="true"></td>
+                                    <td><input type="text" class="input-table" name="operador" value="{{$dem->user->apellido}} {{$dem->user->apellido}}" readonly="true"></td>
+                                    <td><input type="text" class="input-table" name="pago" value="{{$dem->pago}}" readonly="true"></td>
+                                    <td><input type="text" class="input-table" name="destino" value="{{$dem->destino}}" readonly="true"></td>
+                                    <td><input type="text" class="input-table" name="modo" value="{{$dem->modo}}" readonly="true"></td>
                                     <td>@if($activo === 1)
                                             <button type="button" name="ofertar" class="btn btn-success admin">Ofertar</button>
                                         @else
@@ -123,5 +132,5 @@
             </div>
         </div>
     </div>
-
+    @endguest
 @stop

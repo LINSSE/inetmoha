@@ -36,4 +36,14 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Demanda', 'id', 'id_op');
     }
+
+    public function despachante()
+    {
+        return $this->hasOne('App\Despachante', 'id', 'id_desp');
+    }
+
+    public function representante()
+    {
+        return $this->hasOne('App\Representante', 'id', 'id_rep');
+    }
 }

@@ -40,6 +40,23 @@ class DemandasController extends Controller
     	return view('usuario/demandas', array('demandas' => $demandas, 'productos' => $productos, 'activo' => $activo));
     }
 
+    public function buscarDemandas(Request $request) {
+        $buscar = $request->buscar;
+        $demandas = Demanda::leftjoin('productos','demandas.id_prod','=','productos.id')
+                                     ->where('productos.nombre', 'like', '%'.ucwords(strtolower($buscar)).'%')
+                                     ->get();
+
+        if(Auth::user()->activo === 1){
+            $activo = 1;
+        }else{
+            $activo = 0;
+        }
+
+        $productos = Producto::All();
+        
+        return view('demandas', array('demandas' => $demandas, 'activo' => $activo, 'productos' => $productos));
+    }
+
     public function eliminar(Request $request) {
 
     	$id = $request->id;

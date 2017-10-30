@@ -28,16 +28,12 @@
 	                            	<form class="form-horizontal" name="eliminarDemanda" method="POST" action="/usuario/eliminarDemanda">
                                     {{ csrf_field() }}
                                     <input type="hidden" name="id" value="{{$dem->id}}">
-	                            	@foreach($productos as $prod)
-	                            	@if($dem->id_prod === $prod->id)
-	                            	<td><input type="text" class="input-table" name="producto" value="{{$prod->nombre}}" readonly="true"></td>
-	                            	@endif
-	                            	@endforeach
-	                            	<td><input type="text" class="input-table" name="producto" value="{{$dem->cantidad}}" readonly="true"></td>
-	                            	<td><input type="text" class="input-table" name="producto" value="{{$dem->precio}}" readonly="true"></td>
-	                            	<td><input type="text" class="input-table" name="producto" value="{{$dem->pago}}" readonly="true"></td>
-	                            	<td><input type="text" class="input-table" name="producto" value="{{$dem->destino}}" readonly="true"></td>
-	                            	<td><input type="text" class="input-table" name="producto" value="{{$dem->modo}}" readonly="true"></td>
+	                            	<td><input type="text" class="input-table" name="producto" value="{{$dem->producto->nombre}}" readonly="true"></td>
+	                            	<td><input type="text" class="input-table" name="cantidad" value="{{$dem->cantidad}}" readonly="true"></td>
+	                            	<td><input type="text" class="input-table" name="precio" value="{{$dem->precio}}" readonly="true"></td>
+	                            	<td><input type="text" class="input-table" name="pago" value="{{$dem->pago}}" readonly="true"></td>
+	                            	<td><input type="text" class="input-table" name="destino" value="{{$dem->destino}}" readonly="true"></td>
+	                            	<td><input type="text" class="input-table" name="modo" value="{{$dem->modo}}" readonly="true"></td>
 	                            	<td><button type="submit" class="btn btn-danger admin tabla" title="Eliminar Demanda">X</button></td>
 	                            	</form>
 	                            </tr>

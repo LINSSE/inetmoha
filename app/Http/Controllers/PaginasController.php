@@ -29,11 +29,10 @@ class PaginasController extends Controller
 
 		if(Auth::check()) {
 		$ofertas = Oferta::All();
-		/*$productos = Producto::All();*/
 		if(Auth::user()->activo === 1){
             $activo = 1;
         }else{
-            $activ = 0;
+            $activo = 0;
         }
 		return view('ofertas', array('ofertas' => $ofertas, 'activo' => $activo));
 		}else{
@@ -44,15 +43,19 @@ class PaginasController extends Controller
 	}
 
 	public function demandas () {
+		if(Auth::check()) {
 		$demandas = Demanda::All();
-		$productos = Producto::All();
-		$operadores = User::All();
 		if(Auth::user()->activo === 1){
             $activo = 1;
         }else{
-            $activ = 0;
+            $activo = 0;
         }
-		return view('demandas', array('demandas' => $demandas, 'productos' => $productos, 'operadores' => $operadores, 'activo' => $activo));
+		return view('demandas', array('demandas' => $demandas, 'activo' => $activo));
+		}else{
+			
+			return view('demandas');
+
+		}
 	}
 
 	public function precios () {

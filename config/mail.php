@@ -6,7 +6,7 @@ return [
     'port' => env('MAIL_PORT', 587),
     'to' => ['address' => "dustingassmann@gmail.com", 'name' => "MOHA WEB"],
     'from' => ['address' => "no-contestar@produccion.com" , 'name' => "MOHA WEB"],
-    'encryption' => env('MAIL_ENCRYPTION', 'tls'),
+    'encryption' => env('MAIL_ENCRYPTION'),
     'username' => env('MAIL_USERNAME'),
     'password' => env('MAIL_PASSWORD'),
     'sendmail' => '/usr/sbin/sendmail -bs',

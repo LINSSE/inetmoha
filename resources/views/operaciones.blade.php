@@ -1,7 +1,9 @@
 @extends('layouts.principal')
 
 @section('content')
-
+    @guest
+        <center><h4>Debe Regstrarse para Acceder a esta seccion</h4></center>
+    @else
     <div class="row">
             <div class="col-md-12">
                 <h1 class="h1-tabla">Operaciones Físicas</h1>
@@ -140,5 +142,5 @@
             </div>
         </div>
     </div>
-
+    @endguest
 @stop

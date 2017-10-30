@@ -1,6 +1,9 @@
 @extends('layouts.principal')
 
 @section('content')
+    @guest
+        <center><h4>Debe Regstrarse para Acceder a esta seccion</h4></center>
+    @else
 	<div class="col-md-12">
             <div class="table-responsive">
                 <table class="table">
@@ -34,4 +37,5 @@
                 </table>
             </div>
         </div>
+    @endguest
 @endsection

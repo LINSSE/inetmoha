@@ -19,6 +19,6 @@ class Producto extends Model
 
     public function demanda()
     {
-        return $this->belongsTo('App\Demand', 'id_prod');
+        return $this->belongsTo('App\Demanda', 'id_prod');
     }
 }
