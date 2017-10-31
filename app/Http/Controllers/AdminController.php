@@ -20,7 +20,7 @@ class AdminController extends Controller
     }
 
     public function listarOperadores(){
-    	$users = User::All()->except(Auth::id());        
+    	$users = User::where('id', '!=', Auth::id())->orderBy('apellido', 'ASC')->get();        
         $despachantes = Despachante::All();
 
     	return view('/admin/operadores', array('users' => $users, 'despachantes' => $despachantes));
