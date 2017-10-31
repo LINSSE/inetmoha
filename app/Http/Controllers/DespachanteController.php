@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Despachante;
+use App\User;
 
 class DespachanteController extends Controller
 {

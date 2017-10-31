@@ -31,13 +31,13 @@ $(document).ready(function(){
         $('#agregarProducto').modal('show'); //show the modal
       });
 
-    $('#eliminarDesp').on('click', function () {
+    /*$('#eliminarDesp').on('click', function () {
 
             var id = $(this).data('id');
             
             $('#eliminarDespachante #id-des').val(id);//load a view into a modal
         $('#eliminarDespachante').modal('show'); //show the modal
-      });
+      });*/
 
     $('#agregarOferta').on('click', function () {
         $('#nuevaOferta').modal('show'); //show the modal
@@ -47,6 +47,10 @@ $(document).ready(function(){
         $('#nuevaDemanda').modal('show'); //show the modal
       });
  
+    ofertar = function (id) {
+            $('#idco').val(id);
+        $('#modalOfertar').modal('show'); //show the modal
+      }
 
     eliminarDesp = function (id) {
              $('#id').val(id);//load a view into a modal

@@ -43,16 +43,16 @@
                                     {{ csrf_field() }}
                                     <input type="hidden" name="id" value="{{$of->id}}">
                                     <td><input type="text" class="input-table" name="producto" value="{{$of->producto->nombre}}" disabled></td>
-                                    <td><input type="text" class="input-table" name="producto" value="{{$of->cantidad}}" disabled></td>
-                                    <td><input type="text" class="input-table" name="producto" value="{{$of->precio}}" disabled></td>
-                                    <td><input type="text" class="input-table" name="producto" value="{{$of->fechaFin}}" disabled></td>
-                                    <td><input type="text" class="input-table" name="producto" value="{{$of->puesto}}" disabled></td>
-                                    <td><input type="text" class="input-table" name="producto" value="{{$of->cobro}}" disabled></td>
-                                    <td><input type="text" class="input-table" name="producto" value="{{$of->modo}}" readonly="true"></td>
+                                    <td><input type="text" class="input-table" name="cantidad" value="{{$of->cantidad}}" disabled></td>
+                                    <td><input type="text" class="input-table" name="precio" value="{{$of->precio}}" disabled></td>
+                                    <td><input type="text" class="input-table" name="fechaFin" value="{{$of->fechaFin}}" disabled></td>
+                                    <td><input type="text" class="input-table" name="puesto" value="{{$of->puesto}}" disabled></td>
+                                    <td><input type="text" class="input-table" name="cobro" value="{{$of->cobro}}" disabled></td>
+                                    <td><input type="text" class="input-table" name="modo" value="{{$of->modo}}" readonly="true"></td>
                                     <td>@if($activo === 1)
-                                            <button type="button" name="ofertar" class="btn btn-success admin tabla">Ofertar</button>
+                                            <button type="button" id="ofertar" data-toggle="modal" onclick="ofertar({{$of->id}})" class="btn btn-success admin tabla">Ofertar</button>
                                         @else
-                                            <button type="button" name="ofertar" disabled="" class="btn btn-success admin">Ofertar</button>
+                                            <button type="button" id="ofertar" data-toggle="modal" data_target="#modalOfertar" disabled class="btn btn-success admin tabla">Ofertar</button>
                                         @endif</td>
                                     <!-- </form> -->
                                 </tr>
@@ -131,6 +131,56 @@
             </div>
         </div>
     </div>
+
+        <!-- Modal Nueva Oferta -->
+<div class="modal fade" id="modalOfertar" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Ofertar</h4>
+      </div>
+      <div class="modal-body ofertar">
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <form class="form-horizontal" name="formOfertar" method="POST" action="">
+                                {{ csrf_field() }}
+
+                                <input type="hidden" id="idco" value="">
+                                <div class="row">
+                                    <center><h4>Ingrese la cantidad que desea comprar de la oferta seleccionada</h4>
+                                    <p>Su Orden de Compra sera enviada al Oferente</p>
+                                    <p>Éste la analizará y podrá aceptarla o rechazarla</p>
+                                    <p>Se le informará sobre la decisión del Oferente</p>
+                                    </center>
+                                </div>
+                                <div class="form-group{{ $errors->has('cantidad') ? ' has-error' : '' }}">
+                                    <label for="cantidad" class="col-md-2 control-label">Cantidad</label>
+
+                                    <div class="col-md-10">
+                                        <input id="cantidad" placeholder="Ingrese la cantidad que desea comprar" type="number" class="form-control" name="cantidad" min="1" value="{{ old('cantidad') }}" required autofocus>
+
+                                        @if ($errors->has('cantidad'))
+                                            <span class="help-block">
+                                                <strong>{{ $errors->first('cantidad') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="row model">
+                                    <button type="submit" class="btn btn-primary">Ofertar</button>
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
     @endguest
 
 @stop

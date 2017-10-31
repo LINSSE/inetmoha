@@ -246,6 +246,10 @@ div.container-fluid.trans {
   min-height: 320px;
 }
 
+.modal-body.ofertar {
+  min-height: 280px;
+}
+
 .row.model {
   margin-left: 200px !important;
 }

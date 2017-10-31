@@ -98,7 +98,7 @@
                                     <td><input id="domicilio" type="text" class="input-table" name="domicilio" value="{{ $user->domicilio }}" disabled></td>
                                     <td><input id="id_ciudad" type="text" class="input-table" name="id_ciudad" value="{{ $user->ciudad->nombre }}" disabled></td>
                                     <td><input id="id_provincia" type="text" class="input-table" name="id_provincia" value="{{ $user->provincia->nombre }}" disabled></td>
-                                    <td><input id="id_des" type="text" class="input-table" name="id_des" value="{{ $user->despachante->apellido}} {{$user->despachante->nombre }}" disabled></td>
+                                    <td><a type="button" data-toggle="modal" onclick="eliminarDesp({{$user->id}})" class="glyphicon glyphicon-pencil" title="Haga click para Asignar otro Despachante a este Operador"></a><input id="id_des" type="text" class="input-table" name="id_des" value="{{ $user->despachante->apellido}} {{$user->despachante->nombre }}" disabled></td>
                                     <td><input id="id_rep" type="text" class="input-table" name="id_rep" value="{{ $user->representante->apellido}} {{ $user->representante->nombre }}" disabled></td>
                                     <td><button type="submit" class="btn btn-danger" title="Haga click para DESACTIVAR éste Operador">Desactivar</button></a></td>
                                 </tr>
