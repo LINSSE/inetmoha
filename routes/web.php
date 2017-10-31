@@ -49,6 +49,7 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::get('usuario/operaciones', 'UserController@operaciones');
 	Route::get('usuario/buscarOfertas', 'OfertasController@buscarOfertas');
 	Route::get('usuario/buscarDemandas', 'DemandasController@buscarDemandas');
+	Route::post('usuario/editarPerfil', 'UserController@editarPerfil');
 });
 
 

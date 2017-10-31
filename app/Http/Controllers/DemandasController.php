@@ -44,6 +44,9 @@ class DemandasController extends Controller
         $buscar = $request->buscar;
         $demandas = Demanda::leftjoin('productos','demandas.id_prod','=','productos.id')
                                      ->where('productos.nombre', 'like', '%'.ucwords(strtolower($buscar)).'%')
+                                     ->orwhere('demandas.pago', 'like', '%'.ucwords(strtolower($buscar)).'%')
+                                     ->orwhere('demandas.destino', 'like', '%'.ucwords(strtolower($buscar)).'%')
+                                     ->orwhere('demandas.modo', 'like', '%'.ucwords(strtolower($buscar)).'%')
                                      ->get();
 
         if(Auth::user()->activo === 1){

@@ -39,11 +39,21 @@ class User extends Authenticatable
 
     public function despachante()
     {
-        return $this->hasOne('App\Despachante', 'id', 'id_desp');
+        return $this->hasOne('App\Despachante', 'id', 'id_des');
     }
 
     public function representante()
     {
         return $this->hasOne('App\Representante', 'id', 'id_rep');
+    }
+
+    public function provincia()
+    {
+        return $this->hasOne('App\Provincia', 'id', 'id_provincia');
+    }
+
+    public function ciudad()
+    {
+        return $this->hasOne('App\Ciudad', 'id', 'id_ciudad');
     }
 }

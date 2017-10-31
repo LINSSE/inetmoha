@@ -46,6 +46,10 @@ class OfertasController extends Controller
         $buscar = $request->buscar;
         $ofertas = Oferta::leftjoin('productos','ofertas.id_prod','=','productos.id')
                                      ->where('productos.nombre', 'like', '%'.ucwords(strtolower($buscar)).'%')
+                                     ->orwhere('ofertas.fechaFin', 'like', '%'.$buscar.'%')
+                                     ->orwhere('ofertas.puesto', 'like', '%'.ucwords(strtolower($buscar)).'%')
+                                     ->orwhere('ofertas.cobro', 'like', '%'.ucwords(strtolower($buscar)).'%')
+                                     ->orwhere('ofertas.modo', 'like', '%'.ucwords(strtolower($buscar)).'%')
                                      ->get();
 
         if(Auth::user()->activo === 1){

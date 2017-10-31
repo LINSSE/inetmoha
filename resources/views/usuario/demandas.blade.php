@@ -10,7 +10,8 @@
 		
             <div class="col-md-12">
                 <h1 class="h1-tabla">Mis Demandas</h1>
-                    <table class="table chica">
+                <div class="table-responsive">
+                    <table class="table">
                         <thead>
                             <tr>
                                 <th>Producto</th>
@@ -41,7 +42,8 @@
 	                    @endforeach
                     </table>
                 </div>
-        </div>
+            </div>
+    </div>
 
     <!-- Modal Nueva Demanda -->
 <div class="modal fade" id="nuevaDemanda" tabindex="-1" role="dialog">

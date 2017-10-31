@@ -16,8 +16,8 @@ class PaginasController extends Controller
 	}
 
 	public function operadores () {
-
-		$users = User::All();
+		$admin = User::where('admin', '=', '1')->first();
+		$users = User::where('id', '!=', $admin->id)->orderBy('apellido', 'ASC')->get();
         return view('operadores', compact('users'));
 	}
 

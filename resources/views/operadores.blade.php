@@ -15,8 +15,10 @@
                             <th>DNI </th>
                             <th>Telefono </th>
                             <th>Domicilio </th>
-                            <th>Ciuedad </th>
+                            <th>Ciudad </th>
                             <th>Provincia </th>
+                            <th>Despachante </th>
+                            <th>Representante </th>
                         </tr>
                     </thead>
                     @foreach($users as $user)
@@ -28,8 +30,10 @@
                             <td>{{$user->dni}}</td>
                             <td>{{$user->telefono}}</td>
                             <td>{{$user->domicilio}}</td>
-                            <td>{{$user->ciudad}}</td>
-                            <td>{{$user->provincia}}</td>
+                            <td>{{$user->ciudad->nombre}}</td>
+                            <td>{{$user->provincia->nombre}}</td>
+                            <td>{{$user->despachante->apellido}} {{$user->despachante->nombre}}</td>
+                            <td>{{$user->representante->apellido}} {{$user->representante->nombre}}</td>
                         </tr>
                         
                     </tbody>

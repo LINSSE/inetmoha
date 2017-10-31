@@ -50,26 +50,10 @@
                                     <td><input type="text" class="input-table" name="dni" value="{{ $user->dni }}" disabled maxlength="8" minlength="8" inputmode="numeric"></td>
                                     <td><input id="telefono" type="text" class="input-table" name="telefono" value="{{ $user->telefono }}" disabled maxlength="13" inputmode="numeric"></td>
                                     <td><input id="domicilio" type="text" class="input-table" name="domicilio" value="{{ $user->domicilio }}" disabled></td>
-                                    @foreach($ciudades as $ciudad)
-                                    @if($ciudad->id === $user->id_ciudad)
-                                        <td><input id="id_ciudad" type="text" class="input-table" name="id_ciudad" value="{{ $ciudad->nombre }}" disabled></td>
-                                    @endif
-                                    @endforeach
-                                    @foreach($provincias as $provincia)
-                                    @if($provincia->id === $user->id_provincia)
-                                        <td><input id="id_provincia" type="text" class="input-table" name="id_provincia" value="{{ $provincia->nombre }}" disabled></td>
-                                    @endif
-                                    @endforeach
-                                    @foreach($despachantes as $des)
-                                    @if($des->id === $user->id_des)
-                                        <td><input id="id_des" type="text" class="input-table" name="id_des" value="{{ $des->apellido}} {{$des->nombre }}" disabled></td>
-                                    @endif
-                                    @endforeach
-                                    @foreach($representantes as $rep)
-                                    @if($rep->id === $user->id_rep)
-                                        <td><input id="id_rep" type="text" class="input-table" name="id_rep" value="{{ $rep->apellido}} {{ $rep->nombre }}" disabled></td>
-                                    @endif
-                                    @endforeach
+                                    <td><input id="id_ciudad" type="text" class="input-table" name="id_ciudad" value="{{ $user->ciudad->nombre }}" disabled></td>
+                                    <td><input id="id_provincia" type="text" class="input-table" name="id_provincia" value="{{ $user->provincia->nombre }}" disabled></td>
+                                    <td><input id="id_des" type="text" class="input-table" name="id_des" value="{{ $user->despachante->apellido}} {{$user->despachante->nombre }}" disabled></td>
+                                    <td><input id="id_rep" type="text" class="input-table" name="id_rep" value="{{ $user->representante->apellido}} {{ $user->representante->nombre }}" disabled></td>
                                     <td><button type="submit" class="btn btn-success" title="Haga click para ACTIVAR éste Operador">Activar</button></td>
                                 </tr>
                             </tbody>
@@ -112,26 +96,10 @@
                                     <td><input type="text" class="input-table" name="dni" value="{{ $user->dni }}" disabled maxlength="8" minlength="8" inputmode="numeric"></td>
                                     <td><input id="telefono" type="text" class="input-table" name="telefono" value="{{ $user->telefono }}" disabled maxlength="13" inputmode="numeric"></td>
                                     <td><input id="domicilio" type="text" class="input-table" name="domicilio" value="{{ $user->domicilio }}" disabled></td>
-                                    @foreach($ciudades as $ciudad)
-                                    @if($ciudad->id === $user->id_ciudad)
-                                        <td><input id="id_ciudad" type="text" class="input-table" name="id_ciudad" value="{{ $ciudad->nombre }}" disabled></td>
-                                    @endif
-                                    @endforeach
-                                    @foreach($provincias as $provincia)
-                                    @if($provincia->id === $user->id_provincia)
-                                        <td><input id="id_provincia" type="text" class="input-table" name="id_provincia" value="{{ $provincia->nombre }}" disabled></td>
-                                    @endif
-                                    @endforeach
-                                    @foreach($despachantes as $des)
-                                    @if($des->id === $user->id_des)
-                                        <td><a type="button" data-toggle="modal" onclick="eliminarDesp({{$user->id}})" class="glyphicon glyphicon-pencil" title="Haga click para Asignar otro Despachante a este Operador"></a><input id="id_des" type="text" class="input-table" name="id_des" value="{{ $des->apellido}} {{$des->nombre }}" disabled></td>
-                                    @endif
-                                    @endforeach
-                                    @foreach($representantes as $rep)
-                                    @if($rep->id === $user->id_rep)
-                                        <td><input id="id_rep" type="text" class="input-table" name="id_rep" value="{{ $rep->apellido}} {{ $rep->nombre }}" disabled></td>
-                                    @endif
-                                    @endforeach
+                                    <td><input id="id_ciudad" type="text" class="input-table" name="id_ciudad" value="{{ $user->ciudad->nombre }}" disabled></td>
+                                    <td><input id="id_provincia" type="text" class="input-table" name="id_provincia" value="{{ $user->provincia->nombre }}" disabled></td>
+                                    <td><input id="id_des" type="text" class="input-table" name="id_des" value="{{ $user->despachante->apellido}} {{$user->despachante->nombre }}" disabled></td>
+                                    <td><input id="id_rep" type="text" class="input-table" name="id_rep" value="{{ $user->representante->apellido}} {{ $user->representante->nombre }}" disabled></td>
                                     <td><button type="submit" class="btn btn-danger" title="Haga click para DESACTIVAR éste Operador">Desactivar</button></a></td>
                                 </tr>
                             </tbody>

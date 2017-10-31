@@ -22,11 +22,8 @@ class AdminController extends Controller
     public function listarOperadores(){
     	$users = User::All()->except(Auth::id());        
         $despachantes = Despachante::All();
-        $representantes = Representante::All();
-        $provincias = Provincia::All();
-        $ciudades = Ciudad::All();
 
-    	return view('/admin/operadores', array('users' => $users, 'despachantes' => $despachantes, 'representantes' => $representantes, 'provincias' => $provincias, 'ciudades' => $ciudades));
+    	return view('/admin/operadores', array('users' => $users, 'despachantes' => $despachantes));
     }
 
     /**

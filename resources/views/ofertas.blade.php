@@ -22,7 +22,7 @@
             <div class="col-md-12">
                 <h1 class="h1-tabla">Ofertas sin Tomar</h1>
                 <div class="table-responsive">
-                    <table class="table chica">
+                    <table class="table">
                         <thead>
                             <thead>
                             <tr>
@@ -50,7 +50,7 @@
                                     <td><input type="text" class="input-table" name="producto" value="{{$of->cobro}}" disabled></td>
                                     <td><input type="text" class="input-table" name="producto" value="{{$of->modo}}" readonly="true"></td>
                                     <td>@if($activo === 1)
-                                            <button type="button" name="ofertar" class="btn btn-success admin">Ofertar</button>
+                                            <button type="button" name="ofertar" class="btn btn-success admin tabla">Ofertar</button>
                                         @else
                                             <button type="button" name="ofertar" disabled="" class="btn btn-success admin">Ofertar</button>
                                         @endif</td>

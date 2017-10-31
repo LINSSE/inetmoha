@@ -53,30 +53,28 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::find($id);
-        $provincia = Provincia::find($user->id_provincia);
-        $ciudad = Ciudad::find($user->id_ciudad);
-        
-        $despachante = Despachante::find($user->id_des);
-        $representante = Representante::find($user->id_rep);
+        $despachantes = Despachante::orderBy('apellido', 'ASC')->get();
+        $representantes = Representante::orderBy('apellido', 'ASC')->get();
+        $ciudades = Ciudad::orderBy('nombre', 'ASC')->get();
+        $provincias = Provincia::orderBy('nombre', 'ASC')->get();
 
-        return view('usuario/perfil', array('user' => $user, 'provincia' => $provincia, 'ciudad' => $ciudad, 'despachante' => $despachante, 'representante' => $representante ));
+        return view('usuario/perfil', array('user' => $user, 'provincias' => $provincias, 'ciudades' => $ciudades, 'despachantes' => $despachantes, 'representantes' => $representantes));
     }
 
     public function buscarOperadores(Request $request) {
         $buscar = $request->buscar;
         $ad = User::where('admin', '=', 1)->first();
         $users = User::where('name', 'like', '%'.ucwords(strtolower($buscar)).'%')
-                                     ->orwhere('apellido', 'like', '%'.ucwords(strtolower($buscar)).'%')
-                                     ->orwhere('email', 'like', '%'.$buscar.'%')
-                                     ->orwhere('telefono', 'like', '%'.$buscar.'%')
-                                     ->orderBy('apellido', 'ASC')->get();
+                                        ->orwhere('apellido', 'like', '%'.ucwords(strtolower($buscar)).'%')
+                                        ->orwhere('email', 'like', '%'.$buscar.'%')
+                                        ->orwhere('dni', 'like', '%'.$buscar.'%')
+                                        ->orwhere('email', 'like', '%'.$buscar.'%')
+                                        ->orwhere('telefono', 'like', '%'.$buscar.'%')
+                                        ->orderBy('apellido', 'ASC')->get();
 
         $despachantes = Despachante::All();
-        $representantes = Representante::All();
-        $provincias = Provincia::All();
-        $ciudades = Ciudad::All();
         
-        return view('/admin/operadores', array('users' => $users, 'despachantes' => $despachantes, 'representantes' => $representantes, 'provincias' => $provincias, 'ciudades' => $ciudades));
+        return view('/admin/operadores', array('users' => $users, 'despachantes' => $despachantes));
     }
 
     /**
@@ -85,9 +83,22 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function editarPerfil(Request $request)
     {
-        //
+        $user = User::FindOrFail(Auth::user()->id);
+        $user->name = $request->name;
+        $user->apellido = $request->apellido;
+        $user->dni = $request->dni;
+        $user->domicilio = $request->domicilio;
+        $user->telefono = $request->telefono;
+        $user->id_ciudad = $request->id_ciudad;
+        $user->id_provincia = $request->id_provincia;
+        $user->id_des = $request->id_desp;
+        $user->id_rep = $request->id_rep;
+
+        $user->save();
+
+        return redirect('/usuario/show/{Auth::user()->id}');
     }
 
     /**
