@@ -1,6 +1,12 @@
 @extends('layouts.principal')
 
 @section('content')
+    @if(Session::has('contraoferta'))
+            <div class="alert alert-success alert-dismissible" role="alert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <strong>Su Orden de Compra a sido registrada. Será notificado si el Oferente la acepta o rechaza.</strong>
+            </div>
+        @endif
     @guest
         <center><h4>Debe Regstrarse para Acceder a esta seccion</h4></center>
     @else
@@ -28,7 +34,7 @@
                             <tr>
                                 <th>Producto</th>
                                 <th>Cantidad</th>
-                                <th>Precio</th>
+                                <th>Precio $</th>
                                 <th>Fecha Fin</th>
                                 <th>Puesto</th>
                                 <th>Cobro</th>
@@ -42,6 +48,7 @@
                                     <!-- <form class="form-horizontal" name="" method="POST" action=""> -->
                                     {{ csrf_field() }}
                                     <input type="hidden" name="id" value="{{$of->id}}">
+                                    <input type="hidden" name="iduser" value="{{$of->user->id}}">
                                     <td><input type="text" class="input-table" name="producto" value="{{$of->producto->nombre}}" disabled></td>
                                     <td><input type="text" class="input-table" name="cantidad" value="{{$of->cantidad}}" disabled></td>
                                     <td><input type="text" class="input-table" name="precio" value="{{$of->precio}}" disabled></td>
@@ -144,10 +151,10 @@
                 <div class="col-md-12">
                     <div class="panel panel-default">
                         <div class="panel-body">
-                            <form class="form-horizontal" name="formOfertar" method="POST" action="">
+                            <form class="form-horizontal" name="formOfertar" method="POST" action="/usuario/contraOferta">
                                 {{ csrf_field() }}
 
-                                <input type="hidden" id="idco" value="">
+                                <input type="hidden" id="idco" name="idco" value="">
                                 <div class="row">
                                     <center><h4>Ingrese la cantidad que desea comprar de la oferta seleccionada</h4>
                                     <p>Su Orden de Compra sera enviada al Oferente</p>

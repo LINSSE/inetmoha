@@ -262,6 +262,10 @@ div.container-fluid.trans {
   margin: 10px;
 }
 
+.btn.btn-primary.admin {
+  margin: 10px;
+}
+
 .btn.btn-success.admin.tabla {
   margin: 0px;
 }

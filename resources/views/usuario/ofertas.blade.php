@@ -1,7 +1,12 @@
 @extends('layouts.principal')
 
 @section('content')
-	
+	@if(Session::has('nuevaOferta'))
+            <div class="alert alert-success alert-dismissible" role="alert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <strong>Su Oferta ha sido Publicada con éxito!</strong>
+            </div>
+        @endif
 	<div class="row">
         @if($activo === 1)
             <button type="button" id="agregarOferta" data-toggle="modal" data_target="#nuevaOferta" class="btn btn-success admin">Nueva Oferta</button>
@@ -23,6 +28,7 @@
                                 <th>Cobro</th>
                                 <th>Modo</th>
                                 <th></th>
+                                <th></th>
                             </tr>
                         </thead>
                         @foreach($ofertas as $of)
@@ -38,7 +44,9 @@
 	                            	<td><input type="text" class="input-table" name="puesto" value="{{$of->puesto}}" readonly="true"></td>
 	                            	<td><input type="text" class="input-table" name="cobro" value="{{$of->cobro}}" readonly="true"></td>
 	                            	<td><input type="text" class="input-table" name="modo" value="{{$of->modo}}" readonly="true"></td>
+                                    <td><a type="button" href="/usuario/detalleOferta/{{$of->id}}" class="btn btn-info admin tabla" title="Ver Contra-Ofertas">Ver Contra Ofertas</a></td>
 	                            	<td><button type="submit" class="btn btn-danger admin tabla" title="Eliminar Oferta">X</button></td>
+
 	                            	</form>
 	                            </tr>
 	                        </tbody>

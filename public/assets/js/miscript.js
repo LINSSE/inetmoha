@@ -55,7 +55,6 @@ $(document).ready(function(){
     eliminarDesp = function (id) {
              $('#id').val(id);//load a view into a modal
         $('#eliminarDespachante').modal('show'); //show the modal
-    }
-    
+    }    
 
 });

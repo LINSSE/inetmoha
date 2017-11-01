@@ -50,6 +50,8 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::get('usuario/buscarOfertas', 'OfertasController@buscarOfertas');
 	Route::get('usuario/buscarDemandas', 'DemandasController@buscarDemandas');
 	Route::post('usuario/editarPerfil', 'UserController@editarPerfil');
+	Route::post('usuario/contraOferta', 'ContraofertaController@store');
+	Route::get('usuario/detalleOferta/{id}', 'ContraofertaController@detalleOferta');
 });
 
 
@@ -84,7 +86,6 @@ Route::group(['middleware' => 'admin'], function() {
 });
 
 //Route::get('preciosba', 'ProductoController@preciosba');
-Route::get('url', 'UrlController@showResults');
 
 //Rutas de pruebas
 

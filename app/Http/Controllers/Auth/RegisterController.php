@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Mail;
+use Session;
 
 
 class RegisterController extends Controller
@@ -82,7 +83,7 @@ class RegisterController extends Controller
             $message->to('dustingassmann@gmail.com');
             $message->subject('Nuevo Operador');
         });
-
+        Session::flash('message','correcto');
         return $user;
     }
 }

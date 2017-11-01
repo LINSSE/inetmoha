@@ -7,6 +7,7 @@ use Auth;
 use App\Oferta;
 use App\Producto;
 use App\User;
+use Session;
 
 class OfertasController extends Controller
 {
@@ -25,7 +26,7 @@ class OfertasController extends Controller
     	$oferta->modo = $request->modo;
 
     	$oferta->save();
-
+        Session::flash('nuevaOferta');
     	return back();
     }
 
