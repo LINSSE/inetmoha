@@ -9,7 +9,7 @@ class Ciudad extends Model
     protected $table = 'ciudades';
 
     public static function getCiudades($id) {
-    	return Ciudad::where('id_provincia', '=', $id)->orderBy('nombre', 'ASC')->get();
+    	return Ciudad::where('id_provincia', '=', $id)->orderBy('nombre', 'ASC')->distinct()->get();
     	
     }
 }

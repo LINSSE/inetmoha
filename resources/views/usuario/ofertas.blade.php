@@ -1,10 +1,10 @@
 @extends('layouts.principal')
 
 @section('content')
-	@if(Session::has('nuevaOferta'))
-            <div class="alert alert-success alert-dismissible" role="alert">
+	@if(Session::has('oferta'))
+            <div class="alert alert-success alert-dismissible fade in" role="alert">
               <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <strong>Su Oferta ha sido Publicada con éxito!</strong>
+              <strong>{{Session::get('oferta')}}</strong>
             </div>
         @endif
 	<div class="row">

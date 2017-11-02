@@ -44,7 +44,7 @@ class RepresentanteController extends Controller
         $rep->telefono = $request->telefono;
         $rep->save();
         Session::flash('rep', 'El Representante ha sido agregado!');
-        return redirect('admin/representantes');
+        return back();
     }
 
     public function buscarRep(Request $request) {

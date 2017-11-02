@@ -26,11 +26,11 @@ class OfertasController extends Controller
     	$oferta->modo = $request->modo;
 
     	$oferta->save();
-        Session::flash('nuevaOferta');
+        Session::flash('oferta', 'Su Oferta ha sido publicada con éxito!');
     	return back();
     }
 
-    public function ofertas() {
+    public function misofertas() {
 
     	$ofertas = Oferta::where('id_op', '=', (Auth::user()->id))->get();
     	$productos = Producto::All();
@@ -41,6 +41,23 @@ class OfertasController extends Controller
         }
 
     	return view('usuario/ofertas', array('ofertas' => $ofertas, 'productos' => $productos, 'activo' => $activo));
+    }
+
+    public function ofertas () {
+
+        if(Auth::check()) {
+        $ofertas = Oferta::orderBy('fechaFin', 'ASC')->get();
+        if(Auth::user()->activo === 1){
+            $activo = 1;
+        }else{
+            $activo = 0;
+        }
+        return view('ofertas', array('ofertas' => $ofertas, 'activo' => $activo));
+        }else{
+            
+            return view('ofertas');
+
+        }
     }
 
     public function buscarOfertas(Request $request) {
@@ -69,6 +86,8 @@ class OfertasController extends Controller
     	$id = $request->id;
         $oferta = Oferta::FindOrFail($id);
         $oferta->delete();
+
+        Session::flash('oferta', 'Su Oferta ha sido eliminada!');
     	return back();
     }
 }

@@ -22,7 +22,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 //Rutas Publicas
 Route::get('/index', 'PaginasController@index');
-Route::get('ofertas', 'PaginasController@ofertas');
+Route::get('ofertas', 'OfertasController@ofertas');
 Route::get('precios', 'PaginasController@precios');
 Route::get('demandas', 'PaginasController@demandas');
 Route::get('operaciones', 'PaginasController@operaciones');
@@ -40,7 +40,7 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::get('usuario/show/{id}', 'UserController@show');
 	Route::get('usuario/edit/{id}', 'UserController@edit');
 	Route::get('usuario/update/{id}', 'UserController@update');
-	Route::get('usuario/ofertas', 'OfertasController@ofertas');
+	Route::get('usuario/ofertas', 'OfertasController@misofertas');
 	Route::post('usuario/nuevaOferta', 'OfertasController@store');
 	Route::post('usuario/eliminarOferta', 'OfertasController@eliminar');
 	Route::get('usuario/demandas', 'DemandasController@demandas');

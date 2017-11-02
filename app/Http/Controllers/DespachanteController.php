@@ -47,7 +47,7 @@ class DespachanteController extends Controller
         $des->save();
 
         Session::flash('desp', 'El Despachante ha sido agregado!');
-        return redirect('admin/despachantes');
+        return back();
         
     }
 

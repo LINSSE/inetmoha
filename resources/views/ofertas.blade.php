@@ -2,7 +2,7 @@
 
 @section('content')
     @if(Session::has('contraoferta'))
-            <div class="alert alert-success alert-dismissible" role="alert">
+            <div class="alert alert-success alert-dismissible fade in" role="alert">
               <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
               <strong>Su Orden de Compra a sido registrada. Será notificado si el Oferente la acepta o rechaza.</strong>
             </div>
@@ -43,10 +43,9 @@
                             </tr>
                         </thead>
                         @foreach($ofertas as $of)
+                            @if($of->abierta === 0)
                             <tbody>
                                 <tr>
-                                    <!-- <form class="form-horizontal" name="" method="POST" action=""> -->
-                                    {{ csrf_field() }}
                                     <input type="hidden" name="id" value="{{$of->id}}">
                                     <input type="hidden" name="iduser" value="{{$of->user->id}}">
                                     <td><input type="text" class="input-table" name="producto" value="{{$of->producto->nombre}}" disabled></td>
@@ -61,9 +60,9 @@
                                         @else
                                             <button type="button" id="ofertar" data-toggle="modal" data_target="#modalOfertar" disabled class="btn btn-success admin tabla">Ofertar</button>
                                         @endif</td>
-                                    <!-- </form> -->
                                 </tr>
                             </tbody>
+                            @endif
                         @endforeach
                     </table>
                 </div>
@@ -87,28 +86,27 @@
                                 <th></th>
                             </tr>
                         </thead>
-                        @foreach($ofertasab as $ofa)
+                        @foreach($ofertas as $of)
+                            @if($of->abierta === 1)
                             <tbody>
                                 <tr>
-                                    <!-- <form class="form-horizontal" name="" method="POST" action=""> -->
-                                    {{ csrf_field() }}
-                                    <input type="hidden" name="id" value="{{$ofa->id}}">
-                                    <input type="hidden" name="iduser" value="{{$ofa->user->id}}">
-                                    <td><input type="text" class="input-table" name="producto" value="{{$ofa->producto->nombre}}" disabled></td>
-                                    <td><input type="text" class="input-table" name="cantidad" value="{{$ofa->cantidad}}" disabled></td>
-                                    <td><input type="text" class="input-table" name="precio" value="{{$ofa->precio}}" disabled></td>
-                                    <td><input type="text" class="input-table" name="fechaFin" value="{{$ofa->fechaFin}}" disabled></td>
-                                    <td><input type="text" class="input-table" name="puesto" value="{{$ofa->puesto}}" disabled></td>
-                                    <td><input type="text" class="input-table" name="cobro" value="{{$ofa->cobro}}" disabled></td>
-                                    <td><input type="text" class="input-table" name="modo" value="{{$ofa->modo}}" readonly="true"></td>
+                                    <input type="hidden" name="id" value="{{$of->id}}">
+                                    <input type="hidden" name="iduser" value="{{$of->user->id}}">
+                                    <td><input type="text" class="input-table" name="producto" value="{{$of->producto->nombre}}" disabled></td>
+                                    <td><input type="text" class="input-table" name="cantidad" value="{{$of->cantidad}}" disabled></td>
+                                    <td><input type="text" class="input-table" name="precio" value="{{$of->precio}}" disabled></td>
+                                    <td><input type="text" class="input-table" name="fechaFin" value="{{$of->fechaFin}}" disabled></td>
+                                    <td><input type="text" class="input-table" name="puesto" value="{{$of->puesto}}" disabled></td>
+                                    <td><input type="text" class="input-table" name="cobro" value="{{$of->cobro}}" disabled></td>
+                                    <td><input type="text" class="input-table" name="modo" value="{{$of->modo}}" readonly="true"></td>
                                     <td>@if($activo === 1)
                                             <button type="button" id="ofertar" data-toggle="modal" onclick="ofertar({{$of->id}})" class="btn btn-success admin tabla">Ofertar</button>
                                         @else
                                             <button type="button" id="ofertar" data-toggle="modal" data_target="#modalOfertar" disabled class="btn btn-success admin tabla">Ofertar</button>
                                         @endif</td>
-                                    <!-- </form> -->
                                 </tr>
                             </tbody>
+                            @endif
                         @endforeach
                     </table>
                 </div>

@@ -45,9 +45,7 @@ class ContraofertaController extends Controller
         Session::flash('oferta', 'La Oferta ha sido aceptada');
 
         return back();
-        //descuento la cantidad en oferta
         //grabo en operaciones
-        //si la oferta queda abierta, oferta->abierta = 1
         
     }
 
