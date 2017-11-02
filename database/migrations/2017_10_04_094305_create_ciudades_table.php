@@ -20,7 +20,7 @@ class CreateCiudadesTable extends Migration
             $table->string('codigopostal');
             $table->timestamps();
 
-            $table->foreign('id_provincia')->references('id')->on('provincias');
+            $table->foreign('id_provincia')->references('id')->on('provincias')->onDelete('cascade');
             $table->primary('id');
         });
     }
