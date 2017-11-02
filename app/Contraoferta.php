@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Contraoferta extends Model
 {
     protected $fillable = [
-        'id_oferta', 'id_comprador', 'cant',
+        'id_oferta', 'id_comprador', 'cantidad', 'aceptada',
     ];
 
     public function oferta()

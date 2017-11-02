@@ -52,6 +52,8 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::post('usuario/editarPerfil', 'UserController@editarPerfil');
 	Route::post('usuario/contraOferta', 'ContraofertaController@store');
 	Route::get('usuario/detalleOferta/{id}', 'ContraofertaController@detalleOferta');
+	Route::get('usuario/aceptarOferta/{id}', 'ContraofertaController@aceptarOferta');
+	Route::get('usuario/rechazarOferta/{id}', 'ContraofertaController@rechazarOferta');
 });
 
 
@@ -81,7 +83,9 @@ Route::group(['middleware' => 'admin'], function() {
 	
 	//Rutas de Administrador con Respecto a Despachantes
 	Route::post('admin/despachante/eliminar', 'DespachanteController@eliminarDesp');
+	Route::post('admin/representante/eliminar', 'RepresentanteController@eliminarRep');
 	Route::get('admin/buscarDespachantes', 'DespachanteController@buscarDesp');
+	Route::get('admin/buscarRepresentantes', 'RepresentanteController@buscarRep');
 	Route::get('admin/despachantes', 'DespachanteController@despachantes');	
 });
 

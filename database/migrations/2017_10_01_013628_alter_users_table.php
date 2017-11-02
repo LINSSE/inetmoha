@@ -26,8 +26,8 @@ class AlterUsersTable extends Migration
             $table->boolean('activo')->default(false)->after('id_rep');
             $table->boolean('admin')->default(false)->after('activo');
 
-            $table->foreign('id_des')->references('id')->on('despachantes');
-            $table->foreign('id_rep')->references('id')->on('representantes');
+            $table->foreign('id_des')->references('id')->on('despachantes')->onDelete('cascade');
+            $table->foreign('id_rep')->references('id')->on('representantes')->onDelete('cascade');
         });
     }
 

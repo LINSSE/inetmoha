@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Representante;
+use App\User;
+use Session;
 
 class RepresentanteController extends Controller
 {
@@ -41,7 +43,30 @@ class RepresentanteController extends Controller
         $rep->email = $request->email;
         $rep->telefono = $request->telefono;
         $rep->save();
-        return back();
+        Session::flash('rep', 'El Representante ha sido agregado!');
+        return redirect('admin/representantes');
+    }
+
+    public function buscarRep(Request $request) {
+        $buscar = $request->buscar;
+        $representantes = Representante::where('nombre', 'like', '%'.ucwords(strtolower($buscar)).'%')
+                                     ->orwhere('apellido', 'like', '%'.ucwords(strtolower($buscar)).'%')
+                                     ->orwhere('email', 'like', '%'.$buscar.'%')
+                                     ->orwhere('telefono', 'like', '%'.$buscar.'%')
+                                     ->orderBy('apellido', 'ASC')->get();
+        
+        return view('admin/representantes', array('representantes' => $representantes));
+    } 
+
+    public function eliminarRep(Request $request)
+    {
+        $id_ant = $request->id; //id del Representante a Eliminar
+        $id_nuevo = $request->id_rep; //id del Representante de reemplazo
+        $rows = User::where('id_rep', '=', $id_ant)->update(['id_rep' => $id_nuevo]);
+        $desp = Representante::destroy($id_ant);
+        
+        Session::flash('rep', 'El Representante ha sido eliminado!');
+        return redirect('admin/representantes');
     }
 
     /**

@@ -62,8 +62,9 @@
                     @endforeach
                 </table>
         </div>
+        <hr>
     </div>
-    <hr>
+    
     <h4 class="h4tit">Operadores Activos</h4>
     <div class="col-md-12 admin">
             <div class="table-responsive admin">

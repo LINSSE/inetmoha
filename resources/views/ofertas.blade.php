@@ -74,70 +74,48 @@
             <div class="col-md-12">
                 <h1 class="h1-tabla">Ofertas Abiertas</h1>
                 <div class="table-responsive">
-                    <table class="table table-striped table-bordered table-condensed">
+                    <table class="table">
                         <thead>
                             <tr>
-                                <th>Producto </th>
-                                <th>Cant </th>
-                                <th>Fecha </th>
-                                <th>Operador </th>
-                                <th>Puesto </th>
-                                <th>Cobro </th>
-                                <th>Modo </th>
+                                <th>Producto</th>
+                                <th>Cantidad</th>
+                                <th>Precio $</th>
+                                <th>Fecha Fin</th>
+                                <th>Puesto</th>
+                                <th>Cobro</th>
+                                <th>Modo</th>
+                                <th></th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>Tomate x 20kg</td>
-                                <td>2.000 </td>
-                                <td>15-20 sep</td>
-                                <td>Zone J.</td>
-                                <td>Fine </td>
-                                <td>Cdo </td>
-                                <td>Raso </td>
-                            </tr>
-                            <tr>
-                                <td>Zapallito x 10kg</td>
-                                <td>1.000 </td>
-                                <td>15-30 sep</td>
-                                <td>Rodriguez L.</td>
-                                <td>Epq </td>
-                                <td>Cpd </td>
-                                <td>Emb </td>
-                            </tr>
-                            <tr>
-                                <td>Tomate x 20kg</td>
-                                <td>3.000 </td>
-                                <td>15-20 sep</td>
-                                <td>Zone J.</td>
-                                <td>Fine </td>
-                                <td>Cdo </td>
-                                <td>Raso </td>
-                            </tr>
-                            <tr>
-                                <td>Zapallito x 10kg</td>
-                                <td>1.000 </td>
-                                <td>15-30 sep</td>
-                                <td>Rodriguez L.</td>
-                                <td>Epq </td>
-                                <td>Cpd </td>
-                                <td>Emb </td>
-                            </tr>
-                            <tr>
-                                <td>Zapallito x 10kg</td>
-                                <td>1.000 </td>
-                                <td>15-30 sep</td>
-                                <td>Rodriguez L.</td>
-                                <td>Epq </td>
-                                <td>Cpd </td>
-                                <td>Emb </td>
-                            </tr>
-                        </tbody>
+                        @foreach($ofertasab as $ofa)
+                            <tbody>
+                                <tr>
+                                    <!-- <form class="form-horizontal" name="" method="POST" action=""> -->
+                                    {{ csrf_field() }}
+                                    <input type="hidden" name="id" value="{{$ofa->id}}">
+                                    <input type="hidden" name="iduser" value="{{$ofa->user->id}}">
+                                    <td><input type="text" class="input-table" name="producto" value="{{$ofa->producto->nombre}}" disabled></td>
+                                    <td><input type="text" class="input-table" name="cantidad" value="{{$ofa->cantidad}}" disabled></td>
+                                    <td><input type="text" class="input-table" name="precio" value="{{$ofa->precio}}" disabled></td>
+                                    <td><input type="text" class="input-table" name="fechaFin" value="{{$ofa->fechaFin}}" disabled></td>
+                                    <td><input type="text" class="input-table" name="puesto" value="{{$ofa->puesto}}" disabled></td>
+                                    <td><input type="text" class="input-table" name="cobro" value="{{$ofa->cobro}}" disabled></td>
+                                    <td><input type="text" class="input-table" name="modo" value="{{$ofa->modo}}" readonly="true"></td>
+                                    <td>@if($activo === 1)
+                                            <button type="button" id="ofertar" data-toggle="modal" onclick="ofertar({{$of->id}})" class="btn btn-success admin tabla">Ofertar</button>
+                                        @else
+                                            <button type="button" id="ofertar" data-toggle="modal" data_target="#modalOfertar" disabled class="btn btn-success admin tabla">Ofertar</button>
+                                        @endif</td>
+                                    <!-- </form> -->
+                                </tr>
+                            </tbody>
+                        @endforeach
                     </table>
                 </div>
             </div>
         </div>
     </div>
+    <hr>
 
         <!-- Modal Nueva Oferta -->
 <div class="modal fade" id="modalOfertar" tabindex="-1" role="dialog">

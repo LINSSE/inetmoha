@@ -1,7 +1,12 @@
 @extends('layouts.principal')
 
 @section('content')
-    
+    @if(Session::has('desp'))
+            <div class="alert alert-success alert-dismissible" role="alert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <strong>{{Session::get('desp')}}</strong>
+            </div>
+        @endif
     <div class="row">
         <div class="col-sm-6 col-sm-offset-3">
             <div id="imaginary_container"> 
@@ -158,6 +163,7 @@ Si continúa con la eliminación es necesario elegir otro Despachante para la re
                                     <div class="col-md-12">
                                         <select class="form-control" name="id_des" value="{{ old('id_des') }}" required>
                                             <option disabled selected value> -- Seleccione un Despachante -- </option>
+                                            <option value="1">Sin Despachante</option>
                                             @foreach($despachantes as $despachante)
                                             <option value="{{$despachante->id}}">{{$despachante->apellido}} {{$despachante->nombre}}</option>
                                             @endforeach

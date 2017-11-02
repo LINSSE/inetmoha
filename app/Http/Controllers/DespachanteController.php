@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Despachante;
 use App\User;
+use Session;
 
 class DespachanteController extends Controller
 {
@@ -44,12 +45,14 @@ class DespachanteController extends Controller
         $des->email = $request->email;
         $des->telefono = $request->telefono;
         $des->save();
-        return back();
+
+        Session::flash('desp', 'El Despachante ha sido agregado!');
+        return redirect('admin/despachantes');
         
     }
 
     public function despachantes() {
-        $dp = Despachante::where('nombre', '=', 'Sin Despachante')->first();
+        $dp = Despachante::where('apellido', '=', 'Sin Despachante')->first();
         $despachantes = Despachante::where('id', '!=', $dp->id)->orderBy('apellido', 'ASC')->get();
         
         return view('admin/despachantes', array('despachantes' => $despachantes));
@@ -74,6 +77,7 @@ class DespachanteController extends Controller
         $rows = User::where('id_des', '=', $id_ant)->update(['id_des' => $id_nuevo]);
         $desp = Despachante::destroy($id_ant);
         
+        Session::flash('desp', 'El Despachante ha sido eliminado!');
         return redirect('admin/despachantes');
     }
 

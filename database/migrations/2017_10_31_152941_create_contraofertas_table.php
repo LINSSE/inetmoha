@@ -17,11 +17,12 @@ class CreateContraofertasTable extends Migration
             $table->increments('id');
             $table->integer('id_oferta')->unsigned();
             $table->integer('id_comprador')->unsigned();
-            $table->integer('cant');
+            $table->integer('cantidad');
+            $table->boolean('aceptada')->default(false);
             $table->timestamps();
 
-            $table->foreign('id_oferta')->references('id')->on('ofertas');
-            $table->foreign('id_comprador')->references('id')->on('users');
+            $table->foreign('id_oferta')->references('id')->on('ofertas')->onDelete('cascade');
+            $table->foreign('id_comprador')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

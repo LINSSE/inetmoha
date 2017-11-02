@@ -57,4 +57,9 @@ $(document).ready(function(){
         $('#eliminarDespachante').modal('show'); //show the modal
     }    
 
+    eliminarRep = function (id) {
+             $('#id').val(id);//load a view into a modal
+        $('#eliminarRepresentante').modal('show'); //show the modal
+    }
+
 });

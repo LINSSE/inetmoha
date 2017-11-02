@@ -28,13 +28,14 @@ class PaginasController extends Controller
 	public function ofertas () {
 
 		if(Auth::check()) {
-		$ofertas = Oferta::All();
+		$ofertas = Oferta::where('abierta', false)->orderBy('fechaFin', 'ASC')->get();
+		$ofertasab = Oferta::where('abierta', true)->orderBy('fechaFin', 'ASC')->get();
 		if(Auth::user()->activo === 1){
             $activo = 1;
         }else{
             $activo = 0;
         }
-		return view('ofertas', array('ofertas' => $ofertas, 'activo' => $activo));
+		return view('ofertas', array('ofertas' => $ofertas, 'ofertasab' => $ofertasab, 'activo' => $activo));
 		}else{
 			
 			return view('ofertas');

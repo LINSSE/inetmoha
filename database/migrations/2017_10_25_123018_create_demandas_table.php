@@ -24,8 +24,8 @@ class CreateDemandasTable extends Migration
             $table->enum('modo', ['Raso', 'Emb', 'Abie']);
             $table->timestamps();
 
-            $table->foreign('id_op')->references('id')->on('users');
-            $table->foreign('id_prod')->references('id')->on('productos');
+            $table->foreign('id_op')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('id_prod')->references('id')->on('productos')->onDelete('cascade');
         });
     }
 

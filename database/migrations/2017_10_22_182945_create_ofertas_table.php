@@ -24,10 +24,11 @@ class CreateOfertasTable extends Migration
             $table->enum('puesto', ['Finq', 'Epq']);
             $table->enum('cobro', ['Cdo', 'CPD', 'Com', 'Efec']);
             $table->enum('modo', ['Raso', 'Emb', 'Abie']);
+            $table->boolean('abierta')->default(false);
             $table->timestamps();
 
-            $table->foreign('id_op')->references('id')->on('users');
-            $table->foreign('id_prod')->references('id')->on('productos');
+            $table->foreign('id_op')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('id_prod')->references('id')->on('productos')->onDelete('cascade');
         });
     }
 

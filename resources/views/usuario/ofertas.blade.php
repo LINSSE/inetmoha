@@ -55,7 +55,7 @@
                 </div>
             </div>
         </div>
-
+        <hr>
     <!-- Modal Nueva Oferta -->
 <div class="modal fade" id="nuevaOferta" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
