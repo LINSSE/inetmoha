@@ -25,7 +25,7 @@ Route::get('/index', 'PaginasController@index');
 Route::get('ofertas', 'OfertasController@ofertas');
 Route::get('precios', 'PaginasController@precios');
 Route::get('demandas', 'PaginasController@demandas');
-Route::get('operaciones', 'PaginasController@operaciones');
+Route::get('operaciones', 'OperacionesController@listaroperaciones');
 Route::get('operadores', 'PaginasController@operadores');
 Route::get('email/nuevoOperador', 'AdminController@enviarMail');
 Route::get('ciudades/{id}', 'ProvinciasController@getCiudades');
@@ -46,7 +46,7 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::get('usuario/demandas', 'DemandasController@demandas');
 	Route::post('usuario/nuevaDemanda', 'DemandasController@store');
 	Route::post('usuario/eliminarDemanda', 'DemandasController@eliminar');
-	Route::get('usuario/operaciones', 'UserController@operaciones');
+	Route::get('usuario/operaciones', 'OperacionesController@misoperaciones');
 	Route::get('usuario/buscarOfertas', 'OfertasController@buscarOfertas');
 	Route::get('usuario/buscarDemandas', 'DemandasController@buscarDemandas');
 	Route::post('usuario/editarPerfil', 'UserController@editarPerfil');

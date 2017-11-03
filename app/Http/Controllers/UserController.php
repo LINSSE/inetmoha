@@ -134,16 +134,6 @@ class UserController extends Controller
         return view('usuario.demandas');
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function operaciones()
-    {
-        return view('usuario.operaciones');
-    }
-
     public function prueba()
     {
 
