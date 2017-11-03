@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Auth;
 use App\Contraoferta;
 use App\Oferta;
+use App\Operacion;
 use Session;
 
 class ContraofertaController extends Controller
@@ -42,6 +43,20 @@ class ContraofertaController extends Controller
         $rows = Oferta::where('id', $co->id_oferta)->update(['cantidad' => $cant, 'abierta' => true]);
         $rows = Contraoferta::where('id', $id)->update(['aceptada' => true]);
 
+        //guardarOperacion($co);
+        //Si la contraoferta es aceptada genero una operacion para esa oferta
+        $op = new Operacion;
+
+        $op->id_oferta = $co->id_oferta;
+        $op->cantidad = $co->cantidad;
+        $op->fecha = Date('Y-m-j');
+        $op->precio = $co->oferta->precio;
+        $op->pago = $co->oferta->cobro;
+        $op->destino = $co->oferta->puesto;
+        $op->modo = $co->oferta->modo;
+
+        $op->save();
+
         Session::flash('oferta', 'La Oferta ha sido aceptada');
 
         return back();
@@ -59,4 +74,6 @@ class ContraofertaController extends Controller
 
         return back();
     }
+
+
 }

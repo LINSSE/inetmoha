@@ -20,4 +20,8 @@ class Oferta extends Model
         return $this->hasOne('App\Producto', 'id', 'id_prod');
     }
 
+    public function operacion()
+    {
+        return $this->belongsTo('App\Operacion', 'id_oferta');
+    }
 }
