@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace MOHA\Http\Controllers;
 
 use Illuminate\Http\Request;
 

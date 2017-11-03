@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace MOHA\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Demanda;
-use App\Producto;
+use MOHA\Demanda;
+use MOHA\Producto;
 use Auth;
-use App\User;
+use MOHA\User;
 
 class DemandasController extends Controller
 {

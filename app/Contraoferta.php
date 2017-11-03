@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace MOHA;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -12,11 +12,11 @@ class Contraoferta extends Model
 
     public function oferta()
     {
-        return $this->belongsTo('App\oferta', 'id_oferta');
+        return $this->belongsTo('MOHA\oferta', 'id_oferta');
     }
 
     public function user()
     {
-        return $this->belongsTo('App\User', 'id_comprador');
+        return $this->belongsTo('MOHA\User', 'id_comprador');
     }
 }

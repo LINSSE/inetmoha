@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace MOHA\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Despachante;
-use App\User;
+use MOHA\Despachante;
+use MOHA\User;
 use Session;
 
 class DespachanteController extends Controller

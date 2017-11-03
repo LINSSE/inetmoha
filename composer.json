@@ -27,7 +27,7 @@
 
         ],
         "psr-4": {
-            "App\\": "app/"
+            "MOHA\\": "app/"
         }
     },
     "autoload-dev": {

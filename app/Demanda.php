@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace MOHA;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -12,11 +12,11 @@ class Demanda extends Model
 
     public function user()
     {
-        return $this->belongsTo('App\User', 'id_op');
+        return $this->belongsTo('MOHA\User', 'id_op');
     }
 
     public function producto()
     {
-        return $this->hasOne('App\Producto', 'id', 'id_prod');
+        return $this->hasOne('MOHA\Producto', 'id', 'id_prod');
     }
 }

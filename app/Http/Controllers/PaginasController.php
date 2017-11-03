@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace MOHA\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\User;
-use App\Oferta;
-use App\Producto;
-use App\Demanda;
+use MOHA\User;
+use MOHA\Oferta;
+use MOHA\Producto;
+use MOHA\Demanda;
 use Auth;
 
 class PaginasController extends Controller

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace MOHA\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Operacion;
-use App\User;
+use MOHA\Operacion;
+use MOHA\User;
 use Auth;
 use Session;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace MOHA;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -14,7 +14,7 @@ class Operacion extends Model
 
     public function oferta()
     {
-        return $this->hasOne('App\Oferta', 'id', 'id_oferta');
+        return $this->hasOne('MOHA\Oferta', 'id', 'id_oferta');
     }
 
 }

@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'inetmoha'),
+    'name' => env('APP_NAME', 'MOHA'),
 
     /*
     |--------------------------------------------------------------------------
@@ -179,11 +179,11 @@ return [
         /*
          * Application Service Providers...
          */
-        App\Providers\AppServiceProvider::class,
-        App\Providers\AuthServiceProvider::class,
-        // App\Providers\BroadcastServiceProvider::class,
-        App\Providers\EventServiceProvider::class,
-        App\Providers\RouteServiceProvider::class,
+        MOHA\Providers\AppServiceProvider::class,
+        MOHA\Providers\AuthServiceProvider::class,
+        // MOHA\Providers\BroadcastServiceProvider::class,
+        MOHA\Providers\EventServiceProvider::class,
+        MOHA\Providers\RouteServiceProvider::class,
 
     ],
 

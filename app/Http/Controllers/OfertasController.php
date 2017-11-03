@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace MOHA\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
-use App\Oferta;
-use App\Producto;
-use App\User;
+use MOHA\Oferta;
+use MOHA\Producto;
+use MOHA\User;
 use Session;
 
 class OfertasController extends Controller

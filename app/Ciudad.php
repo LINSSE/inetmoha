@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace MOHA;
 
 use Illuminate\Database\Eloquent\Model;
 

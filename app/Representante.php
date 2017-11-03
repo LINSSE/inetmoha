@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace MOHA;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -12,6 +12,6 @@ class Representante extends Model
 
     public function user()
     {
-        return $this->belongsTo('App\User', 'id_op');
+        return $this->belongsTo('MOHA\User', 'id_op');
     }
 }

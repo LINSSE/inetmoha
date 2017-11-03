@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace MOHA\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Producto;
+use MOHA\Producto;
 use Maatwebsite\Excel\Facades\Excel;
 
 class ProductoController extends Controller

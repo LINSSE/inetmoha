@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace MOHA\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Representante;
-use App\User;
+use MOHA\Representante;
+use MOHA\User;
 use Session;
 
 class RepresentanteController extends Controller

@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace MOHA\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
-use App\Contraoferta;
-use App\Oferta;
-use App\Operacion;
+use MOHA\Contraoferta;
+use MOHA\Oferta;
+use MOHA\Operacion;
 use Session;
 
 class ContraofertaController extends Controller

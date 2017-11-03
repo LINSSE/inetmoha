@@ -1,10 +1,10 @@
 <?php
 
-namespace App;
+namespace MOHA;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use App\Notifications\MyResetPassword;
+use MOHA\Notifications\MyResetPassword;
 
 class User extends Authenticatable
 {
@@ -36,36 +36,36 @@ class User extends Authenticatable
 
     public function oferta()
     {
-        return $this->hasMany('App\Oferta', 'id', 'id_op');
+        return $this->hasMany('MOHA\Oferta', 'id', 'id_op');
     }
 
     public function demanda()
     {
-        return $this->hasMany('App\Demanda', 'id', 'id_op');
+        return $this->hasMany('MOHA\Demanda', 'id', 'id_op');
     }
 
     public function despachante()
     {
-        return $this->hasOne('App\Despachante', 'id', 'id_des');
+        return $this->hasOne('MOHA\Despachante', 'id', 'id_des');
     }
 
     public function representante()
     {
-        return $this->hasOne('App\Representante', 'id', 'id_rep');
+        return $this->hasOne('MOHA\Representante', 'id', 'id_rep');
     }
 
     public function provincia()
     {
-        return $this->hasOne('App\Provincia', 'id', 'id_provincia');
+        return $this->hasOne('MOHA\Provincia', 'id', 'id_provincia');
     }
 
     public function ciudad()
     {
-        return $this->hasOne('App\Ciudad', 'id', 'id_ciudad');
+        return $this->hasOne('MOHA\Ciudad', 'id', 'id_ciudad');
     }
 
     public function contraoferta()
     {
-        return $this->hasMany('App\Contraoferta', 'id', 'id_comprador');
+        return $this->hasMany('MOHA\Contraoferta', 'id', 'id_comprador');
     }
 }

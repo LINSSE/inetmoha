@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace MOHA\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Provincia;
-use App\Ciudad;
+use MOHA\Provincia;
+use MOHA\Ciudad;
 
 class ProvinciasController extends Controller
 {

@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace MOHA\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\User;
-use App\Ciudad;
-use App\Provincia;
-use App\Despachante;
-use App\Representante;
-use App\Producto;
+use MOHA\User;
+use MOHA\Ciudad;
+use MOHA\Provincia;
+use MOHA\Despachante;
+use MOHA\Representante;
+use MOHA\Producto;
 
 
 class UserController extends Controller

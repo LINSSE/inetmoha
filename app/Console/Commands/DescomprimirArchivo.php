@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Console\Commands;
+namespace MOHA\Console\Commands;
 
 use Illuminate\Console\Command;
 use \Chumper\Zipper\Zipper;

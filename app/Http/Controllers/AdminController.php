@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace MOHA\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\User;
-use App\Ciudad;
-use App\Provincia;
-use App\Despachante;
-use App\Representante;
+use MOHA\User;
+use MOHA\Ciudad;
+use MOHA\Provincia;
+use MOHA\Despachante;
+use MOHA\Representante;
 use Illuminate\Support\Facades\Auth;
-use App\Producto;
+use MOHA\Producto;
 use \Chumper\Zipper\Zipper;
 
 class AdminController extends Controller
