@@ -3,6 +3,11 @@
 namespace MOHA\Http\Controllers\Auth;
 
 use MOHA\User;
+use MOHA\Provincia;
+use MOHA\Despachante;
+use MOHA\Representante;
+use MOHA\Mail\Bienvenido;
+use MOHA\Mail\UsuarioRegistrado;
 use MOHA\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -24,6 +29,14 @@ class RegisterController extends Controller
     */
 
     use RegistersUsers;
+
+    public function showRegistrationForm()
+    {   
+        $provincias = Provincia::orderBy('nombre', 'ASC')->get();
+        $despachantes = Despachante::orderBy('apellido', 'ASC')->get();
+        $representantes = Representante::orderBy('apellido', 'ASC')->get();
+        return view('auth.register', array('despachantes' => $despachantes, 'representantes' => $representantes, 'provincias' => $provincias));
+    }
 
     /**
      * Where to redirect users after registration.
@@ -79,10 +92,14 @@ class RegisterController extends Controller
             'id_rep' => $data['id_rep'],   
         ]);
 
-        Mail::send('email/nuevoOperador', [], function($message){
+        Mail::to($user->email)->send(new Bienvenido());
+
+        Mail::to('dustingassmann@gmail.com')->send(new UsuarioRegistrado());
+        
+        /*Mail::send('email/nuevoOperador', [], function($message){
             $message->to('dustingassmann@gmail.com');
             $message->subject('Nuevo Operador');
-        });
+        });*/
         Session::flash('message','correcto');
         return $user;
     }
