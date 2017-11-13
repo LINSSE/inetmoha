@@ -1,3 +1,1 @@
-<h2>Prueba</h2>
-{{$co}}
-
+<p><a href="#" type="button"  style="hover{background-color:#0b7dda;};background-color:#3498db;border-radius:6px;color:white;height: 40px;border-style: hidden;padding: 10px;text-decoration: none;" >Ir al Sitio MOHA WEB</a></p>

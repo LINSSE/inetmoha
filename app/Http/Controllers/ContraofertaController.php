@@ -4,10 +4,13 @@ namespace MOHA\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
+use MOHA\User;
 use MOHA\Contraoferta;
 use MOHA\Oferta;
 use MOHA\Operacion;
 use Session;
+use Illuminate\Support\Facades\Mail;
+use MOHA\Mail\OfertaAceptada;
 
 class ContraofertaController extends Controller
 {
@@ -43,7 +46,7 @@ class ContraofertaController extends Controller
         $rows = Oferta::where('id', $co->id_oferta)->update(['cantidad' => $cant, 'abierta' => true]);
         $rows = Contraoferta::where('id', $id)->update(['aceptada' => true]);
 
-        //guardarOperacion($co);
+        
         //Si la contraoferta es aceptada genero una operacion para esa oferta
         $op = new Operacion;
 
@@ -57,11 +60,11 @@ class ContraofertaController extends Controller
 
         $op->save();
 
+        $user = Auth::user()->get();
+        Mail::to($co->user->email)->send(new OfertaAceptada($user, $co));
         Session::flash('oferta', 'La Oferta ha sido aceptada');
 
         return back();
-        //grabo en operaciones
-        
     }
 
     public function rechazarOferta ($id) {
@@ -74,6 +77,5 @@ class ContraofertaController extends Controller
 
         return back();
     }
-
 
 }

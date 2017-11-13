@@ -93,7 +93,7 @@ Route::group(['middleware' => 'admin'], function() {
 
 //Rutas de pruebas
 
-
+Route::get('pruebas', 'ContraofertaController@prueba');
 Route::get('prueba', function(){
 	return view('prueba');
 });
