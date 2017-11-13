@@ -1,5 +1,5 @@
 <center>
-<div class="content" style="width:100%;height:20%;background-color:#f5f8fa;padding:15px; ">
+<div class="content" style="width:100%;height:20%;background-color:#7fb850;padding:15px; ">
 <center><h2 style="color:#74787e;">{{ config('app.name') }}</h2></center></div>
 <br>
 <h3>Bienvenido! Usted se ha registrado en MOHA WEB</h3>
@@ -11,6 +11,6 @@
 <?php $direccion = 'http://localhost:8000/'; ?>
 <p><a type="button" href="{{$direccion}}">Ir al Sitio MOHA WEB</a></p>
 <br>
-<div class="content" style="width:100%;height:20%;background-color:#f5f8fa;padding:15px; ">
-<center><h4 style="color:#74787e;">&copy; {{ date('Y') }} {{ config('app.name') }}. Todo los derechos reservados.</h4></center></div>
+<div class="content" style="width:100%;height:20%;background-color:#7fb850;padding:15px; ">
+<center><h4 style="color:#74787e;">&copy; {{ date('Y') }} {{ config('app.name') }}. Todos los derechos reservados.</h4></center></div>
 </center>

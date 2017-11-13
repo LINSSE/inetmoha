@@ -11,6 +11,8 @@ use MOHA\Operacion;
 use Session;
 use Illuminate\Support\Facades\Mail;
 use MOHA\Mail\OfertaAceptada;
+use MOHA\Mail\OfertaRechazada;
+use MOHA\Mail\ContraOfertaMail;
 
 class ContraofertaController extends Controller
 {
@@ -23,6 +25,8 @@ class ContraofertaController extends Controller
     	$co->cantidad = $request->cantidad;
 
     	$co->save();
+
+        Mail::to($co->oferta->user->email)->send(new ContraOfertaMail($co));
     	Session::flash('contraoferta');
     	return back();
     }
@@ -60,7 +64,7 @@ class ContraofertaController extends Controller
 
         $op->save();
 
-        $user = Auth::user()->get();
+        $user = Auth::user();
         Mail::to($co->user->email)->send(new OfertaAceptada($user, $co));
         Session::flash('oferta', 'La Oferta ha sido aceptada');
 
@@ -72,6 +76,8 @@ class ContraofertaController extends Controller
         $co = Contraoferta::Find($id);
 
         $co->delete();
+
+        Mail::to($co->user->email)->send(new OfertaRechazada($co));
 
         Session::flash('oferta', 'La Oferta ha sido rechazada');
 
