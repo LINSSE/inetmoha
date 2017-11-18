@@ -2,7 +2,7 @@
 
 @section('content')
 	<div class="row">
-        @if($activo === 1)
+        @if(Auth::user()->activo === 1)
             <button type="button" id="agregarDemanda" data-toggle="modal" data_target="#nuevaDemanda" class="btn btn-success admin">Nueva Demanda</button>
         @else
             <button type="button" id="agregarDemanda" data-toggle="modal" disabled="" data_target="#nuevaDemanda" class="btn btn-success admin">Nueva Demanda</button>

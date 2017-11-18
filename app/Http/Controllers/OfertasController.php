@@ -34,26 +34,17 @@ class OfertasController extends Controller
 
     	$ofertas = Oferta::where('id_op', '=', (Auth::user()->id))->get();
     	$productos = Producto::All();
-        if(Auth::user()->activo === 1){
-            $activo = 1;
-        }else{
-            $activo = 0;
-        }
 
-    	return view('usuario/ofertas', array('ofertas' => $ofertas, 'productos' => $productos, 'activo' => $activo));
+    	return view('usuario/ofertas', array('ofertas' => $ofertas, 'productos' => $productos));
     }
 
     public function ofertas () {
 
         if(Auth::check()) {
             $hoy = Date('Y-m-j');
-        $ofertas = Oferta::whereDate('fechaInicio', '<=', $hoy)->whereDate('fechaFin', '>=', $hoy)->orderBy('fechaFin', 'ASC')->get();
-        if(Auth::user()->activo === 1){
-            $activo = 1;
-        }else{
-            $activo = 0;
-        }
-        return view('ofertas', array('ofertas' => $ofertas, 'activo' => $activo));
+        $ofertas = Oferta::whereDate('fechaInicio', '<=', $hoy)->whereDate('fechaFin', '>=', $hoy)->orderBy('fechaFin', 'DSC')->get();
+        
+        return view('ofertas', array('ofertas' => $ofertas));
         }else{
             
             return view('ofertas');
@@ -71,15 +62,9 @@ class OfertasController extends Controller
                                      ->orwhere('ofertas.modo', 'like', '%'.ucwords(strtolower($buscar)).'%')
                                      ->get();
 
-        if(Auth::user()->activo === 1){
-            $activo = 1;
-        }else{
-            $activo = 0;
-        }
-
         $productos = Producto::All();
         
-        return view('ofertas', array('ofertas' => $ofertas, 'activo' => $activo, 'productos' => $productos));
+        return view('ofertas', array('ofertas' => $ofertas, 'productos' => $productos));
     }
 
     public function eliminar(Request $request) {

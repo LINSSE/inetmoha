@@ -55,7 +55,7 @@
                                     <td><input type="text" class="input-table" name="puesto" value="{{$of->puesto}}" disabled></td>
                                     <td><input type="text" class="input-table" name="cobro" value="{{$of->cobro}}" disabled></td>
                                     <td><input type="text" class="input-table" name="modo" value="{{$of->modo}}" readonly="true"></td>
-                                    <td>@if($activo === 1)
+                                    <td>@if(Auth::user()->activo === 1)
                                             <button type="button" id="ofertar" data-toggle="modal" onclick="ofertar({{$of->id}})" class="btn btn-success admin tabla">Ofertar</button>
                                         @else
                                             <button type="button" id="ofertar" data-toggle="modal" data_target="#modalOfertar" disabled class="btn btn-success admin tabla">Ofertar</button>
@@ -99,7 +99,7 @@
                                     <td><input type="text" class="input-table" name="puesto" value="{{$of->puesto}}" disabled></td>
                                     <td><input type="text" class="input-table" name="cobro" value="{{$of->cobro}}" disabled></td>
                                     <td><input type="text" class="input-table" name="modo" value="{{$of->modo}}" readonly="true"></td>
-                                    <td>@if($activo === 1)
+                                    <td>@if(Auth::user()->activo === 1)
                                             <button type="button" id="ofertar" data-toggle="modal" onclick="ofertar({{$of->id}})" class="btn btn-success admin tabla">Ofertar</button>
                                         @else
                                             <button type="button" id="ofertar" data-toggle="modal" data_target="#modalOfertar" disabled class="btn btn-success admin tabla">Ofertar</button>

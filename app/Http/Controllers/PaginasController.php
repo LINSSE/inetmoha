@@ -28,12 +28,8 @@ class PaginasController extends Controller
 	public function demandas () {
 		if(Auth::check()) {
 		$demandas = Demanda::All();
-		if(Auth::user()->activo === 1){
-            $activo = 1;
-        }else{
-            $activo = 0;
-        }
-		return view('demandas', array('demandas' => $demandas, 'activo' => $activo));
+		
+		return view('demandas', array('demandas' => $demandas));
 		}else{
 			
 			return view('demandas');

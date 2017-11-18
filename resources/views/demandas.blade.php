@@ -50,7 +50,7 @@
                                     <td><input type="text" class="input-table" name="pago" value="{{$dem->pago}}" readonly="true"></td>
                                     <td><input type="text" class="input-table" name="destino" value="{{$dem->destino}}" readonly="true"></td>
                                     <td><input type="text" class="input-table" name="modo" value="{{$dem->modo}}" readonly="true"></td>
-                                    <td>@if($activo === 1)
+                                    <td>@if(Auth::user()->activo === 1)
                                             <button type="button" name="ofertar" class="btn btn-success admin tabla">Ofertar</button>
                                         @else
                                             <button type="button" name="ofertar" disabled="" class="btn btn-success admin">Ofertar</button>

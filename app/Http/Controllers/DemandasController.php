@@ -31,13 +31,8 @@ class DemandasController extends Controller
 
     	$demandas = Demanda::where('id_op', '=', (Auth::user()->id))->get();
     	$productos = Producto::All();
-        if(Auth::user()->activo === 1){
-            $activo = 1;
-        }else{
-            $activo = 0;
-        }
 
-    	return view('usuario/demandas', array('demandas' => $demandas, 'productos' => $productos, 'activo' => $activo));
+    	return view('usuario/demandas', array('demandas' => $demandas, 'productos' => $productos));
     }
 
     public function buscarDemandas(Request $request) {
@@ -49,15 +44,9 @@ class DemandasController extends Controller
                                      ->orwhere('demandas.modo', 'like', '%'.ucwords(strtolower($buscar)).'%')
                                      ->get();
 
-        if(Auth::user()->activo === 1){
-            $activo = 1;
-        }else{
-            $activo = 0;
-        }
-
         $productos = Producto::All();
         
-        return view('demandas', array('demandas' => $demandas, 'activo' => $activo, 'productos' => $productos));
+        return view('demandas', array('demandas' => $demandas, 'productos' => $productos));
     }
 
     public function eliminar(Request $request) {
