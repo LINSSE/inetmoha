@@ -46,7 +46,8 @@ class OfertasController extends Controller
     public function ofertas () {
 
         if(Auth::check()) {
-        $ofertas = Oferta::orderBy('fechaFin', 'ASC')->get();
+            $hoy = Date('Y-m-j');
+        $ofertas = Oferta::whereDate('fechaInicio', '<=', $hoy)->whereDate('fechaFin', '>=', $hoy)->orderBy('fechaFin', 'ASC')->get();
         if(Auth::user()->activo === 1){
             $activo = 1;
         }else{
