@@ -2,7 +2,7 @@
 
 @section('content')
     @guest
-        <center><h4>Debe Regstrarse para Acceder a esta seccion</h4></center>
+        <center><h4>Debe Registrarse para Acceder a esta sección</h4></center>
     @else
 	<div class="col-md-12">
             <div class="table-responsive">
@@ -42,4 +42,5 @@
             </div>
         </div>
     @endguest
+    <a type="button" href="/index" class="btn btn-primary admin" title="Volver">Volver</a>
 @endsection

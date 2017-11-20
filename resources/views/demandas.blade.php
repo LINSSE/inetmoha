@@ -2,7 +2,7 @@
 
 @section('content')
     @guest
-        <center><h4>Debe Regstrarse para Acceder a esta seccion</h4></center>
+        <center><h4>Debe Registrarse para Acceder a esta sección</h4></center>
     @else
     <div class="row">
         <div class="col-sm-6 col-sm-offset-3">
@@ -28,7 +28,8 @@
                             <tr>
                                 <th>Producto</th>
                                 <th>Cantidad</th>
-                                <th>Precio</th>
+                                <th>Precio $</th>
+                                <th>Fecha Fin</th>
                                 <th>Operador</th>
                                 <th>Pago</th>
                                 <th>Destino</th>
@@ -37,6 +38,7 @@
                             </tr>
                         </thead>
                         @foreach($demandas as $dem)
+                            @if($dem->abierta === 0)
                             <tbody>
                                 <tr>
                                     <!-- <form class="form-horizontal" name="" method="POST" action=""> -->
@@ -46,6 +48,7 @@
                                     <td><input type="text" class="input-table" name="producto" value="{{$dem->producto->nombre}}" readonly="true"></td>
                                     <td><input type="text" class="input-table" name="cantidad" value="{{$dem->cantidad}}" readonly="true"></td>
                                     <td><input type="text" class="input-table" name="precio" value="{{$dem->precio}}" readonly="true"></td>
+                                    <td><input type="text" class="input-table" name="fechaFin" value="{{$dem->fechaFin}}" disabled></td>
                                     <td><input type="text" class="input-table" name="operador" value="{{$dem->user->apellido}} {{$dem->user->name}}" readonly="true"></td>
                                     <td><input type="text" class="input-table" name="pago" value="{{$dem->pago}}" readonly="true"></td>
                                     <td><input type="text" class="input-table" name="destino" value="{{$dem->destino}}" readonly="true"></td>
@@ -58,6 +61,7 @@
                                     <!-- </form> -->
                                 </tr>
                             </tbody>
+                            @endif
                         @endforeach
                     </table>
                 </div>
@@ -71,66 +75,48 @@
                     <table class="table table-striped table-bordered table-condensed">
                         <thead>
                             <tr>
-                                <th>Producto </th>
-                                <th>Precio </th>
-                                <th>C. Pendiente</th>
-                                <th>Operador </th>
+                                <th>Producto</th>
+                                <th>Cantidad</th>
+                                <th>Precio $</th>
+                                <th>Fecha Fin</th>
+                                <th>Operador</th>
                                 <th>Pago</th>
-                                <th>Destino </th>
-                                <th>Modo </th>
+                                <th>Destino</th>
+                                <th>Modo</th>
+                                <th></th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>Tomate x 20kg</td>
-                                <td>200</td>
-                                <td>520 </td>
-                                <td>Zone J.</td>
-                                <td>Efect </td>
-                                <td>Bs. As.</td>
-                                <td>Raso </td>
-                            </tr>
-                            <tr>
-                                <td>Zapallito x 10kg</td>
-                                <td>185 </td>
-                                <td>220 </td>
-                                <td>Rodriguez L.</td>
-                                <td>Efect </td>
-                                <td>Barranquera </td>
-                                <td>Emb </td>
-                            </tr>
-                            <tr>
-                                <td>Tomate x 20kg</td>
-                                <td>200 </td>
-                                <td>360 </td>
-                                <td>Zone J.</td>
-                                <td>CPD </td>
-                                <td>Cba </td>
-                                <td>Raso </td>
-                            </tr>
-                            <tr>
-                                <td>Zapallito x 10kg</td>
-                                <td>200 </td>
-                                <td>90 </td>
-                                <td>Rodriguez L.</td>
-                                <td>Efect </td>
-                                <td>Rsario </td>
-                                <td>Abierto </td>
-                            </tr>
-                            <tr>
-                                <td>Zapallito x 10kg</td>
-                                <td>250 </td>
-                                <td>430 </td>
-                                <td>Rodriguez L.</td>
-                                <td>Com </td>
-                                <td>Rosario </td>
-                                <td>Emb </td>
-                            </tr>
-                        </tbody>
+                        @foreach($demandas as $dem)
+                            @if($dem->abierta === 1)
+                            <tbody>
+                                <tr>
+                                    <!-- <form class="form-horizontal" name="" method="POST" action=""> -->
+                                    {{ csrf_field() }}
+                                    <input type="hidden" name="id" value="{{$dem->id}}">
+                                    <input type="hidden" name="id_op" value="{{$dem->user->id}}">
+                                    <td><input type="text" class="input-table" name="producto" value="{{$dem->producto->nombre}}" readonly="true"></td>
+                                    <td><input type="text" class="input-table" name="cantidad" value="{{$dem->cantidad}}" readonly="true"></td>
+                                    <td><input type="text" class="input-table" name="precio" value="{{$dem->precio}}" readonly="true"></td>
+                                    <td><input type="text" class="input-table" name="fechaFin" value="{{$dem->fechaFin}}" disabled></td>
+                                    <td><input type="text" class="input-table" name="operador" value="{{$dem->user->apellido}} {{$dem->user->name}}" readonly="true"></td>
+                                    <td><input type="text" class="input-table" name="pago" value="{{$dem->pago}}" readonly="true"></td>
+                                    <td><input type="text" class="input-table" name="destino" value="{{$dem->destino}}" readonly="true"></td>
+                                    <td><input type="text" class="input-table" name="modo" value="{{$dem->modo}}" readonly="true"></td>
+                                    <td>@if(Auth::user()->activo === 1)
+                                            <button type="button" name="ofertar" class="btn btn-success admin tabla">Ofertar</button>
+                                        @else
+                                            <button type="button" name="ofertar" disabled="" class="btn btn-success admin">Ofertar</button>
+                                        @endif</td>
+                                    <!-- </form> -->
+                                </tr>
+                            </tbody>
+                            @endif
+                        @endforeach
                     </table>
                 </div>
             </div>
         </div>
     </div>
     @endguest
+    <a type="button" href="/index" class="btn btn-primary admin" title="Volver">Volver</a>
 @stop

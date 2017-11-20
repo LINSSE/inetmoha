@@ -25,18 +25,6 @@ class PaginasController extends Controller
 		return view('operaciones');
 	}
 
-	public function demandas () {
-		if(Auth::check()) {
-		$demandas = Demanda::All();
-		
-		return view('demandas', array('demandas' => $demandas));
-		}else{
-			
-			return view('demandas');
-
-		}
-	}
-
 	public function precios () {
 		return view('precios');
 	}

@@ -19,6 +19,8 @@ class CreateDemandasTable extends Migration
             $table->integer('id_prod')->unsigned();
             $table->integer('cantidad');
             $table->double('precio');
+            $table->date('fechaInicio');
+            $table->date('fechaFin');
             $table->enum('pago', ['Cdo', 'CPD', 'Com', 'Efec']);
             $table->enum('destino', ['BA', 'ROS', 'CBA', 'BRQ', 'COR']);
             $table->enum('modo', ['Raso', 'Emb', 'Abie']);

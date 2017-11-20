@@ -24,7 +24,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/index', 'PaginasController@index');
 Route::get('ofertas', 'OfertasController@ofertas');
 Route::get('precios', 'PaginasController@precios');
-Route::get('demandas', 'PaginasController@demandas');
+Route::get('demandas', 'DemandasController@demandas');
 Route::get('operaciones', 'OperacionesController@listaroperaciones');
 Route::get('operadores', 'PaginasController@operadores');
 Route::get('email/nuevoOperador', 'AdminController@enviarMail');
@@ -43,7 +43,7 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::get('usuario/ofertas', 'OfertasController@misofertas');
 	Route::post('usuario/nuevaOferta', 'OfertasController@store');
 	Route::post('usuario/eliminarOferta', 'OfertasController@eliminar');
-	Route::get('usuario/demandas', 'DemandasController@demandas');
+	Route::get('usuario/demandas', 'DemandasController@misdemandas');
 	Route::post('usuario/nuevaDemanda', 'DemandasController@store');
 	Route::post('usuario/eliminarDemanda', 'DemandasController@eliminar');
 	Route::get('usuario/operaciones', 'OperacionesController@misoperaciones');

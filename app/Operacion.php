@@ -17,4 +17,8 @@ class Operacion extends Model
         return $this->hasOne('MOHA\Oferta', 'id', 'id_oferta');
     }
 
+	public function demanda()
+    {
+        return $this->hasOne('MOHA\Demanda', 'id', 'id_oferta');
+    }   
 }

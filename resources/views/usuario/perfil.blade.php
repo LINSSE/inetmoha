@@ -200,5 +200,7 @@
         </div>
     </div>
 
-     </div>   
+     </div>  
+     <hr>
+     <a type="button" href="/index" class="btn btn-primary admin" title="Volver">Volver</a> 
 @endsection

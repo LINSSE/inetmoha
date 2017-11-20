@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Demanda extends Model
 {
     protected $fillable = [
-        'id_op', 'id_prod', 'cantidad', 'precio', 'pago', 'destino', 'modo',
+        'id_op', 'id_prod', 'cantidad', 'precio', 'fechaInicio', 'fechaFin', 'pago', 'destino', 'modo', 'abierta',
     ];
 
     public function user()
@@ -18,5 +18,10 @@ class Demanda extends Model
     public function producto()
     {
         return $this->hasOne('MOHA\Producto', 'id', 'id_prod');
+    }
+
+    public function operacion()
+    {
+        return $this->belongsTo('MOHA\Operacion', 'id_oferta');
     }
 }

@@ -1,6 +1,12 @@
 @extends('layouts.principal')
 
 @section('content')
+@if(Session::has('demanda'))
+            <div class="alert alert-success alert-dismissible fade in" role="alert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <strong>{{Session::get('demanda')}}</strong>
+            </div>
+        @endif
 	<div class="row">
         @if(Auth::user()->activo === 1)
             <button type="button" id="agregarDemanda" data-toggle="modal" data_target="#nuevaDemanda" class="btn btn-success admin">Nueva Demanda</button>
@@ -44,7 +50,8 @@
                 </div>
             </div>
     </div>
-
+    <hr>
+    <a type="button" href="/index" class="btn btn-primary admin" title="Volver">Volver</a>
     <!-- Modal Nueva Demanda -->
 <div class="modal fade" id="nuevaDemanda" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
@@ -101,6 +108,34 @@
                                         @if ($errors->has('precio'))
                                             <span class="help-block">
                                                 <strong>{{ $errors->first('precio') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+                                </div>
+
+                                <div class="form-group{{ $errors->has('fecha') ? ' has-error' : '' }}">
+                                    <label for="fecha" class="col-md-4 control-label">Fecha Inicio</label>
+
+                                    <div class="col-md-6">
+                                        <input id="fecha" placeholder="Fecha Inicio de Demanda" onfocus="(this.type='date')" type="text" class="form-control" onblur="if(this.value==''){this.type='text'}" name="fecha" min="<?php $hoy=date("Y-m-d"); echo $hoy;?>" value=""  required autofocus>
+
+                                        @if ($errors->has('fecha'))
+                                            <span class="help-block">
+                                                <strong>{{ $errors->first('fecha') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+                                </div>
+
+                                <div class="form-group{{ $errors->has('fechaf') ? ' has-error' : '' }}">
+                                    <label for="fechaf" class="col-md-4 control-label">Fecha Fin</label>
+
+                                    <div class="col-md-6">
+                                        <input id="fechaf" placeholder="Fecha Fin de Demanda" onfocus="(this.type='date')" type="text" class="form-control" onblur="if(this.value==''){this.type='text'}" name="fechaf" value="{{ old('fechaf') }}" min="" disabled="true" title="Primero seleccione una Fecha de Inicio de la Demanda" required autofocus>
+
+                                        @if ($errors->has('fechaf'))
+                                            <span class="help-block">
+                                                <strong>{{ $errors->first('fechaf') }}</strong>
                                             </span>
                                         @endif
                                     </div>
