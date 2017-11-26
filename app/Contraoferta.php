@@ -12,7 +12,7 @@ class Contraoferta extends Model
 
     public function oferta()
     {
-        return $this->belongsTo('MOHA\oferta', 'id_oferta');
+        return $this->belongsTo('MOHA\Oferta', 'id_oferta');
     }
 
     public function user()
