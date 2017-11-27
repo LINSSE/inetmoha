@@ -11,5 +11,5 @@ npm-debug.log
 yarn-error.log
 .env
 /.scannerwork
-sonar-project.propierties
+sonar-project.properties
 /tests/reportes
