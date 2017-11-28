@@ -175,6 +175,7 @@ return [
         Orangehill\Iseed\IseedServiceProvider::class,
         Chumper\Zipper\ZipperServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
+        
 
         /*
          * Application Service Providers...

@@ -13,3 +13,4 @@ yarn-error.log
 /.scannerwork
 sonar-project.properties
 /tests/reportes
+.env.dusk.local
