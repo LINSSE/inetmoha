@@ -21,10 +21,6 @@ class PaginasController extends Controller
         return view('operadores', array('users' => $users));
 	}
 
-	public function operaciones () {
-		return view('operaciones');
-	}
-
 	public function precios () {
 		return view('precios');
 	}

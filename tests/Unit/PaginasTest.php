@@ -35,18 +35,20 @@ class ExampleTest extends TestCase
              ->seePageIs('/precios');
     }
 
-    public function testClickOperaciones()
-    {
-        $this->visit('/')
-             ->click('Operaciones')
-             ->seePageIs('/operaciones');
-    }
-
+    
     public function testClickOperadores()
     {
         $this->visit('/')
              ->click('Operadores')
              ->seePageIs('/operadores');
     }
+
+    public function testClickOpera()
+    {
+        $this->visit('/')
+             ->click('operaciones')
+             ->seePageIs('/operaciones');
+    }
+
 
 }

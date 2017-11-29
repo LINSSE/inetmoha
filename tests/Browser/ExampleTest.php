@@ -17,7 +17,14 @@ class ExampleTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $browser->visit('/')
-                    ->assertSee('MOHA');
+                    ->seeText('Precios');
         });
     }
+
+    public function testOp(Browser $browser)
+{
+    $browser->visit('/')
+            ->clcik('Operaciones')
+            ->assertPathIs('/operaciones');
+}
 }
