@@ -14,16 +14,16 @@
         </testsuite>
     </testsuites>
     <filter>
-        <whitelist processUncoveredFilesFromWhitelist="false">
+        <whitelist processUncoveredFilesFromWhitelist="true">
             <directory suffix=".php">./app</directory>
         </whitelist>
         <blacklist>
             <directory suffix=".php">./vendor</directory>
             <directory suffix=".php">./app/Providers</directory>
-            <directory suffix=".php">./Notifications</directory>
-            <directory suffix=".php">./Mail</directory>
-            <directory suffix=".php">./Exceptions</directory>
-            <directory suffix=".php">./Console</directory>
+            <directory suffix=".php">./app/Notifications</directory>
+            <directory suffix=".php">./app/Mail</directory>
+            <directory suffix=".php">./app/Exceptions</directory>
+            <directory suffix=".php">./app/Console</directory>
             <directory suffix=".php">./bootstrap</directory>
             <directory suffix=".php">./config</directory>
             <directory suffix=".php">./database</directory>
