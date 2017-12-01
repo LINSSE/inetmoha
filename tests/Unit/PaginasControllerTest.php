@@ -8,7 +8,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 class ExampleTest extends TestCase
 {
     
-    public function testInicio()
+    public function testIndex()
     {
         $response = $this->get('/');
     	$this->visit('/')->see('MOHA');
