@@ -14,13 +14,13 @@ $(document).ready(function(){
         $("#fechaf").attr("min", fecha);
     });
 
-
+    //Eliminar
     $('#agregarRep').on('click', function () {
         $('#agregarRepresentante').load("agregarRepresentante")//load a view into a modal
     $('#agregarRepresentante').modal('show'); 
     });
 
-
+    //Eliminar
 	$('#agregarDesp').on('click', function () {
 	        $('#agregarDespachante').load("agregarDespachante")//load a view into a modal
 	    $('#agregarDespachante').modal('show'); //show the modal
@@ -31,6 +31,7 @@ $(document).ready(function(){
         $('#agregarProducto').modal('show'); //show the modal
       });
 
+    //Eliminar
     /*$('#eliminarDesp').on('click', function () {
 
             var id = $(this).data('id');
@@ -52,11 +53,13 @@ $(document).ready(function(){
         $('#modalOfertar').modal('show'); //show the modal
       }
 
+    //Eliminar
     eliminarDesp = function (id) {
              $('#id').val(id);//load a view into a modal
         $('#eliminarDespachante').modal('show'); //show the modal
     }    
 
+    //Eliminar
     eliminarRep = function (id) {
              $('#id').val(id);//load a view into a modal
         $('#eliminarRepresentante').modal('show'); //show the modal

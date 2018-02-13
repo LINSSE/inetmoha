@@ -16,18 +16,17 @@ class AlterUsersTable extends Migration
         Schema::table('users', function (Blueprint $table) {
             //Agregando columnas a la tabla Users
             $table->string('apellido')->after('name');
+            $table->string('razonsocial')->after('apellido');
             $table->integer('dni')->after('password');
             $table->bigInteger('telefono')->after('dni');
             $table->string('domicilio')->after('telefono');
             $table->integer('id_ciudad')->after('domicilio');
             $table->integer('id_provincia')->after('id_ciudad');
-            $table->integer('id_des')->unsigned()->nullable()->default(1)->after('id_provincia');
-            $table->integer('id_rep')->unsigned()->after('id_des');
+            $table->integer('tipo_us')->unsigned()->after('id_provincia');
             $table->boolean('activo')->default(false)->after('id_rep');
             $table->boolean('admin')->default(false)->after('activo');
 
-            $table->foreign('id_des')->references('id')->on('despachantes')->onDelete('cascade');
-            $table->foreign('id_rep')->references('id')->on('representantes')->onDelete('cascade');
+            $table->foreign('tipo_us')->references('id')->on('tipo_usuario')->onDelete('cascade');
         });
     }
 
@@ -46,13 +45,11 @@ class AlterUsersTable extends Migration
             $table->dropColumn('domicilio');
             $table->dropColumn('id_ciudad');
             $table->dropColumn('id_provincia');
-            $table->dropColumn('id_des');
-            $table->dropColumn('id_rep');
+            $table->dropColumn('tipo_us');
             $table->dropColumn('activo');
             $table->dropColumn('admin');
 
-            $table->dropForeign('users_id_des_foreign');
-            $table->dropForeign('users_id_rep_foreign');            
+            $table->dropForeign('users_tipo_us_foreign');          
         });
     }
 }

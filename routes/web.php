@@ -19,6 +19,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('auth/register2', 'PaginasController@register2');
+
 
 //Rutas Publicas
 Route::get('/index', 'PaginasController@index');

@@ -24,5 +24,9 @@ class PaginasController extends Controller
 	public function precios () {
 		return view('precios');
 	}
+
+	public function register2 () {
+		return view('auth/register2');
+	}
 }
 
