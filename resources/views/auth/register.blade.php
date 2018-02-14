@@ -41,7 +41,7 @@
                             <label for="razonsocial" class="col-md-4 control-label">Razón Social</label>
 
                             <div class="col-md-6">
-                                <input id="razonsocial" type="text" class="form-control" name="razonsocial" value="{{ old('razonsocial') }}" placeholder="Si corresponde">
+                                <input id="razonsocial" type="text" class="form-control" name="razonsocial" value="{{ old('razonsocial') }}" placeholder="Ingrese Razón Social si corresponde">
 
                                 @if ($errors->has('razonsocial'))
                                     <span class="help-block">
@@ -208,8 +208,8 @@
                         <hr>
 
                         <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
+                            <div class="col-md-6 col-md-offset-4 reg">
+                                <button type="submit" class="btn btn-primary reg">
                                     Registrar
                                 </button>
                             </div>

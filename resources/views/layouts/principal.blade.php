@@ -127,7 +127,7 @@
                     <h3><a href="index"><span>MOHA </span></a></h3>
                     <p class="links"><a href="/">Inicio </a><strong> · </strong><a href="/ofertas">Ofertas </a><strong> · </strong><a href="/demandas">Demandas </a><strong> · </strong><a href="/precios">Precios </a><strong> · </strong><a href="/operadores">Operadores </a><strong> · </strong><a href="/operaciones">Operaciones </a></p>
                     <p
-                    class="company-name">MOHA © 2017</p>
+                    class="company-name">MOHA © <?php echo Date("Y"); ?></p>
                 </div>
                 <div class="col-md-4 col-sm-6 footer-contacts">
                     <div><span class="fa fa-map-marker footer-contacts-icon"> </span>
