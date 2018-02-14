@@ -14,14 +14,14 @@ class CreateCiudadesTable extends Migration
     public function up()
     {
         Schema::create('ciudades', function (Blueprint $table) {
-            $table->integer('id');
-            $table->integer('id_provincia');
+            $table->integer('id')->unsigned();
+            $table->integer('id_provincia')->unsigned();
             $table->string('nombre');
             $table->string('codigopostal');
             $table->timestamps();
-
-            $table->foreign('id_provincia')->references('id')->on('provincias')->onDelete('cascade');
             $table->primary('id');
+            $table->foreign('id_provincia')->references('id')->on('provincias')->onDelete('cascade');
+            
         });
     }
 

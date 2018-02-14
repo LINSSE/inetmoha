@@ -4,8 +4,7 @@ namespace MOHA\Http\Controllers\Auth;
 
 use MOHA\User;
 use MOHA\Provincia;
-use MOHA\Despachante;
-use MOHA\Representante;
+use MOHA\TipoUsuario;
 use MOHA\Mail\Bienvenido;
 use MOHA\Mail\UsuarioRegistrado;
 use MOHA\Http\Controllers\Controller;
@@ -33,9 +32,8 @@ class RegisterController extends Controller
     public function showRegistrationForm()
     {   
         $provincias = Provincia::orderBy('nombre', 'ASC')->get();
-        $despachantes = Despachante::orderBy('apellido', 'ASC')->get();
-        $representantes = Representante::orderBy('apellido', 'ASC')->get();
-        return view('auth.register', array('despachantes' => $despachantes, 'representantes' => $representantes, 'provincias' => $provincias));
+        $tipousuarios = TipoUsuario::orderBy('descripcion', 'ASC')->get();
+        return view('auth.register', array('tipousuarios' => $tipousuarios, 'provincias' => $provincias));
     }
 
     /**
@@ -81,15 +79,16 @@ class RegisterController extends Controller
         $user = User::create([
             'name' => ucwords(strtolower($data['name'])),
             'apellido' => ucwords(strtolower($data['apellido'])),
+            'razonsocial' => ucwords(strtolower($data['razonsocial'])),
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
             'dni' => $data['dni'],
             'telefono' => $data['telefono'],
             'domicilio' => ucwords(strtolower($data['domicilio'])),
+            'id_provincia' => $data['id_provincia'], 
             'id_ciudad' => $data['id_ciudad'],
-            'id_provincia' => $data['id_provincia'],
-            'id_des' => $data['id_des'],
-            'id_rep' => $data['id_rep'],   
+            'tipo_us' => $data['tipo_us'],
+            
         ]);
 
         Mail::to($user->email)->send(new Bienvenido());

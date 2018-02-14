@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'apellido', 'email', 'password', 'dni', 'domicilio', 'telefono', 'id_ciudad', 'id_provincia', 'id_des', 'id_rep', 'activo',
+        'name', 'apellido', 'razonsocial', 'email', 'password', 'dni', 'domicilio', 'telefono', 'id_ciudad', 'id_provincia', 'tipo_us', 'activo',
     ];
 
     /**
@@ -44,16 +44,6 @@ class User extends Authenticatable
         return $this->hasMany('MOHA\Demanda', 'id', 'id_op');
     }
 
-    public function despachante()
-    {
-        return $this->hasOne('MOHA\Despachante', 'id', 'id_des');
-    }
-
-    public function representante()
-    {
-        return $this->hasOne('MOHA\Representante', 'id', 'id_rep');
-    }
-
     public function provincia()
     {
         return $this->hasOne('MOHA\Provincia', 'id', 'id_provincia');
@@ -67,5 +57,10 @@ class User extends Authenticatable
     public function contraoferta()
     {
         return $this->hasMany('MOHA\Contraoferta', 'id', 'id_comprador');
+    }
+
+    public function tipoUsuario()
+    {
+        return $this->belongsto('MOHA\TipoUsuario', 'tipo_us');
     }
 }

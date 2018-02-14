@@ -167,9 +167,9 @@
                             <select class="form-control" name="tipo_us" value="{{ old('tipo_us') }}" required>
                                 <option disabled selected value> -- Seleccione Tipo de Usuario -- </option>
                                 <!--Cargar tipos de Usuarios (Operador-Despachante-Representante)  -->
-                                <option value="tipo_us->id">Operador</option>
-                                <option value="tipo_us->id">Despachante</option>
-                                <option value="tipo_us->id">Representante</option>
+                                @foreach ($tipousuarios as $tipo_us)
+                                    <option value="{{$tipo_us->id}}">{{$tipo_us->descripcion}}</option>
+                                @endforeach
                             </select>
 
 
