@@ -18,7 +18,7 @@
         </div>
     </div>
     <br>
-    <h4 class="h4tit">Operadores Inactivos</h4>
+    <h4 class="h4tit">Usuarios Inactivos</h4>
 	<div class="col-md-12 admin">
             <div class="table-responsive admin">
                 <table class="table">
@@ -29,7 +29,7 @@
                             <th>Razón Social </th>
                             <th>Email </th>
                             <th>DNI/CUIT </th>
-                            <th>Telefono </th>
+                            <th>Teléfono </th>
                             <th>Domicilio </th>
                             <th>Ciudad </th>
                             <th>Provincia </th>
@@ -65,7 +65,7 @@
         <hr>
     </div>
     
-    <h4 class="h4tit">Operadores Activos</h4>
+    <h4 class="h4tit">Usuarios Activos</h4>
     <div class="col-md-12 admin">
             <div class="table-responsive admin">
                 <table class="table">
@@ -76,7 +76,7 @@
                             <th>Razón Social </th>
                             <th>Email </th>
                             <th>DNI/CUIT </th>
-                            <th>Telefono </th>
+                            <th>Teléfono </th>
                             <th>Domicilio </th>
                             <th>Ciudad </th>
                             <th>Provincia </th>
