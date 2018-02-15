@@ -4,11 +4,6 @@ namespace MOHA\Http\Controllers;
 
 use Illuminate\Http\Request;
 use MOHA\User;
-use MOHA\Ciudad;
-use MOHA\Provincia;
-use MOHA\Despachante;
-use MOHA\Representante;
-use MOHA\Producto;
 
 
 class UserController extends Controller
@@ -24,12 +19,10 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::find($id);
-        $despachantes = Despachante::orderBy('apellido', 'ASC')->get();
-        $representantes = Representante::orderBy('apellido', 'ASC')->get();
-        $ciudades = Ciudad::orderBy('nombre', 'ASC')->get();
-        $provincias = Provincia::orderBy('nombre', 'ASC')->get();
+        /*$ciudades = Ciudad::orderBy('nombre', 'ASC')->get();
+        $provincias = Provincia::orderBy('nombre', 'ASC')->get();*/
 
-        return view('usuario/perfil', array('user' => $user, 'provincias' => $provincias, 'ciudades' => $ciudades, 'despachantes' => $despachantes, 'representantes' => $representantes));
+        return view('usuario/perfil', array('user' => $user/*, 'provincias' => $provincias, 'ciudades' => $ciudades, 'despachantes' => $despachantes, 'representantes' => $representantes*/));
     }
 
     public function buscarOperadores(Request $request) {
@@ -42,10 +35,8 @@ class UserController extends Controller
                                         ->orwhere('email', 'like', '%'.$buscar.'%')
                                         ->orwhere('telefono', 'like', '%'.$buscar.'%')
                                         ->orderBy('apellido', 'ASC')->get();
-
-        $despachantes = Despachante::All();
         
-        return view('/admin/operadores', array('users' => $users, 'despachantes' => $despachantes));
+        return view('/admin/operadores', array('users' => $users));
     }
 
     /**

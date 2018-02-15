@@ -10,11 +10,25 @@
                 <form class="form-horizontal" method="POST" action="/usuario/editarPerfil">
                         {{ csrf_field() }}
 
+                        <div class="form-group{{ $errors->has('razonsocial') ? ' has-error' : '' }}">
+                            <label for="razonsocial" class="col-md-4 control-label">Razón Social</label>
+
+                            <div class="col-md-6">
+                                <input disabled id="razonsocial" type="text" class="form-control" name="razonsocial" value="{{ $user->razonsocial }}" >
+
+                                @if ($errors->has('razonsocial'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('razonsocial') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                             <label for="name" class="col-md-4 control-label">Nombre</label>
 
                             <div class="col-md-6">
-                                <input disabled id="name" type="text" class="form-control" name="name" value="{{ $user->name }}"  autofocus>
+                                <input disabled id="name" type="text" class="form-control" name="name" value="{{ $user->name }}" >
 
                                 @if ($errors->has('name'))
                                     <span class="help-block">
@@ -67,10 +81,10 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('dni') ? ' has-error' : '' }}">
-                            <label for="dni" class="col-md-4 control-label">DNI</label>
+                            <label for="dni" class="col-md-4 control-label">DNI/CUIT</label>
 
                             <div class="col-md-6">
-                                <input disabled id="dni" type="text" class="form-control" name="dni" value="{{ $user->dni }}"  maxlength="8" minlength="8" inputmode="numeric">
+                                <input disabled id="dni" type="text" class="form-control" name="dni" value="{{ $user->dni }}"  maxlength="11" minlength="8" inputmode="numeric">
 
                                 @if ($errors->has('dni'))
                                     <span class="help-block">
@@ -112,11 +126,7 @@
                             <label for="id_provincia" class="col-md-4 control-label">Provincia</label>
 
                             <div class="col-md-6">
-                                @foreach($provincias as $provincia)
-                                @if($user->id_provincia === $provincia->id)
-                                <input type="text" class="form-control" disabled  value="{{$provincia->nombre}}">
-                                @endif
-                                @endforeach
+                                <input type="text" class="form-control" disabled  value="{{$user->provincia->nombre}}">
                             </select>
 
                                 @if ($errors->has('id_provincia'))
@@ -131,12 +141,7 @@
                             <label for="id_ciudad" class="col-md-4 control-label">Ciudad</label>
 
                             <div class="col-md-6">
-                                @foreach($ciudades as $ciudad)
-                                @if($user->id_ciudad === $ciudad->id)
-                                <input type="text" class="form-control" disabled  value="{{$ciudad->nombre}}">
-                                @endif
-                                @endforeach
-                            </select>
+                                <input type="text" class="form-control" disabled  value="{{$user->ciudad->nombre}}">
 
                                 @if ($errors->has('id_ciudad'))
                                     <span class="help-block">
@@ -147,46 +152,6 @@
                         </div>
 
                         <hr>
-                        
-                        <div class="form-group{{ $errors->has('id_des') ? ' has-error' : '' }}">
-                            <label for="id_des" class="col-md-4 control-label">Despachante</label>
-
-                            <div class="col-md-6">
-                                @foreach($despachantes as $despachante)
-                                @if($user->id_des === $despachante->id)
-                                <input type="text" class="form-control" disabled value="{{$despachante->apellido}} {{$despachante->nombre}}">
-                                @endif
-                                @endforeach
-                            </select>
-
-
-                                @if ($errors->has('id_des'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('id_des') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <hr>
-
-                        <div class="form-group{{ $errors->has('id_rep') ? ' has-error' : '' }}">
-                            <label for="id_rep" class="col-md-4 control-label">Representante</label>
-
-                            <div class="col-md-6">
-                                @foreach($representantes as $representante)
-                                @if($user->id_rep === $representante->id)
-                                <input type="text" class="form-control" disabled value="{{$representante->apellido}} {{$representante->nombre}}">
-                                @endif
-                                @endforeach
-
-                                @if ($errors->has('id_rep'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('id_rep') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">

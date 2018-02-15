@@ -46,7 +46,7 @@
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
-                                    <li role="presentation"><a href="/admin/principal">Administración</a></li>
+                                    <!-- <li role="presentation"><a href="/admin/principal">Administración</a></li> -->
                                     <li>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();

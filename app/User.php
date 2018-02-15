@@ -46,12 +46,12 @@ class User extends Authenticatable
 
     public function provincia()
     {
-        return $this->hasOne('MOHA\Provincia', 'id', 'id_provincia');
+        return $this->belongsTo('MOHA\Provincia', 'id_provincia');
     }
 
     public function ciudad()
     {
-        return $this->hasOne('MOHA\Ciudad', 'id', 'id_ciudad');
+        return $this->belongsTo('MOHA\Ciudad', 'id_ciudad');
     }
 
     public function contraoferta()
@@ -61,6 +61,6 @@ class User extends Authenticatable
 
     public function tipoUsuario()
     {
-        return $this->belongsto('MOHA\TipoUsuario', 'tipo_us');
+        return $this->belongsTo('MOHA\TipoUsuario', 'tipo_us');
     }
 }

@@ -13,7 +13,6 @@
                 <a class="btn btn-default menu" role="button" href="ofertas">OFERTAS </a>
                 <a class="btn btn-default menu" role="button" href="demandas">DEMANDAS </a>
                 <a class="btn btn-default menu" role="button" name="operaciones" href="operaciones">OPERACIONES </a>
-                <a class="btn btn-default menu" role="button" href="operadores">OPERADORES </a>
             </div>
     </div>
 @endsection

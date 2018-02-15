@@ -19,20 +19,15 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('auth/register2', 'PaginasController@register2');
-
-
 //Rutas Publicas
 Route::get('/index', 'PaginasController@index');
 Route::get('ofertas', 'OfertasController@ofertas');
 Route::get('precios', 'PaginasController@precios');
 Route::get('demandas', 'DemandasController@demandas');
 Route::get('operaciones', 'OperacionesController@listaroperaciones');
-Route::get('operadores', 'PaginasController@operadores');
+//Route::get('operadores', 'PaginasController@operadores');
 Route::get('email/nuevoOperador', 'AdminController@enviarMail');
 Route::get('ciudades/{id}', 'ProvinciasController@getCiudades');
-Route::post('despachante/store', 'DespachanteController@store');
-Route::post('representante/store', 'RepresentanteController@store');
 
 
 //Rutas para usuruarios autenticados
@@ -62,7 +57,7 @@ Route::group(['middleware' => 'auth'], function() {
 //Rutas de Administrador
 Route::group(['middleware' => 'admin'], function() {
 
-	Route::get('admin/principal', 'AdminController@index');
+	//Route::get('admin/principal', 'AdminController@index');
 
 	//Rutas de Administrador con Respecto a Operadores
 	Route::post('admin/activar/{id}', 'AdminController@activar');
@@ -77,27 +72,24 @@ Route::group(['middleware' => 'admin'], function() {
 	Route::get('admin/operaciones', 'AdminController@operaciones');
 		
 	//Rutas de Administrador con Respecto a Productos
-	Route::get('admin/representantes', 'AdminController@representantes');
+	
 
 	//Rutas de Administrador con Respecto a Productos
 	Route::post('producto/store', 'ProductoController@store');
 	Route::post('producto/eliminar', 'ProductoController@eliminar');
 	
-	//Rutas de Administrador con Respecto a Despachantes
-	Route::post('admin/despachante/eliminar', 'DespachanteController@eliminarDesp');
-	Route::post('admin/representante/eliminar', 'RepresentanteController@eliminarRep');
-	Route::get('admin/buscarDespachantes', 'DespachanteController@buscarDesp');
-	Route::get('admin/buscarRepresentantes', 'RepresentanteController@buscarRep');
-	Route::get('admin/despachantes', 'DespachanteController@despachantes');	
+	
 });
 
 //Route::get('preciosba', 'ProductoController@preciosba');
 
 //Rutas de pruebas
+use MOHA\User;
 
 Route::get('pruebas', 'ContraofertaController@prueba');
 Route::get('prueba', function(){
-	return view('prueba');
+	$users = User::Find(4);
+	return view('prueba', array('users' => $users));
 });
 
 

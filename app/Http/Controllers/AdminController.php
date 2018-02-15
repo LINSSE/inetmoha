@@ -4,10 +4,6 @@ namespace MOHA\Http\Controllers;
 
 use Illuminate\Http\Request;
 use MOHA\User;
-use MOHA\Ciudad;
-use MOHA\Provincia;
-use MOHA\Despachante;
-use MOHA\Representante;
 use Illuminate\Support\Facades\Auth;
 use MOHA\Producto;
 use \Chumper\Zipper\Zipper;
@@ -16,14 +12,13 @@ class AdminController extends Controller
 {
     
     public function index(){
-    	return view('/admin/principal');
+    	//return view('/admin/principal');
     }
 
     public function listarOperadores(){
-    	$users = User::where('id', '!=', Auth::id())->orderBy('apellido', 'ASC')->get();        
-        $despachantes = Despachante::All();
+    	$users = User::where('id', '!=', Auth::id())->orderBy('apellido', 'razonsocial', 'ASC')->get();
 
-    	return view('/admin/operadores', array('users' => $users, 'despachantes' => $despachantes));
+    	return view('/admin/operadores', array('users' => $users));
     }
 
     /**
@@ -56,20 +51,6 @@ class AdminController extends Controller
         $user->save();
         return redirect('admin/operadores');
 
-    }
-
-    public function reasignar(Request $request)
-    {
-        $id = $request->id;
-        $user = User::FindOrFail($id);
-        $user->id_des = $request->id_des;
-        $user->save();
-        return redirect('admin/operadores');
-    }
-
-    public function representantes() {
-        $representantes = Representante::orderBy('apellido', 'ASC')->get();
-        return view('admin/representantes', array('representantes' => $representantes));
     }
 
     public function productos(){
