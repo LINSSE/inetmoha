@@ -38,7 +38,6 @@
                     @guest
                             <li role="presentation"><a href="{{ route('login') }}">Acceder</a></li>
                             <li role="presentation"><a href="{{ route('register') }}">Registrarme</a></li>
-                            <!-- <li role="presentation"><a href="auth/register2">Registrarme2</a></li> -->
                     @elseif (Auth::user()->admin === 1)
 
                             <li class="dropdown">

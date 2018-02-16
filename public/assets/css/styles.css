@@ -223,7 +223,7 @@ ul.nav.nav-tabs.nav-justified {
 .nav-tabs>li>a {
   border: 0px;
   border-radius: 0px;
-  color: white;
+  color: #000;
 }
 
 
@@ -235,7 +235,7 @@ ul.nav.nav-tabs.nav-justified {
 .nav-tabs.nav-justified>li>a:hover {
   border-radius: 0px;
   border: 0px; 
-  background-color: grey;
+  background-color: #b9b9b9;
   color: white;
 }
 
@@ -336,4 +336,18 @@ h4.info {
     border:0;
     background:transparent;
 }
+
+.dropdown-menu.admin {
+    width: 100%;
+    background-color: rgb(127, 184, 71);
+    padding: 0px;
+}
+
+.dropdown-menu.admin>li>a:hover {
+  background-color: #b9b9b9;
+  background-image: none !important;
+  color: white;
+}
+
+
 
