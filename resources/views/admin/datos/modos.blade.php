@@ -38,8 +38,7 @@
             <h4 class="modal-title">Agregar Modo</h4>
           </div>
           <div class="modal-body">
-                    <div class="col-md-12">
-                        <div class="panel panel-default">
+             <div class="panel panel-default">
                             <div class="panel-body">
                                 <form class="form-horizontal" name="agregarModo" method="POST" action="{{ url('admin/modo/store') }}">
                                     {{ csrf_field() }}
@@ -65,9 +64,8 @@
                                     
                                 </form>
                             </div>
-                        </div>
-                    </div>
-          </div>
+                </div>
+            </div>
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->

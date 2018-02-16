@@ -31,19 +31,17 @@
 
     <!-- Modal Cobros -->
     <div class="modal fade" id="agregarCobro" tabindex="-1" role="dialog">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title">Agregar forma de Cobro</h4>
-          </div>
-          <div class="modal-body">
-                    <div class="col-md-12">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Agregar forma de Cobro</h4>
+                </div>
+                <div class="modal-body">
                         <div class="panel panel-default">
                             <div class="panel-body">
                                 <form class="form-horizontal" name="agregarCobro" method="POST" action="{{ url('admin/cobro/store') }}">
                                     {{ csrf_field() }}
-
                                     <div class="form-group{{ $errors->has('descripcion') ? ' has-error' : '' }}">
                                         <label for="descripcion" class="col-md-4 control-label">Descripción</label>
 
@@ -57,17 +55,14 @@
                                             @endif
                                         </div>
                                     </div>
-                                    
                                         <div class="row model">
                                             <button type="submit" class="btn btn-primary">Agregar</button>
                                             <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                                         </div>
-                                    
                                 </form>
                             </div>
                         </div>
-                    </div>
-          </div>
+                </div>
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->

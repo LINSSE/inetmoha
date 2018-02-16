@@ -98,8 +98,7 @@
             <h4 class="modal-title">Agregar Producto</h4>
           </div>
           <div class="modal-body">
-                    <div class="col-md-12">
-                        <div class="panel panel-default">
+              <div class="panel panel-default">
                             <div class="panel-body">
                                 <form class="form-horizontal" name="agregarProducto" method="POST" action="{{ url('producto/store') }}">
                                     {{ csrf_field() }}
@@ -187,8 +186,7 @@
                                         </div>
                                 </form>
                             </div>
-                        </div>
-                    </div>
+                        </div>          
           </div>
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
@@ -203,7 +201,6 @@
             <h4 class="modal-title">Agregar Categoría</h4>
           </div>
           <div class="modal-body">
-                    <div class="col-md-12">
                         <div class="panel panel-default">
                             <div class="panel-body">
                                 <form class="form-horizontal" name="agregarCategoria" method="POST" action="{{ url('categoria/store') }}">
@@ -231,7 +228,6 @@
                                 </form>
                             </div>
                         </div>
-                    </div>
           </div>
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
@@ -246,7 +242,6 @@
             <h4 class="modal-title">Agregar Medida</h4>
           </div>
           <div class="modal-body">
-                    <div class="col-md-12">
                         <div class="panel panel-default">
                             <div class="panel-body">
                                 <form class="form-horizontal" name="agregarMedida" method="POST" action="{{ url('medida/store') }}">
@@ -265,16 +260,13 @@
                                             @endif
                                         </div>
                                     </div>
-                                    
-                                        <div class="row model">
-                                            <button type="submit" class="btn btn-primary">Agregar</button>
+                                    <div class="row model">
+                                        <button type="submit" class="btn btn-primary">Agregar</button>
                                             <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                                        </div>
-                                    
+                                    </div>
                                 </form>
                             </div>
                         </div>
-                    </div>
           </div>
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
