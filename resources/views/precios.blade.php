@@ -1,7 +1,10 @@
 @extends('layouts.principal')
 
 @section('content')
-
+    
+    @guest
+        <center><h4>Debe Registrarse para Acceder a esta sección</h4></center>
+    @else
     <div class="page-header">
             <h1 class="text-center">Precios <small>Referencia de los distintos precios ofrecidos, demandados y de otros mercados</small></h1></div>
         <div class="row precios">
@@ -125,5 +128,6 @@
             </div>
         </div>
     </div>
+    @endguest
 <a type="button" href="/index" class="btn btn-primary admin" title="Volver">Volver</a>
 @stop

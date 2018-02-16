@@ -147,8 +147,8 @@
                                         <label for="id_cat" class="col-md-4 control-label">Categoría</label>
 
                                         <div class="col-md-6">
-                                        <select class="form-control" id="id_cat" name="id_cat" value="{{ old('id_cat') }}">
-                                            <option disabled selected value> -- Seleccione una Categoría -- </option>
+                                        <select class="form-control" id="id_cat" name="id_cat" value="{{ old('id_cat') }}" required>
+                                            <option disabled selected hidden> -- Seleccione una Categoría -- </option>
                                             @foreach($categorias as $categoria)
                                             <option value="{{$categoria->id}}">{{$categoria->descripcion}}</option>
                                             
@@ -166,8 +166,8 @@
                                         <label for="id_medida" class="col-md-4 control-label">Unidad de Medida</label>
 
                                         <div class="col-md-6">
-                                        <select class="form-control" id="id_medida" name="id_medida" value="{{ old('id_medida') }}">
-                                            <option disabled selected value> -- Seleccione una Unidad de Medida -- </option>
+                                        <select class="form-control" id="id_medida" name="id_medida" value="{{ old('id_medida') }}" required>
+                                            <option disabled selected hidden> -- Seleccione una Unidad de Medida -- </option>
                                             @foreach($medidas as $medida)
                                             <option value="{{$medida->id}}">{{$medida->descripcion}}</option>
                                             

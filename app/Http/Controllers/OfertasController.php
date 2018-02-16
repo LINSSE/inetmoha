@@ -7,6 +7,9 @@ use Auth;
 use MOHA\Oferta;
 use MOHA\Producto;
 use MOHA\User;
+use MOHA\Modo;
+use MOHA\Cobro;
+use MOHA\Puesto;
 use Session;
 
 class OfertasController extends Controller
@@ -34,15 +37,18 @@ class OfertasController extends Controller
 
     	$ofertas = Oferta::where('id_op', '=', (Auth::user()->id))->get();
     	$productos = Producto::All();
+        $modos = Modo::orderBy('descripcion', 'ASC')->get();
+        $cobros = Cobro::orderBy('descripcion', 'ASC')->get();
+        $puestos = Puesto::orderBy('descripcion', 'ASC')->get();
 
-    	return view('usuario/ofertas', array('ofertas' => $ofertas, 'productos' => $productos));
+    	return view('usuario/ofertas', array('ofertas' => $ofertas, 'productos' => $productos, 'modos' => $modos, 'cobros' => $cobros, 'puestos' => $puestos));
     }
 
     public function ofertas () {
 
         if(Auth::check()) {
             $hoy = Date('Y-m-j');
-        $ofertas = Oferta::whereDate('fechaInicio', '<=', $hoy)->whereDate('fechaFin', '>=', $hoy)->orderBy('fechaFin', 'DSC')->get();
+            $ofertas = Oferta::whereDate('fechaInicio', '<=', $hoy)->whereDate('fechaFin', '>=', $hoy)->orderBy('fechaFin', 'DSC')->get();
         
         return view('ofertas', array('ofertas' => $ofertas));
         }else{

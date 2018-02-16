@@ -41,9 +41,9 @@
 	                            	<td><input type="text" class="input-table" name="cantidad" value="{{$of->cantidad}}" readonly="true"></td>
 	                            	<td><input type="text" class="input-table" name="precio" value="{{$of->precio}}" readonly="true"></td>
 	                            	<td><input type="text" class="input-table" name="fechafin" value="{{$of->fechaFin}}" readonly="true"></td>
-	                            	<td><input type="text" class="input-table" name="puesto" value="{{$of->puesto}}" readonly="true"></td>
-	                            	<td><input type="text" class="input-table" name="cobro" value="{{$of->cobro}}" readonly="true"></td>
-	                            	<td><input type="text" class="input-table" name="modo" value="{{$of->modo}}" readonly="true"></td>
+	                            	<td><input type="text" class="input-table" name="puesto" value="{{$of->puesto->descripcion}}" readonly="true"></td>
+	                            	<td><input type="text" class="input-table" name="cobro" value="{{$of->cobro->descripcion}}" readonly="true"></td>
+	                            	<td><input type="text" class="input-table" name="modo" value="{{$of->modo->descripcion}}" readonly="true"></td>
                                     <td><a type="button" href="/usuario/detalleOferta/{{$of->id}}" class="btn btn-info admin tabla" title="Ver Contra-Ofertas">Ver Contra Ofertas</a></td>
 	                            	<td><button type="submit" class="btn btn-danger admin tabla" title="Eliminar Oferta">X</button></td>
 
@@ -77,7 +77,7 @@
 
                                     <div class="col-md-6">
 	                                <select class="form-control" name="id_prod" value="{{ old('id_prod') }}" required>
-	                                    <option disabled selected value> -- Seleccione un Producto -- </option>
+	                                    <option disabled selected hidden> -- Seleccione un Producto -- </option>
 	                                    @foreach($productos as $prod)
 	                                    <option value="{{$prod->id}}">{{$prod->nombre}}</option>
 	                                    @endforeach
@@ -150,10 +150,11 @@
                                     <label for="puesto" class="col-md-4 control-label">Puesto</label>
 
                                     <div class="col-md-6">
-	                                <select class="form-control" placeholder="Puesto en..." name="puesto" value="{{ old('puesto') }}" required>
-	                                    <option disabled selected value> -- Producto Puesto en -- </option>
-	                                    <option value="1" >Finq</option>
-	                                    <option value="2">Epq</option>
+	                                <select class="form-control" name="puesto" value="{{ old('puesto') }}" required>
+	                                    <option disabled selected hidden> -- Producto Puesto en -- </option>
+	                                    @foreach ($puestos as $puesto)
+                                        <option value="{{$puesto->id}}" >{{$puesto->descripcion}}</option>
+                                        @endforeach
 	                                </select>
 	                                @if ($errors->has('id_prod'))
 	                                    <span class="help-block">
@@ -169,11 +170,10 @@
 
                                     <div class="col-md-6">
 	                                <select class="form-control" name="cobro" value="{{ old('cobro') }}" required>
-	                                    <option disabled selected value> -- Forma de Cobro -- </option>
-	                                    <option value="1" >Contado</option>
-	                                    <option value="2">CPD</option>
-	                                    <option value="3">Com</option>
-	                                    <option value="4">Efectivo</option>
+	                                    <option disabled selected hidden> -- Forma de Cobro -- </option>
+	                                    @foreach ($cobros as $cobro)
+                                        <option value="{{$cobro->id}}" >{{$cobro->descripcion}}</option>
+                                        @endforeach
 	                                </select>
 	                                @if ($errors->has('cobro'))
 	                                    <span class="help-block">
@@ -189,10 +189,10 @@
 
                                     <div class="col-md-6">
 	                                <select class="form-control" name="modo" value="{{ old('modo') }}" required>
-	                                    <option disabled selected value> -- Modo de Presentación -- </option>
-	                                    <option value="1" >Raso</option>
-	                                    <option value="2">Embalado</option>
-	                                    <option value="3">Abierto</option>
+	                                    <option disabled selected hidden> -- Modo de Presentación -- </option>
+	                                    @foreach ($modos as $modo)
+                                        <option value="{{$modo->id}}" >{{$modo->descripcion}}</option>
+                                        @endforeach
 	                                </select>
 	                                @if ($errors->has('modo'))
 	                                    <span class="help-block">

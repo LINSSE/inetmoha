@@ -21,14 +21,17 @@ class CreateOfertasTable extends Migration
             $table->double('precio');
             $table->date('fechaInicio');
             $table->date('fechaFin');
-            $table->enum('puesto', ['Finq', 'Epq']);
-            $table->enum('cobro', ['Cdo', 'CPD', 'Com', 'Efec']);
-            $table->enum('modo', ['Raso', 'Emb', 'Abie']);
+            $table->integer('id_puesto')->unsigned();
+            $table->integer('id_cobro')->unsigned();
+            $table->integer('id_modo')->unsigned();
             $table->boolean('abierta')->default(false);
             $table->timestamps();
 
             $table->foreign('id_op')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('id_prod')->references('id')->on('productos')->onDelete('cascade');
+            $table->foreign('id_puesto')->references('id')->on('puestos')->onDelete('cascade');
+            $table->foreign('id_cobro')->references('id')->on('cobros')->onDelete('cascade');
+            $table->foreign('id_modo')->references('id')->on('modos')->onDelete('cascade');
         });
     }
 

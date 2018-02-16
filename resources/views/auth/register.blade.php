@@ -55,7 +55,7 @@
                             <label for="name" class="col-md-4 control-label">Nombre</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required>
+                                <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" placeholder="Nombre" required>
 
                                 @if ($errors->has('name'))
                                     <span class="help-block">
@@ -69,7 +69,7 @@
                             <label for="apellido" class="col-md-4 control-label">Apellido</label>
 
                             <div class="col-md-6">
-                                <input id="apellido" type="text" class="form-control" name="apellido" value="{{ old('apellido') }}" required>
+                                <input id="apellido" type="text" class="form-control" name="apellido" value="{{ old('apellido') }}" placeholder="Apellido" required>
 
                                 @if ($errors->has('apellido'))
                                     <span class="help-block">
@@ -83,7 +83,7 @@
                             <label for="email" class="col-md-4 control-label">Correo Electrónico</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
+                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="Correo Electrónico" required>
 
                                 @if ($errors->has('email'))
                                     <span class="help-block">
@@ -97,7 +97,7 @@
                             <label for="telefono" class="col-md-4 control-label">Teléfono</label>
 
                             <div class="col-md-6">
-                                <input id="telefono" type="tel" class="form-control" name="telefono" value="{{ old('telefono') }}" required maxlength="13" inputmode="numeric">
+                                <input id="telefono" type="tel" class="form-control" name="telefono" value="{{ old('telefono') }}" required maxlength="13" inputmode="numeric" placeholder="Teléfono">
 
                                 @if ($errors->has('telefono'))
                                     <span class="help-block">
@@ -111,7 +111,7 @@
                             <label for="domicilio" class="col-md-4 control-label">Domicilio</label>
 
                             <div class="col-md-6">
-                                <input id="domicilio" type="text" class="form-control" name="domicilio" value="{{ old('domicilio') }}" required>
+                                <input id="domicilio" type="text" class="form-control" name="domicilio" value="{{ old('domicilio') }}" placeholder="Domicilio" required>
 
                                 @if ($errors->has('domicilio'))
                                     <span class="help-block">
@@ -126,8 +126,8 @@
                             <label for="id_provincia" class="col-md-4 control-label">Provincia</label>
 
                             <div class="col-md-6">
-                            <select class="form-control" id="provincias" name="id_provincia" value="{{ old('id_provincia') }}">
-                                <option disabled selected value> -- Seleccione una Provincia -- </option>
+                            <select class="form-control" id="provincias" name="id_provincia" value="{{ old('id_provincia') }}" required>
+                                <option disabled selected hidden> -- Seleccione una Provincia -- </option>
                                 @foreach($provincias as $provincia)
                                 <option value="{{$provincia->id}}">{{$provincia->nombre}}</option>
                                 
@@ -146,8 +146,8 @@
                             <label for="id_ciudad" class="col-md-4 control-label">Ciudad</label>
 
                             <div class="col-md-6">
-                            <select class="form-control" id="ciudades" name="id_ciudad" value="{{ old('id_ciudad') }}" placeholder=" -- Selleccione una Ciudad -- ">
-                                <option disabled selected value> -- Seleccione una Ciudad -- </option>
+                            <select class="form-control" id="ciudades" name="id_ciudad" value="{{ old('id_ciudad') }}" required>
+                                <option disabled selected hidden> -- Seleccione una Ciudad -- </option>
                             </select>
 
                                 @if ($errors->has('id_ciudad'))
@@ -165,7 +165,7 @@
 
                             <div class="col-md-6">
                             <select class="form-control" name="tipo_us" value="{{ old('tipo_us') }}" required>
-                                <option disabled selected value> -- Seleccione Tipo de Usuario -- </option>
+                                <option disabled selected hidden> -- Seleccione Tipo de Usuario -- </option>
                                 <!--Cargar tipos de Usuarios (Operador-Despachante-Representante)  -->
                                 @foreach ($tipousuarios as $tipo_us)
                                     <option value="{{$tipo_us->id}}">{{$tipo_us->descripcion}}</option>
@@ -187,7 +187,7 @@
                             <label for="password" class="col-md-4 control-label">Contraseña</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
+                                <input id="password" type="password" class="form-control" name="password" placeholder="Contraseña" required>
 
                                 @if ($errors->has('password'))
                                     <span class="help-block">
@@ -198,10 +198,10 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="password-confirm" class="col-md-4 control-label">Confirme Contraseña</label>
+                            <label for="password-confirm" class="col-md-4 control-label">Repita Contraseña</label>
 
                             <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" placeholder="Repita Contraseña" required>
                             </div>
                         </div>
 
