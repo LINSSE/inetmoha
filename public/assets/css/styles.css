@@ -47,13 +47,13 @@ i.fa.fa-twitter-square{
 }
 
 a.btn.btn-default.menu{
-  float:left;
-  width:100%;
-  margin:0;
-  height:80px;
-  line-height:2.8;
-  font-size:x-large;
-  color:#7fb850;
+  float: left;
+  width: 100%;
+  margin: 0px;
+  height: 230px;
+  line-height: 9;
+  font-size: x-large;
+  color: #7fb850;
 }
 
 div.col-md-12.menu{
@@ -69,6 +69,11 @@ div.col-md-6.admin {
   padding: 10px;
 }
 
+div.col-md-6.admin.prod {
+  width: 50%;
+  padding: 10px;
+}
+
 .col-md-6.col-md-offset-4.reg {
   margin-left: 43%;
 }
@@ -78,8 +83,19 @@ div.col-md-6.admin {
   width: 75%;
 }
 
+.table.chica.prod {
+  width: 80%;
+  float: left;
+  margin-left: 10px !important;
+}
+
 .table {
   margin: 0px !important;
+}
+
+.menu-principal {
+  width: 90%;
+  margin: 5%;
 }
 
 .table>tbody>tr>td, 

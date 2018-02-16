@@ -14,32 +14,22 @@ $(document).ready(function(){
         $("#fechaf").attr("min", fecha);
     });
 
-    //Eliminar
-    $('#agregarRep').on('click', function () {
-        $('#agregarRepresentante').load("agregarRepresentante")//load a view into a modal
-    $('#agregarRepresentante').modal('show'); 
-    });
-
-    //Eliminar
-	$('#agregarDesp').on('click', function () {
-	        $('#agregarDespachante').load("agregarDespachante")//load a view into a modal
-	    $('#agregarDespachante').modal('show'); //show the modal
-	  });
-
     $('#agregarProd').on('click', function () {
             $('#agregarProducto').load("agregarProducto")//load a view into a modal
         $('#agregarProducto').modal('show'); //show the modal
       });
 
-    //Eliminar
-    /*$('#eliminarDesp').on('click', function () {
+    $('#agregarCat').on('click', function () {
+            $('#agregarCategoria').load("agregarCategoria")//load a view into a modal
+        $('#agregarCategoria').modal('show'); //show the modal
+      });
 
-            var id = $(this).data('id');
-            
-            $('#eliminarDespachante #id-des').val(id);//load a view into a modal
-        $('#eliminarDespachante').modal('show'); //show the modal
-      });*/
+    $('#agregarMed').on('click', function () {
+            $('#agregarMedida').load("agregarMedida")//load a view into a modal
+        $('#agregarMedida').modal('show'); //show the modal
+      });
 
+    
     $('#agregarOferta').on('click', function () {
         $('#nuevaOferta').modal('show'); //show the modal
       });
@@ -52,17 +42,5 @@ $(document).ready(function(){
             $('#idco').val(id);
         $('#modalOfertar').modal('show'); //show the modal
       }
-
-    //Eliminar
-    eliminarDesp = function (id) {
-             $('#id').val(id);//load a view into a modal
-        $('#eliminarDespachante').modal('show'); //show the modal
-    }    
-
-    //Eliminar
-    eliminarRep = function (id) {
-             $('#id').val(id);//load a view into a modal
-        $('#eliminarRepresentante').modal('show'); //show the modal
-    }
 
 });

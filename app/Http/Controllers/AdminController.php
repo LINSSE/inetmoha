@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use MOHA\User;
 use Illuminate\Support\Facades\Auth;
 use MOHA\Producto;
+use MOHA\Categoria;
+use MOHA\Medida;
 use \Chumper\Zipper\Zipper;
 
 class AdminController extends Controller
@@ -56,7 +58,9 @@ class AdminController extends Controller
     public function productos(){
     	
         $productos = Producto::orderBy('descripcion', 'ASC')->get();
-    	return view('admin/productos', array('productos' => $productos));
+        $categorias = Categoria::orderBy('descripcion', 'ASC')->get();
+        $medidas = Medida::orderBy('descripcion', 'ASC')->get();
+    	return view('admin/productos', array('productos' => $productos, 'categorias' => $categorias, 'medidas' => $medidas));
     }
 
     public function operaciones(){

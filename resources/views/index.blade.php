@@ -9,10 +9,17 @@
 @endif
     <div class="row">
             <div class="col-md-12 col-md-offset-0 menu">
-                <a class="btn btn-default menu" role="button" href="precios"> PRECIOS</a>
-                <a class="btn btn-default menu" role="button" href="ofertas">OFERTAS </a>
-                <a class="btn btn-default menu" role="button" href="demandas">DEMANDAS </a>
-                <a class="btn btn-default menu" role="button" name="operaciones" href="operaciones">OPERACIONES </a>
+                <table class="menu-principal">
+                  <tr>
+                    <th class="th-menu-principal"><a class="btn btn-default menu" role="button" href="precios"> PRECIOS</a></th>
+                    <th class="th-menu-principal"><a class="btn btn-default menu" role="button" href="ofertas">OFERTAS </a></th>
+                  </tr>
+                  <tr>
+                    <td class="th-menu-principal"><a class="btn btn-default menu" role="button" href="demandas">DEMANDAS </a></td>
+                    <td class="th-menu-principal"><a class="btn btn-default menu" role="button" href="operaciones">OPERACIONES </a></td>
+                  </tr>
+                </table>
             </div>
     </div>
 @endsection
+

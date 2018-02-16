@@ -4,7 +4,8 @@ namespace MOHA\Http\Controllers;
 
 use Illuminate\Http\Request;
 use MOHA\Producto;
-use Maatwebsite\Excel\Facades\Excel;
+use MOHA\Categoria;
+use MOHA\Medida;
 
 class ProductoController extends Controller
 {
@@ -34,12 +35,31 @@ class ProductoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function storeProd(Request $request)
     {
         $prod = new Producto();
         $prod->nombre = ucwords(strtolower($request->nombre));
         $prod->descripcion = ucwords($request->descripcion);
+        $prod->descripcion2 = ucwords($request->descripcion2);
+        $prod->id_cat = $request->id_cat;
+        $prod->id_medida = $request->id_medida;
         $prod->save();
+        return back();
+    }
+
+    public function storeCat(Request $request)
+    {
+        $cat = new Categoria();
+        $cat->descripcion = ucwords(strtolower($request->descripcion));
+        $cat->save();
+        return back();
+    }
+
+    public function storeMed(Request $request)
+    {
+        $med = new Medida();
+        $med->descripcion = ucwords(strtolower($request->descripcion));
+        $med->save();
         return back();
     }
 
@@ -100,43 +120,5 @@ class ProductoController extends Controller
         $prod = Producto::FindOrFail($id);
         $prod->delete();
         return redirect('/admin/productos');
-    }
-
-
-    
-
-    public function preciosba() 
-    {
-        $path = 'public/recursos/PM-Hortalizas-17-Oct-2017.xlsx';
-
-        Excel::load('public/recursos/archivo.xls', function($reader) {
-            
-            $result = $reader->get();
-
-            foreach ($result as $key => $value) {
-                    
-                    //$datos[] = ['nombre' => $value->esp];
-                    //echo 'Entra';
-                    echo $value->nombre . '<br>';
-                }
-
-        })->get();
-            // iteracción
-            /*foreach ($data as $prod) {
-                
-                //$productos[] = 0;
-
-                if($prod->ESP === 'TOMATE') {
-                    $pd = new Producto;
-                    $pd->nombre = $prod->ESP;
-                }
-                else{
-                    $pd = new Producto;
-                    $pd->nombre = 'noEntro';
-                }
-            }*/
- 
- 
-        //return view('preciosba', array('datos' => $datos));
     }
 }

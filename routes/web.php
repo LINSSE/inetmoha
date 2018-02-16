@@ -75,7 +75,9 @@ Route::group(['middleware' => 'admin'], function() {
 	
 
 	//Rutas de Administrador con Respecto a Productos
-	Route::post('producto/store', 'ProductoController@store');
+	Route::post('producto/store', 'ProductoController@storeProd');
+	Route::post('categoria/store', 'ProductoController@storeCat');
+	Route::post('medida/store', 'ProductoController@storeMed');
 	Route::post('producto/eliminar', 'ProductoController@eliminar');
 	
 	
