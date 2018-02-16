@@ -6,28 +6,14 @@ use Illuminate\Http\Request;
 use MOHA\Producto;
 use MOHA\Categoria;
 use MOHA\Medida;
+use MOHA\Cobro;
+use MOHA\Puesto;
+use MOHA\Modo;
+
+
 
 class ProductoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -63,50 +49,30 @@ class ProductoController extends Controller
         return back();
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function storeCobro(Request $request)
     {
-        //
+        $cob = new Cobro();
+        $cob->descripcion = ucwords(strtolower($request->descripcion));
+        $cob->save();
+        return back();
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function storePuesto(Request $request)
     {
-        //
+        $pue = new Puesto();
+        $pue->descripcion = ucwords(strtolower($request->descripcion));
+        $pue->save();
+        return back();
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function storeModo(Request $request)
     {
-        //
+        $mod = new Modo();
+        $mod->descripcion = ucwords(strtolower($request->descripcion));
+        $mod->save();
+        return back();
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-       
-    }
 
     /**
      * Remove the specified resource from storage.

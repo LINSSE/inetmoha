@@ -4,9 +4,9 @@ namespace MOHA\Http\Controllers;
 
 use Illuminate\Http\Request;
 use MOHA\User;
-use MOHA\Oferta;
-use MOHA\Producto;
-use MOHA\Demanda;
+use MOHA\Modo;
+use MOHA\Cobro;
+use MOHA\Puesto;
 use Auth;
 
 class PaginasController extends Controller
@@ -25,8 +25,19 @@ class PaginasController extends Controller
 		return view('precios');
 	}
 
-	public function register2 () {
-		return view('auth/register2');
+	public function cobros () {
+		$cobros = Cobro::orderBy('descripcion', 'ASC')->get();
+		return view('admin/datos/cobros', array('cobros' => $cobros));
+	}
+
+	public function modos () {
+		$modos = Modo::orderBy('descripcion', 'ASC')->get();
+		return view('admin/datos/modos', array('modos' => $modos));
+	}
+
+	public function puestos () {
+		$puestos = Puesto::orderBy('descripcion', 'ASC')->get();
+		return view('admin/datos/puestos', array('puestos' => $puestos));
 	}
 }
 

@@ -10,9 +10,9 @@
                                 </a>
 
                                 <ul class="dropdown-menu admin" role="menu">
-                                    <li><a href="{{url('/admin/puesto')}}">Puesto</a></li>
-                                    <li><a href="{{url('/admin/modo')}}">Modo</a></li>
-                                    <li><a href="{{url('/admin/cobro')}}">Cobro</a></li>
+                                    <li><a href="{{url('/admin/puestos')}}">Puestos</a></li>
+                                    <li><a href="{{url('/admin/modos')}}">Modos</a></li>
+                                    <li><a href="{{url('/admin/cobros')}}">Cobros</a></li>
                                 </ul>
                             </li>
                 </ul>

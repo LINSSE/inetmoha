@@ -71,8 +71,13 @@ Route::group(['middleware' => 'admin'], function() {
 	Route::get('admin/productos', 'AdminController@productos');
 	Route::get('admin/operaciones', 'AdminController@operaciones');
 		
-	//Rutas de Administrador con Respecto a Productos
-	
+	//Rutas de Administrador con Respecto a Datos
+	Route::get('admin/cobros', 'PaginasController@cobros');
+	Route::get('admin/puestos', 'PaginasController@puestos');
+	Route::get('admin/modos', 'PaginasController@modos');
+	Route::post('admin/puesto/store', 'ProductoController@storePuesto');
+	Route::post('admin/modo/store', 'ProductoController@storeModo');
+	Route::post('admin/cobro/store', 'ProductoController@storeCobro');
 
 	//Rutas de Administrador con Respecto a Productos
 	Route::post('producto/store', 'ProductoController@storeProd');

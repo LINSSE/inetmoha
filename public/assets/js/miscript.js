@@ -29,6 +29,20 @@ $(document).ready(function(){
         $('#agregarMedida').modal('show'); //show the modal
       });
 
+    $('#agregarCob').on('click', function () {
+            $('#agregarCobro').load("agregarCobro")//load a view into a modal
+        $('#agregarCobro').modal('show'); //show the modal
+      });
+
+    $('#agregarMod').on('click', function () {
+            $('#agregarModo').load("agregarModo")//load a view into a modal
+        $('#agregarModo').modal('show'); //show the modal
+      });
+
+    $('#agregarPue').on('click', function () {
+            $('#agregarPuesto').load("agregarPuesto")//load a view into a modal
+        $('#agregarPuesto').modal('show'); //show the modal
+      });
     
     $('#agregarOferta').on('click', function () {
         $('#nuevaOferta').modal('show'); //show the modal

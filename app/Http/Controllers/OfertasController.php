@@ -24,9 +24,9 @@ class OfertasController extends Controller
     	$oferta->precio = $request->precio;
     	$oferta->fechaInicio = $request->fecha;
         $oferta->fechaFin = $request->fechaf;
-    	$oferta->puesto = $request->puesto;
-    	$oferta->cobro = $request->cobro;
-    	$oferta->modo = $request->modo;
+    	$oferta->id_puesto = $request->puesto;
+    	$oferta->id_cobro = $request->cobro;
+    	$oferta->id_modo = $request->modo;
 
     	$oferta->save();
         Session::flash('oferta', 'Su Oferta ha sido publicada con éxito!');
