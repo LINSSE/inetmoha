@@ -48,12 +48,14 @@ i.fa.fa-twitter-square{
 
 a.btn.btn-default.menu{
   float: left;
-  width: 100%;
-  margin: 0px;
+  width: 98%;
   height: 230px;
   line-height: 9;
   font-size: x-large;
   color: #7fb850;
+  background-image: none;
+  border-radius: 20px;
+  margin: 0px 10px 10px 0px;
 }
 
 div.col-md-12.menu{
@@ -349,5 +351,6 @@ h4.info {
   color: white;
 }
 
-
-
+.th-menu-principal {
+    width: 50%;
+}
