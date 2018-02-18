@@ -17,12 +17,6 @@ class AdminController extends Controller
     	//return view('/admin/principal');
     }
 
-    public function listarOperadores(){
-    	$users = User::where('id', '!=', Auth::id())->orderBy('apellido', 'razonsocial', 'ASC')->get();
-
-    	return view('/admin/operadores', array('users' => $users));
-    }
-
     /**
      * Update the specified resource in storage.
      *

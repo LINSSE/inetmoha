@@ -30,7 +30,7 @@ class UsersTableSeeder extends Seeder
                 'domicilio' => 'san martin',
                 'id_provincia' => 5,
                 'id_ciudad' => 6372,
-                'tipo_us' => 1,
+                'tipo_us' => 0,
                 'activo' => 1,
                 'admin' => 1,
                 'remember_token' => 'cXobM1QOv1L0FDlFkJzgWspHkluC9jWseVN8yIlmg0XETcYfI2JngelqJppR',

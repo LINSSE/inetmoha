@@ -65,7 +65,7 @@ Route::group(['middleware' => 'admin'], function() {
 	Route::post('admin/reasignar', 'AdminController@reasignar');
 	Route::get('admin/buscarOperadores', 'UserController@buscarOperadores');
 
-	Route::get('admin/operadores', 'AdminController@listarOperadores');
+	Route::get('admin/operadores', 'UserController@listarOperadores');
 	Route::get('admin/ofertas', 'AdminController@ofertas');
 	Route::get('admin/demandas', 'AdminController@demandas');
 	Route::get('admin/productos', 'AdminController@productos');
@@ -93,10 +93,10 @@ Route::group(['middleware' => 'admin'], function() {
 //Rutas de pruebas
 use MOHA\User;
 
-Route::get('pruebas', 'ContraofertaController@prueba');
-Route::get('prueba', function(){
-	$users = User::Find(4);
-	return view('prueba', array('users' => $users));
+Route::get('admin', 'ContraofertaController@prueba');
+Route::get('pr', function(){
+	 $buscar2 = $request->usuarios;
+	return view('prueba', $buscar2);
 });
 
 

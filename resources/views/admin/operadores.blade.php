@@ -13,6 +13,19 @@
                         </button>  
                     </span>
                 </div>
+                <div class="checkbox">
+                    <ul class="filtro-usu">
+                        <label>
+                            <input type="checkbox" name="usuarios[]" value="1"> Operadores    
+                        </label>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label>
+                            <input type="checkbox" name="usuarios[]" value="2"> Despachantes    
+                        </label>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label> 
+                            <input type="checkbox" name="usuarios[]" value="3"> Representantes    
+                        </label>
+                    </ul>
+                </div>
                 </form>
             </div>
         </div>
@@ -85,7 +98,7 @@
                         </tr>
                     </thead>
                     @foreach($users as $user)
-                    @if ($user->activo === 1)
+                    @if ($user->activo === 1 and $user->admin === 0)
                         <form class="form-horizontal" method="POST" action="/admin/desactivar/{{$user->id}}">
                             {{ csrf_field() }}
                             <input type="hidden" name="id" value="{{$user->id}}">

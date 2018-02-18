@@ -353,3 +353,14 @@ h4.info {
 .th-menu-principal {
     width: 50%;
 }
+
+.filtro-usu {
+  width: 100%;
+  text-align: center;
+  margin: 0px;
+  padding: 0px;
+}
+
+.filtro-usu label {
+  font-weight: bold !important;
+}
