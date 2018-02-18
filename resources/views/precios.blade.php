@@ -38,29 +38,24 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <h1 class="h1-tabla">Precios Mercado BA</h1>
+                <h1 class="h1-tabla">Principales Mercados</h1>
                 <div class="table-responsive">
                     <table class="table table-striped table-bordered table-condensed">
-                        <thead>
-                            <tr>
-                                <th>Producto </th>
-                                <th>Min </th>
-                                <th>Medio </th>
-                                <th>Max </th>
-                            </tr>
-                        </thead>
                         <tbody>
                             <tr>
-                                <td>Tomate x 20kg</td>
-                                <td>200 </td>
-                                <td>180 </td>
-                                <td>220 </td>
+                                <td><a href="http://www.mercadocentral.gob.ar/servicios/precios-y-volumenes/precios-mayoristas" class="links"> Mercado de Buenos Aires </a></td>
                             </tr>
                             <tr>
-                                <td>Zapallito x 15kg</td>
-                                <td>150 </td>
-                                <td>150 </td>
-                                <td>150 </td>
+                                <td><a href="https://mercacordoba.es/mercado-de-frutas-y-verduras">Mercado de Córdoba </a></td>
+                            </tr>
+                            <tr>
+                                <td><a href="http://www.mprosario.com.ar/">Mercado de Rosario</a></td>
+                            </tr>
+                            <tr>
+                                <td><a href="http://www.cooperativah.com.ar/">Cooperativa de Horticultores de Bahía Blanca</a></td>
+                            </tr>
+                            <tr>
+                                <td><a href="http://mercadoproductoressantafe.com/">Mercado de Santa Fé</a></td>
                             </tr>
                         </tbody>
                     </table>
