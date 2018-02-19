@@ -29,21 +29,9 @@ body{
   min-height: 200px;
 }
 
-ul.nav.navbar-nav.navbar-right{
-}
-
-a.a-menu{
-}
-
-div.col-md-4.footer{
-}
-
 div.row.footer{
   height:200px;
   background-color:black;
-}
-
-i.fa.fa-twitter-square{
 }
 
 a.btn.btn-default.menu{
@@ -61,6 +49,7 @@ a.btn.btn-default.menu{
 div.col-md-12.menu{
   padding:0;
 }
+
 div.col-md-12.admin {
   width: 99%;
   padding: 10px;
@@ -142,9 +131,6 @@ h1 small {
   color: #8c8c8c !important;
 }
 
-div.table-striped{
-}
-
 button.btn.btn-default.btn-lg.volver{
   width:500px;
 }
@@ -186,8 +172,7 @@ ul.nav.navbar-nav {
   height: 70px;
 }
 
-.navbar-default .navbar-nav>li>a{
-
+.navbar-default .navbar-nav>li>a {
   padding-top: 23px;
 }
 
@@ -262,9 +247,6 @@ div.container-fluid.trans {
   margin-bottom: 0px;
   border: 0px; 
   border-radius: 0px; 
-}
-
-.modal-body {
 }
 
 .modal-body.ofertar {
@@ -363,4 +345,8 @@ h4.info {
 
 .filtro-usu label {
   font-weight: bold !important;
+}
+
+.enlaces {
+  text-align: center;
 }

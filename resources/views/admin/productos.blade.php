@@ -38,6 +38,7 @@
     </div> 
 
     <hr>
+    <div class="row">
     <div class="col-md-12 admin">
     <div class="col-md-6 admin prod">    
         <h4 class="h4tit">Categorías</h4>
@@ -88,7 +89,9 @@
                 </table>
     </div>
     </div>
-
+    </div>
+    <hr>
+    <a type="button" href="/index" class="btn btn-primary admin" title="Volver">Volver</a>
     <!-- Modal Producto -->
     <div class="modal fade" id="agregarProducto" tabindex="-1" role="dialog">
       <div class="modal-dialog" role="document">
@@ -271,5 +274,5 @@
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
-
+    
 @endsection

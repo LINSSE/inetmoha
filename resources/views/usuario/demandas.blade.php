@@ -2,56 +2,55 @@
 
 @section('content')
 @if(Session::has('demanda'))
-            <div class="alert alert-success alert-dismissible fade in" role="alert">
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <strong>{{Session::get('demanda')}}</strong>
-            </div>
-        @endif
-	<div class="row">
-        @if(Auth::user()->activo === 1)
-            <button type="button" id="agregarDemanda" data-toggle="modal" data_target="#nuevaDemanda" class="btn btn-success admin">Nueva Demanda</button>
-        @else
-            <button type="button" id="agregarDemanda" data-toggle="modal" disabled="" data_target="#nuevaDemanda" class="btn btn-success admin">Nueva Demanda</button>
-        @endif
-		
-            <div class="col-md-12">
-                <h1 class="h1-tabla">Mis Demandas</h1>
-                <div class="table-responsive">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>Producto</th>
-                                <th>Cantidad</th>
-                                <th>Precio</th>
-                                <th>Pago</th>
-                                <th>Destino</th>
-                                <th>Modo</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        @foreach($demandas as $dem)
-	                        <tbody>
-	                            <tr>
-	                            	<form class="form-horizontal" name="eliminarDemanda" method="POST" action="/usuario/eliminarDemanda">
-                                    {{ csrf_field() }}
-                                    <input type="hidden" name="id" value="{{$dem->id}}">
-	                            	<td><input type="text" class="input-table" name="producto" value="{{$dem->producto->nombre}}" readonly="true"></td>
-	                            	<td><input type="text" class="input-table" name="cantidad" value="{{$dem->cantidad}}" readonly="true"></td>
-	                            	<td><input type="text" class="input-table" name="precio" value="{{$dem->precio}}" readonly="true"></td>
-	                            	<td><input type="text" class="input-table" name="pago" value="{{$dem->pago}}" readonly="true"></td>
-	                            	<td><input type="text" class="input-table" name="destino" value="{{$dem->destino}}" readonly="true"></td>
-	                            	<td><input type="text" class="input-table" name="modo" value="{{$dem->modo}}" readonly="true"></td>
-	                            	<td><button type="submit" class="btn btn-danger admin tabla" title="Eliminar Demanda">X</button></td>
-	                            	</form>
-	                            </tr>
-	                        </tbody>
-	                    @endforeach
-                    </table>
-                </div>
-            </div>
+    <div class="alert alert-success alert-dismissible fade in" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <strong>{{Session::get('demanda')}}</strong>
     </div>
-    <hr>
-    <a type="button" href="/index" class="btn btn-primary admin" title="Volver">Volver</a>
+@endif
+<div class="row">
+    @if(Auth::user()->activo === 1)
+        <button type="button" id="agregarDemanda" data-toggle="modal" data_target="#nuevaDemanda" class="btn btn-success admin">Nueva Demanda</button>
+    @else
+        <button type="button" id="agregarDemanda" data-toggle="modal" disabled="" data_target="#nuevaDemanda" class="btn btn-success admin">Nueva Demanda</button>
+    @endif
+    <div class="col-md-12">
+        <h1 class="h1-tabla">Mis Demandas</h1>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Cantidad</th>
+                        <th>Precio</th>
+                        <th>Pago</th>
+                        <th>Destino</th>
+                        <th>Modo</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                @foreach($demandas as $dem)
+                    <tbody>
+                        <tr>
+                        	<form class="form-horizontal" name="eliminarDemanda" method="POST" action="/usuario/eliminarDemanda">
+                            {{ csrf_field() }}
+                            <input type="hidden" name="id" value="{{$dem->id}}">
+                        	<td><input type="text" class="input-table" name="producto" value="{{$dem->producto->nombre}}" readonly="true"></td>
+                        	<td><input type="text" class="input-table" name="cantidad" value="{{$dem->cantidad}}" readonly="true"></td>
+                        	<td><input type="text" class="input-table" name="precio" value="{{$dem->precio}}" readonly="true"></td>
+                        	<td><input type="text" class="input-table" name="pago" value="{{$dem->pago}}" readonly="true"></td>
+                        	<td><input type="text" class="input-table" name="destino" value="{{$dem->destino}}" readonly="true"></td>
+                        	<td><input type="text" class="input-table" name="modo" value="{{$dem->modo}}" readonly="true"></td>
+                        	<td><button type="submit" class="btn btn-danger admin tabla" title="Eliminar Demanda">X</button></td>
+                        	</form>
+                        </tr>
+                    </tbody>
+                @endforeach
+            </table>
+        </div>
+    </div>
+</div>
+<hr>
+<a type="button" href="/index" class="btn btn-primary admin" title="Volver">Volver</a>
     <!-- Modal Nueva Demanda -->
 <div class="modal fade" id="nuevaDemanda" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">

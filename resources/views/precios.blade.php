@@ -39,23 +39,23 @@
             </div>
             <div class="col-md-6">
                 <h1 class="h1-tabla">Principales Mercados</h1>
-                <div class="table-responsive">
-                    <table class="table table-striped table-bordered table-condensed">
+                <div class="table-responsive admin">
+                    <table class="table">
                         <tbody>
                             <tr>
-                                <td><a href="http://www.mercadocentral.gob.ar/servicios/precios-y-volumenes/precios-mayoristas" class="links"> Mercado de Buenos Aires </a></td>
+                                <td class="enlaces"><a href="http://www.mercadocentral.gob.ar/servicios/precios-y-volumenes/precios-mayoristas" class="links"> Mercado de Buenos Aires </a></td>
                             </tr>
                             <tr>
-                                <td><a href="https://mercacordoba.es/mercado-de-frutas-y-verduras">Mercado de Córdoba </a></td>
+                                <td class="enlaces"><a href="https://mercacordoba.es/mercado-de-frutas-y-verduras">Mercado de Córdoba </a></td>
                             </tr>
                             <tr>
-                                <td><a href="http://www.mprosario.com.ar/">Mercado de Rosario</a></td>
+                                <td class="enlaces"><a href="http://www.mprosario.com.ar/">Mercado de Rosario</a></td>
                             </tr>
                             <tr>
-                                <td><a href="http://www.cooperativah.com.ar/">Cooperativa de Horticultores de Bahía Blanca</a></td>
+                                <td class="enlaces"><a href="http://www.cooperativah.com.ar/">Cooperativa de Horticultores de Bahía Blanca</a></td>
                             </tr>
                             <tr>
-                                <td><a href="http://mercadoproductoressantafe.com/">Mercado de Santa Fé</a></td>
+                                <td class="enlaces"><a href="http://mercadoproductoressantafe.com/">Mercado de Santa Fé</a></td>
                             </tr>
                         </tbody>
                     </table>
@@ -124,5 +124,6 @@
         </div>
     </div>
     @endguest
+    <hr>
 <a type="button" href="/index" class="btn btn-primary admin" title="Volver">Volver</a>
 @stop

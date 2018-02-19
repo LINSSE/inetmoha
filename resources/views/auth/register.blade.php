@@ -97,7 +97,7 @@
                             <label for="telefono" class="col-md-4 control-label">Teléfono</label>
 
                             <div class="col-md-6">
-                                <input id="telefono" type="tel" class="form-control" name="telefono" value="{{ old('telefono') }}" required maxlength="13" inputmode="numeric" placeholder="Teléfono">
+                                <input id="telefono" type="tel" class="form-control" name="telefono" value="{{ old('telefono') }}" required minlength="6" maxlength="13" inputmode="numeric" placeholder="Teléfono">
 
                                 @if ($errors->has('telefono'))
                                     <span class="help-block">

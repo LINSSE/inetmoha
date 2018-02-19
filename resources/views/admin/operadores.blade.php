@@ -30,7 +30,8 @@
             </div>
         </div>
     </div>
-    <br>
+    <hr>
+    <div class="row">
     <h4 class="h4tit">Usuarios Inactivos</h4>
 	<div class="col-md-12 admin">
             <div class="table-responsive admin">
@@ -66,7 +67,7 @@
                                     <td><input id="domicilio" type="text" class="input-table" name="domicilio" value="{{ $user->domicilio }}" disabled></td>
                                     <td><input id="id_ciudad" type="text" class="input-table" name="id_ciudad" value="{{ $user->ciudad->nombre }}" disabled></td>
                                     <td><input id="id_provincia" type="text" class="input-table" name="id_provincia" value="{{ $user->provincia->nombre }}" disabled></td>
-                                    <td><input id="tipo_us" type="text" class="input-table" name="tipo_us" value="{{ $user->tipoUsuario->descripcion}}" disabled>
+                                    <td><input id="tipo_us" type="text" class="input-table" name="tipo_us" value="{{ $user->tipoUsuario->descripcion}}" disabled></td>
                                     <td><button type="submit" class="btn btn-success" title="Haga click para ACTIVAR éste Operador">Activar</button></td>
                                 </tr>
                             </tbody>
@@ -74,10 +75,11 @@
                     @endif
                     @endforeach
                 </table>
-        </div>
-        <hr>
+            </div>
     </div>
-    
+    </div>
+    <hr>
+    <div class="row">
     <h4 class="h4tit">Usuarios Activos</h4>
     <div class="col-md-12 admin">
             <div class="table-responsive admin">
@@ -122,6 +124,8 @@
                     @endforeach
                 </table>
             </div>
-        </div>
-
+    </div>
+    </div>
+    <hr>
+    <a type="button" href="/index" class="btn btn-primary admin" title="Volver">Volver</a>
 @endsection
