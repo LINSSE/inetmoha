@@ -141,7 +141,7 @@
                 </div>
                 <div class="clearfix visible-sm-block"></div>
                 <div class="col-md-4 footer-about">
-                    <img class="img-responsive img-logo-ctes" src="{{url('assets/img/logo.png')}}"><span><h4>Ministerio de Produccion</h4></span>
+                    <img class="img-responsive img-logo-ctes" src="{{url('recursos/images/logo.png')}}"><span><h4>Ministerio de Produccion</h4></span>
                     
                     <p> 
                     </p>

@@ -6,6 +6,7 @@
         <div class="col-md-6 admin prod">    
         <h4 class="h4tit">Formas de Cobros y Pagos</h4>
         <a type="button" id="agregarCob" data-toggle="modal" data_target="#agregarCobro" class="btn btn-success admin">Agregar forma de Cobro</a>
+        <br>
                 <table class="table chica prod">
                     <thead>
                         <tr>

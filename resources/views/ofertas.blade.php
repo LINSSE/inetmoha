@@ -52,9 +52,9 @@
                                     <td><input type="text" class="input-table" name="cantidad" value="{{$of->cantidad}}" disabled></td>
                                     <td><input type="text" class="input-table" name="precio" value="{{$of->precio}}" disabled></td>
                                     <td><input type="text" class="input-table" name="fechaFin" value="{{$of->fechaFin}}" disabled></td>
-                                    <td><input type="text" class="input-table" name="puesto" value="{{$of->puesto}}" disabled></td>
-                                    <td><input type="text" class="input-table" name="cobro" value="{{$of->cobro}}" disabled></td>
-                                    <td><input type="text" class="input-table" name="modo" value="{{$of->modo}}" readonly="true"></td>
+                                    <td><input type="text" class="input-table" name="puesto" value="{{$of->puesto->descripcion}}" disabled></td>
+                                    <td><input type="text" class="input-table" name="cobro" value="{{$of->cobro->descripcion}}" disabled></td>
+                                    <td><input type="text" class="input-table" name="modo" value="{{$of->modo->descripcion}}" readonly="true"></td>
                                     <td>@if(Auth::user()->activo === 1)
                                             <button type="button" id="ofertar" data-toggle="modal" onclick="ofertar({{$of->id}})" class="btn btn-success admin tabla">Ofertar</button>
                                         @else

@@ -37,7 +37,7 @@
 	                            	<form class="form-horizontal" name="eliminarOferta" method="POST" action="/usuario/eliminarOferta">
                                     {{ csrf_field() }}
                                     <input type="hidden" name="id" value="{{$of->id}}">
-	                            	<td><input type="text" class="input-table" name="producto" value="{{$of->producto->nombre}}" disabled></td>
+	                            	<td><input type="text" class="input-table" name="producto" value="{{$of->producto->nombre}} {{$of->producto->descripcion}}" disabled></td>
 	                            	<td><input type="text" class="input-table" name="cantidad" value="{{$of->cantidad}}" readonly="true"></td>
 	                            	<td><input type="text" class="input-table" name="precio" value="{{$of->precio}}" readonly="true"></td>
 	                            	<td><input type="text" class="input-table" name="fechafin" value="{{$of->fechaFin}}" readonly="true"></td>
@@ -60,13 +60,12 @@
     <!-- Modal Nueva Oferta -->
 <div class="modal fade" id="nuevaOferta" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
-    <div class="modal-content oferta">
+    <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title">Nueva Oferta</h4>
       </div>
       <div class="modal-body">
-                <div class="col-md-12">
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <form class="form-horizontal" name="nuevaOferta" method="POST" action="/usuario/nuevaOferta">
@@ -79,7 +78,7 @@
 	                                <select class="form-control" name="id_prod" value="{{ old('id_prod') }}" required>
 	                                    <option disabled selected hidden> -- Seleccione un Producto -- </option>
 	                                    @foreach($productos as $prod)
-	                                    <option value="{{$prod->id}}">{{$prod->nombre}}</option>
+	                                    <option value="{{$prod->id}}">{{$prod->nombre}} {{$prod->descripcion}}</option>
 	                                    @endforeach
 	                                </select>
 	                                @if ($errors->has('id_prod'))
@@ -182,6 +181,22 @@
 	                                @endif
 	                            	</div>
 	                            	<span class="glyphicon glyphicon-info-sign" alt="Indicar la forma de Cobro que desea" title="Indicar la forma de Cobro que desea"></span>
+
+                                    <div class="col-md-12">
+                                        <div class="checkbox">
+                                        <ul class="filtro-usu">
+                                            <label>
+                                                <input type="checkbox" name="plazo[]" value="1"> 30 días    
+                                            </label>&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <label>
+                                                <input type="checkbox" name="plazo[]" value="2"> 60 días    
+                                            </label>&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <label> 
+                                                <input type="checkbox" name="plazo[]" value="3"> 90 días    
+                                            </label>
+                                        </ul>
+                                        </div>
+                                    </div>
 	                            </div>
 
 	                            <div class="form-group{{ $errors->has('modo') ? ' has-error' : '' }}">
@@ -210,9 +225,7 @@
                                 
                             </form>
                         </div>
-                    </div>
-                </div>
-      
+                    </div>      
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->

@@ -6,26 +6,27 @@
         <div class="col-md-6 admin prod">    
         <h4 class="h4tit">Puestos</h4>
         <a type="button" id="agregarPue" data-toggle="modal" data_target="#agregarPuesto" class="btn btn-success admin">Agregar Puesto</a>
-                <table class="table chica prod">
-                    <thead>
+        <br>
+            <table class="table chica prod">
+                <thead>
+                    <tr>
+                        <th>Descripción</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                @foreach($puestos as $puesto)        
+                    <tbody>
                         <tr>
-                            <th>Descripción</th>
-                            <th></th>
+                            <form class="form-horizontal" name="eliminarPuestos" method="POST" action="/puesto/eliminar">
+                                {{ csrf_field() }}
+                                <input type="hidden" name="id" value="{{$puesto->id}}">
+                                <td><input type="text" class="input-table" name="descripcion" value="{{$puesto->descripcion}}" disabled></td>
+                                <td><button type="submit" class="btn btn-danger admin tabla" title="Eliminar Modo">X</button></td>
+                            </form>
                         </tr>
-                    </thead>
-                    @foreach($puestos as $puesto)        
-                        <tbody>
-                            <tr>
-                                <form class="form-horizontal" name="eliminarPuestos" method="POST" action="/puesto/eliminar">
-                                    {{ csrf_field() }}
-                                    <input type="hidden" name="id" value="{{$puesto->id}}">
-                                    <td><input type="text" class="input-table" name="descripcion" value="{{$puesto->descripcion}}" disabled></td>
-                                    <td><button type="submit" class="btn btn-danger admin tabla" title="Eliminar Modo">X</button></td>
-                                </form>
-                            </tr>
-                        </tbody>
-                    @endforeach
-                </table>
+                    </tbody>
+                @endforeach
+            </table>
     	</div>
     </div>
 

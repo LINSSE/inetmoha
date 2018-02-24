@@ -288,10 +288,6 @@ div.container-fluid.trans {
   width: 85%;
 }
 
-.modal-content.oferta {
-  min-height: 550px;
-}
-
 h4.info {
   color: red;
   text-align: justify;
@@ -349,4 +345,9 @@ h4.info {
 
 .enlaces {
   text-align: center;
+}
+
+.img-responsive.img-index {
+  width: 100%;
+  height: auto;
 }

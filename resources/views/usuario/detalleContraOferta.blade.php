@@ -34,9 +34,9 @@
                          	<td><input type="text" class="input-table" name="cantidad" value="{{$of->cantidad}}" readonly="true"></td>
                          	<td><input type="text" class="input-table" name="precio" value="{{$of->precio}}" readonly="true"></td>
                          	<td><input type="text" class="input-table" name="fechafin" value="{{$of->fechaFin}}" readonly="true"></td>
-                         	<td><input type="text" class="input-table" name="puesto" value="{{$of->puesto}}" readonly="true"></td>
-                         	<td><input type="text" class="input-table" name="cobro" value="{{$of->cobro}}" readonly="true"></td>
-                         	<td><input type="text" class="input-table" name="modo" value="{{$of->modo}}" readonly="true"></td>
+                         	<td><input type="text" class="input-table" name="puesto" value="{{$of->puesto->descripcion}}" readonly="true"></td>
+                         	<td><input type="text" class="input-table" name="cobro" value="{{$of->cobro->descripcion}}" readonly="true"></td>
+                         	<td><input type="text" class="input-table" name="modo" value="{{$of->modo->descripcion}}" readonly="true"></td>
                          </tr>
                      </tbody>
               </table>

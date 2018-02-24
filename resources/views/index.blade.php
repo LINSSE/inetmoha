@@ -11,7 +11,7 @@
             <div class="col-md-12 col-md-offset-0 menu">
                 <table class="menu-principal">
                   <tr>
-                    <td class="th-menu-principal"><a class="btn btn-default menu" role="button" href="ofertas">OFERTAS </a></td>
+                    <td class="th-menu-principal"><a class="btn btn-default menu" role="button" href="ofertas"> OFERTAS </a></td>
                     <td class="th-menu-principal"><a class="btn btn-default menu" role="button" href="demandas">DEMANDAS </a></td>
                   </tr>
                   <tr>
