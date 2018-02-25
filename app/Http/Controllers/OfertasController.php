@@ -26,6 +26,7 @@ class OfertasController extends Controller
         $oferta->fechaFin = $request->fechaf;
     	$oferta->id_puesto = $request->puesto;
     	$oferta->id_cobro = $request->cobro;
+        $oferta->plazo = $request->plazo;
     	$oferta->id_modo = $request->modo;
 
     	$oferta->save();
@@ -46,16 +47,10 @@ class OfertasController extends Controller
 
     public function ofertas () {
 
-        if(Auth::check()) {
-            $hoy = Date('Y-m-j');
-            $ofertas = Oferta::whereDate('fechaInicio', '<=', $hoy)->whereDate('fechaFin', '>=', $hoy)->orderBy('fechaFin', 'DSC')->get();
+        $hoy = Date('Y-m-j');
+        $ofertas = Oferta::whereDate('fechaInicio', '<=', $hoy)->whereDate('fechaFin', '>=', $hoy)->orderBy('fechaFin', 'DSC')->get();
         
         return view('ofertas', array('ofertas' => $ofertas));
-        }else{
-            
-            return view('ofertas');
-
-        }
     }
 
     public function buscarOfertas(Request $request) {

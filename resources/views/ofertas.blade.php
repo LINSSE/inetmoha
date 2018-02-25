@@ -38,6 +38,7 @@
                                 <th>Fecha Fin</th>
                                 <th>Puesto</th>
                                 <th>Cobro</th>
+                                <th>Plazo</th>
                                 <th>Modo</th>
                                 <th></th>
                             </tr>
@@ -54,6 +55,7 @@
                                     <td><input type="text" class="input-table" name="fechaFin" value="{{$of->fechaFin}}" disabled></td>
                                     <td><input type="text" class="input-table" name="puesto" value="{{$of->puesto->descripcion}}" disabled></td>
                                     <td><input type="text" class="input-table" name="cobro" value="{{$of->cobro->descripcion}}" disabled></td>
+                                    <td><input type="text" class="input-table" name="plazo" value="{{$of->plazo}} días" disabled></td>
                                     <td><input type="text" class="input-table" name="modo" value="{{$of->modo->descripcion}}" readonly="true"></td>
                                     <td>@if(Auth::user()->activo === 1)
                                             <button type="button" id="ofertar" data-toggle="modal" onclick="ofertar({{$of->id}})" class="btn btn-success admin tabla">Ofertar</button>

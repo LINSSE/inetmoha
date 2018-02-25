@@ -351,3 +351,7 @@ h4.info {
   width: 100%;
   height: auto;
 }
+
+.hrblanco {
+  border-top: 1px solid #fff;
+}

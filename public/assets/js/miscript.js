@@ -57,4 +57,8 @@ $(document).ready(function(){
         $('#modalOfertar').modal('show'); //show the modal
       }
 
+    $("#fmNuevaOferta input:checkbox").on('click', function() {
+        $('input[name="' + this.name + '"]').not(this).prop('checked', false);
+    });
+
 });

@@ -26,6 +26,7 @@
                                 <th>Fecha Fin</th>
                                 <th>Puesto</th>
                                 <th>Cobro</th>
+                                <th>Plazo</th>
                                 <th>Modo</th>
                                 <th></th>
                                 <th></th>
@@ -43,6 +44,7 @@
 	                            	<td><input type="text" class="input-table" name="fechafin" value="{{$of->fechaFin}}" readonly="true"></td>
 	                            	<td><input type="text" class="input-table" name="puesto" value="{{$of->puesto->descripcion}}" readonly="true"></td>
 	                            	<td><input type="text" class="input-table" name="cobro" value="{{$of->cobro->descripcion}}" readonly="true"></td>
+                                    <td><input type="text" class="input-table" name="plazo" value="{{$of->plazo}} días" readonly="true"></td>
 	                            	<td><input type="text" class="input-table" name="modo" value="{{$of->modo->descripcion}}" readonly="true"></td>
                                     <td><a type="button" href="/usuario/detalleOferta/{{$of->id}}" class="btn btn-info admin tabla" title="Ver Contra-Ofertas">Ver Contra Ofertas</a></td>
 	                            	<td><button type="submit" class="btn btn-danger admin tabla" title="Eliminar Oferta">X</button></td>
@@ -68,7 +70,7 @@
       <div class="modal-body">
                     <div class="panel panel-default">
                         <div class="panel-body">
-                            <form class="form-horizontal" name="nuevaOferta" method="POST" action="/usuario/nuevaOferta">
+                            <form class="form-horizontal" id="fmNuevaOferta" name="nuevaOferta" method="POST" action="/usuario/nuevaOferta">
                                 {{ csrf_field() }}
 
                                 <div class="form-group{{ $errors->has('id_prod') ? ' has-error' : '' }}">
@@ -163,7 +165,7 @@
 	                            	</div>
 	                            	<span class="glyphicon glyphicon-info-sign" alt="Indicar donde se colocara el Producto" title="Indicar donde se colocara el Producto"></span>
 	                            </div>
-
+                                <hr class="hrblanco">
 	                            <div class="form-group{{ $errors->has('cobro') ? ' has-error' : '' }}">
                                     <label for="cobro" class="col-md-4 control-label">Cobro</label>
 
@@ -186,19 +188,19 @@
                                         <div class="checkbox">
                                         <ul class="filtro-usu">
                                             <label>
-                                                <input type="checkbox" name="plazo[]" value="1"> 30 días    
+                                                <input type="checkbox" name="plazo" value="30"> 30 días    
                                             </label>&nbsp;&nbsp;&nbsp;&nbsp;
                                             <label>
-                                                <input type="checkbox" name="plazo[]" value="2"> 60 días    
+                                                <input type="checkbox" name="plazo" value="60"> 60 días    
                                             </label>&nbsp;&nbsp;&nbsp;&nbsp;
                                             <label> 
-                                                <input type="checkbox" name="plazo[]" value="3"> 90 días    
+                                                <input type="checkbox" name="plazo" value="90"> 90 días    
                                             </label>
                                         </ul>
                                         </div>
                                     </div>
 	                            </div>
-
+                                <hr class="hrblanco">
 	                            <div class="form-group{{ $errors->has('modo') ? ' has-error' : '' }}">
                                     <label for="modo" class="col-md-4 control-label">Modo</label>
 
