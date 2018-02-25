@@ -59,7 +59,6 @@
         </div>
         <hr>
         <a type="button" href="/index" class="btn btn-primary admin" title="Volver">Volver</a>
-        
     <!-- Modal Nueva Oferta -->
 <div class="modal fade" id="nuevaOferta" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
