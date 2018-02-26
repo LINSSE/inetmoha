@@ -41,7 +41,7 @@
                 <div class="modal-body">
                         <div class="panel panel-default">
                             <div class="panel-body">
-                                <form class="form-horizontal" name="agregarCobro" method="POST" action="{{ url('admin/cobro/store') }}">
+                                <form class="form-horizontal" id="formagregarCobro" name="agregarCobro" method="POST" action="{{ url('admin/cobro/store') }}">
                                     {{ csrf_field() }}
                                     <div class="form-group{{ $errors->has('descripcion') ? ' has-error' : '' }}">
                                         <label for="descripcion" class="col-md-4 control-label">Descripción</label>

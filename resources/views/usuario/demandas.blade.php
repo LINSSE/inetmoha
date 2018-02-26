@@ -9,9 +9,9 @@
 @endif
 <div class="row">
     @if(Auth::user()->activo === 1)
-        <button type="button" id="agregarDemanda" data-toggle="modal" data_target="#nuevaDemanda" class="btn btn-success admin">Nueva Demanda</button>
+        <button type="button" id="agregarDem" data-toggle="modal" data_target="#agregarDemanda" class="btn btn-success admin">Nueva Demanda</button>
     @else
-        <button type="button" id="agregarDemanda" data-toggle="modal" disabled="" data_target="#nuevaDemanda" class="btn btn-success admin">Nueva Demanda</button>
+        <button type="button" id="agregarDem" data-toggle="modal" disabled="" data_target="#agregarDemanda" class="btn btn-success admin">Nueva Demanda</button>
     @endif
     <div class="col-md-12">
         <h1 class="h1-tabla">Mis Demandas</h1>
@@ -52,7 +52,7 @@
 <hr>
 <a type="button" href="/index" class="btn btn-primary admin" title="Volver">Volver</a>
     <!-- Modal Nueva Demanda -->
-<div class="modal fade" id="nuevaDemanda" tabindex="-1" role="dialog">
+<div class="modal fade" id="agregarDemanda" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content oferta">
       <div class="modal-header">
@@ -60,10 +60,9 @@
         <h4 class="modal-title">Nueva Demanda</h4>
       </div>
       <div class="modal-body">
-                <div class="col-md-12">
                     <div class="panel panel-default">
                         <div class="panel-body">
-                            <form class="form-horizontal" name="nuevaDemanda" method="POST" action="/usuario/nuevaDemanda">
+                            <form class="form-horizontal" id="formagregarDemanda" name="formagregarDemanda" method="POST" action="/usuario/nuevaDemanda">
                                 {{ csrf_field() }}
 
                                 <div class="form-group{{ $errors->has('id_prod') ? ' has-error' : '' }}">
@@ -207,9 +206,7 @@
                                 
                             </form>
                         </div>
-                    </div>
-                </div>
-      
+                    </div>      
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->

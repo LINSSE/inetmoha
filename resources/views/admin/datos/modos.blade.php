@@ -41,7 +41,7 @@
           <div class="modal-body">
              <div class="panel panel-default">
                             <div class="panel-body">
-                                <form class="form-horizontal" name="agregarModo" method="POST" action="{{ url('admin/modo/store') }}">
+                                <form class="form-horizontal" id="formagregarModo" name="agregarModo" method="POST" action="{{ url('admin/modo/store') }}">
                                     {{ csrf_field() }}
 
                                     <div class="form-group{{ $errors->has('descripcion') ? ' has-error' : '' }}">

@@ -9,9 +9,9 @@
         @endif
 	<div class="row">
         @if(Auth::user()->activo === 1)
-            <button type="button" id="agregarOferta" data-toggle="modal" data_target="#nuevaOferta" class="btn btn-success admin">Nueva Oferta</button>
+            <button type="button" id="agregarOfer" data-toggle="modal" data_target="#agregarOferta" class="btn btn-success admin">Nueva Oferta</button>
         @else
-            <button type="button" id="agregarOferta" data-toggle="modal" disabled="" data_target="#nuevaOferta" class="btn btn-success admin">Nueva Oferta</button>
+            <button type="button" id="agregarOfer" data-toggle="modal" disabled="" data_target="#agregarOferta" class="btn btn-success admin">Nueva Oferta</button>
         @endif
 		
             <div class="col-md-12">
@@ -61,7 +61,7 @@
         <a type="button" href="/index" class="btn btn-primary admin" title="Volver">Volver</a>
         
     <!-- Modal Nueva Oferta -->
-<div class="modal fade" id="nuevaOferta" tabindex="-1" role="dialog">
+<div class="modal fade" id="agregarOferta" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -71,7 +71,7 @@
       <div class="modal-body">
                     <div class="panel panel-default">
                         <div class="panel-body">
-                            <form class="form-horizontal" id="fmNuevaOferta" name="nuevaOferta" method="POST" action="/usuario/nuevaOferta">
+                            <form class="form-horizontal" id="formagregarOferta" name="formagregarOferta" method="POST" action="/usuario/nuevaOferta">
                                 {{ csrf_field() }}
 
                                 <div class="form-group{{ $errors->has('id_prod') ? ' has-error' : '' }}">

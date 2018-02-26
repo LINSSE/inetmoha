@@ -103,7 +103,7 @@
           <div class="modal-body">
               <div class="panel panel-default">
                             <div class="panel-body">
-                                <form class="form-horizontal" name="agregarProducto" method="POST" action="{{ url('producto/store') }}">
+                                <form class="form-horizontal" id="formagregarProducto" name="agregarProducto" method="POST" action="{{ url('producto/store') }}">
                                     {{ csrf_field() }}
 
                                     <div class="form-group{{ $errors->has('nombre') ? ' has-error' : '' }}">
@@ -206,7 +206,7 @@
           <div class="modal-body">
                         <div class="panel panel-default">
                             <div class="panel-body">
-                                <form class="form-horizontal" name="agregarCategoria" method="POST" action="{{ url('categoria/store') }}">
+                                <form class="form-horizontal" id="formagregarCategoria" name="agregarCategoria" method="POST" action="{{ url('categoria/store') }}">
                                     {{ csrf_field() }}
 
                                     <div class="form-group{{ $errors->has('descripcion') ? ' has-error' : '' }}">
@@ -247,7 +247,7 @@
           <div class="modal-body">
                         <div class="panel panel-default">
                             <div class="panel-body">
-                                <form class="form-horizontal" name="agregarMedida" method="POST" action="{{ url('medida/store') }}">
+                                <form class="form-horizontal" id="formagregarMedida" name="agregarMedida" method="POST" action="{{ url('medida/store') }}">
                                     {{ csrf_field() }}
 
                                     <div class="form-group{{ $errors->has('descripcion') ? ' has-error' : '' }}">

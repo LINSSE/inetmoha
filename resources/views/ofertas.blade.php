@@ -65,7 +65,7 @@
                                     <td><input type="text" class="input-table" name="plazo" value="{{$of->plazo}}" disabled></td>
                                     <td><input type="text" class="input-table" name="modo" value="{{$of->modo->descripcion}}" readonly="true"></td>
                                     <td>@if(Auth::user()->activo === 1 && Auth::user()->id != $of->user->id)
-                                            <button type="button" id="ofertar" data-toggle="modal" onclick="ofertar({{$of->id}})" class="btn btn-success admin tabla">Ofertar</button>
+                                            <button type="button" id="ofertar" data-toggle="modal" onclick="ofertar({{$of->id}},{{$of->cantidad}})" class="btn btn-success admin tabla">Ofertar</button>
                                         @else
                                             <button type="button" id="ofertar" data-toggle="modal" data_target="#modalOfertar" disabled class="btn btn-success admin tabla" title="Su Usuario no está ACTIVO o esta Oferta es suya">Ofertar</button>
                                         @endif</td>
@@ -117,7 +117,7 @@
                                     <td><input type="text" class="input-table" name="cobro" value="{{$of->cobro}}" disabled></td>
                                     <td><input type="text" class="input-table" name="modo" value="{{$of->modo}}" readonly="true"></td>
                                     <td>@if(Auth::user()->activo === 1)
-                                            <button type="button" id="ofertar" data-toggle="modal" onclick="ofertar({{$of->id}})" class="btn btn-success admin tabla">Ofertar</button>
+                                            <button type="button" id="ofertar" data-toggle="modal" onclick="ofertar({{$of->id}},{{$of->cantidad}})" class="btn btn-success admin tabla">Ofertar</button>
                                         @else
                                             <button type="button" id="ofertar" data-toggle="modal" data_target="#modalOfertar" disabled class="btn btn-success admin tabla">Ofertar</button>
                                         @endif</td>
@@ -132,7 +132,7 @@
     </div>
     <hr>
 
-        <!-- Modal Nueva Oferta -->
+        <!-- Modal Ofertar -->
 <div class="modal fade" id="modalOfertar" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -141,25 +141,25 @@
         <h4 class="modal-title">Ofertar</h4>
       </div>
       <div class="modal-body ofertar">
-                <div class="col-md-12">
                     <div class="panel panel-default">
                         <div class="panel-body">
-                            <form class="form-horizontal" name="formOfertar" method="POST" action="/usuario/contraOferta">
+                            <form class="form-horizontal" name="formOfertar" id="formOfertar" method="POST" action="/usuario/contraOferta">
                                 {{ csrf_field() }}
 
-                                <input type="hidden" id="idco" name="idco" value="">
+                                <input type="hidden" id="id_oferta" name="id_oferta" value="">
+                                <input type="hidden" id="cantOferta" name="cantOferta" value="">
                                 <div class="row">
-                                    <center><h4>Ingrese la cantidad que desea comprar de la oferta seleccionada</h4>
+                                    <center><h4>Ingrese la Cantidad que desea comprar y Forma de Pago</h4>
                                     <p>Su Orden de Compra sera enviada al Oferente</p>
                                     <p>Éste la analizará y podrá aceptarla o rechazarla</p>
                                     <p>Se le informará sobre la decisión del Oferente</p>
                                     </center>
                                 </div>
                                 <div class="form-group{{ $errors->has('cantidad') ? ' has-error' : '' }}">
-                                    <label for="cantidad" class="col-md-2 control-label">Cantidad</label>
+                                    <label for="cantidad" class="col-md-4 control-label">Cantidad</label>
 
-                                    <div class="col-md-10">
-                                        <input id="cantidad" placeholder="Ingrese la cantidad que desea comprar" type="number" class="form-control" name="cantidad" min="1" value="{{ old('cantidad') }}" required autofocus>
+                                    <div class="col-md-6">
+                                        <input id="cantidad" placeholder="Ingrese la cantidad que desea comprar" type="number" class="form-control" name="cantidad" min="1" max="" value="{{ old('cantidad') }}" required autofocus>
 
                                         @if ($errors->has('cantidad'))
                                             <span class="help-block">
@@ -174,7 +174,6 @@
                                 </div>
                             </form>
                         </div>
-                    </div>
                 </div>
       </div>
     </div><!-- /.modal-content -->
