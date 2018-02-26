@@ -26,7 +26,7 @@
                                 <th>Fecha Fin</th>
                                 <th>Puesto</th>
                                 <th>Cobro</th>
-                                <th>Plazo</th>
+                                <th>Plazo (días)</th>
                                 <th>Modo</th>
                                 <th></th>
                                 <th></th>
@@ -38,13 +38,13 @@
 	                            	<form class="form-horizontal" name="eliminarOferta" method="POST" action="/usuario/eliminarOferta">
                                     {{ csrf_field() }}
                                     <input type="hidden" name="id" value="{{$of->id}}">
-	                            	<td><input type="text" class="input-table" name="producto" value="{{$of->producto->nombre}} {{$of->producto->descripcion}}" disabled></td>
-	                            	<td><input type="text" class="input-table" name="cantidad" value="{{$of->cantidad}}" readonly="true"></td>
-	                            	<td><input type="text" class="input-table" name="precio" value="{{$of->precio}}" readonly="true"></td>
+	                            	<td><input type="text" class="input-table" name="producto" value="{{$of->producto->nombre}} {{$of->producto->descripcion}} {{$of->producto->descripcion2}}" disabled></td>
+	                            	<td><input type="text" class="input-table" name="cantidad" value="{{$of->cantidad}} {{$of->producto->medida->descripcion}}" readonly="true"></td>
+	                            	<td><input type="text" class="input-table" name="precio" value="$ {{$of->precio}}" readonly="true"></td>
 	                            	<td><input type="text" class="input-table" name="fechafin" value="{{$of->fechaFin}}" readonly="true"></td>
 	                            	<td><input type="text" class="input-table" name="puesto" value="{{$of->puesto->descripcion}}" readonly="true"></td>
 	                            	<td><input type="text" class="input-table" name="cobro" value="{{$of->cobro->descripcion}}" readonly="true"></td>
-                                    <td><input type="text" class="input-table" name="plazo" value="{{$of->plazo}} días" readonly="true"></td>
+                                    <td><input type="text" class="input-table" name="plazo" value="{{$of->plazo}}" readonly="true"></td>
 	                            	<td><input type="text" class="input-table" name="modo" value="{{$of->modo->descripcion}}" readonly="true"></td>
                                     <td><a type="button" href="/usuario/detalleOferta/{{$of->id}}" class="btn btn-info admin tabla" title="Ver Contra-Ofertas">Ver Contra Ofertas</a></td>
 	                            	<td><button type="submit" class="btn btn-danger admin tabla" title="Eliminar Oferta">X</button></td>
@@ -188,6 +188,9 @@
                                     <div class="col-md-12">
                                         <div class="checkbox">
                                         <ul class="filtro-usu">
+                                            <label>
+                                                <input type="checkbox" name="plazo" value="Contado" checked=""> Contado    
+                                            </label>&nbsp;&nbsp;&nbsp;&nbsp;
                                             <label>
                                                 <input type="checkbox" name="plazo" value="30"> 30 días    
                                             </label>&nbsp;&nbsp;&nbsp;&nbsp;

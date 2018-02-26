@@ -10,9 +10,10 @@ class Oferta extends Model
         'id_op', 'id_prod', 'cantidad', 'precio', 'fechaInicio', 'fechaFin', 'id_puesto', 'id_cobro', 'id_modo', 'abierta',
     ];
 
+    
     public function user()
     {
-        return $this->belongsTo('MOHA\User', 'id_op');
+        return $this->hasOne('MOHA\User', 'id', 'id_op');
     }
 
     public function producto()

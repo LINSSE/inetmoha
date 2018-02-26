@@ -23,7 +23,7 @@ class CreateOfertasTable extends Migration
             $table->date('fechaFin');
             $table->integer('id_puesto')->unsigned();
             $table->integer('id_cobro')->unsigned();
-            $table->enum('30', '60', '90');
+            $table->enum('plazo', ['Contado', '30', '60', '90'])->default('Contado');
             $table->integer('id_modo')->unsigned();
             $table->boolean('abierta')->default(false);
             $table->timestamps();

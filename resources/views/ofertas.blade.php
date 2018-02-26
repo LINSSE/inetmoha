@@ -34,28 +34,35 @@
                             <tr>
                                 <th>Producto</th>
                                 <th>Cantidad</th>
-                                <th>Precio $</th>
+                                <th>Precio</th>
                                 <th>Fecha Fin</th>
+                                <th>Operador</th>
                                 <th>Puesto</th>
                                 <th>Cobro</th>
-                                <th>Plazo</th>
+                                <th>Plazo (días)</th>
                                 <th>Modo</th>
                                 <th></th>
                             </tr>
                         </thead>
+                        <tbody>
                         @foreach($ofertas as $of)
                             @if($of->abierta === 0)
-                            <tbody>
+                            
                                 <tr>
                                     <input type="hidden" name="id" value="{{$of->id}}">
                                     <input type="hidden" name="iduser" value="{{$of->user->id}}">
-                                    <td><input type="text" class="input-table" name="producto" value="{{$of->producto->nombre}}" disabled></td>
-                                    <td><input type="text" class="input-table" name="cantidad" value="{{$of->cantidad}}" disabled></td>
-                                    <td><input type="text" class="input-table" name="precio" value="{{$of->precio}}" disabled></td>
+                                    <td><input type="text" class="input-table" name="producto" value="{{$of->producto->nombre}} {{$of->producto->descripcion}} {{$of->producto->descripcion2}}" disabled></td>
+                                    <td><input type="text" class="input-table" name="cantidad" value="{{$of->cantidad}} {{$of->producto->medida->descripcion}}" disabled></td>
+                                    <td><input type="text" class="input-table" name="precio" value="$ {{$of->precio}}" disabled></td>
                                     <td><input type="text" class="input-table" name="fechaFin" value="{{$of->fechaFin}}" disabled></td>
+                                    @if($of->user->razonsocial === '')
+                                    <td><input type="text" class="input-table" name="operador" value="{{$of->user->apellido}} {{$of->user->name}}" disabled></td>
+                                    @else
+                                    <td><input type="text" class="input-table" name="operador" value="{{$of->user->razonsocial}}" disabled></td>
+                                    @endif
                                     <td><input type="text" class="input-table" name="puesto" value="{{$of->puesto->descripcion}}" disabled></td>
                                     <td><input type="text" class="input-table" name="cobro" value="{{$of->cobro->descripcion}}" disabled></td>
-                                    <td><input type="text" class="input-table" name="plazo" value="{{$of->plazo}} días" disabled></td>
+                                    <td><input type="text" class="input-table" name="plazo" value="{{$of->plazo}}" disabled></td>
                                     <td><input type="text" class="input-table" name="modo" value="{{$of->modo->descripcion}}" readonly="true"></td>
                                     <td>@if(Auth::user()->activo === 1)
                                             <button type="button" id="ofertar" data-toggle="modal" onclick="ofertar({{$of->id}})" class="btn btn-success admin tabla">Ofertar</button>
@@ -63,9 +70,10 @@
                                             <button type="button" id="ofertar" data-toggle="modal" data_target="#modalOfertar" disabled class="btn btn-success admin tabla">Ofertar</button>
                                         @endif</td>
                                 </tr>
-                            </tbody>
+                            
                             @endif
                         @endforeach
+                        </tbody>
                     </table>
                 </div>
             </div>
@@ -80,10 +88,12 @@
                             <tr>
                                 <th>Producto</th>
                                 <th>Cantidad</th>
-                                <th>Precio $</th>
+                                <th>Precio</th>
                                 <th>Fecha Fin</th>
+                                <th>Operador</th>
                                 <th>Puesto</th>
                                 <th>Cobro</th>
+                                <th>Plazo (días)</th>
                                 <th>Modo</th>
                                 <th></th>
                             </tr>
@@ -94,10 +104,15 @@
                                 <tr>
                                     <input type="hidden" name="id" value="{{$of->id}}">
                                     <input type="hidden" name="iduser" value="{{$of->user->id}}">
-                                    <td><input type="text" class="input-table" name="producto" value="{{$of->producto->nombre}}" disabled></td>
-                                    <td><input type="text" class="input-table" name="cantidad" value="{{$of->cantidad}}" disabled></td>
-                                    <td><input type="text" class="input-table" name="precio" value="{{$of->precio}}" disabled></td>
+                                    <td><input type="text" class="input-table" name="producto" value="{{$of->producto->nombre}} {{$of->producto->descripcion}} {{$of->producto->descripcion2}}" disabled></td>
+                                    <td><input type="text" class="input-table" name="cantidad" value="{{$of->cantidad}} {{$of->producto->medida->descripcion}}" disabled></td>
+                                    <td><input type="text" class="input-table" name="precio" value="$ {{$of->precio}}" disabled></td>
                                     <td><input type="text" class="input-table" name="fechaFin" value="{{$of->fechaFin}}" disabled></td>
+                                    @if($of->user->razonsocial === '')
+                                        <td><input type="text" class="input-table" name="operador" value="{{$of->user->apellido}} {{$of->user->name}}" disabled></td>
+                                    @else
+                                        <td><input type="text" class="input-table" name="operador" value="{{$of->user->razonsocial}}" disabled></td>
+                                    @endif
                                     <td><input type="text" class="input-table" name="puesto" value="{{$of->puesto}}" disabled></td>
                                     <td><input type="text" class="input-table" name="cobro" value="{{$of->cobro}}" disabled></td>
                                     <td><input type="text" class="input-table" name="modo" value="{{$of->modo}}" readonly="true"></td>
