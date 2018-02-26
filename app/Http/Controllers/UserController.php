@@ -83,35 +83,10 @@ class UserController extends Controller
         $user->telefono = $request->telefono;
         $user->id_ciudad = $request->id_ciudad;
         $user->id_provincia = $request->id_provincia;
-        $user->id_des = $request->id_desp;
-        $user->id_rep = $request->id_rep;
 
         $user->save();
 
         return redirect('/usuario/show/{Auth::user()->id}');
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 
 }
