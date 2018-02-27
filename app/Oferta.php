@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Oferta extends Model
 {
     protected $fillable = [
-        'id_op', 'id_prod', 'cantidad', 'precio', 'fechaInicio', 'fechaFin', 'id_puesto', 'id_cobro', 'id_modo', 'abierta',
+        'id_op', 'id_prod', 'id_modo', 'peso', 'id_medida', 'cantidad', 'precio', 'fechaInicio', 'fechaFin', 'id_puesto', 'id_cobro', 'abierta',
     ];
 
     
@@ -39,5 +39,10 @@ class Oferta extends Model
     public function modo()
     {
         return $this->hasOne('MOHA\Modo', 'id', 'id_modo');
+    }
+
+    public function medida()
+    {
+        return $this->hasOne('MOHA\Medida', 'id', 'id_medida');
     }
 }

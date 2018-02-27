@@ -13,7 +13,6 @@
                             <th>Descripción</th>
                             <th>Descripción Alt.</th>
                             <th>Categoría</th>
-                            <th>U. de Medida</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -27,7 +26,6 @@
                                     <td><input type="text" class="input-table" name="descripcion" value="{{$prod->descripcion}}" disabled></td>
                                     <td><input type="text" class="input-table" name="descripcion2" value="{{$prod->descripcion2}}" disabled></td>
                                     <td><input type="text" class="input-table" name="categoria" value="{{$prod->categoria->descripcion}}" disabled></td>
-                                    <td><input type="text" class="input-table" name="medida" value="{{$prod->medida->descripcion}}" disabled></td>
                                     <td><button type="submit" class="btn btn-danger admin tabla" title="Eliminar Producto">X</button></td>
                                     </form>
                                 </tr>
@@ -110,7 +108,7 @@
                                         <label for="nombre" class="col-md-4 control-label">Nombre</label>
 
                                         <div class="col-md-6">
-                                            <input id="nombre" type="text" class="form-control" name="nombre" value="{{ old('nombre') }}" required autofocus>
+                                            <input id="nombre" type="text" class="form-control" name="nombre" value="{{ old('nombre') }}" placeholder="Ej: Papa" required autofocus>
 
                                             @if ($errors->has('nombre'))
                                                 <span class="help-block">
@@ -123,7 +121,7 @@
                                         <label for="descripcion" class="col-md-4 control-label">Descripción</label>
 
                                         <div class="col-md-6">
-                                            <input id="descripcion" type="text" class="form-control" name="descripcion" value="{{ old('descripcion') }}" required >
+                                            <input id="descripcion" type="text" class="form-control" name="descripcion" value="{{ old('descripcion') }}" placeholder="Ej: Blanca" required >
 
                                             @if ($errors->has('descripcion'))
                                                 <span class="help-block">
@@ -136,7 +134,7 @@
                                         <label for="descripcion2" class="col-md-4 control-label">Descripción Alternativa</label>
 
                                         <div class="col-md-6">
-                                            <input id="descripcion2" type="text" class="form-control" name="descripcion2" value="{{ old('descripcion2') }}" >
+                                            <input id="descripcion2" type="text" class="form-control" name="descripcion2" value="{{ old('descripcion2') }}" placeholder="Ej: Grande" >
 
                                             @if ($errors->has('descripcion2'))
                                                 <span class="help-block">
@@ -164,29 +162,10 @@
                                             @endif
                                         </div>
                                     </div>
-                                    <div class="form-group{{ $errors->has('id_medida') ? ' has-error' : '' }}">
-                                        <label for="id_medida" class="col-md-4 control-label">Unidad de Medida</label>
-
-                                        <div class="col-md-6">
-                                        <select class="form-control" id="id_medida" name="id_medida" value="{{ old('id_medida') }}" required>
-                                            <option disabled selected hidden> -- Seleccione una Unidad de Medida -- </option>
-                                            @foreach($medidas as $medida)
-                                            <option value="{{$medida->id}}">{{$medida->descripcion}}</option>
-                                            
-                                            @endforeach
-                                        </select>
-
-                                            @if ($errors->has('medida'))
-                                                <span class="help-block">
-                                                    <strong>{{ $errors->first('medida') }}</strong>
-                                                </span>
-                                            @endif
-                                        </div>
+                                    <div class="row model">
+                                        <button type="submit" class="btn btn-primary">Agregar</button>
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                                     </div>
-                                        <div class="row model">
-                                            <button type="submit" class="btn btn-primary">Agregar</button>
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                                        </div>
                                 </form>
                             </div>
                         </div>          

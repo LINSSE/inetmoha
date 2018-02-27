@@ -9,7 +9,7 @@ class Producto extends Model
 	protected $table = 'productos';
 
     protected $fillable = [
-        'nombre', 'descripcion', 'descripcion2', 'id_cat', 'id_medida'
+        'nombre', 'descripcion', 'descripcion2', 'id_cat',
     ];
 
     public function oferta()
@@ -25,10 +25,5 @@ class Producto extends Model
     public function categoria()
     {
         return $this->belongsTo('MOHA\Categoria', 'id_cat');
-    }
-
-    public function medida()
-    {
-        return $this->hasOne('MOHA\Medida', 'id', 'id_medida');
     }
 }

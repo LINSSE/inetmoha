@@ -11,8 +11,4 @@ class Medida extends Model
         'descripcion',
     ];
 
-    public function producto()
-    {
-        return $this->belongsTo('MOHA\Producto', 'id_medida');
-    }
 }

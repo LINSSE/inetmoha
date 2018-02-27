@@ -19,11 +19,9 @@ class CreateProductosTable extends Migration
             $table->string('descripcion');
             $table->string('descripcion2')->nullable();
             $table->integer('id_cat')->unsigned();
-            $table->integer('id_medida')->unsigned();
             $table->timestamps();
 
             $table->foreign('id_cat')->references('id')->on('categorias')->onDelete('cascade');
-            $table->foreign('id_medida')->references('id')->on('medidas')->onDelete('cascade');
         });
     }
 

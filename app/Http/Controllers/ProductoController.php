@@ -28,7 +28,6 @@ class ProductoController extends Controller
         $prod->descripcion = ucwords($request->descripcion);
         $prod->descripcion2 = ucwords($request->descripcion2);
         $prod->id_cat = $request->id_cat;
-        $prod->id_medida = $request->id_medida;
         $prod->save();
         return back();
     }

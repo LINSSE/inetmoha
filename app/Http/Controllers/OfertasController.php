@@ -10,6 +10,7 @@ use MOHA\User;
 use MOHA\Modo;
 use MOHA\Cobro;
 use MOHA\Puesto;
+use MOHA\Medida;
 use Session;
 
 class OfertasController extends Controller
@@ -20,6 +21,9 @@ class OfertasController extends Controller
 
     	$oferta->id_op = Auth::user()->id;
     	$oferta->id_prod = $request->id_prod;
+        $oferta->id_modo = $request->id_modo;
+        $oferta->peso = $request->peso;
+        $oferta->id_medida = $request->id_medida;
     	$oferta->cantidad = $request->cantidad;
     	$oferta->precio = $request->precio;
     	$oferta->fechaInicio = $request->fecha;
@@ -27,7 +31,7 @@ class OfertasController extends Controller
     	$oferta->id_puesto = $request->puesto;
     	$oferta->id_cobro = $request->cobro;
         $oferta->plazo = $request->plazo;
-    	$oferta->id_modo = $request->modo;
+    	
 
     	$oferta->save();
         Session::flash('oferta', 'Su Oferta ha sido publicada con éxito!');
@@ -41,8 +45,9 @@ class OfertasController extends Controller
         $modos = Modo::orderBy('descripcion', 'ASC')->get();
         $cobros = Cobro::orderBy('descripcion', 'ASC')->get();
         $puestos = Puesto::orderBy('descripcion', 'ASC')->get();
+        $medidas = Medida::orderBy('descripcion', 'ASC')->get();
 
-    	return view('usuario/ofertas', array('ofertas' => $ofertas, 'productos' => $productos, 'modos' => $modos, 'cobros' => $cobros, 'puestos' => $puestos));
+    	return view('usuario/ofertas', array('ofertas' => $ofertas, 'productos' => $productos, 'modos' => $modos, 'cobros' => $cobros, 'puestos' => $puestos, 'medidas' => $medidas));
     }
 
     public function ofertas () {
