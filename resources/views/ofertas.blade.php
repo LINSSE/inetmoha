@@ -65,7 +65,7 @@
                                     <td><input type="text" class="input-table" name="plazo" value="{{$of->plazo}}" disabled></td>
                                     <td><input type="text" class="input-table" name="modo" value="{{$of->modo->descripcion}}" readonly="true"></td>
                                     <td>@if(Auth::user()->activo === 1 && Auth::user()->id != $of->user->id)
-                                            <button type="button" id="ofertar" data-toggle="modal" onclick="ofertar({{$of->id}},{{$of->cantidad}})" class="btn btn-success admin tabla">Ofertar</button>
+                                            <button type="button" id="ofertar" data-toggle="modal" onclick="ofertar({{$of->id}},{{$of->cantidad}},{{$of->precio}},{{$of->plazo}})" class="btn btn-success admin tabla">Ofertar</button>
                                         @else
                                             <button type="button" id="ofertar" data-toggle="modal" data_target="#modalOfertar" disabled class="btn btn-success admin tabla" title="Su Usuario no está ACTIVO o esta Oferta es suya">Ofertar</button>
                                         @endif</td>
@@ -159,7 +159,7 @@
                                     <label for="cantidad" class="col-md-4 control-label">Cantidad</label>
 
                                     <div class="col-md-6">
-                                        <input id="cantidad" placeholder="Ingrese la cantidad que desea comprar" type="number" class="form-control" name="cantidad" min="1" max="" value="{{ old('cantidad') }}" required autofocus>
+                                        <input id="cantidadCo" placeholder="Ingrese la Cantidad a Comprar" type="number" class="form-control" name="cantidadCo" min="1" value="{{ old('cantidad') }}" required autofocus>
 
                                         @if ($errors->has('cantidad'))
                                             <span class="help-block">
@@ -168,6 +168,56 @@
                                         @endif
                                     </div>
                                 </div>
+                                <div class="form-group{{ $errors->has('precio') ? ' has-error' : '' }}">
+                                    <label for="precio" class="col-md-4 control-label">Precio</label>
+
+                                    <div class="col-md-6">
+                                        <input id="precioCo" placeholder="Precio" type="number" class="form-control" name="precioCo" min="1" value="{{ old('precio') }}" required autofocus>
+
+                                        @if ($errors->has('precio'))
+                                            <span class="help-block">
+                                                <strong>{{ $errors->first('precio') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="form-group{{ $errors->has('cobroCo') ? ' has-error' : '' }}">
+                                    <label for="cobroCo" class="col-md-4 control-label">Cobro</label>
+
+                                    <div class="col-md-6">
+                                    <select class="form-control" name="cobroCo" value="{{ old('cobroCo') }}" required>
+                                        <option disabled selected hidden> -- Forma de Cobro -- </option>
+                                        @foreach ($cobros as $cobro)
+                                        <option value="{{$cobro->id}}" >{{$cobro->descripcion}}</option>
+                                        @endforeach
+                                    </select>
+                                    @if ($errors->has('cobroCo'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('cobroCo') }}</strong>
+                                            </span>
+                                    @endif
+                                    </div>
+                                    <span class="glyphicon glyphicon-info-sign" alt="Indicar la forma de Cobro que desea" title="Indicar la forma de Cobro que desea"></span>
+                                <div class="col-md-12">
+                                        <div class="checkbox">
+                                        <ul class="filtro-usu">
+                                            <label>
+                                                <input type="checkbox" name="plazoCo" value="Contado" checked=""> Contado    
+                                            </label>&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <label>
+                                                <input type="checkbox" name="plazoCo" value="30"> 30 días    
+                                            </label>&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <label>
+                                                <input type="checkbox" name="plazoCo" value="60"> 60 días    
+                                            </label>&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <label> 
+                                                <input type="checkbox" name="plazoCo" value="90"> 90 días    
+                                            </label>
+                                        </ul>
+                                        </div>
+                                        <hr class="hrblanco">
+                                    </div>
+
                                 <div class="row model">
                                     <button type="submit" class="btn btn-primary">Ofertar</button>
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>

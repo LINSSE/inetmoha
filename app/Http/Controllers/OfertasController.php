@@ -50,7 +50,9 @@ class OfertasController extends Controller
         $hoy = Date('Y-m-j');
         $ofertas = Oferta::whereDate('fechaInicio', '<=', $hoy)->whereDate('fechaFin', '>=', $hoy)->orderBy('fechaFin', 'ASC')->get();
         
-        return view('ofertas', array('ofertas' => $ofertas));
+        $cobros = Cobro::orderBy('descripcion', 'ASC')->get();
+
+        return view('ofertas', array('ofertas' => $ofertas, 'cobros' => $cobros));
     }
 
     public function buscarOfertas(Request $request) {
@@ -76,7 +78,9 @@ class OfertasController extends Controller
                                      ->orderBy('ofertas.fechaFin', 'ASC')
                                      ->get();
         
-        return view('ofertas', array('ofertas' => $ofertas));
+        $cobros = Cobro::orderBy('descripcion', 'ASC')->get();
+        
+        return view('ofertas', array('ofertas' => $ofertas, 'cobros' => $cobros));
     }
 
     public function eliminar(Request $request) {

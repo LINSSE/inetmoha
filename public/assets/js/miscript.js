@@ -85,9 +85,11 @@ $(document).ready(function(){
         $(this).find('#formagregarDemanda')[0].reset(); //para limpiar campos del modal
     });
  
-    ofertar = function (id, cantidad) {
+    ofertar = function (id, cantidad, precio) {
             $('#id_oferta').val(id);
             $('#cantOferta').val(cantidad);
+            $('#cantidadCo').val(cantidad);
+            $('#precioCo').val(precio);
         $('#modalOfertar').modal('show'); //show the modal
       }
 
