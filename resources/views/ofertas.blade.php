@@ -25,108 +25,105 @@
                 </form>
             </div>
         </div>
-            <div class="col-md-12">
-                <h1 class="h1-tabla">Ofertas sin Tomar</h1>
-                <div class="table-responsive">
-                    <table class="table">
-                        <thead>
-                            <thead>
+        <div class="col-md-12">
+            <h1 class="h1-tabla">Ofertas sin Tomar</h1>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Producto</th>
+                            <th>Modo</th>
+                            <th>Cantidad</th>
+                            <th>Precio</th>
+                            <th>Fecha Fin</th>
+                            <th>Operador</th>
+                            <th>Puesto</th>
+                            <th>Cobro</th>
+                            <th>Plazo (días)</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($ofertas as $of)
+                        @if($of->abierta === 0)
                             <tr>
-                                <th>Producto</th>
-                                <th>Modo</th>
-                                <th>Cantidad</th>
-                                <th>Precio</th>
-                                <th>Fecha Fin</th>
-                                <th>Operador</th>
-                                <th>Puesto</th>
-                                <th>Cobro</th>
-                                <th>Plazo (días)</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        @foreach($ofertas as $of)
-                            @if($of->abierta === 0)
-                            
-                                <tr>
-                                    <input type="hidden" name="id" value="{{$of->id}}">
-                                    <input type="hidden" name="iduser" value="{{$of->user->id}}">
-                                    <td><input type="text" class="input-table" name="producto" value="{{$of->producto->nombre}} {{$of->producto->descripcion}} {{$of->producto->descripcion2}}" disabled></td>
-                                    <td><input type="text" class="input-table" name="modo" value="{{$of->modo->descripcion}} X {{$of->peso}} {{$of->medida->descripcion}}" readonly="true"></td>
-                                    <td><input type="text" class="input-table" name="cantidad" value="{{$of->cantidad}}" disabled></td>
-                                    <td><input type="text" class="input-table" name="precio" value="$ {{$of->precio}}" disabled></td>
-                                    <td><input type="text" class="input-table" name="fechaFin" value="{{$of->fechaFin}}" disabled></td>
-                                    @if($of->user->razonsocial === '')
-                                    <td><input type="text" class="input-table" name="operador" value="{{$of->user->apellido}} {{$of->user->name}}" disabled></td>
+                                <input type="hidden" name="id" value="{{$of->id}}">
+                                <input type="hidden" name="iduser" value="{{$of->user->id}}">
+                                <td><input type="text" class="input-table" name="producto" value="{{$of->producto->nombre}} {{$of->producto->descripcion}} {{$of->producto->descripcion2}}" disabled></td>
+                                <td><input type="text" class="input-table" name="modo" value="{{$of->modo->descripcion}} X {{$of->peso}} {{$of->medida->descripcion}}" readonly="true"></td>
+                                <td><input type="text" class="input-table" name="cantidad" value="{{$of->cantidad}}" disabled></td>
+                                <td><input type="text" class="input-table" name="precio" value="$ {{$of->precio}}" disabled></td>
+                                <td><input type="text" class="input-table" name="fechaFin" value="{{$of->fechaFin}}" disabled></td>
+                                @if($of->user->razonsocial === '')
+                                <td><input type="text" class="input-table" name="operador" value="{{$of->user->apellido}} {{$of->user->name}}" disabled></td>
+                                @else
+                                <td><input type="text" class="input-table" name="operador" value="{{$of->user->razonsocial}}" disabled></td>
+                                @endif
+                                <td><input type="text" class="input-table" name="puesto" value="{{$of->puesto->descripcion}}" disabled></td>
+                                <td><input type="text" class="input-table" name="cobro" value="{{$of->cobro->descripcion}}" disabled></td>
+                                <td><input type="text" class="input-table" name="plazo" value="{{$of->plazo}}" disabled></td>
+                                <td>@if(Auth::user()->activo === 1 && Auth::user()->id != $of->user->id)
+                                        <button type="button" id="ofertar" data-toggle="modal" onclick="ofertar({{$of->id}},{{$of->cantidad}},{{$of->precio}})" class="btn btn-success admin tabla">Ofertar</button>
                                     @else
-                                    <td><input type="text" class="input-table" name="operador" value="{{$of->user->razonsocial}}" disabled></td>
-                                    @endif
-                                    <td><input type="text" class="input-table" name="puesto" value="{{$of->puesto->descripcion}}" disabled></td>
-                                    <td><input type="text" class="input-table" name="cobro" value="{{$of->cobro->descripcion}}" disabled></td>
-                                    <td><input type="text" class="input-table" name="plazo" value="{{$of->plazo}}" disabled></td>
-                                    <td>@if(Auth::user()->activo === 1 && Auth::user()->id != $of->user->id)
-                                            <button type="button" id="ofertar" data-toggle="modal" onclick="ofertar({{$of->id}},{{$of->cantidad}},{{$of->precio}})" class="btn btn-success admin tabla">Ofertar</button>
-                                        @else
-                                            <button type="button" id="ofertar" data-toggle="modal" data_target="#modalOfertar" disabled class="btn btn-success admin tabla" title="Su Usuario no está ACTIVO o esta Oferta es suya">Ofertar</button>
-                                        @endif</td>
-                                </tr>
-                            
-                            @endif
-                        @endforeach
-                        </tbody>
-                    </table>
-                </div>
+                                        <button type="button" id="ofertar" data-toggle="modal" data_target="#modalOfertar" disabled class="btn btn-success admin tabla" title="Su Usuario no está ACTIVO o esta Oferta es suya">Ofertar</button>
+                                    @endif</td>
+                            </tr>
+                        @endif
+                    @endforeach
+                    </tbody>
+                </table>
             </div>
-        <hr>
-        <div class="row">
-            <div class="col-md-12">
-                <h1 class="h1-tabla">Ofertas Abiertas</h1>
-                <div class="table-responsive">
-                    <table class="table">
-                        <thead>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="h1-tabla">Ofertas Abiertas</h1>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Producto</th>
+                            <th>Modo</th>
+                            <th>Cantidad</th>
+                            <th>Precio</th>
+                            <th>Fecha Fin</th>
+                            <th>Operador</th>
+                            <th>Puesto</th>
+                            <th>Cobro</th>
+                            <th>Plazo (días)</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    @foreach($ofertas as $of)
+                        @if($of->abierta === 1)
+                        <tbody>
                             <tr>
-                                <th>Producto</th>
-                                <th>Modo</th>
-                                <th>Cantidad</th>
-                                <th>Precio</th>
-                                <th>Fecha Fin</th>
-                                <th>Operador</th>
-                                <th>Puesto</th>
-                                <th>Cobro</th>
-                                <th>Plazo (días)</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        @foreach($ofertas as $of)
-                            @if($of->abierta === 1)
-                            <tbody>
-                                <tr>
-                                    <input type="hidden" name="id" value="{{$of->id}}">
-                                    <input type="hidden" name="iduser" value="{{$of->user->id}}">
-                                    <td><input type="text" class="input-table" name="producto" value="{{$of->producto->nombre}} {{$of->producto->descripcion}} {{$of->producto->descripcion2}}" disabled></td>
-                                    <td><input type="text" class="input-table" name="modo" value="{{$of->modo->descripcion}} X {{$of->peso}} {{$of->medida->descripcion}}" readonly="true"></td>
-                                    <td><input type="text" class="input-table" name="cantidad" value="{{$of->cantidad}}" disabled></td>
-                                    <td><input type="text" class="input-table" name="precio" value="$ {{$of->precio}}" disabled></td>
-                                    <td><input type="text" class="input-table" name="fechaFin" value="{{$of->fechaFin}}" disabled></td>
-                                    @if($of->user->razonsocial === '')
-                                    <td><input type="text" class="input-table" name="operador" value="{{$of->user->apellido}} {{$of->user->name}}" disabled></td>
+                                <input type="hidden" name="id" value="{{$of->id}}">
+                                <input type="hidden" name="iduser" value="{{$of->user->id}}">
+                                <td><input type="text" class="input-table" name="producto" value="{{$of->producto->nombre}} {{$of->producto->descripcion}} {{$of->producto->descripcion2}}" disabled></td>
+                                <td><input type="text" class="input-table" name="modo" value="{{$of->modo->descripcion}} X {{$of->peso}} {{$of->medida->descripcion}}" readonly="true"></td>
+                                <td><input type="text" class="input-table" name="cantidad" value="{{$of->cantidad}}" disabled></td>
+                                <td><input type="text" class="input-table" name="precio" value="$ {{$of->precio}}" disabled></td>
+                                <td><input type="text" class="input-table" name="fechaFin" value="{{$of->fechaFin}}" disabled></td>
+                                @if($of->user->razonsocial === '')
+                                <td><input type="text" class="input-table" name="operador" value="{{$of->user->apellido}} {{$of->user->name}}" disabled></td>
+                                @else
+                                <td><input type="text" class="input-table" name="operador" value="{{$of->user->razonsocial}}" disabled></td>
+                                @endif
+                                <td><input type="text" class="input-table" name="puesto" value="{{$of->puesto->descripcion}}" disabled></td>
+                                <td><input type="text" class="input-table" name="cobro" value="{{$of->cobro->descripcion}}" disabled></td>
+                                <td><input type="text" class="input-table" name="plazo" value="{{$of->plazo}}" disabled></td>
+                                <td>@if(Auth::user()->activo === 1 && Auth::user()->id != $of->user->id)
+                                        <button type="button" id="ofertar" data-toggle="modal" onclick="ofertar({{$of->id}},{{$of->cantidad}},{{$of->precio}})" class="btn btn-success admin tabla">Ofertar</button>
                                     @else
-                                    <td><input type="text" class="input-table" name="operador" value="{{$of->user->razonsocial}}" disabled></td>
-                                    @endif
-                                    <td><input type="text" class="input-table" name="puesto" value="{{$of->puesto->descripcion}}" disabled></td>
-                                    <td><input type="text" class="input-table" name="cobro" value="{{$of->cobro->descripcion}}" disabled></td>
-                                    <td><input type="text" class="input-table" name="plazo" value="{{$of->plazo}}" disabled></td>
-                                    <td>@if(Auth::user()->activo === 1 && Auth::user()->id != $of->user->id)
-                                            <button type="button" id="ofertar" data-toggle="modal" onclick="ofertar({{$of->id}},{{$of->cantidad}},{{$of->precio}})" class="btn btn-success admin tabla">Ofertar</button>
-                                        @else
-                                            <button type="button" id="ofertar" data-toggle="modal" data_target="#modalOfertar" disabled class="btn btn-success admin tabla" title="Su Usuario no está ACTIVO o esta Oferta es suya">Ofertar</button>
-                                        @endif</td>
-                                </tr>
-                            </tbody>
-                            @endif
-                        @endforeach
-                    </table>
-                </div>
+                                        <button type="button" id="ofertar" data-toggle="modal" data_target="#modalOfertar" disabled class="btn btn-success admin tabla" title="Su Usuario no está ACTIVO o esta Oferta es suya">Ofertar</button>
+                                    @endif</td>
+                            </tr>
+                        </tbody>
+                        @endif
+                    @endforeach
+                </table>
             </div>
         </div>
     </div>
