@@ -1,6 +1,8 @@
 <center>
 <div class="content" style="width:100%;height:20%;background-color:#7fb850;padding:15px; ">
-<center><h2 style="color:#74787e;">{{ config('app.name') }}</h2></center></div>
+<center><h2 style="color:#74787e;">{{ config('app.name') }}</h2></center>
+<center><h4 style="color:white;">Mercado Horticola</h4></center>
+</div>
 <br>
 <h3>Nuevo Operador Registrado en MOHA WEB</h3>
 <br>
