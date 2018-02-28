@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateOperacionesTable extends Migration
+class CreateOperacionesOfertasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,18 @@ class CreateOperacionesTable extends Migration
      */
     public function up()
     {
-        Schema::create('operaciones', function (Blueprint $table) {
+        Schema::create('operaciones_ofertas', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('id_oferta')->unsigned();
             $table->integer('cantidad');
             $table->date('fecha');
             $table->double('precio');
-            $table->enum('pago', ['Cdo', 'CPD', 'Com', 'Efec']);
-            $table->enum('destino', ['BA', 'ROS', 'CBA', 'BRQ', 'COR']);
-            $table->enum('modo', ['Raso', 'Emb', 'Abie']);
+            $table->integer('id_cobro')->unsigned();
+            $table->enum('plazo', ['Contado', '30', '60', '90']);
             $table->timestamps();
 
             $table->foreign('id_oferta')->references('id')->on('ofertas')->onDelete('cascade');
+            $table->foreign('id_cobro')->references('id')->on('cobros')->onDelete('cascade');
         });
     }
 
@@ -35,6 +35,6 @@ class CreateOperacionesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('operaciones');
+        Schema::dropIfExists('operaciones_ofertas');
     }
 }

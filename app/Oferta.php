@@ -21,9 +21,9 @@ class Oferta extends Model
         return $this->hasOne('MOHA\Producto', 'id', 'id_prod');
     }
 
-    public function operacion()
+    public function opOfertas()
     {
-        return $this->belongsTo('MOHA\Operacion', 'id_oferta');
+        return $this->belongsTo('MOHA\OperacionesOferta', 'id_oferta');
     }
 
     public function puesto()

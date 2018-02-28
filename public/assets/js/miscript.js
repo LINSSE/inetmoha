@@ -102,7 +102,11 @@ $(document).ready(function(){
         $(this).find('#formOfertar')[0].reset(); //para limpiar campos del modal
     });
 
-    $("#fmNuevaOferta input:checkbox").on('click', function() {
+    $("#formagregarOferta input:checkbox").on('click', function() {
+        $('input[name="' + this.name + '"]').not(this).prop('checked', false);
+    });
+
+    $("#formOfertar input:checkbox").on('click', function() {
         $('input[name="' + this.name + '"]').not(this).prop('checked', false);
     });
 

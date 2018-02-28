@@ -7,9 +7,10 @@ use Auth;
 use MOHA\User;
 use MOHA\Contraoferta;
 use MOHA\Oferta;
-use MOHA\Operacion;
+use MOHA\OperacionesOferta;
 use Session;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\DB;
 use MOHA\Mail\OfertaAceptada;
 use MOHA\Mail\OfertaRechazada;
 use MOHA\Mail\ContraOfertaMail;
@@ -18,16 +19,32 @@ class ContraofertaController extends Controller
 {
     public function store(Request $request) {
 
-    	$co = new Contraoferta;
+    	DB::beginTransaction();
 
-    	$co->id_comprador = Auth::user()->id;
-    	$co->id_oferta = $request->idco;
-    	$co->cantidad = $request->cantidad;
+        try {
+            
+            $co = new Contraoferta;
 
-    	$co->save();
+            $co->id_comprador = Auth::user()->id;
+            $co->id_oferta = $request->id_oferta;
+            $co->cantidad = $request->cantidadCo;
+            $co->precio = $request->precioCo;
+            $co->id_cobro = $request->cobroCo;
+            $co->plazo = $request->plazoCo;
+            $co->save();
 
-        Mail::to($co->oferta->user->email)->send(new ContraOfertaMail($co));
-    	Session::flash('contraoferta');
+            Mail::to($co->oferta->user->email)->send(new ContraOfertaMail($co));
+            Session::flash('contraoferta');
+
+            DB::commit();
+
+        } catch (\Trowable $e) {
+            
+            DB::rollback();
+            throw $e;
+        }
+
+        
     	return back();
     }
 
@@ -47,39 +64,76 @@ class ContraofertaController extends Controller
 
         $cant = $of->cantidad - $co->cantidad;
 
-        $rows = Oferta::where('id', $co->id_oferta)->update(['cantidad' => $cant, 'abierta' => true]);
-        $rows = Contraoferta::where('id', $id)->update(['aceptada' => true]);
+        DB::beginTransaction();
+
+        try {
+
+            $this->actualizarOferta($cant, $co);            
+            $this->generarOperacion($co);
+
+            Session::flash('oferta', 'La Oferta ha sido aceptada');
+            DB::commit();
+
+        } catch (\Throwable $e) {
+
+            DB::rollback();
+            throw $e;
+        }
 
         
-        //Si la contraoferta es aceptada genero una operacion para esa oferta
-        $op = new Operacion;
+
+        return back();
+    }
+
+    public function actualizarOferta($cant, Contraoferta $co) {
+
+        if ($cant >= 0) {
+            $rows = Oferta::where('id', $co->id_oferta)->update(['cantidad' => $cant, 'abierta' => true]);
+            $row = Contraoferta::where('id', $co->id)->update(['aceptada' => true]);
+        }
+
+        return true;
+    }
+
+    public function generarOperacion(Contraoferta $co) {
+        
+        $op = new OperacionesOferta;
 
         $op->id_oferta = $co->id_oferta;
         $op->cantidad = $co->cantidad;
         $op->fecha = Date('Y-m-j');
-        $op->precio = $co->oferta->precio;
-        $op->pago = $co->oferta->cobro;
-        $op->destino = $co->oferta->puesto;
-        $op->modo = $co->oferta->modo;
+        $op->precio = $co->precio;
+        $op->id_cobro = $co->cobro->id;
+        $op->plazo = $co->plazo;
 
         $op->save();
 
         $user = Auth::user();
         Mail::to($co->user->email)->send(new OfertaAceptada($user, $co));
-        Session::flash('oferta', 'La Oferta ha sido aceptada');
 
-        return back();
+        return true;
     }
 
     public function rechazarOferta ($id) {
 
-        $co = Contraoferta::Find($id);
+        DB::beginTransaction();
 
-        $co->delete();
+        try {
 
-        Mail::to($co->user->email)->send(new OfertaRechazada($co));
+            $co = Contraoferta::Find($id);
+            $co->delete();
 
-        Session::flash('oferta', 'La Oferta ha sido rechazada');
+            Mail::to($co->user->email)->send(new OfertaRechazada($co));
+            Session::flash('oferta', 'La Oferta ha sido rechazada');
+            DB::commit();
+            
+        } catch (\Throwable $e) {
+            
+            DB::rollback();
+            throw $e;
+        }
+
+        
 
         return back();
     }
