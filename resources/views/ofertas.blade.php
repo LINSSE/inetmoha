@@ -65,7 +65,7 @@
                                     <td><input type="text" class="input-table" name="cobro" value="{{$of->cobro->descripcion}}" disabled></td>
                                     <td><input type="text" class="input-table" name="plazo" value="{{$of->plazo}}" disabled></td>
                                     <td>@if(Auth::user()->activo === 1 && Auth::user()->id != $of->user->id)
-                                            <button type="button" id="ofertar" data-toggle="modal" onclick="ofertar({{$of->id}},{{$of->cantidad}},{{$of->precio}},{{$of->plazo}})" class="btn btn-success admin tabla">Ofertar</button>
+                                            <button type="button" id="ofertar" data-toggle="modal" onclick="ofertar({{$of->id}},{{$of->cantidad}},{{$of->precio}})" class="btn btn-success admin tabla">Ofertar</button>
                                         @else
                                             <button type="button" id="ofertar" data-toggle="modal" data_target="#modalOfertar" disabled class="btn btn-success admin tabla" title="Su Usuario no está ACTIVO o esta Oferta es suya">Ofertar</button>
                                         @endif</td>
@@ -117,7 +117,7 @@
                                     <td><input type="text" class="input-table" name="cobro" value="{{$of->cobro->descripcion}}" disabled></td>
                                     <td><input type="text" class="input-table" name="plazo" value="{{$of->plazo}}" disabled></td>
                                     <td>@if(Auth::user()->activo === 1 && Auth::user()->id != $of->user->id)
-                                            <button type="button" id="ofertar" data-toggle="modal" onclick="ofertar({{$of->id}},{{$of->cantidad}},{{$of->precio}},{{$of->plazo}})" class="btn btn-success admin tabla">Ofertar</button>
+                                            <button type="button" id="ofertar" data-toggle="modal" onclick="ofertar({{$of->id}},{{$of->cantidad}},{{$of->precio}})" class="btn btn-success admin tabla">Ofertar</button>
                                         @else
                                             <button type="button" id="ofertar" data-toggle="modal" data_target="#modalOfertar" disabled class="btn btn-success admin tabla" title="Su Usuario no está ACTIVO o esta Oferta es suya">Ofertar</button>
                                         @endif</td>
