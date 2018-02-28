@@ -57,16 +57,20 @@
                           <th>Cantidad</th>
                           <th>Precio</th>
                           <th>Cobro</th>
-                          <th>Plazo</th>
+                          <th>Plazo (días)</th>
                           <th></th>
                       </tr>
                   </thead>
                   @foreach($cofertas as $co)
                      <tbody>
                          <tr> 
-                         	<td><input type="text" class="input-table" name="comprador" value="{{$co->user->apellido}} {{$co->user->name}}" disabled></td>
+                         	@if($co->user->razonsocial === '')
+                          <td><input type="text" class="input-table" name="comprador" value="{{$co->user->apellido}} {{$co->user->name}}" disabled></td>
+                          @else
+                          <td><input type="text" class="input-table" name="comprador" value="{{$co->user->razonsocial}}" disabled></td>
+                          @endif
                          	<td><input type="text" class="input-table" name="cantidad" value="{{$co->cantidad}}" readonly="true"></td>
-                          <td><input type="text" class="input-table" name="precio" value="{{$co->precio}}" readonly="true"></td>
+                          <td><input type="text" class="input-table" name="precio" value="$ {{$co->precio}}" readonly="true"></td>
                           <td><input type="text" class="input-table" name="cobro" value="{{$co->cobro->descripcion}}" readonly="true"></td>
                           <td><input type="text" class="input-table" name="plazo" value="{{$co->plazo}}" readonly="true"></td>
                          	<td><a type="button" href="/usuario/aceptarOferta/{{$co->id}}" class="btn btn-success admin tabla" title="Aceptar Contra Oferta">Aceptar</a><br><a type="button" href="/usuario/rechazarOferta/{{$co->id}}" class="btn btn-danger admin tabla" title="Aceptar Contra Oferta">Rechazar</a></td>
@@ -86,16 +90,20 @@
                           <th>Cantidad</th>
                           <th>Precio</th>
                           <th>Cobro</th>
-                          <th>Plazo</th>
+                          <th>Plazo (días)</th>
                           <th></th>
                       </tr>
                   </thead>
                   @foreach($cofacep as $coa)
                      <tbody>
                          <tr> 
+                          @if($coa->user->razonsocial === '')
                           <td><input type="text" class="input-table" name="comprador" value="{{$coa->user->apellido}} {{$coa->user->name}}" disabled></td>
+                          @else
+                          <td><input type="text" class="input-table" name="comprador" value="{{$coa->user->razonsocial}}" disabled></td>
+                          @endif
                           <td><input type="text" class="input-table" name="cantidad" value="{{$coa->cantidad}}" readonly="true"></td>
-                          <td><input type="text" class="input-table" name="precio" value="{{$coa->precio}}" readonly="true"></td>
+                          <td><input type="text" class="input-table" name="precio" value="$ {{$coa->precio}}" readonly="true"></td>
                           <td><input type="text" class="input-table" name="cobro" value="{{$coa->cobro->descripcion}}" readonly="true"></td>
                           <td><input type="text" class="input-table" name="plazo" value="{{$coa->plazo}}" readonly="true"></td>
                          </tr>
