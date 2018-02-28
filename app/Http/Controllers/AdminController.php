@@ -13,10 +13,6 @@ use \Chumper\Zipper\Zipper;
 class AdminController extends Controller
 {
     
-    public function index(){
-    	//return view('/admin/principal');
-    }
-
     /**
      * Update the specified resource in storage.
      *
@@ -26,9 +22,18 @@ class AdminController extends Controller
      */
     public function activar($id)
     {
-        $user = User::FindOrFail($id);
-        $user->activo = 1;
-        $user->save();
+        try {
+
+            $user = User::FindOrFail($id);
+            $user->activo = 1;
+            $user->save();
+            
+        } catch (\Trowable $e) {
+            
+            throw $e;
+            
+        }
+        
         return redirect('admin/operadores');
 
     }
@@ -42,9 +47,18 @@ class AdminController extends Controller
      */
     public function desactivar($id)
     {
-        $user = User::FindOrFail($id);
-        $user->activo = 0;
-        $user->save();
+        try {
+
+            $user = User::FindOrFail($id);
+            $user->activo = 0;
+            $user->save();
+            
+        } catch (\Trowable $e) {
+            
+            throw $e;
+            
+        }
+
         return redirect('admin/operadores');
 
     }

@@ -12,29 +12,41 @@ use MOHA\Cobro;
 use MOHA\Puesto;
 use MOHA\Medida;
 use Session;
+use Illuminate\Support\Facades\DB;
 
 class OfertasController extends Controller
 {
     public function store(Request $request) {
 
-    	$oferta = new Oferta;
+    	DB::beginTransaction();
 
-    	$oferta->id_op = Auth::user()->id;
-    	$oferta->id_prod = $request->id_prod;
-        $oferta->id_modo = $request->id_modo;
-        $oferta->peso = $request->peso;
-        $oferta->id_medida = $request->id_medida;
-    	$oferta->cantidad = $request->cantidad;
-    	$oferta->precio = $request->precio;
-    	$oferta->fechaInicio = $request->fecha;
-        $oferta->fechaFin = $request->fechaf;
-    	$oferta->id_puesto = $request->puesto;
-    	$oferta->id_cobro = $request->cobro;
-        $oferta->plazo = $request->plazo;
-    	
+        try {
 
-    	$oferta->save();
-        Session::flash('oferta', 'Su Oferta ha sido publicada con éxito!');
+            $oferta = new Oferta;
+
+            $oferta->id_op = Auth::user()->id;
+            $oferta->id_prod = $request->id_prod;
+            $oferta->id_modo = $request->id_modo;
+            $oferta->peso = $request->peso;
+            $oferta->id_medida = $request->id_medida;
+            $oferta->cantidad = $request->cantidad;
+            $oferta->precio = $request->precio;
+            $oferta->fechaInicio = $request->fecha;
+            $oferta->fechaFin = $request->fechaf;
+            $oferta->id_puesto = $request->puesto;
+            $oferta->id_cobro = $request->cobro;
+            $oferta->plazo = $request->plazo;
+
+            $oferta->save();
+            Session::flash('oferta', 'Su Oferta ha sido publicada con éxito!');
+            DB::commit();
+            
+        } catch (\Trowable $e) {
+            
+            DB::rollback();
+            throw $e;
+        }
+        
     	return back();
     }
 
@@ -90,11 +102,23 @@ class OfertasController extends Controller
 
     public function eliminar(Request $request) {
 
-    	$id = $request->id;
-        $oferta = Oferta::FindOrFail($id);
-        $oferta->delete();
+        DB::beginTransaction();
 
-        Session::flash('oferta', 'Su Oferta ha sido eliminada!');
+        try {
+            
+            $id = $request->id;
+            $oferta = Oferta::FindOrFail($id);
+            $oferta->delete();
+
+            Session::flash('oferta', 'Su Oferta ha sido eliminada!');
+            DB::commit();
+
+        } catch (\Trowable $e) {
+            
+            DB::rollback();
+            throw $e;
+        }
+        
     	return back();
     }
 }
