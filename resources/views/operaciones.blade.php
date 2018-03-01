@@ -26,20 +26,15 @@
                     <tbody>
                         <tr>
                             <input type="hidden" name="id" value="{{$op->id}}">
-                            <td><input type="text" class="input-table" name="producto" value="{{$op->oferta->producto->nombre}} {{$op->oferta->producto->descripcion}} {{$op->oferta->producto->descripcion2}}" disabled></td>
-                            <td><input type="text" class="input-table" name="modo" value="{{$op->oferta->modo->descripcion}} X {{$op->oferta->peso}} {{$op->oferta->medida->descripcion}}" readonly="true"></td>
-                            <td><input type="text" class="input-table" name="cantidad" value="{{$op->cantidad}}" readonly="true"></td>
+                            <td><input type="text" class="input-table" name="producto" value="{{$op->contra->oferta->producto->nombre}} {{$op->contra->oferta->producto->descripcion}} {{$op->contra->oferta->producto->descripcion2}}" disabled></td>
+                            <td><input type="text" class="input-table" name="modo" value="{{$op->contra->oferta->modo->descripcion}} X {{$op->contra->oferta->peso}} {{$op->contra->oferta->medida->descripcion}}" readonly="true"></td>
+                            <td><input type="text" class="input-table" name="cantidad" value="{{$op->contra->cantidad}}" readonly="true"></td>
                             <td><input type="text" class="input-table" name="fecha" value="{{$op->fecha}}" readonly="true"></td>
-                            <td><input type="text" class="input-table" name="precio" value="$ {{$op->precio}}" readonly="true"></td>
-                            <td><input type="text" class="input-table" name="pago" value="{{$op->cobro->descripcion}}" readonly="true"></td>
-                            <td><input type="text" class="input-table" name="plazo" value="{{$op->plazo}}" readonly="true"></td>
-                            @if ($op->tipo === 1)
-                               <td><input type="text" class="input-table" name="destino" value="{{$op->oferta->puesto->descripcion}}" readonly="true"></td>
-                               <td><input type="text" class="input-table" name="" value="" readonly="true"></td>
-                            @else                
-                                <td><input type="text" class="input-table" name="" value="" readonly="true"></td>
-                                <td><input type="text" class="input-table" name="destino" value="{{$op->oferta->puesto->descripcion}}" readonly="true"></td>
-                            @endif              
+                            <td><input type="text" class="input-table" name="precio" value="$ {{$op->contra->precio}}" readonly="true"></td>
+                            <td><input type="text" class="input-table" name="pago" value="{{$op->contra->cobro->descripcion}}" readonly="true"></td>
+                            <td><input type="text" class="input-table" name="plazo" value="{{$op->contra->plazo}}" readonly="true"></td>
+                            <td><input type="text" class="input-table" name="destino" value="{{$op->contra->oferta->puesto->descripcion}}" readonly="true"></td>
+                            <td></td>
                         </tr>
                     </tbody>
                     @endforeach

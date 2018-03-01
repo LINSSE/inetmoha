@@ -19,6 +19,10 @@ class DatabaseSeeder extends Seeder
         CobrosTableSeeder::class,
         ModosTableSeeder::class,
         PuestosTableSeeder::class,
+        ProductosTableSeeder::class,
+        OfertasTableSeeder::class,
+        ContraofertasTableSeeder::class,
+        OperacionofertasTableSeeder::class,
     	]);
     }
 }

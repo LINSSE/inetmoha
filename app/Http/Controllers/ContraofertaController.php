@@ -7,7 +7,7 @@ use Auth;
 use MOHA\User;
 use MOHA\Contraoferta;
 use MOHA\Oferta;
-use MOHA\Operacion;
+use MOHA\Operacionoferta;
 use Session;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\DB;
@@ -97,15 +97,10 @@ class ContraofertaController extends Controller
 
     public function generarOperacion(Contraoferta $co) {
         
-        $op = new Operacion;
+        $op = new Operacionoferta;
 
-        $op->id_oferta = $co->id_oferta;
-        $op->cantidad = $co->cantidad;
+        $op->id_contra = $co->id;
         $op->fecha = Date('Y-m-j');
-        $op->precio = $co->precio;
-        $op->id_cobro = $co->cobro->id;
-        $op->plazo = $co->plazo;
-        $op->tipo = 1;
 
         $op->save();
 

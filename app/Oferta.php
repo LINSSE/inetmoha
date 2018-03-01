@@ -21,11 +21,6 @@ class Oferta extends Model
         return $this->hasOne('MOHA\Producto', 'id', 'id_prod');
     }
 
-    public function opOfertas()
-    {
-        return $this->belongsTo('MOHA\OperacionesOferta', 'id_oferta');
-    }
-
     public function puesto()
     {
         return $this->hasOne('MOHA\Puesto', 'id', 'id_puesto');
@@ -45,4 +40,10 @@ class Oferta extends Model
     {
         return $this->hasOne('MOHA\Medida', 'id', 'id_medida');
     }
+
+    public function contrao()
+    {
+        return $this->belongsTo('MOHA\Contraoferta', 'id_oferta');
+    }
+
 }
