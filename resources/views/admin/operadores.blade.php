@@ -16,6 +16,9 @@
                 <div class="checkbox">
                     <ul class="filtro-usu">
                         <label>
+                            Filtrar por Tipos de Usuarios    
+                        </label>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label>
                             <input type="checkbox" name="usuarios[]" value="1"> Operadores    
                         </label>&nbsp;&nbsp;&nbsp;&nbsp;
                         <label>

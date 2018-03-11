@@ -20,7 +20,8 @@
                     <tr>
                         <th>Producto</th>
                         <th>Modo</th>
-                        <th>Cantidad</th>
+                        <th>Cant. Original</th>
+                        <th>Cant. Disponible</th>
                         <th>Precio</th>
                         <th>Fecha Fin</th>
                         <th>Puesto</th>
@@ -33,6 +34,7 @@
                          <input type="hidden" name="id" value="{{$of->id}}">
                        	<td><input type="text" class="input-table" name="producto" value="{{$of->producto->nombre}} {{$of->producto->descripcion}} {{$of->producto->descripcion2}}" disabled></td>
                         <td><input type="text" class="input-table" name="modo" value="{{$of->modo->descripcion}} X {{$of->peso}} {{$of->medida->descripcion}}" readonly="true"></td>
+                        <td><input type="text" class="input-table" name="cantidado" value="{{$of->cantidadOriginal}}" readonly="true"></td>
                         <td><input type="text" class="input-table" name="cantidad" value="{{$of->cantidad}}" readonly="true"></td>
                        	<td><input type="text" class="input-table" name="precio" value="$ {{$of->precio}}" readonly="true"></td>
                        	<td><input type="text" class="input-table" name="fechafin" value="{{$of->fechaFin}}" readonly="true"></td>
@@ -73,7 +75,7 @@
                         <td><input type="text" class="input-table" name="precio" value="$ {{$co->precio}}" readonly="true"></td>
                         <td><input type="text" class="input-table" name="cobro" value="{{$co->cobro->descripcion}}" readonly="true"></td>
                         <td><input type="text" class="input-table" name="plazo" value="{{$co->plazo}}" readonly="true"></td>
-                       	<td><a type="button" href="/usuario/aceptarOferta/{{$co->id}}" class="btn btn-success admin tabla" title="Aceptar Contra Oferta">Aceptar</a><br><a type="button" href="/usuario/rechazarOferta/{{$co->id}}" class="btn btn-danger admin tabla" title="Aceptar Contra Oferta">Rechazar</a></td>
+                       	<td><a type="button" href="/usuario/aceptarOferta/{{$co->id}}" class="btn btn-success admin tabla" title="Aceptar Contra Oferta">Aceptar</a><br><a type="button" href="/usuario/rechazarOferta/{{$co->id}}" class="btn btn-danger admin tabla" title="Rechazar Contra Oferta">Rechazar</a></td>
                        </tr>
                    </tbody>
                @endforeach

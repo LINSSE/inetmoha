@@ -17,12 +17,13 @@
             <div class="col-md-12">
                 <h1 class="h1-tabla">Mis Ofertas</h1>
                 <div class="table-responsive">
-                    <table class="table">
+                    <table class="table table-bordered">
                         <thead>
                             <tr>
                                 <th>Producto</th>
                                 <th>Modo</th>
-                                <th>Cantidad</th>
+                                <th>Cant. Original</th>
+                                <th>Cant. Disponible</th>
                                 <th>Precio</th>
                                 <th>Fecha Fin</th>
                                 <th>Puesto</th>
@@ -40,7 +41,8 @@
                                     <input type="hidden" name="id" value="{{$of->id}}">
 	                            	<td><input type="text" class="input-table" name="producto" value="{{$of->producto->nombre}} {{$of->producto->descripcion}} {{$of->producto->descripcion2}}" disabled></td>
                                     <td><input type="text" class="input-table" name="modo" value="{{$of->modo->descripcion}} X {{$of->peso}} {{$of->medida->descripcion}}" readonly="true"></td>
-	                            	<td><input type="text" class="input-table" name="cantidad" value="{{$of->cantidad}}" readonly="true"></td>
+	                            	<td><input type="text" class="input-table" name="cantidado" value="{{$of->cantidadOriginal}}" readonly="true"></td>
+                                    <td><input type="text" class="input-table" name="cantidad" value="{{$of->cantidad}}" readonly="true"></td>
 	                            	<td><input type="text" class="input-table" name="precio" value="$ {{$of->precio}}" readonly="true"></td>
 	                            	<td><input type="text" class="input-table" name="fechafin" value="{{$of->fechaFin}}" readonly="true"></td>
 	                            	<td><input type="text" class="input-table" name="puesto" value="{{$of->puesto->descripcion}}" readonly="true"></td>
@@ -48,7 +50,11 @@
                                     <td><input type="text" class="input-table" name="plazo" value="{{$of->plazo}}" readonly="true"></td>
 	                            	
                                     <td><a type="button" href="/usuario/detalleOferta/{{$of->id}}" class="btn btn-info admin tabla" title="Ver Contra-Ofertas">Ver Contra Ofertas</a></td>
-	                            	<td><button type="submit" class="btn btn-danger admin tabla" title="Eliminar Oferta">X</button></td>
+	                            	@if($of->cantidad != $of->cantidadOriginal)
+                                        <td><button type="submit" class="btn btn-danger admin tabla" title="No puede eliminar esta Oferta porque ya tiene Operaciones Concretadas" disabled>X</button></td>
+                                    @else
+                                        <td><button type="submit" class="btn btn-danger admin tabla" title="Eliminar Oferta" >X</button></td>
+                                    @endif
 
 	                            	</form>
 	                            </tr>

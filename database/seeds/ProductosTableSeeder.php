@@ -21,7 +21,7 @@ class ProductosTableSeeder extends Seeder
                 'nombre' => 'Papa',
                 'descripcion' => 'Blanca',
                 'descripcion2' => 'Grande',
-                'is_cat' => '2',
+                'id_cat' => '2',
             ),
             1 => 
             array (
@@ -29,7 +29,7 @@ class ProductosTableSeeder extends Seeder
                 'nombre' => 'Cebolla',
                 'descripcion' => 'Morada',
                 'descripcion2' => 'Chica',
-                'is_cat' => '1',
+                'id_cat' => '1',
             ),
             2 => 
             array (
@@ -37,7 +37,7 @@ class ProductosTableSeeder extends Seeder
                 'nombre' => 'Pomelo',
                 'descripcion' => 'Rosado',
                 'descripcion2' => 'Grande',
-                'is_cat' => '3',
+                'id_cat' => '3',
             ),
         ));
     }

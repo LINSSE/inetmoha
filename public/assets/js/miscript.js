@@ -15,6 +15,12 @@ $(document).ready(function(){
         $("#fechaf").attr("min", fecha);
     });
 
+    $("#fechadi").change(function(event){
+        var fecha = document.getElementById("fechadi").value;
+        $("#fechadf").attr("disabled", false);
+        $("#fechadf").attr("min", fecha);
+    });
+
     $('#agregarProd').on('click', function () {
             $('#agregarProducto').load("agregarProducto")//load a view into a modal
         $('#agregarProducto').modal('show'); //show the modal
@@ -98,6 +104,19 @@ $(document).ready(function(){
         $("#cantidad").attr("max", cant);
     });
 
+    demandar = function (id, cantidad, precio) {
+            $('#id_demanda').val(id);
+            $('#cantDemanda').val(cantidad);
+            $('#cantidadCd').val(cantidad);
+            $('#precioCd').val(precio);
+        $('#modalDemandar').modal('show'); //show the modal
+      }
+
+    $("#cantidadD").change(function(event){
+        var cant = document.getElementById("cantDemanda").value;
+        $("#cantidadD").attr("max", cant);
+    });
+
     $('#modalOfertar').on('hidden.bs.modal', function(){ 
         $(this).find('#formOfertar')[0].reset(); //para limpiar campos del modal
     });
@@ -107,6 +126,18 @@ $(document).ready(function(){
     });
 
     $("#formOfertar input:checkbox").on('click', function() {
+        $('input[name="' + this.name + '"]').not(this).prop('checked', false);
+    });
+
+    $('#modalDemandar').on('hidden.bs.modal', function(){ 
+        $(this).find('#formDemandar')[0].reset(); //para limpiar campos del modal
+    });
+
+    $("#formagregarDemanda input:checkbox").on('click', function() {
+        $('input[name="' + this.name + '"]').not(this).prop('checked', false);
+    });
+
+    $("#formDemandar input:checkbox").on('click', function() {
         $('input[name="' + this.name + '"]').not(this).prop('checked', false);
     });
 

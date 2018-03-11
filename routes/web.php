@@ -35,22 +35,30 @@ Route::group(['middleware' => 'auth'], function() {
 
 	Route::get('usuario/index', 'UserController@index');
 	Route::get('usuario/show/{id}', 'UserController@show');
-	Route::get('usuario/edit/{id}', 'UserController@edit');
+	Route::post('usuario/editarPerfil', 'UserController@editarPerfil');
 	Route::get('usuario/update/{id}', 'UserController@update');
-	Route::get('usuario/ofertas', 'OfertasController@misofertas');
+
+	Route::get('usuario/operaciones', 'OperacionesController@misoperaciones');
+
+	//Ofertas
 	Route::post('usuario/nuevaOferta', 'OfertasController@store');
 	Route::post('usuario/eliminarOferta', 'OfertasController@eliminar');
-	Route::get('usuario/demandas', 'DemandasController@misdemandas');
-	Route::post('usuario/nuevaDemanda', 'DemandasController@store');
-	Route::post('usuario/eliminarDemanda', 'DemandasController@eliminar');
-	Route::get('usuario/operaciones', 'OperacionesController@misoperaciones');
 	Route::get('usuario/buscarOfertas', 'OfertasController@buscarOfertas');
-	Route::get('usuario/buscarDemandas', 'DemandasController@buscarDemandas');
-	Route::post('usuario/editarPerfil', 'UserController@editarPerfil');
+	Route::get('usuario/ofertas', 'OfertasController@misofertas');
 	Route::post('usuario/contraOferta', 'ContraofertaController@store');
 	Route::get('usuario/detalleOferta/{id}', 'ContraofertaController@detalleOferta');
 	Route::get('usuario/aceptarOferta/{id}', 'ContraofertaController@aceptarOferta');
 	Route::get('usuario/rechazarOferta/{id}', 'ContraofertaController@rechazarOferta');
+
+	//Demandas
+	Route::post('usuario/nuevaDemanda', 'DemandasController@store');
+	Route::post('usuario/eliminarDemanda', 'DemandasController@eliminar');
+	Route::get('usuario/buscarDemandas', 'DemandasController@buscarDemandas');
+	Route::get('usuario/demandas', 'DemandasController@misdemandas');
+	Route::post('usuario/contraDemanda', 'ContrademandaController@store');
+	Route::get('usuario/detalleDemanda/{id}', 'ContrademandaController@detalleDemanda');
+	Route::get('usuario/aceptarDemanda/{id}', 'ContrademandaController@aceptarDemanda');
+	Route::get('usuario/rechazarDemanda/{id}', 'ContrademandaController@rechazarDemanda');
 });
 
 

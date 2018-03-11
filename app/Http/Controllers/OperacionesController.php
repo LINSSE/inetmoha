@@ -4,6 +4,7 @@ namespace MOHA\Http\Controllers;
 
 use Illuminate\Http\Request;
 use MOHA\Operacionoferta;
+use MOHA\Operaciondemanda;
 use MOHA\User;
 use Auth;
 use Session;
@@ -16,18 +17,28 @@ class OperacionesController extends Controller
     	/*$operaciones = Operacionoferta::leftJoin('contraofertas', 'operacionofertas.id_contra', '=', 'contraofertas.id')->where('contraofertas.id_comprador', '=', $id)->orderBy('operacionofertas.fecha', 'DSC')
                         ->get(['operacionofertas.*']);*/
 
-        $operaciones = Operacionoferta::leftJoin('ofertas', 'operacionofertas.id_contra', '=', 'ofertas.id')->where('ofertas.id_op', '=', $id)->orderBy('operacionofertas.fecha', 'DSC')
-                        ->get(['operacionofertas.*']);
+        $operacioneso = Operacionoferta::leftJoin('ofertas', 'operacionofertas.id_contra', '=', 'ofertas.id')
+                                                ->where('ofertas.id_op', '=', $id)
+                                                ->orderBy('operacionofertas.fecha', 'DSC')
+                                                ->get(['operacionofertas.*']);
 
-    	return view('usuario/operaciones', array('operaciones' => $operaciones));
+        $operacionesd = Operaciondemanda::leftJoin('demandas', 'operaciondemandas.id_contra', '=', 'demandas.id')
+                                                ->where('demandas.id_op', '=', $id)
+                                                ->orderBy('operaciondemandas.fecha', 'DSC')
+                                                ->get(['operaciondemandas.*']);
+
+    	return view('usuario/operaciones', array('operacioneso' => $operacioneso, 'operacionesd' => $operacionesd));
 
     }
 
      public function listaroperaciones() {
 
-    	$operaciones = Operacionoferta::orderBy('fecha', 'DSC')->get();
+    	$operacionesd = Operaciondemanda::orderBy('fecha', 'DSC')->get();
 
-    	return view('operaciones', array('operaciones' => $operaciones));
+        $operacioneso = Operacionoferta::orderBy('fecha', 'DSC')->get();
+
+        /*return view('prueba', array('operacioneso' => $operacioneso));*/
+    	return view('operaciones', array('operacioneso' => $operacioneso, 'operacionesd' => $operacionesd));
 
     }
 }

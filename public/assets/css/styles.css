@@ -363,3 +363,8 @@ h4.info {
   padding-left: 0px;
   padding-right: 0px;
 }
+
+.lupa {
+  border: none;
+  background-color: transparent;
+}

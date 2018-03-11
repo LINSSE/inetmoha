@@ -17,17 +17,26 @@ class CreateDemandasTable extends Migration
             $table->increments('id');
             $table->integer('id_op')->unsigned();
             $table->integer('id_prod')->unsigned();
+            $table->integer('id_modo')->unsigned();
+            $table->integer('peso');
+            $table->integer('id_medida')->unsigned();
             $table->integer('cantidad');
+            $table->integer('cantidadOriginal');
             $table->double('precio');
             $table->date('fechaInicio');
             $table->date('fechaFin');
-            $table->enum('pago', ['Cdo', 'CPD', 'Com', 'Efec']);
-            $table->enum('destino', ['BA', 'ROS', 'CBA', 'BRQ', 'COR']);
-            $table->enum('modo', ['Raso', 'Emb', 'Abie']);
+            $table->integer('id_puesto')->unsigned();
+            $table->integer('id_cobro')->unsigned();
+            $table->enum('plazo', ['Contado', '30', '60', '90'])->default('Contado');
+            $table->boolean('abierta')->default(false);
             $table->timestamps();
 
             $table->foreign('id_op')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('id_prod')->references('id')->on('productos')->onDelete('cascade');
+            $table->foreign('id_puesto')->references('id')->on('puestos')->onDelete('cascade');
+            $table->foreign('id_cobro')->references('id')->on('cobros')->onDelete('cascade');
+            $table->foreign('id_modo')->references('id')->on('modos')->onDelete('cascade');
+            $table->foreign('id_medida')->references('id')->on('medidas')->onDelete('cascade');
         });
     }
 

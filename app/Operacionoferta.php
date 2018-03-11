@@ -8,7 +8,7 @@ class Operacionoferta extends Model
 {
     //
     protected $fillable = [
-        'id_contra', 'fecha',
+        'id_contra', 'fecha', 'tipo',
     ];
 
     public function contra()

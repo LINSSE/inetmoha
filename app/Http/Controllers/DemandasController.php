@@ -7,61 +7,97 @@ use MOHA\Demanda;
 use MOHA\Producto;
 use Auth;
 use MOHA\User;
+use MOHA\Modo;
+use MOHA\Cobro;
+use MOHA\Puesto;
+use MOHA\Medida;
 use Session;
+use Illuminate\Support\Facades\DB;
 
 class DemandasController extends Controller
 {
     public function store(Request $request) {
 
-    	$demanda = new Demanda;
+    	DB::beginTransaction();
 
-    	$demanda->id_op = Auth::user()->id;
-    	$demanda->id_prod = $request->id_prod;
-    	$demanda->cantidad = $request->cantidad;
-    	$demanda->precio = $request->precio;
-        $demanda->fechaInicio = $request->fecha;
-        $demanda->fechaFin = $request->fechaf;
-    	$demanda->pago = $request->pago;
-    	$demanda->destino = $request->destino;
-    	$demanda->modo = $request->modo;
+        try {
 
-    	$demanda->save();
-        Session::flash('demanda', 'Su Demanda ha sido publicada con éxito!');
-    	return back();
+            $demanda = new Demanda;
+
+            $demanda->id_op = Auth::user()->id;
+            $demanda->id_prod = $request->id_prod;
+            $demanda->id_modo = $request->id_modo;
+            $demanda->peso = $request->peso;
+            $demanda->id_medida = $request->id_medida;
+            $demanda->cantidad = $request->cantidad;
+            $demanda->cantidadOriginal = $request->cantidad;
+            $demanda->precio = $request->precio;
+            $demanda->fechaInicio = $request->fechadi;
+            $demanda->fechaFin = $request->fechadf;
+            $demanda->id_puesto = $request->puesto;
+            $demanda->id_cobro = $request->cobro;
+            $demanda->plazo = $request->plazo;
+
+            $demanda->save();
+            Session::flash('demanda', 'Su Demanda ha sido publicada con éxito!');
+            DB::commit();
+            
+        } catch (\Trowable $e) {
+            
+            DB::rollback();
+            throw $e;
+        }
+        
+        return back();
     }
 
     public function demandas () {
-        if(Auth::check()) {
-        $demandas = Demanda::All();
         
-        return view('demandas', array('demandas' => $demandas));
-        }else{
-            
-            return view('demandas');
+        $hoy = Date('Y-m-j');
+        $demandas = Demanda::whereDate('fechaInicio', '<=', $hoy)->whereDate('fechaFin', '>=', $hoy)->where('cantidad', '>', 0)->orderBy('fechaFin', 'ASC')->get();
+        
+        $cobros = Cobro::orderBy('descripcion', 'ASC')->get();
 
-        }
+        return view('demandas', array('demandas' => $demandas, 'cobros' => $cobros));
     }
 
     public function misdemandas() {
 
-    	$demandas = Demanda::where('id_op', '=', (Auth::user()->id))->get();
-    	$productos = Producto::All();
-
-    	return view('usuario/demandas', array('demandas' => $demandas, 'productos' => $productos));
+    	$demandas = Demanda::where('id_op', '=', (Auth::user()->id))->orderBy('fechaFin', 'ASC')->get();
+        $productos = Producto::All();
+        $modos = Modo::orderBy('descripcion', 'ASC')->get();
+        $cobros = Cobro::orderBy('descripcion', 'ASC')->get();
+        $puestos = Puesto::orderBy('descripcion', 'ASC')->get();
+        $medidas = Medida::orderBy('descripcion', 'ASC')->get();
+        
+        return view('usuario/demandas', array('demandas' => $demandas, 'productos' => $productos, 'modos' => $modos, 'cobros' => $cobros, 'puestos' => $puestos, 'medidas' => $medidas));
     }
 
     public function buscarDemandas(Request $request) {
+        $hoy = Date('Y-m-j');
         $buscar = $request->buscar;
         $demandas = Demanda::leftjoin('productos','demandas.id_prod','=','productos.id')
-                                     ->where('productos.nombre', 'like', '%'.ucwords(strtolower($buscar)).'%')
-                                     ->orwhere('demandas.pago', 'like', '%'.ucwords(strtolower($buscar)).'%')
-                                     ->orwhere('demandas.destino', 'like', '%'.ucwords(strtolower($buscar)).'%')
-                                     ->orwhere('demandas.modo', 'like', '%'.ucwords(strtolower($buscar)).'%')
+                            ->leftjoin('users','demandas.id_op','=','users.id')
+                            ->leftjoin('modos','demandas.id_modo','=','modos.id')
+                            ->leftjoin('cobros','demandas.id_cobro','=','cobros.id')
+                            ->leftjoin('puestos','demandas.id_puesto','=','puestos.id')
+                                     ->whereDate('demandas.fechaInicio', '<=', $hoy)->whereDate('demandas.fechaFin', '>=', $hoy)
+                                     ->where(function ($query) use ($buscar){
+                                        $query->where('productos.nombre', 'like', '%'.ucwords(strtolower($buscar)).'%')
+                                        ->orwhere('users.name', 'like', '%'.ucwords(strtolower($buscar)).'%')
+                                        ->orwhere('users.apellido', 'like', '%'.ucwords(strtolower($buscar)).'%')
+                                        ->orwhere('users.razonsocial', 'like', '%'.ucwords(strtolower($buscar)).'%')
+                                        ->orwhere('modos.descripcion', 'like', '%'.ucwords(strtolower($buscar)).'%')
+                                        ->orwhere('cobros.descripcion', 'like', '%'.ucwords(strtolower($buscar)).'%')
+                                        ->orwhere('puestos.descripcion', 'like', '%'.ucwords(strtolower($buscar)).'%')
+                                        ->orwhere('demandas.fechaFin', 'like', '%'.$buscar.'%');
+                                     })
+                                     ->orderBy('demandas.fechaFin', 'ASC')
                                      ->get();
-
-        $productos = Producto::All();
         
-        return view('demandas', array('demandas' => $demandas, 'productos' => $productos));
+        $cobros = Cobro::orderBy('descripcion', 'ASC')->get();
+        
+        return view('demandas', array('demandas' => $demandas, 'cobros' => $cobros));
     }
 
     public function eliminar(Request $request) {

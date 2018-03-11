@@ -2,11 +2,11 @@
 
 @section('content')
     @if(Session::has('contraoferta'))
-            <div class="alert alert-success alert-dismissible fade in" role="alert">
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <strong>Su Orden de Compra a sido registrada. Será notificado si el Oferente la acepta o rechaza.</strong>
-            </div>
-        @endif
+        <div class="alert alert-success alert-dismissible fade in" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <strong>Su Orden de Compra a sido registrada. Será notificado si el Oferente la acepta o rechaza.</strong>
+        </div>
+    @endif
     @guest
         <center><h4>Debe Registrarse para Acceder a esta sección</h4></center>
     @else
@@ -28,7 +28,7 @@
         <div class="col-md-12">
             <h1 class="h1-tabla">Ofertas sin Tomar</h1>
             <div class="table-responsive">
-                <table class="table">
+                <table class="table table-bordered">
                     <thead>
                         <tr>
                             <th>Producto</th>
@@ -80,7 +80,7 @@
         <div class="col-md-12">
             <h1 class="h1-tabla">Ofertas Abiertas</h1>
             <div class="table-responsive">
-                <table class="table">
+                <table class="table table-bordered">
                     <thead>
                         <tr>
                             <th>Producto</th>
@@ -153,7 +153,7 @@
                                     </center>
                                 </div>
                                 <div class="form-group{{ $errors->has('cantidad') ? ' has-error' : '' }}">
-                                    <label for="cantidad" class="col-md-4 control-label">Cantidad</label>
+                                    <label for="cantidadCo" class="col-md-4 control-label">Cantidad</label>
 
                                     <div class="col-md-6">
                                         <input id="cantidadCo" placeholder="Ingrese la Cantidad a Comprar" type="number" class="form-control" name="cantidadCo" min="1" value="{{ old('cantidad') }}" required autofocus>
