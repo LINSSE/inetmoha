@@ -1,4 +1,6 @@
 @foreach($operacioneso as $op)
-	{{$op->contra->oferta->id}}
+	dd{{$op}}
 @endforeach
-
+@foreach($operacionesd as $op)
+	dd{{$op}}
+@endforeach

@@ -29,6 +29,11 @@ class PuestosTableSeeder extends Seeder
                 'id' => 3,
                 'descripcion' => 'Rosario',
             ),
+            3 => 
+            array (
+                'id' => 4,
+                'descripcion' => 'Corrientes',
+            ),
         ));
     }
 }

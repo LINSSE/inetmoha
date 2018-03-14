@@ -83,6 +83,7 @@ class OfertasController extends Controller
                             ->leftjoin('cobros','ofertas.id_cobro','=','cobros.id')
                             ->leftjoin('puestos','ofertas.id_puesto','=','puestos.id')
                                      ->whereDate('ofertas.fechaInicio', '<=', $hoy)->whereDate('ofertas.fechaFin', '>=', $hoy)
+                                     ->where('ofertas.cantidad', '>', 0)
                                      ->where(function ($query) use ($buscar){
                                         $query->where('productos.nombre', 'like', '%'.ucwords(strtolower($buscar)).'%')
                                         ->orwhere('users.name', 'like', '%'.ucwords(strtolower($buscar)).'%')

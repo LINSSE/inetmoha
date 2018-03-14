@@ -25,7 +25,6 @@ Route::get('ofertas', 'OfertasController@ofertas');
 Route::get('precios', 'PaginasController@precios');
 Route::get('demandas', 'DemandasController@demandas');
 Route::get('operaciones', 'OperacionesController@listaroperaciones');
-//Route::get('operadores', 'PaginasController@operadores');
 Route::get('email/nuevoOperador', 'AdminController@enviarMail');
 Route::get('ciudades/{id}', 'ProvinciasController@getCiudades');
 
@@ -37,13 +36,13 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::get('usuario/show/{id}', 'UserController@show');
 	Route::post('usuario/editarPerfil', 'UserController@editarPerfil');
 	Route::get('usuario/update/{id}', 'UserController@update');
-
 	Route::get('usuario/operaciones', 'OperacionesController@misoperaciones');
 
 	//Ofertas
 	Route::post('usuario/nuevaOferta', 'OfertasController@store');
 	Route::post('usuario/eliminarOferta', 'OfertasController@eliminar');
 	Route::get('usuario/buscarOfertas', 'OfertasController@buscarOfertas');
+	Route::get('usuario/buscarOperaciones', 'OperacionesController@buscarOperaciones');
 	Route::get('usuario/ofertas', 'OfertasController@misofertas');
 	Route::post('usuario/contraOferta', 'ContraofertaController@store');
 	Route::get('usuario/detalleOferta/{id}', 'ContraofertaController@detalleOferta');

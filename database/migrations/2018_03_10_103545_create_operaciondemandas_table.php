@@ -17,6 +17,7 @@ class CreateOperaciondemandasTable extends Migration
             $table->increments('id');
             $table->integer('id_contra')->unsigned();
             $table->date('fecha');
+            $table->boolean('tipo')->default(false);
             $table->timestamps();
 
             $table->foreign('id_contra')->references('id')->on('contrademandas')->onDelete('cascade');

@@ -17,6 +17,7 @@ class CreateOperacionofertasTable extends Migration
             $table->increments('id');
             $table->integer('id_contra')->unsigned();
             $table->date('fecha');
+            $table->boolean('tipo')->default(true);
             $table->timestamps();
 
             $table->foreign('id_contra')->references('id')->on('contraofertas')->onDelete('cascade');
