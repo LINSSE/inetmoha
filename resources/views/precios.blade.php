@@ -12,7 +12,7 @@
                 <h1 class="h1-tabla">Precios del Día</h1>
                 <h5 class="text-center">Precios de Operaciones concretada en la última semana</h5>
                 <div class="table-responsive">
-                    <table class="table table-striped table-bordered table-condensed">
+                    <table class="table">
                         <thead>
                             <tr>
                                 <th>Producto </th>
@@ -64,7 +64,7 @@
                 <h1 class="h1-tabla">Precios Ofrecidos</h1>
                 <h5 class="text-center">Precios de Productos Demandados</h5>
                 <div class="table-responsive">
-                    <table class="table table-striped table-bordered table-condensed">
+                    <table class="table">
                         <thead>
                             <tr>
                                 <th>Producto </th>
@@ -90,7 +90,7 @@
                 <h1 class="h1-tabla">Tendencias de Precios</h1>
                 <h5 class="text-center">Precios de Productos en base a Mercado destino Buenos Aires</h5>
                 <div class="table-responsive">
-                    <table class="table table-striped table-bordered table-condensed">
+                    <table class="table">
                         <thead>
                             <tr>
                                 <th>Producto </th>

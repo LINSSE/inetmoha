@@ -28,8 +28,8 @@
                                 <th>Puesto</th>
                                 <th>Pago</th>
                                 <th>Plazo (días)</th>
-                                <th></th>
-                                <th></th>
+                                <th style="cursor:default;"></th>
+                                <th style="cursor:default;"></th>
                             </tr>
                         </thead>
                         @foreach($demandas as $dem)
@@ -38,15 +38,15 @@
                                     <form class="form-horizontal" name="eliminarDemandas" method="POST" action="/usuario/eliminarDemanda">
                                     {{ csrf_field() }}
                                     <input type="hidden" name="id" value="{{$dem->id}}">
-                                    <td><input type="text" class="input-table" name="producto" value="{{$dem->producto->nombre}} {{$dem->producto->descripcion}} {{$dem->producto->descripcion2}}" disabled></td>
-                                    <td><input type="text" class="input-table" name="modo" value="{{$dem->modo->descripcion}} X {{$dem->peso}} {{$dem->medida->descripcion}}" readonly="true"></td>
-                                    <td><input type="text" class="input-table" name="cantidado" value="{{$dem->cantidadOriginal}}" readonly="true"></td>
-                                    <td><input type="text" class="input-table" name="cantidad" value="{{$dem->cantidad}}" readonly="true"></td>
-                                    <td><input type="text" class="input-table" name="precio" value="$ {{$dem->precio}}" readonly="true"></td>
-                                    <td><input type="text" class="input-table" name="fechafin" value="{{$dem->fechaFin}}" readonly="true"></td>
-                                    <td><input type="text" class="input-table" name="puesto" value="{{$dem->puesto->descripcion}}" readonly="true"></td>
-                                    <td><input type="text" class="input-table" name="cobro" value="{{$dem->cobro->descripcion}}" readonly="true"></td>
-                                    <td><input type="text" class="input-table" name="plazo" value="{{$dem->plazo}}" readonly="true"></td>
+                                    <td>{{$dem->producto->nombre}} {{$dem->producto->descripcion}} {{$dem->producto->descripcion2}}</td>
+                                    <td>{{$dem->modo->descripcion}} X {{$dem->peso}} {{$dem->medida->descripcion}}</td>
+                                    <td>{{$dem->cantidadOriginal}}</td>
+                                    <td>{{$dem->cantidad}}</td>
+                                    <td>$ {{$dem->precio}}</td>
+                                    <td>{{$dem->fechaFin}}</td>
+                                    <td>{{$dem->puesto->descripcion}}</td>
+                                    <td>{{$dem->cobro->descripcion}}</td>
+                                    <td>{{$dem->plazo}}</td>
                                     
                                     <td><a type="button" href="/usuario/detalleDemanda/{{$dem->id}}" class="btn btn-info admin tabla" title="Ver Contra-Demandas">Ver Contra Demandas</a></td>
                                     @if($dem->cantidad != $dem->cantidadOriginal)
@@ -87,7 +87,7 @@
                                     <select class="form-control" name="id_prod" value="{{ old('id_prod') }}" required autofocus="true">
                                         <option disabled selected hidden> -- Seleccione un Producto -- </option>
                                         @foreach($productos as $prod)
-                                        <option value="{{$prod->id}}">{{$prod->nombre}} {{$prod->descripcion}}</option>
+                                        <option value="{{$prod->id}}">{{$prod->nombre}} {{$prod->descripcion}} {{$prod->descripcion}}</option>
                                         @endforeach
                                     </select>
                                     @if ($errors->has('id_prod'))

@@ -20,7 +20,7 @@
                                     <form class="form-horizontal" name="eliminarModos" method="POST" action="/modo/eliminar">
                                     {{ csrf_field() }}
                                     <input type="hidden" name="id" value="{{$modo->id}}">
-                                    <td><input type="text" class="input-table" name="descripcion" value="{{$modo->descripcion}}" disabled></td>
+                                    <td>{{$modo->descripcion}}</td>
                                     <td><button type="submit" class="btn btn-danger admin tabla" title="Eliminar Modo">X</button></td>
                                     </form>
                                 </tr>

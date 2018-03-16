@@ -28,12 +28,13 @@
         <div class="col-md-12">
             <h1 class="h1-tabla">Demandas sin Tomar</h1>
             <div class="table-responsive">
-                <table class="table table-bordered">
+                <table class="table">
                     <thead>
                         <thead>
                         <tr>
                             <th>Producto</th>
                             <th>Modo</th>
+                            <th>Categoría</th>
                             <th>Cantidad</th>
                             <th>Precio</th>
                             <th>Fecha Fin</th>
@@ -50,20 +51,21 @@
                             <tr>
                                 <input type="hidden" name="id" value="{{$dem->id}}">
                                 <input type="hidden" name="iduser" value="{{$dem->user->id}}">
-                                <td><input type="text" class="input-table" name="producto" value="{{$dem->producto->nombre}} {{$dem->producto->descripcion}} {{$dem->producto->descripcion2}}" disabled></td>
-                                <td><input type="text" class="input-table" name="modo" value="{{$dem->modo->descripcion}} X {{$dem->peso}} {{$dem->medida->descripcion}}" readonly="true"></td>
-                                <td><input type="text" class="input-table" name="cantidad" value="{{$dem->cantidad}}" disabled></td>
-                                <td><input type="text" class="input-table" name="precio" value="$ {{$dem->precio}}" disabled></td>
-                                <td><input type="text" class="input-table" name="fechaFin" value="{{$dem->fechaFin}}" disabled></td>
+                                <td>{{$dem->producto->nombre}} {{$dem->producto->descripcion}} {{$dem->producto->descripcion2}}</td>
+                                <td>{{$dem->modo->descripcion}} X {{$dem->peso}} {{$dem->medida->descripcion}}</td>
+                                <td>{{$dem->producto->categoria->descripcion}}</td>
+                                <td name="cantidad">{{$dem->cantidad}}</td>
+                                <td name="precio">$ {{$dem->precio}}</td>
+                                <td name="fechaFin">{{$dem->fechaFin}}</td>
                                 @if($dem->user->razonsocial === '')
-                                <td><input type="text" class="input-table" name="operador" value="{{$dem->user->apellido}} {{$dem->user->name}}" disabled></td>
+                                <td>{{$dem->user->apellido}} {{$dem->user->name}}</td>
                                 @else
-                                <td><input type="text" class="input-table" name="operador" value="{{$dem->user->razonsocial}}" disabled></td>
+                                <td>{{$dem->user->razonsocial}}</td>
                                 @endif
-                                <td><input type="text" class="input-table" name="puesto" value="{{$dem->puesto->descripcion}}" disabled></td>
-                                <td><input type="text" class="input-table" name="cobro" value="{{$dem->cobro->descripcion}}" disabled></td>
-                                <td><input type="text" class="input-table" name="plazo" value="{{$dem->plazo}}" disabled></td>
-                                <td>@if(Auth::user()->activo === 1 && Auth::user()->id != $dem->user->id)
+                                <td>{{$dem->puesto->descripcion}}</td>
+                                <td>{{$dem->cobro->descripcion}}</td>
+                                <td>{{$dem->plazo}}</td>
+                                <td>@if(Auth::user()->activo === 1 && Auth::user()->id != $dem->user->id && Auth::user()->admin === 0)
                                         <button type="button" id="ofertar" data-toggle="modal" onclick="demandar({{$dem->id}},{{$dem->cantidad}},{{$dem->precio}})" class="btn btn-success admin tabla">Demandar</button>
                                     @else
                                         <button type="button" id="ofertar" data-toggle="modal" data_target="#modalOfertar" disabled class="btn btn-success admin tabla" title="Su Usuario no está ACTIVO o esta Oferta es suya">Demandar</button>
@@ -81,11 +83,12 @@
         <div class="col-md-12">
             <h1 class="h1-tabla">Demandas Abiertas</h1>
             <div class="table-responsive">
-                <table class="table table-bordered">
+                <table class="table">
                     <thead>
                         <tr>
                             <th>Producto</th>
                             <th>Modo</th>
+                            <th>Categoría</th>
                             <th>Cantidad</th>
                             <th>Precio</th>
                             <th>Fecha Fin</th>
@@ -102,20 +105,21 @@
                             <tr>
                                 <input type="hidden" name="id" value="{{$dem->id}}">
                                 <input type="hidden" name="iduser" value="{{$dem->user->id}}">
-                                <td><input type="text" class="input-table" name="producto" value="{{$dem->producto->nombre}} {{$dem->producto->descripcion}} {{$dem->producto->descripcion2}}" disabled></td>
-                                <td><input type="text" class="input-table" name="modo" value="{{$dem->modo->descripcion}} X {{$dem->peso}} {{$dem->medida->descripcion}}" readonly="true"></td>
-                                <td><input type="text" class="input-table" name="cantidad" value="{{$dem->cantidad}}" disabled></td>
-                                <td><input type="text" class="input-table" name="precio" value="$ {{$dem->precio}}" disabled></td>
-                                <td><input type="text" class="input-table" name="fechaFin" value="{{$dem->fechaFin}}" disabled></td>
+                                <td>{{$dem->producto->nombre}} {{$dem->producto->descripcion}} {{$dem->producto->descripcion2}}</td>
+                                <td>{{$dem->modo->descripcion}} X {{$dem->peso}} {{$dem->medida->descripcion}}</td>
+                                <td>{{$dem->producto->categoria->descripcion}}</td>
+                                <td name="cantidad">{{$dem->cantidad}}</td>
+                                <td name="precio">$ {{$dem->precio}}</td>
+                                <td name="fechaFin">{{$dem->fechaFin}}</td>
                                 @if($dem->user->razonsocial === '')
-                                <td><input type="text" class="input-table" name="operador" value="{{$dem->user->apellido}} {{$dem->user->name}}" disabled></td>
+                                <td>{{$dem->user->apellido}} {{$dem->user->name}}</td>
                                 @else
-                                <td><input type="text" class="input-table" name="operador" value="{{$dem->user->razonsocial}}" disabled></td>
+                                <td>{{$dem->user->razonsocial}}</td>
                                 @endif
-                                <td><input type="text" class="input-table" name="puesto" value="{{$dem->puesto->descripcion}}" disabled></td>
-                                <td><input type="text" class="input-table" name="cobro" value="{{$dem->cobro->descripcion}}" disabled></td>
-                                <td><input type="text" class="input-table" name="plazo" value="{{$dem->plazo}}" disabled></td>
-                                <td>@if(Auth::user()->activo === 1 && Auth::user()->id != $dem->user->id)
+                                <td>{{$dem->puesto->descripcion}}</td>
+                                <td>{{$dem->cobro->descripcion}}</td>
+                                <td>{{$dem->plazo}}</td>
+                                <td>@if((Auth::user()->activo === 1 && Auth::user()->id != $dem->user->id && Auth::user()->admin === 0)
                                         <button type="button" id="ofertar" data-toggle="modal" onclick="demandar({{$dem->id}},{{$dem->cantidad}},{{$dem->precio}})" class="btn btn-success admin tabla">Demandar</button>
                                     @else
                                         <button type="button" id="ofertar" data-toggle="modal" data_target="#modalOfertar" disabled class="btn btn-success admin tabla" title="Su Usuario no está ACTIVO o esta Oferta es suya">Demandar</button>

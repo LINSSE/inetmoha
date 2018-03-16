@@ -21,14 +21,16 @@
         </div>
         <div class="col-md-12">
             <h1 class="h1-tabla">Operaciones Concretadas</h1>
+            <h5><span class="glyphicon glyphicon-info-sign" alt="Presione sobre los nombres de las columnas para ordenar según lo requiera" title="Presione sobre los nombres de las columnas para ordenar según lo requiera"></span>Presione sobre los nombres de las columnas para ordenar según lo requiera</h5> 
             <div class="table-responsive">
-                <table id="table-operaciones" class="table sortable">
+                <table class="table">
                     <thead>
                         <tr>
                             <th>Producto</th>
                             <th>Modo</th>
+                            <th>Categoría</th>
                             <th>Cantidad</th>
-                            <th data-defaultsort="desc">Fecha</th>
+                            <th>Fecha</th>
                             <th>Precio</th>
                             <th>Pago</th>
                             <th>Plazo (días)</th>
@@ -39,29 +41,30 @@
                     <tbody>
                         @foreach($operacioneso as $op)
                             <tr>
-                                <input type="hidden" name="id" value="{{$op->id}}">
-                                <td><input type="text" class="input-table" name="producto" value="{{$op->contra->oferta->producto->nombre}} {{$op->contra->oferta->producto->descripcion}} {{$op->contra->oferta->producto->descripcion2}}" disabled></td>
-                                <td><input type="text" class="input-table" name="modo" value="{{$op->contra->oferta->modo->descripcion}} X {{$op->contra->oferta->peso}} {{$op->contra->oferta->medida->descripcion}}" readonly="true"></td>
-                                <td><input type="text" class="input-table" name="cantidad" value="{{$op->contra->cantidad}}" readonly="true"></td>
-                                <td><input type="text" class="input-table" name="fecha" value="{{$op->fecha}}" readonly="true"></td>
-                                <td><input type="text" class="input-table" name="precio" value="$ {{$op->contra->precio}}" readonly="true"></td>
-                                <td><input type="text" class="input-table" name="pago" value="{{$op->contra->cobro->descripcion}}" readonly="true"></td>
-                                <td><input type="text" class="input-table" name="plazo" value="{{$op->contra->plazo}}" readonly="true"></td>
-                                <td><input type="text" class="input-table" name="destino" value="{{$op->contra->oferta->puesto->descripcion}}" readonly="true"></td>
+                                <td>{{$op->contra->oferta->producto->nombre}} {{$op->contra->oferta->producto->descripcion}} {{$op->contra->oferta->producto->descripcion2}}</td>
+                                <td>{{$op->contra->oferta->modo->descripcion}} X {{$op->contra->oferta->peso}} {{$op->contra->oferta->medida->descripcion}}</td>
+                                <td>{{$op->contra->oferta->producto->categoria->descripcion}}</td>
+                                <td>{{$op->contra->cantidad}}</td>
+                                <td>{{$op->fecha}}</td>
+                                <td>$ {{$op->contra->precio}}</td>
+                                <td>{{$op->contra->cobro->descripcion}}</td>
+                                <td>{{$op->contra->plazo}}</td>
+                                <td>{{$op->contra->oferta->puesto->descripcion}}</td>
                                 <td> --- </td>
-                            <tr>
+                            </tr>
                         @endforeach
                         @foreach($operacionesd as $op)
                             <tr>
-                                <td><input type="text" class="input-table" name="producto" value="{{$op->contra->demanda->producto->nombre}} {{$op->contra->demanda->producto->descripcion}} {{$op->contra->demanda->producto->descripcion2}}" disabled></td>
-                                <td><input type="text" class="input-table" name="modo" value="{{$op->contra->demanda->modo->descripcion}} X {{$op->contra->demanda->peso}} {{$op->contra->demanda->medida->descripcion}}" readonly="true"></td>
-                                <td><input type="text" class="input-table" name="cantidad" value="{{$op->contra->cantidad}}" readonly="true"></td>
-                                <td><input type="text" class="input-table" name="fecha" value="{{$op->fecha}}" readonly="true"></td>
-                                <td><input type="text" class="input-table" name="precio" value="$ {{$op->contra->precio}}" readonly="true"></td>
-                                <td><input type="text" class="input-table" name="pago" value="{{$op->contra->cobro->descripcion}}" readonly="true"></td>
-                                <td><input type="text" class="input-table" name="plazo" value="{{$op->contra->plazo}}" readonly="true"></td>
+                                <td>{{$op->contra->demanda->producto->nombre}} {{$op->contra->demanda->producto->descripcion}} {{$op->contra->demanda->producto->descripcion2}}</td>
+                                <td>{{$op->contra->demanda->modo->descripcion}} X {{$op->contra->demanda->peso}} {{$op->contra->demanda->medida->descripcion}}</td>
+                                <td>{{$op->contra->demanda->producto->categoria->descripcion}}</td>
+                                <td>{{$op->contra->cantidad}}</td>
+                                <td>{{$op->fecha}}</td>
+                                <td>$ {{$op->contra->precio}}</td>
+                                <td>{{$op->contra->cobro->descripcion}}</td>
+                                <td>{{$op->contra->plazo}}</td>
                                 <td> --- </td>
-                                <td><input type="text" class="input-table" name="destino" value="{{$op->contra->demanda->puesto->descripcion}}" readonly="true"></td>                            
+                                <td>{{$op->contra->demanda->puesto->descripcion}}</td>                            
                             </tr>
                         @endforeach
                     </tbody>

@@ -51,7 +51,7 @@
                             <th>Ciudad </th>
                             <th>Provincia </th>
                             <th>Tipo de Usuario</th>
-                            <th></th>
+                            <th style="cursor:default;"></th>
                         </tr>
                     </thead>
                     @foreach($users as $user)
@@ -61,16 +61,16 @@
                             <input type="hidden" name="id" value="{{$user->id}}">
                             <tbody>
                                 <tr>
-                                    <td><input type="text" class="input-table" name="apellido" value="{{$user->apellido}}" disabled></td>
-                                    <td><input type="text" class="input-table" name="name" value="{{$user->name}}" disabled></td>
-                                    <td><input type="text" class="input-table" name="razonsocial" value="{{ $user->razonsocial }}" disabled></td>
-                                    <td><input type="email" class="input-table" name="email" value="{{$user->email}}" disabled></td>
-                                    <td><input type="text" class="input-table" name="dni" value="{{ $user->dni }}" disabled maxlength="8" minlength="8" inputmode="numeric"></td>
-                                    <td><input id="telefono" type="text" class="input-table" name="telefono" value="{{ $user->telefono }}" disabled maxlength="13" inputmode="numeric"></td>
-                                    <td><input id="domicilio" type="text" class="input-table" name="domicilio" value="{{ $user->domicilio }}" disabled></td>
-                                    <td><input id="id_ciudad" type="text" class="input-table" name="id_ciudad" value="{{ $user->ciudad->nombre }}" disabled></td>
-                                    <td><input id="id_provincia" type="text" class="input-table" name="id_provincia" value="{{ $user->provincia->nombre }}" disabled></td>
-                                    <td><input id="tipo_us" type="text" class="input-table" name="tipo_us" value="{{ $user->tipoUsuario->descripcion}}" disabled></td>
+                                    <td>{{$user->apellido}}</td>
+                                    <td>{{$user->name}}</td>
+                                    <td>{{$user->razonsocial}}</td>
+                                    <td>{{$user->email}}</td>
+                                    <td>{{$user->dni}}</td>
+                                    <td>{{$user->telefono}}</td>
+                                    <td>{{$user->domicilio}}</td>
+                                    <td>{{$user->ciudad->nombre}}</td>
+                                    <td>{{$user->provincia->nombre}}</td>
+                                    <td>{{$user->tipoUsuario->descripcion}}</td>
                                     <td><button type="submit" class="btn btn-success" title="Haga click para ACTIVAR éste Operador">Activar</button></td>
                                 </tr>
                             </tbody>
@@ -99,7 +99,7 @@
                             <th>Ciudad </th>
                             <th>Provincia </th>
                             <th>Tipo de Usuario</th>
-                            <th></th>
+                            <th style="cursor:default;"></th>
                         </tr>
                     </thead>
                     @foreach($users as $user)
@@ -109,16 +109,16 @@
                             <input type="hidden" name="id" value="{{$user->id}}">
                             <tbody>
                                 <tr>
-                                    <td><input type="text" class="input-table" name="apellido" value="{{$user->apellido}}" disabled></td>
-                                    <td><input type="text" class="input-table" name="name" value="{{$user->name}}" disabled></td>
-                                    <td><input type="text" class="input-table" name="razonsocial" value="{{$user->razonsocial}}" disabled></td>
-                                    <td><input type="email" class="input-table" name="email" value="{{$user->email}}" disabled></td>
-                                    <td><input type="text" class="input-table" name="dni" value="{{ $user->dni }}" disabled maxlength="8" minlength="8" inputmode="numeric"></td>
-                                    <td><input id="telefono" type="text" class="input-table" name="telefono" value="{{ $user->telefono }}" disabled maxlength="13" inputmode="numeric"></td>
-                                    <td><input id="domicilio" type="text" class="input-table" name="domicilio" value="{{ $user->domicilio }}" disabled></td>
-                                    <td><input id="id_ciudad" type="text" class="input-table" name="id_ciudad" value="{{ $user->ciudad->nombre }}" disabled></td>
-                                    <td><input id="id_provincia" type="text" class="input-table" name="id_provincia" value="{{ $user->provincia->nombre }}" disabled></td>
-                                    <td><input id="tipo_us" type="text" class="input-table" name="tipo_us" value="{{ $user->tipoUsuario->descripcion}}" disabled></td>
+                                    <td>{{$user->apellido}}</td>
+                                    <td>{{$user->name}}</td>
+                                    <td>{{$user->razonsocial}}</td>
+                                    <td>{{$user->email}}</td>
+                                    <td>{{$user->dni}}</td>
+                                    <td>{{$user->telefono}}</td>
+                                    <td>{{$user->domicilio}}</td>
+                                    <td>{{$user->ciudad->nombre}}</td>
+                                    <td>{{$user->provincia->nombre}}</td>
+                                    <td>{{$user->tipoUsuario->descripcion}}</td>
                                     <td><button type="submit" class="btn btn-danger" title="Haga click para DESACTIVAR éste Operador">Desactivar</button></a></td>
                                 </tr>
                             </tbody>

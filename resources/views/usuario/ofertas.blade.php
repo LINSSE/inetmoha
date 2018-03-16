@@ -17,7 +17,7 @@
             <div class="col-md-12">
                 <h1 class="h1-tabla">Mis Ofertas</h1>
                 <div class="table-responsive">
-                    <table class="table table-bordered">
+                    <table class="table">
                         <thead>
                             <tr>
                                 <th>Producto</th>
@@ -29,8 +29,8 @@
                                 <th>Puesto</th>
                                 <th>Cobro</th>
                                 <th>Plazo (días)</th>
-                                <th></th>
-                                <th></th>
+                                <th style="cursor:default;"></th>
+                                <th style="cursor:default;"></th>
                             </tr>
                         </thead>
                         @foreach($ofertas as $of)
@@ -39,16 +39,15 @@
 	                            	<form class="form-horizontal" name="eliminarOferta" method="POST" action="/usuario/eliminarOferta">
                                     {{ csrf_field() }}
                                     <input type="hidden" name="id" value="{{$of->id}}">
-	                            	<td><input type="text" class="input-table" name="producto" value="{{$of->producto->nombre}} {{$of->producto->descripcion}} {{$of->producto->descripcion2}}" disabled></td>
-                                    <td><input type="text" class="input-table" name="modo" value="{{$of->modo->descripcion}} X {{$of->peso}} {{$of->medida->descripcion}}" readonly="true"></td>
-	                            	<td><input type="text" class="input-table" name="cantidado" value="{{$of->cantidadOriginal}}" readonly="true"></td>
-                                    <td><input type="text" class="input-table" name="cantidad" value="{{$of->cantidad}}" readonly="true"></td>
-	                            	<td><input type="text" class="input-table" name="precio" value="$ {{$of->precio}}" readonly="true"></td>
-	                            	<td><input type="text" class="input-table" name="fechafin" value="{{$of->fechaFin}}" readonly="true"></td>
-	                            	<td><input type="text" class="input-table" name="puesto" value="{{$of->puesto->descripcion}}" readonly="true"></td>
-	                            	<td><input type="text" class="input-table" name="cobro" value="{{$of->cobro->descripcion}}" readonly="true"></td>
-                                    <td><input type="text" class="input-table" name="plazo" value="{{$of->plazo}}" readonly="true"></td>
-	                            	
+	                            	<td>{{$of->producto->nombre}} {{$of->producto->descripcion}} {{$of->producto->descripcion2}}</td>
+                                    <td>{{$of->modo->descripcion}} X {{$of->peso}} {{$of->medida->descripcion}}</td>
+                                    <td>{{$of->cantidadOriginal}}</td>
+                                    <td>{{$of->cantidad}}</td>
+                                    <td>$ {{$of->precio}}</td>
+                                    <td>{{$of->fechaFin}}</td>
+                                    <td>{{$of->puesto->descripcion}}</td>
+                                    <td>{{$of->cobro->descripcion}}</td>
+                                    <td>{{$of->plazo}}</td>
                                     <td><a type="button" href="/usuario/detalleOferta/{{$of->id}}" class="btn btn-info admin tabla" title="Ver Contra-Ofertas">Ver Contra Ofertas</a></td>
 	                            	@if($of->cantidad != $of->cantidadOriginal)
                                         <td><button type="submit" class="btn btn-danger admin tabla" title="No puede eliminar esta Oferta porque ya tiene Operaciones Concretadas" disabled>X</button></td>
@@ -88,7 +87,7 @@
 	                                <select class="form-control" name="id_prod" value="{{ old('id_prod') }}" required autofocus="true">
 	                                    <option disabled selected hidden> -- Seleccione un Producto -- </option>
 	                                    @foreach($productos as $prod)
-	                                    <option value="{{$prod->id}}">{{$prod->nombre}} {{$prod->descripcion}}</option>
+	                                    <option value="{{$prod->id}}">{{$prod->nombre}} {{$prod->descripcion}} {{$prod->descripcion}}</option>
 	                                    @endforeach
 	                                </select>
 	                                @if ($errors->has('id_prod'))

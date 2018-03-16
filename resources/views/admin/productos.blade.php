@@ -22,10 +22,10 @@
                                     <form class="form-horizontal" name="eliminarProducto" method="POST" action="/producto/eliminar">
                                     {{ csrf_field() }}
                                     <input type="hidden" name="id" value="{{$prod->id}}">
-                                    <td><input type="text" class="input-table" name="nombre" value="{{$prod->nombre}}" disabled></td>
-                                    <td><input type="text" class="input-table" name="descripcion" value="{{$prod->descripcion}}" disabled></td>
-                                    <td><input type="text" class="input-table" name="descripcion2" value="{{$prod->descripcion2}}" disabled></td>
-                                    <td><input type="text" class="input-table" name="categoria" value="{{$prod->categoria->descripcion}}" disabled></td>
+                                    <td>{{$prod->nombre}}</td>
+                                    <td>{{$prod->descripcion}}</td>
+                                    <td>{{$prod->descripcion2}}</td>
+                                    <td>{{$prod->categoria->descripcion}}</td>
                                     <td><button type="submit" class="btn btn-danger admin tabla" title="Eliminar Producto">X</button></td>
                                     </form>
                                 </tr>

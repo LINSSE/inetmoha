@@ -32,15 +32,15 @@
                    <tbody>
                        <tr>
                          <input type="hidden" name="id" value="{{$of->id}}">
-                       	<td><input type="text" class="input-table" name="producto" value="{{$of->producto->nombre}} {{$of->producto->descripcion}} {{$of->producto->descripcion2}}" disabled></td>
-                        <td><input type="text" class="input-table" name="modo" value="{{$of->modo->descripcion}} X {{$of->peso}} {{$of->medida->descripcion}}" readonly="true"></td>
-                        <td><input type="text" class="input-table" name="cantidado" value="{{$of->cantidadOriginal}}" readonly="true"></td>
-                        <td><input type="text" class="input-table" name="cantidad" value="{{$of->cantidad}}" readonly="true"></td>
-                       	<td><input type="text" class="input-table" name="precio" value="$ {{$of->precio}}" readonly="true"></td>
-                       	<td><input type="text" class="input-table" name="fechafin" value="{{$of->fechaFin}}" readonly="true"></td>
-                       	<td><input type="text" class="input-table" name="puesto" value="{{$of->puesto->descripcion}}" readonly="true"></td>
-                       	<td><input type="text" class="input-table" name="cobro" value="{{$of->cobro->descripcion}}" readonly="true"></td>
-                        <td><input type="text" class="input-table" name="plazo" value="{{$of->plazo}}" readonly="true"></td>
+                       	<td>{{$of->producto->nombre}} {{$of->producto->descripcion}} {{$of->producto->descripcion2}}</td>
+                        <td>{{$of->modo->descripcion}} X {{$of->peso}} {{$of->medida->descripcion}}</td>
+                        <td>{{$of->cantidadOriginal}}</td>
+                        <td>{{$of->cantidad}}</td>
+                       	<td>$ {{$of->precio}}</td>
+                       	<td>{{$of->fechaFin}}</td>
+                       	<td>{{$of->puesto->descripcion}}</td>
+                       	<td>{{$of->cobro->descripcion}}</td>
+                        <td>{{$of->plazo}}</td>
                        </tr>
                    </tbody>
             </table>
@@ -60,21 +60,21 @@
                         <th>Precio</th>
                         <th>Cobro</th>
                         <th>Plazo (días)</th>
-                        <th></th>
+                        <th style="cursor:default;"></th>
                     </tr>
                 </thead>
                 @foreach($cofertas as $co)
                    <tbody>
                        <tr> 
                        	@if($co->user->razonsocial === '')
-                        <td><input type="text" class="input-table" name="comprador" value="{{$co->user->apellido}} {{$co->user->name}}" disabled></td>
+                        <td>{{$co->user->apellido}} {{$co->user->name}}</td>
                         @else
-                        <td><input type="text" class="input-table" name="comprador" value="{{$co->user->razonsocial}}" disabled></td>
+                        <td>{{$co->user->razonsocial}}</td>
                         @endif
-                       	<td><input type="text" class="input-table" name="cantidad" value="{{$co->cantidad}}" readonly="true"></td>
-                        <td><input type="text" class="input-table" name="precio" value="$ {{$co->precio}}" readonly="true"></td>
-                        <td><input type="text" class="input-table" name="cobro" value="{{$co->cobro->descripcion}}" readonly="true"></td>
-                        <td><input type="text" class="input-table" name="plazo" value="{{$co->plazo}}" readonly="true"></td>
+                       	<td>{{$co->cantidad}}</td>
+                        <td>$ {{$co->precio}}</td>
+                        <td>{{$co->cobro->descripcion}}</td>
+                        <td>{{$co->plazo}}</td>
                        	<td><a type="button" href="/usuario/aceptarOferta/{{$co->id}}" class="btn btn-success admin tabla" title="Aceptar Contra Oferta">Aceptar</a><br><a type="button" href="/usuario/rechazarOferta/{{$co->id}}" class="btn btn-danger admin tabla" title="Rechazar Contra Oferta">Rechazar</a></td>
                        </tr>
                    </tbody>
@@ -93,21 +93,20 @@
                         <th>Precio</th>
                         <th>Cobro</th>
                         <th>Plazo (días)</th>
-                        <th></th>
                     </tr>
                 </thead>
                 @foreach($cofacep as $coa)
                    <tbody>
                        <tr> 
                         @if($coa->user->razonsocial === '')
-                        <td><input type="text" class="input-table" name="comprador" value="{{$coa->user->apellido}} {{$coa->user->name}}" disabled></td>
+                        <td>{{$coa->user->apellido}} {{$coa->user->name}}</td>
                         @else
-                        <td><input type="text" class="input-table" name="comprador" value="{{$coa->user->razonsocial}}" disabled></td>
+                        <td>{{$coa->user->razonsocial}}</td>
                         @endif
-                        <td><input type="text" class="input-table" name="cantidad" value="{{$coa->cantidad}}" readonly="true"></td>
-                        <td><input type="text" class="input-table" name="precio" value="$ {{$coa->precio}}" readonly="true"></td>
-                        <td><input type="text" class="input-table" name="cobro" value="{{$coa->cobro->descripcion}}" readonly="true"></td>
-                        <td><input type="text" class="input-table" name="plazo" value="{{$coa->plazo}}" readonly="true"></td>
+                        <td>{{$coa->cantidad}}</td>
+                        <td>$ {{$coa->precio}}</td>
+                        <td>{{$coa->cobro->descripcion}}</td>
+                        <td>{{$coa->plazo}}</td>
                        </tr>
                    </tbody>
                @endforeach
