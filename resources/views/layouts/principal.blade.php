@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="{{ asset('https://fonts.googleapis.com/css?family=Cookie')}}">
     <link rel="stylesheet" href="{{ asset('assets/fonts/font-awesome.min.css')}}">
     
-    
+    <script type="text/javascript" src="{{ asset('assets/js/moment.min.js')}}"></script>
     <script type="text/javascript" src="{{ asset('assets/js/jquery.min.js')}}"></script>
     <script type="text/javascript" src="{{ asset('assets/js/miscript.js')}}"></script>
     <script type="text/javascript" src="{{ asset('assets/bootstrap/js/bootstrap.min.js')}}"></script>

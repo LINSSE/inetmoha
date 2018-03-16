@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    
+   
     $("#provincias").change(function(event){
         $.get("ciudades/"+event.target.value+"",function(response, provincia){
         $("#ciudades").empty();
@@ -141,4 +141,5 @@ $(document).ready(function(){
         $('input[name="' + this.name + '"]').not(this).prop('checked', false);
     });
 
+    
 });

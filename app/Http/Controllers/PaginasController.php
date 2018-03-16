@@ -21,10 +21,6 @@ class PaginasController extends Controller
         return view('operadores', array('users' => $users));
 	}
 
-	public function precios () {
-		return view('precios');
-	}
-
 	public function cobros () {
 		$cobros = Cobro::orderBy('descripcion', 'ASC')->get();
 		return view('admin/datos/cobros', array('cobros' => $cobros));

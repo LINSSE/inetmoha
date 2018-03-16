@@ -22,13 +22,13 @@
         <div class="col-md-12">
             <h1 class="h1-tabla">Operaciones Concretadas</h1>
             <div class="table-responsive">
-                <table class="table">
+                <table id="table-operaciones" class="table sortable">
                     <thead>
                         <tr>
                             <th>Producto</th>
                             <th>Modo</th>
                             <th>Cantidad</th>
-                            <th>Fecha</th>
+                            <th data-defaultsort="desc">Fecha</th>
                             <th>Precio</th>
                             <th>Pago</th>
                             <th>Plazo (días)</th>

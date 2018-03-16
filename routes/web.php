@@ -22,7 +22,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 //Rutas Publicas
 Route::get('/index', 'PaginasController@index');
 Route::get('ofertas', 'OfertasController@ofertas');
-Route::get('precios', 'PaginasController@precios');
+Route::get('precios', 'PreciosController@precios');
 Route::get('demandas', 'DemandasController@demandas');
 Route::get('operaciones', 'OperacionesController@listaroperaciones');
 Route::get('email/nuevoOperador', 'AdminController@enviarMail');
@@ -101,9 +101,9 @@ Route::group(['middleware' => 'admin'], function() {
 use MOHA\User;
 
 Route::get('admin', 'ContraofertaController@prueba');
-Route::get('pr', function(){
-	 $buscar2 = $request->usuarios;
-	return view('prueba', $buscar2);
+Route::get('prueba', function(){
+	 
+	return view('prueba');
 });
 
 

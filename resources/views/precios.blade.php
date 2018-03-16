@@ -10,6 +10,7 @@
         <div class="row precios">
             <div class="col-md-6">
                 <h1 class="h1-tabla">Precios del Día</h1>
+                <h5 class="text-center">Precios de Operaciones concretada en la última semana</h5>
                 <div class="table-responsive">
                     <table class="table table-striped table-bordered table-condensed">
                         <thead>
@@ -21,18 +22,14 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach($preciosd as $pr)
                             <tr>
-                                <td>Tomate x 20kg</td>
-                                <td>200 </td>
-                                <td>180 </td>
-                                <td>220 </td>
+                                <td>{{$pr->nombre}} </td>
+                                <td>$ {{$pr->min}} </td>
+                                <td>$ {{$pr->prom}} </td>
+                                <td>$ {{$pr->max}} </td>
                             </tr>
-                            <tr>
-                                <td>Zapallito x 15kg</td>
-                                <td>150 </td>
-                                <td>150 </td>
-                                <td>150 </td>
-                            </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -65,58 +62,52 @@
         <div class="row">
             <div class="col-md-6">
                 <h1 class="h1-tabla">Precios Ofrecidos</h1>
+                <h5 class="text-center">Precios de Productos Demandados</h5>
                 <div class="table-responsive">
                     <table class="table table-striped table-bordered table-condensed">
                         <thead>
                             <tr>
                                 <th>Producto </th>
-                                <th>Actual </th>
-                                <th>Oct </th>
-                                <th>Nov </th>
+                                <th>Min </th>
+                                <th>Medio </th>
+                                <th>Max </th>
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach($precioso as $pr)
                             <tr>
-                                <td>Tomate x 20kg</td>
-                                <td>200 </td>
-                                <td>180 </td>
-                                <td>220 </td>
+                                <td>{{$pr->nombre}} </td>
+                                <td>$ {{$pr->min}} </td>
+                                <td>$ {{$pr->prom}} </td>
+                                <td>$ {{$pr->max}} </td>
                             </tr>
-                            <tr>
-                                <td>Zapallito x 15kg</td>
-                                <td>150 </td>
-                                <td>150 </td>
-                                <td>150 </td>
-                            </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
             </div>
             <div class="col-md-6">
                 <h1 class="h1-tabla">Tendencias de Precios</h1>
+                <h5 class="text-center">Precios de Productos en base a Mercado destino Buenos Aires</h5>
                 <div class="table-responsive">
                     <table class="table table-striped table-bordered table-condensed">
                         <thead>
                             <tr>
                                 <th>Producto </th>
-                                <th>Historico </th>
-                                <th>Actual </th>
-                                <th>Futuro </th>
+                                <th>Min </th>
+                                <th>Medio </th>
+                                <th>Max </th>
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach($preciost as $pr)
                             <tr>
-                                <td>Tomate x 20kg</td>
-                                <td>200 </td>
-                                <td>180 </td>
-                                <td>220 </td>
+                                <td>{{$pr->nombre}} </td>
+                                <td>$ {{$pr->min}} </td>
+                                <td>$ {{$pr->prom}} </td>
+                                <td>$ {{$pr->max}} </td>
                             </tr>
-                            <tr>
-                                <td>Zapallito x 15kg</td>
-                                <td>150 </td>
-                                <td>150 </td>
-                                <td>150 </td>
-                            </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
