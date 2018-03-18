@@ -4,7 +4,7 @@
 <center><h4 style="color:white;">Mercado Horticola</h4></center>
 </div>
 <br>
-<h3>La contra Demanda que realizó ha sido ACEPTADA por el vendedor!</h3>
+<h3>La Contra Demanda que realizó ha sido ACEPTADA por el comprador!</h3>
 <br>
 <h4 style="color:gray;">Estos son los datos del Vendedor y de la Compra:</h4>
 <p style="color:gray;">Apellido y Nombre: {{$user->apellido}}, {{$user->name}}</p>

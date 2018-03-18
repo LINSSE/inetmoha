@@ -13,7 +13,7 @@
     </div>
     @endif
     <div class="row">
-        <div class="col-md-6 admin prod">    
+        <div class="col-md-3 admin prod">    
         <h4 class="h4tit">Modos</h4>
         <a type="button" id="agregarMod" data-toggle="modal" data_target="#agregarModo" class="btn btn-success admin">Agregar Modo</a>
         <br>

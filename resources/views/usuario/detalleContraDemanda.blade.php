@@ -75,7 +75,11 @@
                     <td>$ {{$cd->precio}}</td>
                     <td>{{$cd->cobro->descripcion}}</td>
                     <td>{{$cd->plazo}}</td>
-                   	<td><a type="button" href="/usuario/aceptarDemanda/{{$cd->id}}" class="btn btn-success admin tabla" title="Aceptar Contra Demanda">Aceptar</a><br><a type="button" href="/usuario/rechazarDemanda/{{$cd->id}}" class="btn btn-danger admin tabla" title="Rechazar Contra Demanda">Rechazar</a></td>
+                    @if($dem->cantidad < $cd->cantidad)
+                     	<td><a type="button" href="/usuario/aceptarDemanda/{{$cd->id}}" class="btn btn-success admin tabla" title="La cantidad disponible no es suficiente" disabled>Aceptar</a><br><a type="button" href="/usuario/rechazarDemanda/{{$cd->id}}" class="btn btn-danger admin tabla" title="Rechazar Contra Demanda">Rechazar</a></td>
+                    @else
+                      <td><a type="button" href="/usuario/aceptarDemanda/{{$cd->id}}" class="btn btn-success admin tabla" title="Aceptar Contra Demanda">Aceptar</a><br><a type="button" href="/usuario/rechazarDemanda/{{$cd->id}}" class="btn btn-danger admin tabla" title="Rechazar Contra Demanda">Rechazar</a></td>
+                    @endif
                    </tr>
                @endforeach
                </tbody>

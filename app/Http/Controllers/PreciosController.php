@@ -35,7 +35,7 @@ class PreciosController extends Controller
 										->join('medidas', 'ofertas.id_medida', '=', 'medidas.id')
 										->select(DB::raw('CONCAT(productos.nombre, " ", productos.descripcion, " ", productos.descripcion2, " ", modos.descripcion, " ", "X", " ", ofertas.peso, " ",  medidas.descripcion) as nombre'), DB::raw('max(contraofertas.precio) as max'), DB::raw('min(contraofertas.precio) as min'), DB::raw('CAST(avg(contraofertas.precio) as int) AS prom'))
 										->whereDate('operacionofertas.fecha', '>', $fecha)
-										->where('contraofertas.aceptada', true)
+										->where('contraofertas.estado', '=', '1')
 										->groupBy('productos.nombre')
 										->groupBy('productos.descripcion')
 										->groupBy('productos.descripcion2')

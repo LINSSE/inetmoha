@@ -13,92 +13,87 @@
     </div>
     @endif
     <div class="row">
-    <h4 class="h4tit">Productos</h4>
-    <a type="button" id="agregarProd" data-toggle="modal" data_target="#agregarProducto" class="btn btn-success admin">Agregar Producto</a>
-	<br>
-	<div class="col-md-12 admin">
-                <table class="table chica prod">
-                    <thead>
+    
+	<div class="col-md-6 admin">
+        <h4 class="h4tit">Productos</h4>
+        <a type="button" id="agregarProd" data-toggle="modal" data_target="#agregarProducto" class="btn btn-success admin">Agregar Producto</a>
+        <br>
+        <table class="table chica prod">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Descripción Alt.</th>
+                    <th>Categoría</th>
+                    <th></th>
+                </tr>
+            </thead>
+            @foreach($productos as $prod)        
+                    <tbody>
                         <tr>
-                            <th>Nombre</th>
-                            <th>Descripción</th>
-                            <th>Descripción Alt.</th>
-                            <th>Categoría</th>
-                            <th></th>
+                            <form class="form-horizontal" name="eliminarProducto" method="POST" action="/admin/producto/eliminar">
+                            {{ csrf_field() }}
+                            <input type="hidden" name="id" value="{{$prod->id}}">
+                            <td>{{$prod->nombre}}</td>
+                            <td>{{$prod->descripcion}}</td>
+                            <td>{{$prod->descripcion2}}</td>
+                            <td>{{$prod->categoria->descripcion}}</td>
+                            <td class="col-chica"><button type="submit" class="btn btn-danger admin tabla" title="Eliminar Producto">X</button></td>
+                            </form>
                         </tr>
-                    </thead>
-                    @foreach($productos as $prod)        
-                            <tbody>
-                                <tr>
-                                    <form class="form-horizontal" name="eliminarProducto" method="POST" action="/admin/producto/eliminar">
-                                    {{ csrf_field() }}
-                                    <input type="hidden" name="id" value="{{$prod->id}}">
-                                    <td>{{$prod->nombre}}</td>
-                                    <td>{{$prod->descripcion}}</td>
-                                    <td>{{$prod->descripcion2}}</td>
-                                    <td>{{$prod->categoria->descripcion}}</td>
-                                    <td class="col-chica"><button type="submit" class="btn btn-danger admin tabla" title="Eliminar Producto">X</button></td>
-                                    </form>
-                                </tr>
-                            </tbody>
-                    @endforeach
-                </table>
+                    </tbody>
+            @endforeach
+        </table>
     </div>
-    </div> 
-
-    <hr>
-    <div class="row">
-    <div class="col-md-12 admin">
-    <div class="col-md-6 admin prod">    
+    <div class="col-md-3 admin prod">    
         <h4 class="h4tit">Categorías</h4>
         <a type="button" id="agregarCat" data-toggle="modal" data_target="#agregarCategoria" class="btn btn-success admin">Agregar Categoría</a>
         <br>
-                <table class="table chica prod">
-                    <thead>
+        <table class="table chica prod">
+            <thead>
+                <tr>
+                    <th>Descripción</th>
+                    <th></th>
+                </tr>
+            </thead>
+            @foreach($categorias as $cat)        
+                    <tbody>
                         <tr>
-                            <th>Descripción</th>
-                            <th></th>
+                            <form class="form-horizontal" name="eliminarCategoria" method="POST" action="/admin/categoria/eliminar">
+                            {{ csrf_field() }}
+                            <input type="hidden" name="id" value="{{$cat->id}}">
+                            <td><input type="text" class="input-table" name="descripcion" value="{{$cat->descripcion}}" disabled></td>
+                            <td class="col-chica"><button type="submit" class="btn btn-danger admin tabla" title="Eliminar Categoría">X</button></td>
+                            </form>
                         </tr>
-                    </thead>
-                    @foreach($categorias as $cat)        
-                            <tbody>
-                                <tr>
-                                    <form class="form-horizontal" name="eliminarCategoria" method="POST" action="/admin/categoria/eliminar">
-                                    {{ csrf_field() }}
-                                    <input type="hidden" name="id" value="{{$cat->id}}">
-                                    <td><input type="text" class="input-table" name="descripcion" value="{{$cat->descripcion}}" disabled></td>
-                                    <td class="col-chica"><button type="submit" class="btn btn-danger admin tabla" title="Eliminar Categoría">X</button></td>
-                                    </form>
-                                </tr>
-                            </tbody>
-                    @endforeach
-                </table>
+                    </tbody>
+            @endforeach
+        </table>
     </div>
-    <div class="col-md-6 admin prod">
+    <div class="col-md-3 admin prod">
         <h4 class="h4tit">Unidades de Medida</h4>
         <a type="button" id="agregarMed" data-toggle="modal" data_target="#agregarMedida" class="btn btn-success admin">Agregar Unidad de Medida</a>
         <br>
-                <table class="table chica prod">
-                    <thead>
+        <table class="table chica prod">
+            <thead>
+                <tr>
+                    <th>Descripción</th>
+                    <th></th>
+                </tr>
+            </thead>
+            @foreach($medidas as $med)        
+                    <tbody>
                         <tr>
-                            <th>Descripción</th>
-                            <th></th>
+                            <form class="form-horizontal" name="eliminarMedida" method="POST" action="admin/medidas/eliminar">
+                            {{ csrf_field() }}
+                            <input type="hidden" name="id" value="{{$med->id}}">
+                            <td><input type="text" class="input-table" name="descripcion" value="{{$med->descripcion}}" disabled></td>
+                            <td class="col-chica"><button type="submit" class="btn btn-danger admin tabla" title="Eliminar Unidad de Medida">X</button></td>
+                            </form>
                         </tr>
-                    </thead>
-                    @foreach($medidas as $med)        
-                            <tbody>
-                                <tr>
-                                    <form class="form-horizontal" name="eliminarMedida" method="POST" action="admin/medidas/eliminar">
-                                    {{ csrf_field() }}
-                                    <input type="hidden" name="id" value="{{$med->id}}">
-                                    <td><input type="text" class="input-table" name="descripcion" value="{{$med->descripcion}}" disabled></td>
-                                    <td class="col-chica"><button type="submit" class="btn btn-danger admin tabla" title="Eliminar Unidad de Medida">X</button></td>
-                                    </form>
-                                </tr>
-                            </tbody>
-                    @endforeach
-                </table>
-    </div>
+                    </tbody>
+            @endforeach
+        </table>
     </div>
     </div>
     <hr>

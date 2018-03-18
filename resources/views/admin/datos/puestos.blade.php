@@ -14,7 +14,7 @@
     @endif
     
 	<div class="row">
-        <div class="col-md-6 admin prod">    
+        <div class="col-md-3 admin prod">    
         <h4 class="h4tit">Puestos</h4>
         <a type="button" id="agregarPue" data-toggle="modal" data_target="#agregarPuesto" class="btn btn-success admin">Agregar Puesto</a>
         <br>

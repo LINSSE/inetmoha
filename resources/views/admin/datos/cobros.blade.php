@@ -13,7 +13,7 @@
     </div>
     @endif
     <div class="row">
-        <div class="col-md-6 admin prod">    
+        <div class="col-md-3 admin prod">    
         <h4 class="h4tit">Formas de Cobros y Pagos</h4>
         <a type="button" id="agregarCob" data-toggle="modal" data_target="#agregarCobro" class="btn btn-success admin">Agregar forma de Cobro</a>
         <br>

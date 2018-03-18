@@ -12,7 +12,7 @@ class DemandaRechazada extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $co;
+    public $cd;
 
     /**
      * Create a new message instance.
