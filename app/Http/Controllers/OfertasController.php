@@ -11,6 +11,7 @@ use MOHA\Modo;
 use MOHA\Cobro;
 use MOHA\Puesto;
 use MOHA\Medida;
+use MOHA\Contraoferta;
 use Session;
 use Illuminate\Support\Facades\DB;
 
@@ -54,13 +55,18 @@ class OfertasController extends Controller
     public function misofertas() {
 
     	$ofertas = Oferta::where('id_op', '=', (Auth::user()->id))->orderBy('fechaFin', 'DESC')->get();
+        $cofertas = Contraoferta::leftJoin('ofertas', 'contraofertas.id_oferta', '=', 'ofertas.id')
+                                        ->where('contraofertas.id_comprador', '=', (Auth::user()->id))
+                                        ->orderBy('ofertas.fechaFin', 'DESC')
+                                        ->get();
+        
     	$productos = Producto::All();
         $modos = Modo::orderBy('descripcion', 'ASC')->get();
         $cobros = Cobro::orderBy('descripcion', 'ASC')->get();
         $puestos = Puesto::orderBy('descripcion', 'ASC')->get();
         $medidas = Medida::orderBy('descripcion', 'ASC')->get();
 
-    	return view('usuario/ofertas', array('ofertas' => $ofertas, 'productos' => $productos, 'modos' => $modos, 'cobros' => $cobros, 'puestos' => $puestos, 'medidas' => $medidas));
+    	return view('usuario/ofertas', array('ofertas' => $ofertas, 'productos' => $productos, 'modos' => $modos, 'cobros' => $cobros, 'puestos' => $puestos, 'medidas' => $medidas, 'cofertas' => $cofertas));
     }
 
     public function ofertas () {

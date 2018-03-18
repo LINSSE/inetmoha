@@ -13,7 +13,6 @@
         @else
             <button type="button" id="agregarOfer" data-toggle="modal" disabled="" data_target="#agregarOferta" class="btn btn-success admin">Nueva Oferta</button>
         @endif
-		
             <div class="col-md-12">
                 <h1 class="h1-tabla">Mis Ofertas</h1>
                 <div class="table-responsive">
@@ -62,9 +61,59 @@
                     </table>
                 </div>
             </div>
-        </div>
         <hr>
-        <a type="button" href="/index" class="btn btn-primary admin" title="Volver">Volver</a>
+        <div class="col-md-12">
+            <h1 class="h1-tabla">Contra Ofertas Realizadas</h1>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Producto</th>
+                            <th>Modo</th>
+                            <th>Cantidad</th>
+                            <th>Precio</th>
+                            <th>Fecha Fin</th>
+                            <th>Puesto</th>
+                            <th>Cobro</th>
+                            <th>Plazo (días)</th>
+                            <th>Estado</th>
+                            <th style="cursor:default;"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($cofertas as $cof)
+                        <tr>
+                            <form class="form-horizontal" name="eliminarCoferta" method="POST" action="/usuario/eliminarCoferta">
+                            {{ csrf_field() }}
+                            <input type="hidden" name="id" value="{{$cof->id}}">
+                            <td>{{$cof->oferta->producto->nombre}} {{$cof->oferta->producto->descripcion}} {{$cof->oferta->producto->descripcion2}}</td>
+                            <td>{{$cof->oferta->modo->descripcion}} X {{$cof->oferta->peso}} {{$cof->oferta->medida->descripcion}}</td>
+                            <td>{{$cof->cantidad}}</td>
+                            <td>$ {{$cof->precio}}</td>
+                            <td>{{$cof->oferta->fechaFin}}</td>
+                            <td>{{$cof->oferta->puesto->descripcion}}</td>
+                            <td>{{$cof->cobro->descripcion}}</td>
+                            <td>{{$cof->plazo}}</td>
+                            @if($cof->estado == 1)
+                                <td>ACEPTADA</td>
+                                <td><button type="submit" class="btn btn-danger admin tabla" title="No puede Eliminar esta Contra Oferta porque ya fue ACEPTADA" disabled>X</button></td>
+                            @elseif($cof->estado == 2)
+                                <td>RECHAZADA</td>
+                                <td><button type="submit" class="btn btn-danger admin tabla" title="No puede Eliminar esta Contra Oferta porque ya fue RECHAZADA" disabled>X</button></td>
+                            @else
+                                <td>EN ESPERA</td>
+                                <td><button type="submit" class="btn btn-danger admin tabla" title="Eliminar Contra Oferta">X</button></td>
+                            @endif
+                            </form>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <a type="button" href="/index" class="btn btn-primary admin" title="Volver">Volver</a>
         
     <!-- Modal Nueva Oferta -->
 <div class="modal fade" id="agregarOferta" tabindex="-1" role="dialog">

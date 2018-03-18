@@ -4,6 +4,7 @@ namespace MOHA\Http\Controllers;
 
 use Illuminate\Http\Request;
 use MOHA\Demanda;
+use MOHA\Contrademanda;
 use MOHA\Producto;
 use Auth;
 use MOHA\User;
@@ -64,13 +65,17 @@ class DemandasController extends Controller
     public function misdemandas() {
 
     	$demandas = Demanda::where('id_op', '=', (Auth::user()->id))->orderBy('fechaFin', 'ASC')->get();
+        $cdemandas = Contrademanda::leftJoin('demandas', 'contrademandas.id_demanda', '=', 'demandas.id')
+                                        ->where('contrademandas.id_comprador', '=', (Auth::user()->id))
+                                        ->orderBy('demandas.fechaFin', 'DESC')
+                                        ->get();
         $productos = Producto::All();
         $modos = Modo::orderBy('descripcion', 'ASC')->get();
         $cobros = Cobro::orderBy('descripcion', 'ASC')->get();
         $puestos = Puesto::orderBy('descripcion', 'ASC')->get();
         $medidas = Medida::orderBy('descripcion', 'ASC')->get();
         
-        return view('usuario/demandas', array('demandas' => $demandas, 'productos' => $productos, 'modos' => $modos, 'cobros' => $cobros, 'puestos' => $puestos, 'medidas' => $medidas));
+        return view('usuario/demandas', array('demandas' => $demandas, 'productos' => $productos, 'modos' => $modos, 'cobros' => $cobros, 'puestos' => $puestos, 'medidas' => $medidas, 'cdemandas' => $cdemandas));
     }
 
     public function buscarDemandas(Request $request) {

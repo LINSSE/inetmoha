@@ -98,7 +98,7 @@ class RegisterController extends Controller
 
             Mail::to($user->email)->send(new Bienvenido());
 
-            Mail::to('dustingassmann@gmail.com')->send(new UsuarioRegistrado());
+            Mail::to(config('mail.username'))->send(new UsuarioRegistrado());
             
             Session::flash('message','correcto');
 

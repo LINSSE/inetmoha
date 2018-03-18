@@ -63,22 +63,22 @@
                         <th style="cursor:default;"></th>
                     </tr>
                 </thead>
+                <tbody>
                 @foreach($cdemandas as $cd)
-                   <tbody>
-                       <tr> 
-                       	@if($cd->user->razonsocial === '')
-                        <td>{{$cd->user->apellido}} {{$cd->user->name}}</td>
-                        @else
-                        <td>{{$cd->user->razonsocial}}</td>
-                        @endif
-                       	<td>{{$cd->cantidad}}</td>
-                        <td>$ {{$cd->precio}}</td>
-                        <td>{{$cd->cobro->descripcion}}</td>
-                        <td>{{$cd->plazo}}</td>
-                       	<td><a type="button" href="/usuario/aceptarDemanda/{{$cd->id}}" class="btn btn-success admin tabla" title="Aceptar Contra Demanda">Aceptar</a><br><a type="button" href="/usuario/rechazarDemanda/{{$cd->id}}" class="btn btn-danger admin tabla" title="Rechazar Contra Demanda">Rechazar</a></td>
-                       </tr>
-                   </tbody>
+                   <tr> 
+                   	@if($cd->user->razonsocial === '')
+                    <td>{{$cd->user->apellido}} {{$cd->user->name}}</td>
+                    @else
+                    <td>{{$cd->user->razonsocial}}</td>
+                    @endif
+                   	<td>{{$cd->cantidad}}</td>
+                    <td>$ {{$cd->precio}}</td>
+                    <td>{{$cd->cobro->descripcion}}</td>
+                    <td>{{$cd->plazo}}</td>
+                   	<td><a type="button" href="/usuario/aceptarDemanda/{{$cd->id}}" class="btn btn-success admin tabla" title="Aceptar Contra Demanda">Aceptar</a><br><a type="button" href="/usuario/rechazarDemanda/{{$cd->id}}" class="btn btn-danger admin tabla" title="Rechazar Contra Demanda">Rechazar</a></td>
+                   </tr>
                @endforeach
+               </tbody>
             </table>
         </div>
     </div>
@@ -88,28 +88,28 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th>Vendedor</th>
-                        <th>Cantidad</th>
-                        <th>Precio</th>
-                        <th>Cobro</th>
-                        <th>Plazo (días)</th>
+                      <th>Vendedor</th>
+                      <th>Cantidad</th>
+                      <th>Precio</th>
+                      <th>Cobro</th>
+                      <th>Plazo (días)</th>
                     </tr>
                 </thead>
+                <tbody>
                 @foreach($cdacep as $cda)
-                   <tbody>
-                       <tr> 
-                        @if($cda->user->razonsocial === '')
-                        <td>{{$cda->user->apellido}} {{$cda->user->name}}</td>
-                        @else
-                        <td>{{$cda->user->razonsocial}}</td>
-                        @endif
-                        <td>{{$cda->cantidad}}</td>
-                        <td>$ {{$cda->precio}}</td>
-                        <td>{{$cda->cobro->descripcion}}</td>
-                        <td>{{$cda->plazo}}</td>
-                       </tr>
-                   </tbody>
+                     <tr> 
+                      @if($cda->user->razonsocial === '')
+                      <td>{{$cda->user->apellido}} {{$cda->user->name}}</td>
+                      @else
+                      <td>{{$cda->user->razonsocial}}</td>
+                      @endif
+                      <td>{{$cda->cantidad}}</td>
+                      <td>$ {{$cda->precio}}</td>
+                      <td>{{$cda->cobro->descripcion}}</td>
+                      <td>{{$cda->plazo}}</td>
+                     </tr>
                @endforeach
+               </tbody>
             </table>
         </div>
     </div>

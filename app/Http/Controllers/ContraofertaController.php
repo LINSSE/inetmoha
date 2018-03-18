@@ -50,8 +50,8 @@ class ContraofertaController extends Controller
 
     public function detalleOferta($id)  {
 
-    	 $cofertas = Contraoferta::where('id_oferta', $id)->where('aceptada', false)->get();
-         $cofacep = Contraoferta::where('id_oferta', $id)->where('aceptada', true )->get();
+    	 $cofertas = Contraoferta::where('id_oferta', $id)->where('estado', '=', '0')->get();
+         $cofacep = Contraoferta::where('id_oferta', $id)->where('estado', '=', '1')->get();
     	 $of = Oferta::Find($id);
 
     	 return view('/usuario/detalleContraOferta', array('cofertas' => $cofertas, 'cofacep' => $cofacep, 'of' => $of));
@@ -89,7 +89,7 @@ class ContraofertaController extends Controller
 
         if ($cant >= 0) {
             $rows = Oferta::where('id', $co->id_oferta)->update(['cantidad' => $cant, 'abierta' => true]);
-            $row = Contraoferta::where('id', $co->id)->update(['aceptada' => true]);
+            $row = Contraoferta::where('id', $co->id)->update(['estado' => '1']);
         }
 
         return true;
@@ -117,7 +117,7 @@ class ContraofertaController extends Controller
         try {
 
             $co = Contraoferta::Find($id);
-            $co->delete();
+            $row = Contraoferta::where('id', $co->id)->update(['estado' => '2']);
 
             Mail::to($co->user->email)->send(new OfertaRechazada($co));
             Session::flash('oferta', 'La Oferta ha sido rechazada');
@@ -128,8 +128,6 @@ class ContraofertaController extends Controller
             DB::rollback();
             throw $e;
         }
-
-        
 
         return back();
     }

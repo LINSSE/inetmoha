@@ -21,7 +21,7 @@ class CreateContrademandasTable extends Migration
             $table->integer('precio');
             $table->integer('id_cobro')->unsigned();
             $table->enum('plazo', ['Contado', '30', '60', '90'])->default('Contado');
-            $table->boolean('aceptada')->default(false);
+            $table->enum('estado', ['0', '1', '2'])->default('0');
             $table->timestamps();
 
             $table->foreign('id_demanda')->references('id')->on('demandas')->onDelete('cascade');

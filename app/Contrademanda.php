@@ -8,7 +8,7 @@ class Contrademanda extends Model
 {
     //
     protected $fillable = [
-        'id_demanda', 'id_comprador', 'cantidad', 'precio', 'id_cobro', 'plazo', 'aceptada',
+        'id_demanda', 'id_comprador', 'cantidad', 'precio', 'id_cobro', 'plazo', 'estado',
     ];
 
     public function demanda()

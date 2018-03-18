@@ -5,7 +5,7 @@ namespace MOHA\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use MOHA\User;
-use MOHA\ContraDemanda;
+use MOHA\Contrademanda;
 use MOHA\Demanda;
 use MOHA\Operaciondemanda;
 use Session;
@@ -23,7 +23,7 @@ class ContrademandaController extends Controller
 
         try {
             
-            $cd = new ContraDemanda;
+            $cd = new Contrademanda;
 
             $cd->id_comprador = Auth::user()->id;
             $cd->id_demanda = $request->id_demanda;
@@ -50,8 +50,8 @@ class ContrademandaController extends Controller
 
     public function detalledemanda($id)  {
 
-    	 $cdemandas = ContraDemanda::where('id_demanda', $id)->where('aceptada', false)->get();
-         $cdacep = ContraDemanda::where('id_demanda', $id)->where('aceptada', true )->get();
+    	 $cdemandas = Contrademanda::where('id_demanda', $id)->where('estado', '=', '0')->get();
+         $cdacep = Contrademanda::where('id_demanda', $id)->where('estado', '=', '1')->get();
     	 $dem = Demanda::Find($id);
 
     	 return view('/usuario/detalleContrademanda', array('cdemandas' => $cdemandas, 'cdacep' => $cdacep, 'dem' => $dem));
@@ -89,7 +89,7 @@ class ContrademandaController extends Controller
 
         if ($cant >= 0) {
             $rows = Demanda::where('id', $cd->id_demanda)->update(['cantidad' => $cant, 'abierta' => true]);
-            $row = Contrademanda::where('id', $cd->id)->update(['aceptada' => true]);
+            $row = Contrademanda::where('id', $cd->id)->update(['estado' => '1']);
         }
 
         return true;
@@ -116,7 +116,7 @@ class ContrademandaController extends Controller
         try {
 
             $cd = Contrademanda::Find($id);
-            $cd->delete();
+            $row = Contrademanda::where('id', $cd->id)->update(['estado' => '2']);
 
             Mail::to($cd->user->email)->send(new DemandaRechazada($cd));
             Session::flash('demanda', 'La Demanda ha sido rechazada');

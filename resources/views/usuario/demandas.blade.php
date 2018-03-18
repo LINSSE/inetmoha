@@ -14,55 +14,103 @@
         <button type="button" id="agregarDem" data-toggle="modal" disabled="" data_target="#agregarDemanda" class="btn btn-success admin">Nueva Demanda</button>
     @endif
     <div class="col-md-12">
-                <h1 class="h1-tabla">Mis Demandas</h1>
-                <div class="table-responsive">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>Producto</th>
-                                <th>Modo</th>
-                                <th>Cant. Original</th>
-                                <th>Cant. Disponible</th>
-                                <th>Precio</th>
-                                <th>Fecha Fin</th>
-                                <th>Puesto</th>
-                                <th>Pago</th>
-                                <th>Plazo (días)</th>
-                                <th style="cursor:default;"></th>
-                                <th style="cursor:default;"></th>
-                            </tr>
-                        </thead>
-                        @foreach($demandas as $dem)
-                            <tbody>
-                                <tr>
-                                    <form class="form-horizontal" name="eliminarDemandas" method="POST" action="/usuario/eliminarDemanda">
-                                    {{ csrf_field() }}
-                                    <input type="hidden" name="id" value="{{$dem->id}}">
-                                    <td>{{$dem->producto->nombre}} {{$dem->producto->descripcion}} {{$dem->producto->descripcion2}}</td>
-                                    <td>{{$dem->modo->descripcion}} X {{$dem->peso}} {{$dem->medida->descripcion}}</td>
-                                    <td>{{$dem->cantidadOriginal}}</td>
-                                    <td>{{$dem->cantidad}}</td>
-                                    <td>$ {{$dem->precio}}</td>
-                                    <td>{{$dem->fechaFin}}</td>
-                                    <td>{{$dem->puesto->descripcion}}</td>
-                                    <td>{{$dem->cobro->descripcion}}</td>
-                                    <td>{{$dem->plazo}}</td>
-                                    
-                                    <td><a type="button" href="/usuario/detalleDemanda/{{$dem->id}}" class="btn btn-info admin tabla" title="Ver Contra-Demandas">Ver Contra Demandas</a></td>
-                                    @if($dem->cantidad != $dem->cantidadOriginal)
-                                        <td><button type="submit" class="btn btn-danger admin tabla" title="No puede eliminar esta Demanda porque ya tiene Operaciones Concretadas" disabled>X</button></td>
-                                    @else
-                                        <td><button type="submit" class="btn btn-danger admin tabla" title="Eliminar Demanda" >X</button></td>
-                                    @endif
-
-                                    </form>
-                                </tr>
-                            </tbody>
-                        @endforeach
-                    </table>
-                </div>
-            </div>
+        <h1 class="h1-tabla">Mis Demandas</h1>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Modo</th>
+                        <th>Cant. Original</th>
+                        <th>Cant. Disponible</th>
+                        <th>Precio</th>
+                        <th>Fecha Fin</th>
+                        <th>Puesto</th>
+                        <th>Pago</th>
+                        <th>Plazo (días)</th>
+                        <th style="cursor:default;"></th>
+                        <th style="cursor:default;"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach($demandas as $dem)
+                    <tr>
+                        <form class="form-horizontal" name="eliminarDemandas" method="POST" action="/usuario/eliminarDemanda">
+                        {{ csrf_field() }}
+                        <input type="hidden" name="id" value="{{$dem->id}}">
+                        <td>{{$dem->producto->nombre}} {{$dem->producto->descripcion}} {{$dem->producto->descripcion2}}</td>
+                        <td>{{$dem->modo->descripcion}} X {{$dem->peso}} {{$dem->medida->descripcion}}</td>
+                        <td>{{$dem->cantidadOriginal}}</td>
+                        <td>{{$dem->cantidad}}</td>
+                        <td>$ {{$dem->precio}}</td>
+                        <td>{{$dem->fechaFin}}</td>
+                        <td>{{$dem->puesto->descripcion}}</td>
+                        <td>{{$dem->cobro->descripcion}}</td>
+                        <td>{{$dem->plazo}}</td>
+                        
+                        <td><a type="button" href="/usuario/detalleDemanda/{{$dem->id}}" class="btn btn-info admin tabla" title="Ver Contra-Demandas">Ver Contra Demandas</a></td>
+                        @if($dem->cantidad != $dem->cantidadOriginal)
+                            <td><button type="submit" class="btn btn-danger admin tabla" title="No puede eliminar esta Demanda porque ya tiene Operaciones Concretadas" disabled>X</button></td>
+                        @else
+                            <td><button type="submit" class="btn btn-danger admin tabla" title="Eliminar Demanda" >X</button></td>
+                        @endif
+                        </form>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
         </div>
+    </div>
+    <div class="col-md-12">
+        <h1 class="h1-tabla">Contra Demandas Realizadas</h1>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Modo</th>
+                        <th>Cantidad</th>
+                        <th>Precio</th>
+                        <th>Fecha Fin</th>
+                        <th>Puesto</th>
+                        <th>Cobro</th>
+                        <th>Plazo (días)</th>
+                        <th>Estado</th>
+                        <th style="cursor:default;"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach($cdemandas as $cdem)
+                    <tr>
+                        <form class="form-horizontal" name="eliminarCdemanda" method="POST" action="/usuario/eliminarCdemanda">
+                        {{ csrf_field() }}
+                        <input type="hidden" name="id" value="{{$cdem->id}}">
+                        <td>{{$cdem->demanda->producto->nombre}} {{$cdem->demanda->producto->descripcion}} {{$cdem->demanda->producto->descripcion2}}</td>
+                        <td>{{$cdem->demanda->modo->descripcion}} X {{$cdem->demanda->peso}} {{$cdem->demanda->medida->descripcion}}</td>
+                        <td>{{$cdem->cantidad}}</td>
+                        <td>$ {{$cdem->precio}}</td>
+                        <td>{{$cdem->demanda->fechaFin}}</td>
+                        <td>{{$cdem->demanda->puesto->descripcion}}</td>
+                        <td>{{$cdem->cobro->descripcion}}</td>
+                        <td>{{$cdem->plazo}}</td>
+                        @if($cdem->estado == 1)
+                            <td>ACEPTADA</td>
+                            <td><button type="submit" class="btn btn-danger admin tabla" title="No puede Eliminar esta Contra Demanda porque ya fue ACEPTADA" disabled>X</button></td>
+                        @elseif($cdem->estado == 2)
+                            <td>RECHAZADA</td>
+                            <td><button type="submit" class="btn btn-danger admin tabla" title="No puede Eliminar esta Contra Demanda porque ya fue RECHAZADA" disabled>X</button></td>
+                        @else
+                            <td>EN ESPERA</td>
+                            <td><button type="submit" class="btn btn-danger admin tabla" title="Eliminar Contra Demanda">X</button></td>
+                        @endif
+                        </form>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 <hr>
 <a type="button" href="/index" class="btn btn-primary admin" title="Volver">Volver</a>
 
