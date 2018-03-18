@@ -128,8 +128,16 @@ class ContrademandaController extends Controller
             throw $e;
         }
 
-        
+        return back();
+    }
 
+    public function eliminar(Request $request) {
+
+        $id = $request->id;
+        $cdem = Contrademanda::FindOrFail($id);
+        $cdem->delete();
+
+        Session::flash('demanda', 'Su Contra Demanda ha sido eliminada!');
         return back();
     }
 }

@@ -132,4 +132,14 @@ class ContraofertaController extends Controller
         return back();
     }
 
+    public function eliminar(Request $request) {
+
+        $id = $request->id;
+        $co = Contraoferta::FindOrFail($id);
+        $co->delete();
+
+        Session::flash('oferta', 'Su Contra Oferta ha sido eliminada!');
+        return back();
+    }
+
 }

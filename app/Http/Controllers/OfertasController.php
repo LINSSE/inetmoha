@@ -58,7 +58,7 @@ class OfertasController extends Controller
         $cofertas = Contraoferta::leftJoin('ofertas', 'contraofertas.id_oferta', '=', 'ofertas.id')
                                         ->where('contraofertas.id_comprador', '=', (Auth::user()->id))
                                         ->orderBy('ofertas.fechaFin', 'DESC')
-                                        ->get();
+                                        ->get(['contraofertas.*']);
         
     	$productos = Producto::All();
         $modos = Modo::orderBy('descripcion', 'ASC')->get();
@@ -101,7 +101,7 @@ class OfertasController extends Controller
                                         ->orwhere('ofertas.fechaFin', 'like', '%'.$buscar.'%');
                                      })
                                      ->orderBy('ofertas.fechaFin', 'ASC')
-                                     ->get();
+                                     ->get(['ofertas.*']);
         
         $cobros = Cobro::orderBy('descripcion', 'ASC')->get();
         

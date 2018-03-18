@@ -44,7 +44,10 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::get('usuario/buscarOfertas', 'OfertasController@buscarOfertas');
 	Route::get('usuario/buscarOperaciones', 'OperacionesController@buscarOperaciones');
 	Route::get('usuario/ofertas', 'OfertasController@misofertas');
+
+	//Contraofertas
 	Route::post('usuario/contraOferta', 'ContraofertaController@store');
+	Route::post('usuario/eliminarCoferta', 'ContraofertaController@eliminar');
 	Route::get('usuario/detalleOferta/{id}', 'ContraofertaController@detalleOferta');
 	Route::get('usuario/aceptarOferta/{id}', 'ContraofertaController@aceptarOferta');
 	Route::get('usuario/rechazarOferta/{id}', 'ContraofertaController@rechazarOferta');
@@ -54,7 +57,10 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::post('usuario/eliminarDemanda', 'DemandasController@eliminar');
 	Route::get('usuario/buscarDemandas', 'DemandasController@buscarDemandas');
 	Route::get('usuario/demandas', 'DemandasController@misdemandas');
+
+	//Contrademandas
 	Route::post('usuario/contraDemanda', 'ContrademandaController@store');
+	Route::post('usuario/eliminarCdemanda', 'ContrademandaController@eliminar');
 	Route::get('usuario/detalleDemanda/{id}', 'ContrademandaController@detalleDemanda');
 	Route::get('usuario/aceptarDemanda/{id}', 'ContrademandaController@aceptarDemanda');
 	Route::get('usuario/rechazarDemanda/{id}', 'ContrademandaController@rechazarDemanda');

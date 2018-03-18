@@ -40,10 +40,16 @@ a.btn.btn-default.menu{
   height: 230px;
   line-height: 9;
   font-size: x-large;
-  color: #7fb850;
-  background-image: none;
+  color: #fff;
+  background-color: rgb(14, 104, 175);
   border-radius: 20px;
   margin: 0px 10px 10px 0px;
+  background-image: none;
+}
+
+a.btn.btn-default.menu:hover {
+  background-color: rgba(14, 104, 175, 0.50);
+  color: black;
 }
 
 div.col-md-12.menu{

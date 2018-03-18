@@ -1,3 +1,1 @@
-@foreach($precios as $pr)
-dd{{$pr->nombre}}
-@endforeach
+dd{{$id}}

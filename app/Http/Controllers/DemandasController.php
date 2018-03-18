@@ -68,7 +68,7 @@ class DemandasController extends Controller
         $cdemandas = Contrademanda::leftJoin('demandas', 'contrademandas.id_demanda', '=', 'demandas.id')
                                         ->where('contrademandas.id_comprador', '=', (Auth::user()->id))
                                         ->orderBy('demandas.fechaFin', 'DESC')
-                                        ->get();
+                                        ->get(['contrademandas.*']);
         $productos = Producto::All();
         $modos = Modo::orderBy('descripcion', 'ASC')->get();
         $cobros = Cobro::orderBy('descripcion', 'ASC')->get();
@@ -98,7 +98,7 @@ class DemandasController extends Controller
                                         ->orwhere('demandas.fechaFin', 'like', '%'.$buscar.'%');
                                      })
                                      ->orderBy('demandas.fechaFin', 'ASC')
-                                     ->get();
+                                     ->get(['demandas.*']);
         
         $cobros = Cobro::orderBy('descripcion', 'ASC')->get();
         
