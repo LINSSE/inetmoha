@@ -51,7 +51,7 @@
 	                            	@if($of->cantidad != $of->cantidadOriginal)
                                         <td><button type="submit" class="btn btn-danger admin tabla" title="No puede eliminar esta Oferta porque ya tiene Operaciones Concretadas" disabled>X</button></td>
                                     @else
-                                        <td><button type="submit" class="btn btn-danger admin tabla" title="Eliminar Oferta" >X</button></td>
+                                        <td><button type="submit" class="btn btn-danger admin tabla" title="Eliminar Oferta" onclick="return confirm('¿Seguro que deseas eliminar esta Oferta?')">X</button></td>
                                     @endif
 
 	                            	</form>
@@ -102,7 +102,7 @@
                                 <td><button type="submit" class="btn btn-danger admin tabla" title="No puede Eliminar esta Contra Oferta porque ya fue RECHAZADA" disabled>X</button></td>
                             @else
                                 <td>EN ESPERA</td>
-                                <td><button type="submit" class="btn btn-danger admin tabla" title="Eliminar Contra Oferta">X</button></td>
+                                <td><button type="submit" class="btn btn-danger admin tabla" title="Eliminar Contra Oferta" onclick="return confirm('¿Seguro que deseas eliminar esta Contra Oferta?')">X</button></td>
                             @endif
                             </form>
                         </tr>

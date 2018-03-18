@@ -31,7 +31,7 @@
                                     {{ csrf_field() }}
                                     <input type="hidden" name="id" value="{{$modo->id}}">
                                     <td>{{$modo->descripcion}}</td>
-                                    <td class="col-chica"><button type="submit" class="btn btn-danger admin tabla" title="Eliminar Modo">X</button></td>
+                                    <td class="col-chica"><button type="submit" class="btn btn-danger admin tabla" title="Eliminar Modo" onclick="return confirm('¿Seguro que deseas eliminar este Modo?')">X</button></td>
                                     </form>
                                 </tr>
                             </tbody>

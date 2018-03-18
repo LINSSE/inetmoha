@@ -31,7 +31,7 @@
                                     {{ csrf_field() }}
                                     <input type="hidden" name="id" value="{{$cobro->id}}">
                                     <td>{{$cobro->descripcion}}</td>
-                                    <td class="col-chica"><button type="submit" class="btn btn-danger admin tabla" title="Eliminar Cobro">X</button></td>
+                                    <td class="col-chica"><button type="submit" class="btn btn-danger admin tabla" title="Eliminar Cobro" onclick="return confirm('¿Seguro que deseas eliminar este Tipo de Cobro?')">X</button></td>
                                     </form>
                                 </tr>
                             </tbody>

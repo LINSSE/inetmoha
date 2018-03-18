@@ -52,7 +52,7 @@
                         @if($dem->cantidad != $dem->cantidadOriginal)
                             <td><button type="submit" class="btn btn-danger admin tabla" title="No puede eliminar esta Demanda porque ya tiene Operaciones Concretadas" disabled>X</button></td>
                         @else
-                            <td><button type="submit" class="btn btn-danger admin tabla" title="Eliminar Demanda" >X</button></td>
+                            <td><button type="submit" class="btn btn-danger admin tabla" title="Eliminar Demanda" onclick="return confirm('¿Seguro que deseas eliminar esta Demanda?')">X</button></td>
                         @endif
                         </form>
                     </tr>
@@ -101,7 +101,7 @@
                             <td><button type="submit" class="btn btn-danger admin tabla" title="No puede Eliminar esta Contra Demanda porque ya fue RECHAZADA" disabled>X</button></td>
                         @else
                             <td>EN ESPERA</td>
-                            <td><button type="submit" class="btn btn-danger admin tabla" title="Eliminar Contra Demanda">X</button></td>
+                            <td><button type="submit" class="btn btn-danger admin tabla" title="Eliminar Contra Demanda" onclick="return confirm('¿Seguro que deseas eliminar esta Contra Demanda?')">X</button></td>
                         @endif
                         </form>
                     </tr>

@@ -38,7 +38,7 @@
                             <td>{{$prod->descripcion}}</td>
                             <td>{{$prod->descripcion2}}</td>
                             <td>{{$prod->categoria->descripcion}}</td>
-                            <td class="col-chica"><button type="submit" class="btn btn-danger admin tabla" title="Eliminar Producto">X</button></td>
+                            <td class="col-chica"><button type="submit" class="btn btn-danger admin tabla" title="Eliminar Producto" onclick="return confirm('¿Seguro que deseas eliminar este Producto?')">X</button></td>
                             </form>
                         </tr>
                     </tbody>
@@ -63,7 +63,7 @@
                             {{ csrf_field() }}
                             <input type="hidden" name="id" value="{{$cat->id}}">
                             <td><input type="text" class="input-table" name="descripcion" value="{{$cat->descripcion}}" disabled></td>
-                            <td class="col-chica"><button type="submit" class="btn btn-danger admin tabla" title="Eliminar Categoría">X</button></td>
+                            <td class="col-chica"><button type="submit" class="btn btn-danger admin tabla" title="Eliminar Categoría" onclick="return confirm('¿Seguro que deseas eliminar esta Categoría?')">X</button></td>
                             </form>
                         </tr>
                     </tbody>
@@ -88,7 +88,7 @@
                             {{ csrf_field() }}
                             <input type="hidden" name="id" value="{{$med->id}}">
                             <td><input type="text" class="input-table" name="descripcion" value="{{$med->descripcion}}" disabled></td>
-                            <td class="col-chica"><button type="submit" class="btn btn-danger admin tabla" title="Eliminar Unidad de Medida">X</button></td>
+                            <td class="col-chica"><button type="submit" class="btn btn-danger admin tabla" title="Eliminar Unidad de Medida" onclick="return confirm('¿Seguro que deseas eliminar esta Unidad de Medida?')">X</button></td>
                             </form>
                         </tr>
                     </tbody>
