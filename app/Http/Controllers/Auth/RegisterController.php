@@ -11,6 +11,7 @@ use MOHA\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\DB;
 use Session;
 
 
@@ -76,30 +77,39 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $user = User::create([
-            'name' => ucwords(strtolower($data['name'])),
-            'apellido' => ucwords(strtolower($data['apellido'])),
-            'razonsocial' => ucwords(strtolower($data['razonsocial'])),
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-            'dni' => $data['dni'],
-            'telefono' => $data['telefono'],
-            'domicilio' => ucwords(strtolower($data['domicilio'])),
-            'id_provincia' => $data['id_provincia'], 
-            'id_ciudad' => $data['id_ciudad'],
-            'tipo_us' => $data['tipo_us'],
+        DB::beginTransaction();
+
+        try {
+
+            $user = User::create([
+                'name' => ucwords(strtolower($data['name'])),
+                'apellido' => ucwords(strtolower($data['apellido'])),
+                'razonsocial' => ucwords(strtolower($data['razonsocial'])),
+                'email' => $data['email'],
+                'password' => bcrypt($data['password']),
+                'dni' => $data['dni'],
+                'telefono' => $data['telefono'],
+                'domicilio' => ucwords(strtolower($data['domicilio'])),
+                'id_provincia' => $data['id_provincia'], 
+                'id_ciudad' => $data['id_ciudad'],
+                'tipo_us' => $data['tipo_us'],
+                
+            ]);
+
+            Mail::to($user->email)->send(new Bienvenido());
+
+            Mail::to('dustingassmann@gmail.com')->send(new UsuarioRegistrado());
             
-        ]);
+            Session::flash('message','correcto');
 
-        Mail::to($user->email)->send(new Bienvenido());
+            DB::commit();
 
-        Mail::to('dustingassmann@gmail.com')->send(new UsuarioRegistrado());
-        
-        /*Mail::send('email/nuevoOperador', [], function($message){
-            $message->to('dustingassmann@gmail.com');
-            $message->subject('Nuevo Operador');
-        });*/
-        Session::flash('message','correcto');
+        } catch (\Trowable $e) {
+
+            DB::rollback();
+            throw $e;
+        }
+
         return $user;
     }
 }

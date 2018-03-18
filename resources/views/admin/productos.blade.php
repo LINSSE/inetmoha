@@ -1,12 +1,23 @@
 @extends('layouts.principal')
 
 @section('content')
+    @if(Session::has('mensaje'))
+        <div class="alert alert-success alert-dismissible fade in" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <strong>{{Session::get('mensaje')}}</strong>
+        </div>
+    @endif
+    @if (count($errors) > 0)
+    <div class="alert alert-danger">
+        <strong>El ítem que desea agregar ya existe!</strong>
+    </div>
+    @endif
     <div class="row">
     <h4 class="h4tit">Productos</h4>
     <a type="button" id="agregarProd" data-toggle="modal" data_target="#agregarProducto" class="btn btn-success admin">Agregar Producto</a>
-	
+	<br>
 	<div class="col-md-12 admin">
-                <table class="table chica">
+                <table class="table chica prod">
                     <thead>
                         <tr>
                             <th>Nombre</th>
@@ -19,14 +30,14 @@
                     @foreach($productos as $prod)        
                             <tbody>
                                 <tr>
-                                    <form class="form-horizontal" name="eliminarProducto" method="POST" action="/producto/eliminar">
+                                    <form class="form-horizontal" name="eliminarProducto" method="POST" action="/admin/producto/eliminar">
                                     {{ csrf_field() }}
                                     <input type="hidden" name="id" value="{{$prod->id}}">
                                     <td>{{$prod->nombre}}</td>
                                     <td>{{$prod->descripcion}}</td>
                                     <td>{{$prod->descripcion2}}</td>
                                     <td>{{$prod->categoria->descripcion}}</td>
-                                    <td><button type="submit" class="btn btn-danger admin tabla" title="Eliminar Producto">X</button></td>
+                                    <td class="col-chica"><button type="submit" class="btn btn-danger admin tabla" title="Eliminar Producto">X</button></td>
                                     </form>
                                 </tr>
                             </tbody>
@@ -41,6 +52,7 @@
     <div class="col-md-6 admin prod">    
         <h4 class="h4tit">Categorías</h4>
         <a type="button" id="agregarCat" data-toggle="modal" data_target="#agregarCategoria" class="btn btn-success admin">Agregar Categoría</a>
+        <br>
                 <table class="table chica prod">
                     <thead>
                         <tr>
@@ -51,11 +63,11 @@
                     @foreach($categorias as $cat)        
                             <tbody>
                                 <tr>
-                                    <form class="form-horizontal" name="eliminarCategoria" method="POST" action="/categoria/eliminar">
+                                    <form class="form-horizontal" name="eliminarCategoria" method="POST" action="/admin/categoria/eliminar">
                                     {{ csrf_field() }}
                                     <input type="hidden" name="id" value="{{$cat->id}}">
                                     <td><input type="text" class="input-table" name="descripcion" value="{{$cat->descripcion}}" disabled></td>
-                                    <td><button type="submit" class="btn btn-danger admin tabla" title="Eliminar Categoría">X</button></td>
+                                    <td class="col-chica"><button type="submit" class="btn btn-danger admin tabla" title="Eliminar Categoría">X</button></td>
                                     </form>
                                 </tr>
                             </tbody>
@@ -65,6 +77,7 @@
     <div class="col-md-6 admin prod">
         <h4 class="h4tit">Unidades de Medida</h4>
         <a type="button" id="agregarMed" data-toggle="modal" data_target="#agregarMedida" class="btn btn-success admin">Agregar Unidad de Medida</a>
+        <br>
                 <table class="table chica prod">
                     <thead>
                         <tr>
@@ -75,11 +88,11 @@
                     @foreach($medidas as $med)        
                             <tbody>
                                 <tr>
-                                    <form class="form-horizontal" name="eliminarMedida" method="POST" action="/medidas/eliminar">
+                                    <form class="form-horizontal" name="eliminarMedida" method="POST" action="admin/medidas/eliminar">
                                     {{ csrf_field() }}
                                     <input type="hidden" name="id" value="{{$med->id}}">
                                     <td><input type="text" class="input-table" name="descripcion" value="{{$med->descripcion}}" disabled></td>
-                                    <td><button type="submit" class="btn btn-danger admin tabla" title="Eliminar Unidad de Medida">X</button></td>
+                                    <td class="col-chica"><button type="submit" class="btn btn-danger admin tabla" title="Eliminar Unidad de Medida">X</button></td>
                                     </form>
                                 </tr>
                             </tbody>
@@ -101,7 +114,7 @@
           <div class="modal-body">
               <div class="panel panel-default">
                             <div class="panel-body">
-                                <form class="form-horizontal" id="formagregarProducto" name="agregarProducto" method="POST" action="{{ url('producto/store') }}">
+                                <form class="form-horizontal" id="formagregarProducto" name="agregarProducto" method="POST" action="{{ url('admin/producto/store') }}">
                                     {{ csrf_field() }}
 
                                     <div class="form-group{{ $errors->has('nombre') ? ' has-error' : '' }}">
@@ -185,7 +198,7 @@
           <div class="modal-body">
                         <div class="panel panel-default">
                             <div class="panel-body">
-                                <form class="form-horizontal" id="formagregarCategoria" name="agregarCategoria" method="POST" action="{{ url('categoria/store') }}">
+                                <form class="form-horizontal" id="formagregarCategoria" name="agregarCategoria" method="POST" action="{{ url('admin/categoria/store') }}">
                                     {{ csrf_field() }}
 
                                     <div class="form-group{{ $errors->has('descripcion') ? ' has-error' : '' }}">
@@ -196,7 +209,7 @@
 
                                             @if ($errors->has('descripcion'))
                                                 <span class="help-block">
-                                                    <strong>{{ $errors->first('descripcion') }}</strong>
+                                                    <strong>Esta Categoría ya existe!</strong>
                                                 </span>
                                             @endif
                                         </div>
@@ -226,7 +239,7 @@
           <div class="modal-body">
                         <div class="panel panel-default">
                             <div class="panel-body">
-                                <form class="form-horizontal" id="formagregarMedida" name="agregarMedida" method="POST" action="{{ url('medida/store') }}">
+                                <form class="form-horizontal" id="formagregarMedida" name="agregarMedida" method="POST" action="{{ url('admin/medida/store') }}">
                                     {{ csrf_field() }}
 
                                     <div class="form-group{{ $errors->has('descripcion') ? ' has-error' : '' }}">
@@ -237,7 +250,7 @@
 
                                             @if ($errors->has('descripcion'))
                                                 <span class="help-block">
-                                                    <strong>{{ $errors->first('descripcion') }}</strong>
+                                                    <strong>Esta Unidad de Medida ya existe!</strong>
                                                 </span>
                                             @endif
                                         </div>

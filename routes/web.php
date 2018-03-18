@@ -87,10 +87,14 @@ Route::group(['middleware' => 'admin'], function() {
 	Route::post('admin/cobro/store', 'ProductoController@storeCobro');
 
 	//Rutas de Administrador con Respecto a Productos
-	Route::post('producto/store', 'ProductoController@storeProd');
-	Route::post('categoria/store', 'ProductoController@storeCat');
-	Route::post('medida/store', 'ProductoController@storeMed');
-	Route::post('producto/eliminar', 'ProductoController@eliminar');
+	Route::post('admin/producto/store', 'ProductoController@storeProd');
+	Route::post('admin/categoria/store', 'ProductoController@storeCat');
+	Route::post('admin/medida/store', 'ProductoController@storeMed');
+	Route::post('admin/producto/eliminar', 'ProductoController@eliminar');
+	Route::post('admin/modo/eliminar', 'ProductoController@eliminarModo');
+	Route::post('admin/categoria/eliminar', 'ProductoController@eliminarCat');
+	Route::post('admin/puesto/eliminar', 'ProductoController@eliminarPuesto');
+	Route::post('admin/cobro/eliminar', 'ProductoController@eliminarCobro');
 	
 	
 });

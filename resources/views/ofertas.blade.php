@@ -187,7 +187,7 @@
 
                                     <div class="col-md-6">
                                     <select class="form-control" name="cobroCo" value="{{ old('cobroCo') }}" required>
-                                        <option disabled selected hidden> -- Forma de Cobro -- </option>
+                                        <option hidden value=""> -- Forma de Cobro -- </option>
                                         @foreach ($cobros as $cobro)
                                         <option value="{{$cobro->id}}" >{{$cobro->descripcion}}</option>
                                         @endforeach

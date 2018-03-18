@@ -1,7 +1,17 @@
 @extends('layouts.principal')
 
 @section('content')
-    
+    @if(Session::has('modo'))
+        <div class="alert alert-success alert-dismissible fade in" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <strong>{{Session::get('modo')}}</strong>
+        </div>
+    @endif
+    @if (count($errors) > 0)
+    <div class="alert alert-danger">
+        <strong>Este Modo ya existe!</strong>
+    </div>
+    @endif
     <div class="row">
         <div class="col-md-6 admin prod">    
         <h4 class="h4tit">Modos</h4>
@@ -17,11 +27,11 @@
                     @foreach($modos as $modo)        
                             <tbody>
                                 <tr>
-                                    <form class="form-horizontal" name="eliminarModos" method="POST" action="/modo/eliminar">
+                                    <form class="form-horizontal" name="eliminarModos" method="POST" action="/admin/modo/eliminar">
                                     {{ csrf_field() }}
                                     <input type="hidden" name="id" value="{{$modo->id}}">
                                     <td>{{$modo->descripcion}}</td>
-                                    <td><button type="submit" class="btn btn-danger admin tabla" title="Eliminar Modo">X</button></td>
+                                    <td class="col-chica"><button type="submit" class="btn btn-danger admin tabla" title="Eliminar Modo">X</button></td>
                                     </form>
                                 </tr>
                             </tbody>
@@ -52,7 +62,7 @@
 
                                             @if ($errors->has('descripcion'))
                                                 <span class="help-block">
-                                                    <strong>{{ $errors->first('descripcion') }}</strong>
+                                                    <strong>Este Modo ya existe</strong>
                                                 </span>
                                             @endif
                                         </div>

@@ -15,7 +15,7 @@ class CreateCobrosTable extends Migration
     {
         Schema::create('cobros', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('descripcion');
+            $table->string('descripcion')->unique();
             $table->timestamps();
         });
     }

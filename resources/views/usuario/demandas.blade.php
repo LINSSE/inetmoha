@@ -85,9 +85,9 @@
 
                                     <div class="col-md-6">
                                     <select class="form-control" name="id_prod" value="{{ old('id_prod') }}" required autofocus="true">
-                                        <option disabled selected hidden> -- Seleccione un Producto -- </option>
+                                        <option hidden value=""> -- Seleccione un Producto -- </option>
                                         @foreach($productos as $prod)
-                                        <option value="{{$prod->id}}">{{$prod->nombre}} {{$prod->descripcion}} {{$prod->descripcion}}</option>
+                                        <option value="{{$prod->id}}">{{$prod->nombre}} {{$prod->descripcion}} {{$prod->descripcion2}}</option>
                                         @endforeach
                                     </select>
                                     @if ($errors->has('id_prod'))
@@ -102,7 +102,7 @@
 
                                     <div class="col-md-4">
                                     <select class="form-control" name="id_modo" value="{{ old('id_modo') }}" required>
-                                        <option disabled selected hidden> -- Modo -- </option>
+                                        <option hidden value=""> -- Modo -- </option>
                                         @foreach ($modos as $modo)
                                         <option value="{{$modo->id}}" >{{$modo->descripcion}}</option>
                                         @endforeach
@@ -127,7 +127,7 @@
                                     </div>
                                     <div class="col-md-3">
                                         <select class="form-control" id="id_medida" name="id_medida" value="{{ old('id_medida') }}" required>
-                                            <option disabled selected hidden>U. Medida</option>
+                                            <option hidden value="">U. Medida</option>
                                             @foreach($medidas as $medida)
                                             <option value="{{$medida->id}}">{{$medida->descripcion}}</option>
                                             
@@ -202,7 +202,7 @@
 
                                     <div class="col-md-6">
                                     <select class="form-control" name="puesto" value="{{ old('puesto') }}" required>
-                                        <option disabled selected hidden> -- Producto Puesto en -- </option>
+                                        <option hidden value=""> -- Producto Puesto en -- </option>
                                         @foreach ($puestos as $puesto)
                                         <option value="{{$puesto->id}}" >{{$puesto->descripcion}}</option>
                                         @endforeach
@@ -221,7 +221,7 @@
 
                                     <div class="col-md-6">
                                     <select class="form-control" name="cobro" value="{{ old('cobro') }}" required>
-                                        <option disabled selected hidden> -- Forma de Pago -- </option>
+                                        <option hidden value=""> -- Forma de Pago -- </option>
                                         @foreach ($cobros as $cobro)
                                         <option value="{{$cobro->id}}" >{{$cobro->descripcion}}</option>
                                         @endforeach

@@ -70,7 +70,7 @@ div.col-md-6.admin.prod {
 }
 
 .table.chica.prod {
-  width: 80%;
+  width: 40%;
   float: left;
   margin-left: 10px !important;
 }
@@ -95,7 +95,16 @@ div.col-md-6.admin.prod {
   vertical-align: middle !important;
   border-top: 1px solid #ddd;
   color: black;
-  background: rgba(218, 218, 218, 0.38);
+  background: rgba(0, 0, 0, 0.32);
+}
+
+.table>thead>tr>th {
+  background: rgba(0, 0, 0, 0.75);
+  color: white;
+}
+
+.col-chica{
+  width: 1%;
 }
 
 .table>tbody>tr>td a{
@@ -276,6 +285,8 @@ div.container-fluid.trans {
 
 .btn.btn-danger.admin.tabla {
   margin: 0px;
+  width: 100%;
+  text-align: center;
 }
 
 .input-table {

@@ -1,7 +1,17 @@
 @extends('layouts.principal')
 
 @section('content')
-
+    @if(Session::has('cobro'))
+        <div class="alert alert-success alert-dismissible fade in" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <strong>{{Session::get('cobro')}}</strong>
+        </div>
+    @endif
+    @if (count($errors) > 0)
+    <div class="alert alert-danger">
+        <strong>Este tipo de Cobro ya existe!</strong>
+    </div>
+    @endif
     <div class="row">
         <div class="col-md-6 admin prod">    
         <h4 class="h4tit">Formas de Cobros y Pagos</h4>
@@ -17,11 +27,11 @@
                     @foreach($cobros as $cobro)        
                             <tbody>
                                 <tr>
-                                    <form class="form-horizontal" name="eliminarCobros" method="POST" action="/cobro/eliminar">
+                                    <form class="form-horizontal" name="eliminarCobros" method="POST" action="/admin/cobro/eliminar">
                                     {{ csrf_field() }}
                                     <input type="hidden" name="id" value="{{$cobro->id}}">
                                     <td>{{$cobro->descripcion}}</td>
-                                    <td><button type="submit" class="btn btn-danger admin tabla" title="Eliminar Cobro">X</button></td>
+                                    <td class="col-chica"><button type="submit" class="btn btn-danger admin tabla" title="Eliminar Cobro">X</button></td>
                                     </form>
                                 </tr>
                             </tbody>
@@ -51,7 +61,7 @@
 
                                             @if ($errors->has('descripcion'))
                                                 <span class="help-block">
-                                                    <strong>{{ $errors->first('descripcion') }}</strong>
+                                                    <strong>Este tipo de Cobro ya existe</strong>
                                                 </span>
                                             @endif
                                         </div>

@@ -1,6 +1,17 @@
 @extends('layouts.principal')
 
 @section('content')
+    @if(Session::has('puesto'))
+        <div class="alert alert-success alert-dismissible fade in" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <strong>{{Session::get('puesto')}}</strong>
+        </div>
+    @endif
+    @if (count($errors) > 0)
+    <div class="alert alert-danger">
+        <strong>Este puesto ya existe!</strong>
+    </div>
+    @endif
     
 	<div class="row">
         <div class="col-md-6 admin prod">    
@@ -17,11 +28,11 @@
                 @foreach($puestos as $puesto)        
                     <tbody>
                         <tr>
-                            <form class="form-horizontal" name="eliminarPuestos" method="POST" action="/puesto/eliminar">
+                            <form class="form-horizontal" name="eliminarPuestos" method="POST" action="/admin/puesto/eliminar">
                                 {{ csrf_field() }}
                                 <input type="hidden" name="id" value="{{$puesto->id}}">
                                 <td>{{$puesto->descripcion}}</td>
-                                <td><button type="submit" class="btn btn-danger admin tabla" title="Eliminar Modo">X</button></td>
+                                <td class="col-chica"><button type="submit" class="btn btn-danger admin tabla" title="Eliminar Modo">X</button></td>
                             </form>
                         </tr>
                     </tbody>
@@ -49,9 +60,9 @@
                                         <input id="descripcion" type="text" class="form-control" name="descripcion" value="{{ old('descripcion') }}" required autofocus>
                                          @if ($errors->has('descripcion'))
                                             <span class="help-block">
-                                                <strong>{{ $errors->first('descripcion') }}</strong>
+                                                <strong>Este puesto ya existe</strong>
                                             </span>
-                                         @endif
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="row model">

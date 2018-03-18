@@ -119,7 +119,7 @@
                                 <td>{{$dem->puesto->descripcion}}</td>
                                 <td>{{$dem->cobro->descripcion}}</td>
                                 <td>{{$dem->plazo}}</td>
-                                <td>@if((Auth::user()->activo === 1 && Auth::user()->id != $dem->user->id && Auth::user()->admin === 0)
+                                <td>@if(Auth::user()->activo === 1 && Auth::user()->id != $dem->user->id && Auth::user()->admin === 0)
                                         <button type="button" id="ofertar" data-toggle="modal" onclick="demandar({{$dem->id}},{{$dem->cantidad}},{{$dem->precio}})" class="btn btn-success admin tabla">Demandar</button>
                                     @else
                                         <button type="button" id="ofertar" data-toggle="modal" data_target="#modalOfertar" disabled class="btn btn-success admin tabla" title="Su Usuario no está ACTIVO o esta Oferta es suya">Demandar</button>
@@ -187,7 +187,7 @@
 
                                     <div class="col-md-6">
                                     <select class="form-control" name="cobroCd" value="{{ old('cobroCd') }}" required>
-                                        <option disabled selected hidden> -- Forma de Cobro -- </option>
+                                        <option hidden value=""> -- Forma de Cobro -- </option>
                                         @foreach ($cobros as $cobro)
                                         <option value="{{$cobro->id}}" >{{$cobro->descripcion}}</option>
                                         @endforeach
