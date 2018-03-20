@@ -89,13 +89,18 @@ div.col-md-3.admin.prod {
   margin: 0px !important;
 }
 
-.table>thead>tr>th:first-child{
+.table>thead>tr>th:first-child {
   border-top-left-radius: 15px;
   
 }
 
-.table>thead>tr>th:last-child{
+.table>thead>tr>th:last-child {
   border-top-right-radius: 15px;
+}
+
+.table.enlaces>thead>tr>th:first-child{
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
 }
 
 .menu-principal {
@@ -126,8 +131,9 @@ div.col-md-3.admin.prod {
   width: 1%;
 }
 
-.table>tbody>tr>td a{
+.table.enlaces>thead>tr>th a{
   text-align: justify;
+  color: white;
 }
 
 nav.navbar.navbar-default{
@@ -240,6 +246,7 @@ ul.nav.nav-tabs.nav-justified {
 .nav-tabs.nav-justified>li>a {
   border-radius: 0px !important;
   border: 0px !important; 
+  font-weight: bold;
 }
 
 .nav-tabs.nav-justified>li>a:hover {

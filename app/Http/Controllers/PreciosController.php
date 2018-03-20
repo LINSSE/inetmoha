@@ -43,9 +43,9 @@ class PreciosController extends Controller
 										->groupBy('ofertas.peso')
 										->groupBy('medidas.descripcion')
 										->orderBy('productos.nombre', 'DESC')
-										->get();
+										->get(['operacionofertas.*']);
 
-		//Precios Ofrecidos
+		//Precios Demandados
 		$precioso = Demanda::leftJoin('productos', 'demandas.id_prod', '=', 'productos.id')
 										->join('modos', 'demandas.id_modo', '=', 'modos.id')
 										->join('medidas', 'demandas.id_medida', '=', 'medidas.id')
@@ -57,7 +57,7 @@ class PreciosController extends Controller
 										->groupBy('demandas.peso')
 										->groupBy('medidas.descripcion')
 										->orderBy('productos.nombre', 'DESC')
-										->get();
+										->get(['demandas.*']);
 
 		//Tendencia Históricos
 		$preciost = Demanda::leftJoin('productos', 'demandas.id_prod', '=', 'productos.id')
@@ -73,7 +73,7 @@ class PreciosController extends Controller
 										->groupBy('demandas.peso')
 										->groupBy('medidas.descripcion')
 										->orderBy('productos.nombre', 'DESC')
-										->get();
+										->get(['demandas.*']);
 
 		return view('precios', array('preciosd' => $preciosd, 'precioso' => $precioso, 'preciost' => $preciost));
 	}

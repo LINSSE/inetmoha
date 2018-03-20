@@ -9,6 +9,31 @@
             <h1 class="text-center">Precios <small>Referencia de los distintos precios ofrecidos, demandados y de otros mercados</small></h1></div>
         <div class="row precios">
             <div class="col-md-6">
+                <h1 class="h1-tabla">Principales Mercados</h1>
+                <h5 class="text-center">Enlaces a los Sitios de los Principales Mercados de Argentina y la Región</h5>
+                <div class="table-responsive admin">
+                    <table class="table enlaces">
+                        <thead>
+                            <tr>
+                                <th class="enlaces"><a href="http://www.mercadocentral.gob.ar/servicios/precios-y-volumenes/precios-mayoristas" class="links"> Mercado de Buenos Aires </a></th>
+                            </tr>
+                            <tr>
+                                <th class="enlaces"><a href="https://mercacordoba.es/mercado-de-frutas-y-verduras">Mercado de Córdoba </a></th>
+                            </tr>
+                            <tr>
+                                <th class="enlaces"><a href="http://www.mprosario.com.ar/">Mercado de Rosario</a></th>
+                            </tr>
+                            <tr>
+                                <th class="enlaces"><a href="http://www.cooperativah.com.ar/">Cooperativa de Horticultores de Bahía Blanca</a></th>
+                            </tr>
+                            <tr>
+                                <th class="enlaces"><a href="http://mercadoproductoressantafe.com/">Mercado de Santa Fé</a></th>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col-md-6">
                 <h1 class="h1-tabla">Precios del Día</h1>
                 <h5 class="text-center">Precios de Operaciones concretada en la última semana</h5>
                 <div class="table-responsive">
@@ -30,30 +55,6 @@
                                 <td>$ {{$pr->max}} </td>
                             </tr>
                             @endforeach
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <h1 class="h1-tabla">Principales Mercados</h1>
-                <div class="table-responsive admin">
-                    <table class="table">
-                        <tbody>
-                            <tr>
-                                <td class="enlaces"><a href="http://www.mercadocentral.gob.ar/servicios/precios-y-volumenes/precios-mayoristas" class="links"> Mercado de Buenos Aires </a></td>
-                            </tr>
-                            <tr>
-                                <td class="enlaces"><a href="https://mercacordoba.es/mercado-de-frutas-y-verduras">Mercado de Córdoba </a></td>
-                            </tr>
-                            <tr>
-                                <td class="enlaces"><a href="http://www.mprosario.com.ar/">Mercado de Rosario</a></td>
-                            </tr>
-                            <tr>
-                                <td class="enlaces"><a href="http://www.cooperativah.com.ar/">Cooperativa de Horticultores de Bahía Blanca</a></td>
-                            </tr>
-                            <tr>
-                                <td class="enlaces"><a href="http://mercadoproductoressantafe.com/">Mercado de Santa Fé</a></td>
-                            </tr>
                         </tbody>
                     </table>
                 </div>
