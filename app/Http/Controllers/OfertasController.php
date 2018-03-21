@@ -54,10 +54,10 @@ class OfertasController extends Controller
 
     public function misofertas() {
 
-    	$ofertas = Oferta::where('id_op', '=', (Auth::user()->id))->orderBy('fechaFin', 'DESC')->get();
+    	$ofertas = Oferta::where('id_op', '=', (Auth::user()->id))->orderBy('fechaFin', 'ASC')->get();
         $cofertas = Contraoferta::leftJoin('ofertas', 'contraofertas.id_oferta', '=', 'ofertas.id')
                                         ->where('contraofertas.id_comprador', '=', (Auth::user()->id))
-                                        ->orderBy('ofertas.fechaFin', 'DESC')
+                                        ->orderBy('ofertas.fechaFin', 'ASC')
                                         ->get(['contraofertas.*']);
         
     	$productos = Producto::All();

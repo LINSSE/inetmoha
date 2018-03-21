@@ -18,12 +18,12 @@ class OperacionesController extends Controller
         $operacioneso = Operacionoferta::join('contraofertas', 'operacionofertas.id_contra', '=', 'contraofertas.id')
                                                 ->join('ofertas', 'contraofertas.id_oferta', '=', 'ofertas.id')
                                                 ->where('ofertas.id_op', '=', $id)
-                                                ->orderBy('operacionofertas.fecha', 'DSC')
+                                                ->orderBy('operacionofertas.fecha', 'ASC')
                                                 ->get(['operacionofertas.*']);
 
         $operacionesd = Operaciondemanda::join('demandas', 'operaciondemandas.id_contra', '=', 'demandas.id')
                                                 ->where('demandas.id_op', '=', $id)
-                                                ->orderBy('operaciondemandas.fecha', 'DSC')
+                                                ->orderBy('operaciondemandas.fecha', 'ASC')
                                                 ->get(['operaciondemandas.*']);
 
     	return view('usuario/operaciones', array('operacioneso' => $operacioneso, 'operacionesd' => $operacionesd));
@@ -32,9 +32,9 @@ class OperacionesController extends Controller
     public function listaroperaciones() {
 
 
-    	$operacionesd = Operaciondemanda::orderBy('fecha', 'DSC')->get();
+    	$operacionesd = Operaciondemanda::orderBy('fecha', 'ASC')->get();
 
-        $operacioneso = Operacionoferta::orderBy('fecha', 'DSC')->get();
+        $operacioneso = Operacionoferta::orderBy('fecha', 'ASC')->get();
 
     	return view('operaciones', array('operacioneso' => $operacioneso, 'operacionesd' => $operacionesd));
 
@@ -65,7 +65,7 @@ class OperacionesController extends Controller
                                                 ->orwhere('puestos.descripcion', 'like', '%'.ucwords(strtolower($buscar)).'%')
                                                 ->orwhere('operacionofertas.fecha', 'like', '%'.$buscar.'%');
                                              })
-                                        ->orderBy('operacionofertas.fecha', 'DSC')
+                                        ->orderBy('operacionofertas.fecha', 'ASC')
                                         ->get(['operacionofertas.*']);
 
         $operacionesd = Operaciondemanda::join('contrademandas', 'operaciondemandas.id_contra', '=', 'contrademandas.id')
@@ -89,7 +89,7 @@ class OperacionesController extends Controller
                                                 ->orwhere('puestos.descripcion', 'like', '%'.ucwords(strtolower($buscar)).'%')
                                                 ->orwhere('operaciondemandas.fecha', 'like', '%'.$buscar.'%');
                                              })
-                                        ->orderBy('operaciondemandas.fecha', 'DSC')
+                                        ->orderBy('operaciondemandas.fecha', 'ASC')
                                         ->get(['operaciondemandas.*']);
 
         return view('operaciones', array('operacioneso' => $operacioneso, 'operacionesd' => $operacionesd));

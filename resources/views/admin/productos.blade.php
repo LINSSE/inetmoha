@@ -84,7 +84,7 @@
             @foreach($medidas as $med)        
                     <tbody>
                         <tr>
-                            <form class="form-horizontal" name="eliminarMedida" method="POST" action="admin/medidas/eliminar">
+                            <form class="form-horizontal" name="eliminarMedida" method="POST" action="/admin/medida/eliminar">
                             {{ csrf_field() }}
                             <input type="hidden" name="id" value="{{$med->id}}">
                             <td><input type="text" class="input-table" name="descripcion" value="{{$med->descripcion}}" disabled></td>

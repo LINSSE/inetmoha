@@ -232,5 +232,6 @@
 </div><!-- /.modal -->
 
     @endguest
+    <hr>
     <a type="button" href="/index" class="btn btn-primary admin" title="Volver">Volver</a>
 @stop
