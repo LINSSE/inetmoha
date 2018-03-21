@@ -23,7 +23,7 @@
                         <th>Cant. Original</th>
                         <th>Cant. Disponible</th>
                         <th>Precio</th>
-                        <th>Fecha Fin</th>
+                        <th>Fecha Entrega</th>
                         <th>Puesto</th>
                         <th>Cobro</th>
                         <th>Plazo (días)</th>
@@ -37,7 +37,7 @@
                         <td>{{$of->cantidadOriginal}}</td>
                         <td>{{$of->cantidad}}</td>
                        	<td>$ {{$of->precio}}</td>
-                       	<td>{{$of->fechaFin}}</td>
+                       	<td>{{$of->fechaEntrega}}</td>
                        	<td>{{$of->puesto->descripcion}}</td>
                        	<td>{{$of->cobro->descripcion}}</td>
                         <td>{{$of->plazo}}</td>

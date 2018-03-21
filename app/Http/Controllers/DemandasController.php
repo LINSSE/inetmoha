@@ -33,8 +33,7 @@ class DemandasController extends Controller
             $demanda->cantidad = $request->cantidad;
             $demanda->cantidadOriginal = $request->cantidad;
             $demanda->precio = $request->precio;
-            $demanda->fechaInicio = $request->fechadi;
-            $demanda->fechaFin = $request->fechadf;
+            $demanda->fechaEntrega = $request->fechae;
             $demanda->id_puesto = $request->puesto;
             $demanda->id_cobro = $request->cobro;
             $demanda->plazo = $request->plazo;
@@ -55,7 +54,7 @@ class DemandasController extends Controller
     public function demandas () {
         
         $hoy = Date('Y-m-j');
-        $demandas = Demanda::whereDate('fechaInicio', '<=', $hoy)->whereDate('fechaFin', '>=', $hoy)->where('cantidad', '>', 0)->orderBy('fechaFin', 'ASC')->get();
+        $demandas = Demanda::whereDate('fechaEntrega', '<=', $hoy)->where('cantidad', '>', 0)->orderBy('fechaEntrega', 'ASC')->get();
         
         $cobros = Cobro::orderBy('descripcion', 'ASC')->get();
 
@@ -64,10 +63,10 @@ class DemandasController extends Controller
 
     public function misdemandas() {
 
-    	$demandas = Demanda::where('id_op', '=', (Auth::user()->id))->orderBy('fechaFin', 'ASC')->get();
+    	$demandas = Demanda::where('id_op', '=', (Auth::user()->id))->orderBy('fechaEntrega', 'ASC')->get();
         $cdemandas = Contrademanda::leftJoin('demandas', 'contrademandas.id_demanda', '=', 'demandas.id')
                                         ->where('contrademandas.id_comprador', '=', (Auth::user()->id))
-                                        ->orderBy('demandas.fechaFin', 'ASC')
+                                        ->orderBy('demandas.fechaEntrega', 'ASC')
                                         ->get(['contrademandas.*']);
         $productos = Producto::All();
         $modos = Modo::orderBy('descripcion', 'ASC')->get();
@@ -86,7 +85,7 @@ class DemandasController extends Controller
                             ->leftjoin('modos','demandas.id_modo','=','modos.id')
                             ->leftjoin('cobros','demandas.id_cobro','=','cobros.id')
                             ->leftjoin('puestos','demandas.id_puesto','=','puestos.id')
-                                     ->whereDate('demandas.fechaInicio', '<=', $hoy)->whereDate('demandas.fechaFin', '>=', $hoy)
+                                     ->whereDate('demandas.fechaEntrega', '<=', $hoy)
                                      ->where(function ($query) use ($buscar){
                                         $query->where('productos.nombre', 'like', '%'.ucwords(strtolower($buscar)).'%')
                                         ->orwhere('users.name', 'like', '%'.ucwords(strtolower($buscar)).'%')
@@ -95,9 +94,9 @@ class DemandasController extends Controller
                                         ->orwhere('modos.descripcion', 'like', '%'.ucwords(strtolower($buscar)).'%')
                                         ->orwhere('cobros.descripcion', 'like', '%'.ucwords(strtolower($buscar)).'%')
                                         ->orwhere('puestos.descripcion', 'like', '%'.ucwords(strtolower($buscar)).'%')
-                                        ->orwhere('demandas.fechaFin', 'like', '%'.$buscar.'%');
+                                        ->orwhere('demandas.fechaEntrega', 'like', '%'.$buscar.'%');
                                      })
-                                     ->orderBy('demandas.fechaFin', 'ASC')
+                                     ->orderBy('demandas.fechaEntrega', 'ASC')
                                      ->get(['demandas.*']);
         
         $cobros = Cobro::orderBy('descripcion', 'ASC')->get();

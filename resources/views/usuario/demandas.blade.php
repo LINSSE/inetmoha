@@ -24,7 +24,7 @@
                         <th>Cant. Original</th>
                         <th>Cant. Disponible</th>
                         <th>Precio</th>
-                        <th>Fecha Fin</th>
+                        <th>Fecha Entrega</th>
                         <th>Puesto</th>
                         <th>Pago</th>
                         <th>Plazo (días)</th>
@@ -43,7 +43,7 @@
                         <td>{{$dem->cantidadOriginal}}</td>
                         <td>{{$dem->cantidad}}</td>
                         <td>$ {{$dem->precio}}</td>
-                        <td>{{$dem->fechaFin}}</td>
+                        <td>{{$dem->fechaEntrega}}</td>
                         <td>{{$dem->puesto->descripcion}}</td>
                         <td>{{$dem->cobro->descripcion}}</td>
                         <td>{{$dem->plazo}}</td>
@@ -71,7 +71,7 @@
                         <th>Modo</th>
                         <th>Cantidad</th>
                         <th>Precio</th>
-                        <th>Fecha Fin</th>
+                        <th>Fecha Entrega</th>
                         <th>Puesto</th>
                         <th>Cobro</th>
                         <th>Plazo (días)</th>
@@ -89,7 +89,7 @@
                         <td>{{$cdem->demanda->modo->descripcion}} X {{$cdem->demanda->peso}} {{$cdem->demanda->medida->descripcion}}</td>
                         <td>{{$cdem->cantidad}}</td>
                         <td>$ {{$cdem->precio}}</td>
-                        <td>{{$cdem->demanda->fechaFin}}</td>
+                        <td>{{$cdem->demanda->fechaEntrega}}</td>
                         <td>{{$cdem->demanda->puesto->descripcion}}</td>
                         <td>{{$cdem->cobro->descripcion}}</td>
                         <td>{{$cdem->plazo}}</td>
@@ -217,29 +217,15 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group{{ $errors->has('fecha') ? ' has-error' : '' }}">
-                                    <label for="fechadi" class="col-md-4 control-label">Fecha Inicio</label>
+                                <div class="form-group{{ $errors->has('fechae') ? ' has-error' : '' }}">
+                                    <label for="fechae" class="col-md-4 control-label">Fecha de Entrega</label>
 
                                     <div class="col-md-6">
-                                        <input id="fechadi" placeholder="Fecha Inicio de Demanda" onfocus="(this.type='date')" type="text" class="form-control" onblur="if(this.value==''){this.type='text'}" name="fechadi" min="<?php $hoy=date("Y-m-d"); echo $hoy;?>" value=""  required>
+                                        <input id="fechae" placeholder="Fecha de Entrega" onfocus="(this.type='date')" type="text" class="form-control" onblur="if(this.value==''){this.type='text'}" name="fechae" min="<?php $hoy=date("Y-m-d"); echo $hoy;?>" value=""  required>
 
-                                        @if ($errors->has('fechadi'))
+                                        @if ($errors->has('fecha'))
                                             <span class="help-block">
-                                                <strong>{{ $errors->first('fechadi') }}</strong>
-                                            </span>
-                                        @endif
-                                    </div>
-                                </div>
-
-                                <div class="form-group{{ $errors->has('fechadf') ? ' has-error' : '' }}">
-                                    <label for="fechadf" class="col-md-4 control-label">Fecha Fin</label>
-
-                                    <div class="col-md-6">
-                                        <input id="fechadf" placeholder="Fecha Fin de Demanda" onfocus="(this.type='date')" type="text" class="form-control" onblur="if(this.value==''){this.type='text'}" name="fechadf" value="{{ old('fechad') }}" min="" disabled="true" title="Primero seleccione una Fecha de Inicio de la Demanda" required>
-
-                                        @if ($errors->has('fechadf'))
-                                            <span class="help-block">
-                                                <strong>{{ $errors->first('fechadf') }}</strong>
+                                                <strong>{{ $errors->first('fecha') }}</strong>
                                             </span>
                                         @endif
                                     </div>
@@ -296,6 +282,9 @@
                                             </label>&nbsp;&nbsp;&nbsp;&nbsp;
                                             <label> 
                                                 <input type="checkbox" name="plazo" value="90"> 90 días    
+                                            </label>&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <label> 
+                                                <input type="checkbox" name="plazo" value="Más de 90"> Más de 90 días    
                                             </label>
                                         </ul>
                                         </div>

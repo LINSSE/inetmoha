@@ -37,7 +37,7 @@
                             <th>Categoría</th>
                             <th>Cantidad</th>
                             <th>Precio</th>
-                            <th>Fecha Fin</th>
+                            <th>Fecha Entrega</th>
                             <th>Operador</th>
                             <th>Puesto</th>
                             <th>Cobro</th>
@@ -56,7 +56,7 @@
                                 <td>{{$dem->producto->categoria->descripcion}}</td>
                                 <td name="cantidad">{{$dem->cantidad}}</td>
                                 <td name="precio">$ {{$dem->precio}}</td>
-                                <td name="fechaFin">{{$dem->fechaFin}}</td>
+                                <td name="fechae">{{$dem->fechaEntrega}}</td>
                                 @if($dem->user->razonsocial === '')
                                 <td>{{$dem->user->apellido}} {{$dem->user->name}}</td>
                                 @else
@@ -91,7 +91,7 @@
                             <th>Categoría</th>
                             <th>Cantidad</th>
                             <th>Precio</th>
-                            <th>Fecha Fin</th>
+                            <th>Fecha Entrega</th>
                             <th>Operador</th>
                             <th>Puesto</th>
                             <th>Cobro</th>
@@ -110,7 +110,7 @@
                                 <td>{{$dem->producto->categoria->descripcion}}</td>
                                 <td name="cantidad">{{$dem->cantidad}}</td>
                                 <td name="precio">$ {{$dem->precio}}</td>
-                                <td name="fechaFin">{{$dem->fechaFin}}</td>
+                                <td name="fechae">{{$dem->fechaEntrega}}</td>
                                 @if($dem->user->razonsocial === '')
                                 <td>{{$dem->user->apellido}} {{$dem->user->name}}</td>
                                 @else
@@ -182,6 +182,24 @@
                                         @endif
                                     </div>
                                 </div>
+                                <div class="form-group{{ $errors->has('puestoCd') ? ' has-error' : '' }}">
+                                    <label for="puestoCd" class="col-md-4 control-label">Puesto</label>
+
+                                    <div class="col-md-6">
+	                                <select class="form-control" name="puestoCd" value="{{ old('puestoCd') }}" required>
+	                                    <option hidden value=""> -- Producto Puesto en -- </option>
+	                                    @foreach ($puestos as $puesto)
+                                        <option value="{{$puesto->id}}" >{{$puesto->descripcion}}</option>
+                                        @endforeach
+	                                </select>
+	                                @if ($errors->has('id_puesto'))
+	                                    <span class="help-block">
+	                                	    <strong>{{ $errors->first('id_puesto') }}</strong>
+	                                        </span>
+	                                @endif
+	                            	</div>
+	                            	<span class="glyphicon glyphicon-info-sign" alt="Indicar donde se colocara el Producto" title="Indicar donde se colocara el Producto"></span>
+	                            </div>
                                 <div class="form-group{{ $errors->has('cobroCd') ? ' has-error' : '' }}">
                                     <label for="cobroCd" class="col-md-4 control-label">Cobro</label>
 
@@ -213,6 +231,9 @@
                                             </label>&nbsp;&nbsp;&nbsp;&nbsp;
                                             <label> 
                                                 <input type="checkbox" name="plazoCd" value="90"> 90 días    
+                                            </label>&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <label> 
+                                                <input type="checkbox" name="plazoCd" value="Más de 90"> Más de 90 días    
                                             </label>
                                         </ul>
                                         </div>

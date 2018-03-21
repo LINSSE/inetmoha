@@ -31,6 +31,7 @@ class ContraofertaController extends Controller
             $co->precio = $request->precioCo;
             $co->id_cobro = $request->cobroCo;
             $co->plazo = $request->plazoCo;
+            $co->id_puesto = $request->puestoCo;
             $co->save();
 
             Mail::to($co->oferta->user->email)->send(new ContraOfertaMail($co));
@@ -142,4 +143,12 @@ class ContraofertaController extends Controller
         return back();
     }
 
+    public function editarCoferta(Request $request) {
+
+        $id = $request->id;
+        $co = Contraoferta::FindOrFail($id);
+        $row = Contraoferta::where('id', $co->id)->update(['estado' => '3']);
+
+        return back();
+    }
 }

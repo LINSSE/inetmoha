@@ -1,6 +1,13 @@
 @extends('layouts.principal')
 
 @section('content')
+    <script>
+        function submitForm(action)
+        {
+            document.getElementById('eliminarCoferta').action = action;
+            document.getElementById('eliminarCoferta').submit();
+        }
+    </script>
 	@if(Session::has('oferta'))
             <div class="alert alert-success alert-dismissible fade in" role="alert">
               <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -24,7 +31,7 @@
                                 <th>Cant. Original</th>
                                 <th>Cant. Disponible</th>
                                 <th>Precio</th>
-                                <th>Fecha Fin</th>
+                                <th>Fecha Entrega</th>
                                 <th>Puesto</th>
                                 <th>Cobro</th>
                                 <th>Plazo (días)</th>
@@ -43,7 +50,7 @@
                                     <td>{{$of->cantidadOriginal}}</td>
                                     <td>{{$of->cantidad}}</td>
                                     <td>$ {{$of->precio}}</td>
-                                    <td>{{$of->fechaFin}}</td>
+                                    <td>{{$of->fechaEntrega}}</td>
                                     <td>{{$of->puesto->descripcion}}</td>
                                     <td>{{$of->cobro->descripcion}}</td>
                                     <td>{{$of->plazo}}</td>
@@ -72,10 +79,11 @@
                             <th>Modo</th>
                             <th>Cantidad</th>
                             <th>Precio</th>
-                            <th>Fecha Fin</th>
+                            <th>Fecha Entrega</th>
                             <th>Puesto</th>
                             <th>Cobro</th>
                             <th>Plazo (días)</th>
+                            <th>Recibido</th>
                             <th>Estado</th>
                             <th style="cursor:default;"></th>
                         </tr>
@@ -83,26 +91,33 @@
                     <tbody>
                     @foreach($cofertas as $cof)
                         <tr>
-                            <form class="form-horizontal" name="eliminarCoferta" method="POST" action="/usuario/eliminarCoferta">
+                            <form class="form-horizontal" id="eliminarCoferta" name="eliminarCoferta" method="POST" action="">
                             {{ csrf_field() }}
                             <input type="hidden" name="id" value="{{$cof->id}}">
                             <td>{{$cof->oferta->producto->nombre}} {{$cof->oferta->producto->descripcion}} {{$cof->oferta->producto->descripcion2}}</td>
                             <td>{{$cof->oferta->modo->descripcion}} X {{$cof->oferta->peso}} {{$cof->oferta->medida->descripcion}}</td>
                             <td>{{$cof->cantidad}}</td>
                             <td>$ {{$cof->precio}}</td>
-                            <td>{{$cof->oferta->fechaFin}}</td>
+                            <td>{{$cof->oferta->fechaEntrega}}</td>
                             <td>{{$cof->oferta->puesto->descripcion}}</td>
                             <td>{{$cof->cobro->descripcion}}</td>
-                            <td>{{$cof->plazo}}</td>
+                            <td>{{$cof->plazo}}</td>                            
                             @if($cof->estado == 1)
+                                <td><input type="checkbox" name="recibido" value="3" title="Seleccione cuando haya recibido la mercaderia"></td>
                                 <td>ACEPTADA</td>
-                                <td><button type="submit" class="btn btn-danger admin tabla" title="No puede Eliminar esta Contra Oferta porque ya fue ACEPTADA" disabled>X</button></td>
+                                <td><button href="" type="submit" class="btn btn-danger admin tabla" title="No puede Eliminar esta Contra Oferta porque ya fue ACEPTADA" disabled>X</button></td>
                             @elseif($cof->estado == 2)
+                                <td><input type="checkbox" name="recibido" value="3" title="Seleccione cuando haya recibido la mercaderia" disabled></td>
                                 <td>RECHAZADA</td>
                                 <td><button type="submit" class="btn btn-danger admin tabla" title="No puede Eliminar esta Contra Oferta porque ya fue RECHAZADA" disabled>X</button></td>
+                            @elseif($cof->estado == 3)
+                                <td><input type="checkbox" name="recibido" value="3" title="Seleccione cuando haya recibido la mercaderia" checked disabled></td>
+                                <td>RECIBIDO</td>
+                                <td><button type="submit" class="btn btn-danger admin tabla" title="No puede Eliminar esta Contra Oferta porque ya fue RECIBIDA" disabled>X</button></td>
                             @else
+                                <td><input type="checkbox" name="recibido" value="3" title="Seleccione cuando haya recibido la mercaderia" onclick="submitForm('/usuario/editarCoferta'); confirm('¿Confirma que ha recibido los productos?')"></td>
                                 <td>EN ESPERA</td>
-                                <td><button type="submit" class="btn btn-danger admin tabla" title="Eliminar Contra Oferta" onclick="return confirm('¿Seguro que deseas eliminar esta Contra Oferta?')">X</button></td>
+                                <td><button type="submit" class="btn btn-danger admin tabla" title="Eliminar Contra Oferta" onclick="submitForm('/usuario/eliminarCoferta'); confirm('¿Seguro que deseas eliminar esta Contra Oferta?')">X</button></td>
                             @endif
                             </form>
                         </tr>
@@ -218,29 +233,15 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group{{ $errors->has('fecha') ? ' has-error' : '' }}">
-                                    <label for="fecha" class="col-md-4 control-label">Fecha Inicio</label>
+                                <div class="form-group{{ $errors->has('fechae') ? ' has-error' : '' }}">
+                                    <label for="fechae" class="col-md-4 control-label">Fecha de Entrega</label>
 
                                     <div class="col-md-6">
-                                        <input id="fecha" placeholder="Fecha Inicio de Oferta" onfocus="(this.type='date')" type="text" class="form-control" onblur="if(this.value==''){this.type='text'}" name="fecha" min="<?php $hoy=date("Y-m-d"); echo $hoy;?>" value=""  required>
+                                        <input id="fechae" placeholder="Fecha de Entrega" onfocus="(this.type='date')" type="text" class="form-control" onblur="if(this.value==''){this.type='text'}" name="fechae" min="<?php $hoy=date("Y-m-d"); echo $hoy;?>" value=""  required>
 
                                         @if ($errors->has('fecha'))
                                             <span class="help-block">
                                                 <strong>{{ $errors->first('fecha') }}</strong>
-                                            </span>
-                                        @endif
-                                    </div>
-                                </div>
-
-                                <div class="form-group{{ $errors->has('fechaf') ? ' has-error' : '' }}">
-                                    <label for="fechaf" class="col-md-4 control-label">Fecha Fin</label>
-
-                                    <div class="col-md-6">
-                                        <input id="fechaf" placeholder="Fecha Fin de Oferta" onfocus="(this.type='date')" type="text" class="form-control" onblur="if(this.value==''){this.type='text'}" name="fechaf" value="{{ old('fechaf') }}" min="" disabled="true" title="Primero seleccione una Fecha de Inicio de la Oferta" required>
-
-                                        @if ($errors->has('fechaf'))
-                                            <span class="help-block">
-                                                <strong>{{ $errors->first('fechaf') }}</strong>
                                             </span>
                                         @endif
                                     </div>
@@ -297,6 +298,9 @@
                                             </label>&nbsp;&nbsp;&nbsp;&nbsp;
                                             <label> 
                                                 <input type="checkbox" name="plazo" value="90"> 90 días    
+                                            </label>&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <label> 
+                                                <input type="checkbox" name="plazo" value="Más de 90"> Más de 90 días    
                                             </label>
                                         </ul>
                                         </div>

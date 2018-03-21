@@ -30,7 +30,7 @@
 
                                 @if ($errors->has('dni'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('dni') }}</strong>
+                                        <strong>{{ 'El DNI o CUIT ya ha sido registrado. Debe ingresar 8 dígitos si es un DNI u 11 dígitos si es un CUIT. Sin güiones' }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -45,7 +45,7 @@
 
                                 @if ($errors->has('razonsocial'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('razonsocial') }}</strong>
+                                        <strong>{{ 'La Razón Social ingresada ya ha sido registrada' }}</strong>
                                     </span>
                                 @endif
                             </div>

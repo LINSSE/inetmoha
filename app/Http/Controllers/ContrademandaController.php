@@ -31,6 +31,7 @@ class ContrademandaController extends Controller
             $cd->precio = $request->precioCd;
             $cd->id_cobro = $request->cobroCd;
             $cd->plazo = $request->plazoCd;
+            $cd->id_puesto = $request->puestoCd;
             $cd->save();
 
             Mail::to($cd->demanda->user->email)->send(new ContraDemandaMail($cd));
@@ -131,9 +132,8 @@ class ContrademandaController extends Controller
         return back();
     }
 
-    public function eliminar(Request $request) {
+    public function eliminar($id) {
 
-        $id = $request->id;
         $cdem = Contrademanda::FindOrFail($id);
         $cdem->delete();
 

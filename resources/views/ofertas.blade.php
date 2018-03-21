@@ -36,7 +36,7 @@
                             <th>Categoría</th>
                             <th>Cantidad</th>
                             <th>Precio</th>
-                            <th>Fecha Fin</th>
+                            <th>Fecha Entrega</th>
                             <th>Operador</th>
                             <th>Puesto</th>
                             <th>Cobro</th>
@@ -55,7 +55,7 @@
                                 <td>{{$of->producto->categoria->descripcion}}</td>
                                 <td name="cantidad">{{$of->cantidad}}</td>
                                 <td name="precio">$ {{$of->precio}}</td>
-                                <td name="fechaFin">{{$of->fechaFin}}</td>
+                                <td name="fechae">{{$of->fechaEntrega}}</td>
                                 @if($of->user->razonsocial === '')
                                 <td>{{$of->user->apellido}} {{$of->user->name}}</td>
                                 @else
@@ -90,7 +90,7 @@
                             <th>Categoría</th>
                             <th>Cantidad</th>
                             <th>Precio</th>
-                            <th>Fecha Fin</th>
+                            <th>Fecha Entrega</th>
                             <th>Operador</th>
                             <th>Puesto</th>
                             <th>Cobro</th>
@@ -109,7 +109,7 @@
                                 <td>{{$of->producto->categoria->descripcion}}</td>
                                 <td name="cantidad">{{$of->cantidad}}</td>
                                 <td name="precio">$ {{$of->precio}}</td>
-                                <td name="fechaFin">{{$of->fechaFin}}</td>
+                                <td name="fechae">{{$of->fechaEntrega}}</td>
                                 @if($of->user->razonsocial === '')
                                 <td>{{$of->user->apellido}} {{$of->user->name}}</td>
                                 @else
@@ -182,6 +182,24 @@
                                         @endif
                                     </div>
                                 </div>
+                                <div class="form-group{{ $errors->has('puestoCo') ? ' has-error' : '' }}">
+                                    <label for="puestoCo" class="col-md-4 control-label">Puesto</label>
+
+                                    <div class="col-md-6">
+	                                <select class="form-control" name="puestoCo" value="{{ old('puestoCo') }}" required>
+	                                    <option hidden value=""> -- Producto Puesto en -- </option>
+	                                    @foreach ($puestos as $puesto)
+                                        <option value="{{$puesto->id}}" >{{$puesto->descripcion}}</option>
+                                        @endforeach
+	                                </select>
+	                                @if ($errors->has('id_puesto'))
+	                                    <span class="help-block">
+	                                	    <strong>{{ $errors->first('id_puesto') }}</strong>
+	                                        </span>
+	                                @endif
+	                            	</div>
+	                            	<span class="glyphicon glyphicon-info-sign" alt="Indicar donde se colocara el Producto" title="Indicar donde se colocara el Producto"></span>
+	                            </div>
                                 <div class="form-group{{ $errors->has('cobroCo') ? ' has-error' : '' }}">
                                     <label for="cobroCo" class="col-md-4 control-label">Cobro</label>
 
@@ -213,6 +231,9 @@
                                             </label>&nbsp;&nbsp;&nbsp;&nbsp;
                                             <label> 
                                                 <input type="checkbox" name="plazoCo" value="90"> 90 días    
+                                            </label>&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <label> 
+                                                <input type="checkbox" name="plazoCo" value="Más de 90"> Más de 90 días    
                                             </label>
                                         </ul>
                                         </div>

@@ -51,6 +51,7 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::get('usuario/detalleOferta/{id}', 'ContraofertaController@detalleOferta');
 	Route::get('usuario/aceptarOferta/{id}', 'ContraofertaController@aceptarOferta');
 	Route::get('usuario/rechazarOferta/{id}', 'ContraofertaController@rechazarOferta');
+	Route::post('usuario/editarCoferta', 'ContraofertaController@editarCoferta');
 
 	//Demandas
 	Route::post('usuario/nuevaDemanda', 'DemandasController@store');
@@ -60,7 +61,7 @@ Route::group(['middleware' => 'auth'], function() {
 
 	//Contrademandas
 	Route::post('usuario/contraDemanda', 'ContrademandaController@store');
-	Route::post('usuario/eliminarCdemanda', 'ContrademandaController@eliminar');
+	Route::post('usuario/eliminarCdemanda/{id}', 'ContrademandaController@eliminar');
 	Route::get('usuario/detalleDemanda/{id}', 'ContrademandaController@detalleDemanda');
 	Route::get('usuario/aceptarDemanda/{id}', 'ContrademandaController@aceptarDemanda');
 	Route::get('usuario/rechazarDemanda/{id}', 'ContrademandaController@rechazarDemanda');
@@ -103,11 +104,7 @@ Route::group(['middleware' => 'admin'], function() {
 	Route::post('admin/producto/eliminar', 'ProductoController@eliminar');
 	Route::post('admin/categoria/eliminar', 'ProductoController@eliminarCat');
 	
-	
-	
 });
-
-//Route::get('preciosba', 'ProductoController@preciosba');
 
 //Rutas de pruebas
 use MOHA\User;
@@ -117,6 +114,5 @@ Route::get('prueba', function(){
 	 
 	return view('prueba');
 });
-
 
 ?>

@@ -33,8 +33,7 @@ class OfertasController extends Controller
             $oferta->cantidad = $request->cantidad;
             $oferta->cantidadOriginal = $request->cantidad;
             $oferta->precio = $request->precio;
-            $oferta->fechaInicio = $request->fecha;
-            $oferta->fechaFin = $request->fechaf;
+            $oferta->fechaEntrega = $request->fechae;
             $oferta->id_puesto = $request->puesto;
             $oferta->id_cobro = $request->cobro;
             $oferta->plazo = $request->plazo;
@@ -54,10 +53,10 @@ class OfertasController extends Controller
 
     public function misofertas() {
 
-    	$ofertas = Oferta::where('id_op', '=', (Auth::user()->id))->orderBy('fechaFin', 'ASC')->get();
+    	$ofertas = Oferta::where('id_op', '=', (Auth::user()->id))->orderBy('fechaEntrega', 'ASC')->get();
         $cofertas = Contraoferta::leftJoin('ofertas', 'contraofertas.id_oferta', '=', 'ofertas.id')
                                         ->where('contraofertas.id_comprador', '=', (Auth::user()->id))
-                                        ->orderBy('ofertas.fechaFin', 'ASC')
+                                        ->orderBy('ofertas.fechaEntrega', 'ASC')
                                         ->get(['contraofertas.*']);
         
     	$productos = Producto::All();
@@ -72,11 +71,12 @@ class OfertasController extends Controller
     public function ofertas () {
 
         $hoy = Date('Y-m-j');
-        $ofertas = Oferta::whereDate('fechaInicio', '<=', $hoy)->whereDate('fechaFin', '>=', $hoy)->where('cantidad', '>', 0)->orderBy('fechaFin', 'ASC')->get();
+        $ofertas = Oferta::whereDate('fechaEntrega', '<=', $hoy)->where('cantidad', '>', 0)->orderBy('fechaEntrega', 'ASC')->get();
         
         $cobros = Cobro::orderBy('descripcion', 'ASC')->get();
+        $puestos = Puesto::orderBy('descripcion', 'ASC')->get();
 
-        return view('ofertas', array('ofertas' => $ofertas, 'cobros' => $cobros));
+        return view('ofertas', array('ofertas' => $ofertas, 'cobros' => $cobros, 'puestos' => $puestos));
     }
 
     public function buscarOfertas(Request $request) {
@@ -88,7 +88,7 @@ class OfertasController extends Controller
                             ->leftjoin('modos','ofertas.id_modo','=','modos.id')
                             ->leftjoin('cobros','ofertas.id_cobro','=','cobros.id')
                             ->leftjoin('puestos','ofertas.id_puesto','=','puestos.id')
-                                     ->whereDate('ofertas.fechaInicio', '<=', $hoy)->whereDate('ofertas.fechaFin', '>=', $hoy)
+                                     ->whereDate('ofertas.fechaEntrega', '<=', $hoy)
                                      ->where('ofertas.cantidad', '>', 0)
                                      ->where(function ($query) use ($buscar){
                                         $query->where('productos.nombre', 'like', '%'.ucwords(strtolower($buscar)).'%')
@@ -98,9 +98,9 @@ class OfertasController extends Controller
                                         ->orwhere('modos.descripcion', 'like', '%'.ucwords(strtolower($buscar)).'%')
                                         ->orwhere('cobros.descripcion', 'like', '%'.ucwords(strtolower($buscar)).'%')
                                         ->orwhere('puestos.descripcion', 'like', '%'.ucwords(strtolower($buscar)).'%')
-                                        ->orwhere('ofertas.fechaFin', 'like', '%'.$buscar.'%');
+                                        ->orwhere('ofertas.fechaEntrega', 'like', '%'.$buscar.'%');
                                      })
-                                     ->orderBy('ofertas.fechaFin', 'ASC')
+                                     ->orderBy('ofertas.fechaEntrega', 'ASC')
                                      ->get(['ofertas.*']);
         
         $cobros = Cobro::orderBy('descripcion', 'ASC')->get();
