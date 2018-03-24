@@ -31,15 +31,12 @@
             @foreach($productos as $prod)        
                     <tbody>
                         <tr>
-                            <form class="form-horizontal" name="eliminarProducto" method="POST" action="/admin/producto/eliminar">
-                            {{ csrf_field() }}
                             <input type="hidden" name="id" value="{{$prod->id}}">
                             <td>{{$prod->nombre}}</td>
                             <td>{{$prod->descripcion}}</td>
                             <td>{{$prod->descripcion2}}</td>
                             <td>{{$prod->categoria->descripcion}}</td>
-                            <td class="col-chica"><button type="submit" class="btn btn-danger admin tabla" title="Eliminar Producto" onclick="return confirm('¿Seguro que deseas eliminar este Producto?')">X</button></td>
-                            </form>
+                            <td class="col-chica"><button type="button" id="editarProd" data-toggle="modal" data_target="#agregarProducto" class="btn btn-danger admin tabla" title="Editar Producto">Editar</button></td>
                         </tr>
                     </tbody>
             @endforeach
@@ -59,12 +56,9 @@
             @foreach($categorias as $cat)        
                     <tbody>
                         <tr>
-                            <form class="form-horizontal" name="eliminarCategoria" method="POST" action="/admin/categoria/eliminar">
-                            {{ csrf_field() }}
                             <input type="hidden" name="id" value="{{$cat->id}}">
                             <td><input type="text" class="input-table" name="descripcion" value="{{$cat->descripcion}}" disabled></td>
-                            <td class="col-chica"><button type="submit" class="btn btn-danger admin tabla" title="Eliminar Categoría" onclick="return confirm('¿Seguro que deseas eliminar esta Categoría?')">X</button></td>
-                            </form>
+                            <td class="col-chica"><button type="button" id="editarCat" data-toggle="modal" data_target="#editarrCategoria" class="btn btn-danger admin tabla" title="Editar Categoría">Editar</button></td>
                         </tr>
                     </tbody>
             @endforeach
@@ -84,12 +78,9 @@
             @foreach($medidas as $med)        
                     <tbody>
                         <tr>
-                            <form class="form-horizontal" name="eliminarMedida" method="POST" action="/admin/medida/eliminar">
-                            {{ csrf_field() }}
                             <input type="hidden" name="id" value="{{$med->id}}">
                             <td><input type="text" class="input-table" name="descripcion" value="{{$med->descripcion}}" disabled></td>
-                            <td class="col-chica"><button type="submit" class="btn btn-danger admin tabla" title="Eliminar Unidad de Medida" onclick="return confirm('¿Seguro que deseas eliminar esta Unidad de Medida?')">X</button></td>
-                            </form>
+                            <td class="col-chica"><button type="button" id="editarMed" data-toggle="modal" data_target="#editarrMedida" class="btn btn-danger admin tabla" title="Editar Unidad de Medida">Editar</button></td
                         </tr>
                     </tbody>
             @endforeach
@@ -111,12 +102,12 @@
                             <div class="panel-body">
                                 <form class="form-horizontal" id="formagregarProducto" name="agregarProducto" method="POST" action="{{ url('admin/producto/store') }}">
                                     {{ csrf_field() }}
-
+                                    <input type="hidden" id='id_prod' name="id_prod" value="">
                                     <div class="form-group{{ $errors->has('nombre') ? ' has-error' : '' }}">
                                         <label for="nombre" class="col-md-4 control-label">Nombre</label>
 
                                         <div class="col-md-6">
-                                            <input id="nombre" type="text" class="form-control" name="nombre" value="{{ old('nombre') }}" placeholder="Ej: Papa" required autofocus>
+                                            <input id="nombre" type="text" class="form-control" id="nombreProd" name="nombre" value="{{ old('nombre') }}" placeholder="Ej: Papa" required autofocus>
 
                                             @if ($errors->has('nombre'))
                                                 <span class="help-block">
@@ -129,7 +120,7 @@
                                         <label for="descripcion" class="col-md-4 control-label">Descripción</label>
 
                                         <div class="col-md-6">
-                                            <input id="descripcion" type="text" class="form-control" name="descripcion" value="{{ old('descripcion') }}" placeholder="Ej: Blanca" required >
+                                            <input id="descripcion" type="text" class="form-control" id="descProd" name="descripcion" value="{{ old('descripcion') }}" placeholder="Ej: Blanca" required >
 
                                             @if ($errors->has('descripcion'))
                                                 <span class="help-block">
@@ -142,7 +133,7 @@
                                         <label for="descripcion2" class="col-md-4 control-label">Descripción Alternativa</label>
 
                                         <div class="col-md-6">
-                                            <input id="descripcion2" type="text" class="form-control" name="descripcion2" value="{{ old('descripcion2') }}" placeholder="Ej: Grande" >
+                                            <input id="descripcion2" type="text" class="form-control" id="desc2Prod" name="descripcion2" value="{{ old('descripcion2') }}" placeholder="Ej: Grande" >
 
                                             @if ($errors->has('descripcion2'))
                                                 <span class="help-block">
@@ -171,7 +162,7 @@
                                         </div>
                                     </div>
                                     <div class="row model">
-                                        <button type="submit" class="btn btn-primary">Agregar</button>
+                                        <button type="submit" class="btn btn-primary">Guardar</button>
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                                     </div>
                                 </form>

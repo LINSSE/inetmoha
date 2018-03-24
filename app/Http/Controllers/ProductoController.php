@@ -98,12 +98,11 @@ class ProductoController extends Controller
         return back();
     }
 
-    public function eliminar(Request $request)
+    public function editar(Request $request)
     {
         $id = $request->id;
-        $prod = Producto::FindOrFail($id);
-        $prod->delete();
-        Session::flash('mensaje', 'Producto eliminado!');
+        //$prod = Producto::where('id', '=', $id)->update([])
+        Session::flash('mensaje', 'Producto editado!');
         return back();
     }
 

@@ -8,7 +8,7 @@ class Contrademanda extends Model
 {
     //
     protected $fillable = [
-        'id_demanda', 'id_comprador', 'cantidad', 'precio', 'id_cobro', 'plazo', 'estado',
+        'id_demanda', 'id_comprador', 'cantidad', 'precio', 'id_cobro', 'plazo', 'id_puesto', 'estado',
     ];
 
     public function demanda()
@@ -24,5 +24,10 @@ class Contrademanda extends Model
     public function cobro()
     {
         return $this->hasOne('MOHA\Cobro', 'id', 'id_cobro');
+    }
+
+    public function puesto()
+    {
+        return $this->hasOne('MOHA\Puesto', 'id', 'id_puesto');
     }
 }

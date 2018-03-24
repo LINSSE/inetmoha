@@ -1,13 +1,7 @@
 @extends('layouts.principal')
 
 @section('content')
-    <script>
-        function submitForm(action)
-        {
-            document.getElementById('eliminarCoferta').action = action;
-            document.getElementById('eliminarCoferta').submit();
-        }
-    </script>
+    
 	@if(Session::has('oferta'))
             <div class="alert alert-success alert-dismissible fade in" role="alert">
               <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -103,7 +97,7 @@
                             <td>{{$cof->cobro->descripcion}}</td>
                             <td>{{$cof->plazo}}</td>                            
                             @if($cof->estado == 1)
-                                <td><input type="checkbox" name="recibido" value="3" title="Seleccione cuando haya recibido la mercaderia"></td>
+                                <td><input type="checkbox" name="recibido" value="3" onclick="submitFormOf('/usuario/editarCoferta'); return confirm('¿Confirma que ha recibido los productos?')" title="Seleccione cuando haya recibido la mercaderia"></td>
                                 <td>ACEPTADA</td>
                                 <td><button href="" type="submit" class="btn btn-danger admin tabla" title="No puede Eliminar esta Contra Oferta porque ya fue ACEPTADA" disabled>X</button></td>
                             @elseif($cof->estado == 2)
@@ -115,9 +109,9 @@
                                 <td>RECIBIDO</td>
                                 <td><button type="submit" class="btn btn-danger admin tabla" title="No puede Eliminar esta Contra Oferta porque ya fue RECIBIDA" disabled>X</button></td>
                             @else
-                                <td><input type="checkbox" name="recibido" value="3" title="Seleccione cuando haya recibido la mercaderia" onclick="submitForm('/usuario/editarCoferta'); confirm('¿Confirma que ha recibido los productos?')"></td>
+                                <td><input type="checkbox" name="recibido" value="3" title="Seleccione cuando haya recibido la mercaderia" onclick="submitFormOf('/usuario/editarCoferta'); return confirm('¿Confirma que ha recibido los productos?')"></td>
                                 <td>EN ESPERA</td>
-                                <td><button type="submit" class="btn btn-danger admin tabla" title="Eliminar Contra Oferta" onclick="submitForm('/usuario/eliminarCoferta'); confirm('¿Seguro que deseas eliminar esta Contra Oferta?')">X</button></td>
+                                <td><button type="submit" class="btn btn-danger admin tabla" title="Eliminar Contra Oferta" onclick="submitFormOf('/usuario/eliminarCoferta'); return confirm('¿Seguro que deseas eliminar esta Contra Oferta?')">X</button></td>
                             @endif
                             </form>
                         </tr>

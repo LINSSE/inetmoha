@@ -1,6 +1,7 @@
 @extends('layouts.principal')
 
 @section('content')
+
 @if(Session::has('demanda'))
   <div class="alert alert-success alert-dismissible fade in" role="alert">
     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -92,6 +93,7 @@
             <table class="table">
                 <thead>
                     <tr>
+                      <th>Recibido</th>
                       <th>Vendedor</th>
                       <th>Cantidad</th>
                       <th>Precio</th>
@@ -101,7 +103,16 @@
                 </thead>
                 <tbody>
                 @foreach($cdacep as $cda)
-                     <tr> 
+                     <tr>
+                      <form class="form-horizontal" id="editarCdemanda" name="editarCdemanda" method="POST" action="">
+                      {{ csrf_field() }}
+                      <input type="hidden" name="id" value="{{$cda->id}}">
+                      @if($cda->estado == 1)
+                        <td><input type="checkbox" name="recibido" value="3" onclick="submitFormDem('/usuario/editarCdemanda'); confirm('¿Confirma que ha recibido los productos?')" title="Seleccione cuando haya recibido la mercaderia"></td>
+                      @elseif($cda->estado == 3)
+                        <td><input type="checkbox" name="recibido" value="3" title="Seleccione cuando haya recibido la mercaderia" checked disabled></td>
+                      @endif
+                      </form>
                       @if($cda->user->razonsocial === '')
                       <td>{{$cda->user->apellido}} {{$cda->user->name}}</td>
                       @else

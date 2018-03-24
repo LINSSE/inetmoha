@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\DB;
 use MOHA\Mail\DemandaAceptada;
 use MOHA\Mail\DemandaRechazada;
 use MOHA\Mail\ContraDemandaMail;
+use MOHA\Mail\ProductosRecibidosDemandaMail;
 
 class ContrademandaController extends Controller
 {
@@ -52,7 +53,7 @@ class ContrademandaController extends Controller
     public function detalledemanda($id)  {
 
     	 $cdemandas = Contrademanda::where('id_demanda', $id)->where('estado', '=', '0')->get();
-         $cdacep = Contrademanda::where('id_demanda', $id)->where('estado', '=', '1')->get();
+         $cdacep = Contrademanda::where('id_demanda', $id)->where('estado', '=', '1')->orwhere('estado', '=', '3')->get();
     	 $dem = Demanda::Find($id);
 
     	 return view('/usuario/detalleContrademanda', array('cdemandas' => $cdemandas, 'cdacep' => $cdacep, 'dem' => $dem));
@@ -138,6 +139,29 @@ class ContrademandaController extends Controller
         $cdem->delete();
 
         Session::flash('demanda', 'Su Contra Demanda ha sido eliminada!');
+        return back();
+    }
+
+    public function editarCdemanda(Request $request) {
+
+        DB::beginTransaction();
+
+        try {
+
+            $id = $request->id;
+            $cd = Contrademanda::FindOrFail($id);
+            $row = Contrademanda::where('id', $cd->id)->update(['estado' => '3']);
+
+            $user = Auth::user();
+            Mail::to($cd->demanda->user->email)->send(new ProductosRecibidosDemandaMail($cd, $user));
+            DB::commit();
+            
+        } catch (\Throwable $e) {
+            
+            DB::rollback();
+            throw $e;
+        }
+
         return back();
     }
 }

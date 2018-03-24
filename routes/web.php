@@ -65,6 +65,7 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::get('usuario/detalleDemanda/{id}', 'ContrademandaController@detalleDemanda');
 	Route::get('usuario/aceptarDemanda/{id}', 'ContrademandaController@aceptarDemanda');
 	Route::get('usuario/rechazarDemanda/{id}', 'ContrademandaController@rechazarDemanda');
+	Route::post('usuario/editarCdemanda', 'ContrademandaController@editarCdemanda');
 });
 
 

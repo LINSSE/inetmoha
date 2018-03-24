@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\DB;
 use MOHA\Mail\OfertaAceptada;
 use MOHA\Mail\OfertaRechazada;
 use MOHA\Mail\ContraOfertaMail;
+use MOHA\Mail\ProductosRecibidosMail;
+
 
 class ContraofertaController extends Controller
 {
@@ -52,7 +54,7 @@ class ContraofertaController extends Controller
     public function detalleOferta($id)  {
 
     	 $cofertas = Contraoferta::where('id_oferta', $id)->where('estado', '=', '0')->get();
-         $cofacep = Contraoferta::where('id_oferta', $id)->where('estado', '=', '1')->get();
+         $cofacep = Contraoferta::where('id_oferta', $id)->where('estado', '=', '1')->orwhere('estado', '=', '3')->get();
     	 $of = Oferta::Find($id);
 
     	 return view('/usuario/detalleContraOferta', array('cofertas' => $cofertas, 'cofacep' => $cofacep, 'of' => $of));
@@ -60,17 +62,18 @@ class ContraofertaController extends Controller
 
     public function aceptarOferta ($id) {
 
-        $co = Contraoferta::Find($id);
-        $of = Oferta::Find($co->id_oferta);
-
-        $cant = $of->cantidad - $co->cantidad;
-
         DB::beginTransaction();
 
         try {
 
+            $co = Contraoferta::Find($id);
+            $of = Oferta::Find($co->id_oferta);
+
+            $cant = $of->cantidad - $co->cantidad;
+
             $this->actualizarOferta($cant, $co);            
             $this->generarOperacion($co);
+            $row = Contraoferta::where('id', $co->id)->update(['estado' => '1']);
 
             Session::flash('oferta', 'La Oferta ha sido aceptada');
             DB::commit();
@@ -81,16 +84,13 @@ class ContraofertaController extends Controller
             throw $e;
         }
 
-        
-
         return back();
     }
 
     public function actualizarOferta($cant, Contraoferta $co) {
 
         if ($cant >= 0) {
-            $rows = Oferta::where('id', $co->id_oferta)->update(['cantidad' => $cant, 'abierta' => true]);
-            $row = Contraoferta::where('id', $co->id)->update(['estado' => '1']);
+            $rows = Oferta::where('id', $co->id_oferta)->update(['cantidad' => $cant, 'abierta' => true]);            
         }
 
         return true;
@@ -145,9 +145,30 @@ class ContraofertaController extends Controller
 
     public function editarCoferta(Request $request) {
 
-        $id = $request->id;
-        $co = Contraoferta::FindOrFail($id);
-        $row = Contraoferta::where('id', $co->id)->update(['estado' => '3']);
+        DB::beginTransaction();
+
+        try {
+
+            $id = $request->id;
+            $co = Contraoferta::Find($id);
+            $of = Oferta::Find($co->id_oferta);
+
+            $cant = $of->cantidad - $co->cantidad;
+
+            $this->actualizarOferta($cant, $co);            
+            $this->generarOperacion($co);
+
+            $row = Contraoferta::where('id', '=', $co->id)->update(['estado' => '3']);
+
+            $user = Auth::user();
+            Mail::to($co->oferta->user->email)->send(new ProductosRecibidosMail($co, $user));
+            DB::commit();
+            
+        } catch (\Throwable $e) {
+            
+            DB::rollback();
+            throw $e;
+        }
 
         return back();
     }

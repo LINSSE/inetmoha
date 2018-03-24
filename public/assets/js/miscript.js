@@ -9,22 +9,15 @@ $(document).ready(function(){
         });
     });
 
-    $("#fecha").change(function(event){
-        var fecha = document.getElementById("fecha").value;
-        $("#fechaf").attr("disabled", false);
-        $("#fechaf").attr("min", fecha);
-    });
-
-    $("#fechadi").change(function(event){
-        var fecha = document.getElementById("fechadi").value;
-        $("#fechadf").attr("disabled", false);
-        $("#fechadf").attr("min", fecha);
-    });
-
     $('#agregarProd').on('click', function () {
             $('#agregarProducto').load("agregarProducto")//load a view into a modal
         $('#agregarProducto').modal('show'); //show the modal
       });
+    
+      $('#editarProd').on('click', function () {
+        $('#agregarProducto').load("agregarProducto")//load a view into a modal
+    $('#agregarProducto').modal('show'); //show the modal
+    });
 
     $('#agregarProducto').on('hidden.bs.modal', function(){ 
         $(this).find('#formagregarProducto')[0].reset(); //para limpiar campos del modal
@@ -98,6 +91,14 @@ $(document).ready(function(){
             $('#precioCo').val(precio);
         $('#modalOfertar').modal('show'); //show the modal
       }
+    
+    editarProducto = function (id, nombre, desc, desc2) {
+        $('#id_prod').val(id);
+        $('#nombreProd').val(nombre);
+        $('#descProd').val(desc);
+        $('#desc2Prod').val(desc2);
+    $('#agregarProducto').modal('show'); //show the modal
+    }
 
     $("#cantidad").change(function(event){
         var cant = document.getElementById("cantOferta").value;
@@ -111,6 +112,16 @@ $(document).ready(function(){
             $('#precioCd').val(precio);
         $('#modalDemandar').modal('show'); //show the modal
       }
+
+    submitFormDem = function (action) {
+        document.getElementById('editarCdemanda').action = action;
+        document.getElementById('editarCdemanda').submit();
+    }
+
+    submitFormOf = function (action) {
+        document.getElementById('eliminarCoferta').action = action;
+        document.getElementById('eliminarCoferta').submit();
+    }
 
     $("#cantidadD").change(function(event){
         var cant = document.getElementById("cantDemanda").value;
@@ -177,4 +188,5 @@ $(document).ready(function(){
         if (asc) element.addClass("asc");
         else element.addClass("desc");
       }
+
 });

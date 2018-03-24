@@ -54,11 +54,12 @@ class DemandasController extends Controller
     public function demandas () {
         
         $hoy = Date('Y-m-j');
-        $demandas = Demanda::whereDate('fechaEntrega', '<=', $hoy)->where('cantidad', '>', 0)->orderBy('fechaEntrega', 'ASC')->get();
+        $demandas = Demanda::where('cantidad', '>', 0)->orderBy('fechaEntrega', 'ASC')->get();
         
         $cobros = Cobro::orderBy('descripcion', 'ASC')->get();
+        $puestos = Puesto::orderBy('descripcion', 'ASC')->get();
 
-        return view('demandas', array('demandas' => $demandas, 'cobros' => $cobros));
+        return view('demandas', array('demandas' => $demandas, 'cobros' => $cobros, 'puestos' => $puestos));
     }
 
     public function misdemandas() {

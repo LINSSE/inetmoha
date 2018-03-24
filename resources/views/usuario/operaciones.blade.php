@@ -15,8 +15,7 @@
                                 <th>Precio</th>
                                 <th>Pago</th>
                                 <th>Plazo (días)</th>
-                                <th>Origen</th>
-                                <th>Destino</th>
+                                <th>Puesto en</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -30,7 +29,6 @@
                                 <td>{{$op->contra->cobro->descripcion}}</td>
                                 <td>{{$op->contra->plazo}}</td>
                                 <td>{{$op->contra->oferta->puesto->descripcion}}</td>
-                                <td> --- </td>
                             </tr>
                         @endforeach
                         @foreach($operacionesd as $op)
@@ -42,7 +40,6 @@
                                 <td>$ {{$op->contra->precio}}</td>
                                 <td>{{$op->contra->cobro->descripcion}}</td>
                                 <td>{{$op->contra->plazo}}</td>
-                                <td> --- </td>
                                 <td>{{$op->contra->demanda->puesto->descripcion}}</td>                            
                             </tr>
                         @endforeach

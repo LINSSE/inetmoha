@@ -71,7 +71,7 @@ class OfertasController extends Controller
     public function ofertas () {
 
         $hoy = Date('Y-m-j');
-        $ofertas = Oferta::whereDate('fechaEntrega', '<=', $hoy)->where('cantidad', '>', 0)->orderBy('fechaEntrega', 'ASC')->get();
+        $ofertas = Oferta::where('cantidad', '>', 0)->orderBy('fechaEntrega', 'ASC')->get();
         
         $cobros = Cobro::orderBy('descripcion', 'ASC')->get();
         $puestos = Puesto::orderBy('descripcion', 'ASC')->get();

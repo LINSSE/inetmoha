@@ -92,6 +92,7 @@
             <table class="table">
                 <thead>
                     <tr>
+                        <th></th>
                         <th>Comprador</th>
                         <th>Cantidad</th>
                         <th>Precio</th>
@@ -102,15 +103,20 @@
                 @foreach($cofacep as $coa)
                    <tbody>
                        <tr> 
+                        @if($coa->estado == 3)
+                        <td><span class="glyphicon glyphicon-info-sign" alt="El Producto fue RECIBIDO por el Comprador" title="El Producto fue RECIBIDO por el Comprador"></span></td>
+                        @else
+                        <td></td>
+                        @endif
                         @if($coa->user->razonsocial === '')
-                        <td>{{$coa->user->apellido}} {{$coa->user->name}}</td>
+                        <td> {{$coa->user->apellido}} {{$coa->user->name}}</td>
                         @else
                         <td>{{$coa->user->razonsocial}}</td>
                         @endif
                         <td>{{$coa->cantidad}}</td>
                         <td>$ {{$coa->precio}}</td>
                         <td>{{$coa->cobro->descripcion}}</td>
-                        <td>{{$coa->plazo}}</td>
+                        <td>{{$coa->plazo}}</td>                        
                        </tr>
                    </tbody>
                @endforeach

@@ -15,14 +15,17 @@ class OperacionesController extends Controller
 
     	$id = Auth::user()->id;
 
-        $operacioneso = Operacionoferta::join('contraofertas', 'operacionofertas.id_contra', '=', 'contraofertas.id')
+        $operacioneso = Operacionoferta::leftJoin('contraofertas', 'operacionofertas.id_contra', '=', 'contraofertas.id')
                                                 ->join('ofertas', 'contraofertas.id_oferta', '=', 'ofertas.id')
                                                 ->where('ofertas.id_op', '=', $id)
+                                                ->orwhere('contraofertas.id_comprador', '=', $id)
                                                 ->orderBy('operacionofertas.fecha', 'ASC')
                                                 ->get(['operacionofertas.*']);
 
-        $operacionesd = Operaciondemanda::join('demandas', 'operaciondemandas.id_contra', '=', 'demandas.id')
+        $operacionesd = Operaciondemanda::leftJoin('contrademandas', 'operaciondemandas.id_contra', '=', 'contrademandas.id')
+                                                ->join('demandas', 'contrademandas.id_demanda', '=', 'demandas.id')
                                                 ->where('demandas.id_op', '=', $id)
+                                                ->orwhere('contrademandas.id_comprador', '=', $id)
                                                 ->orderBy('operaciondemandas.fecha', 'ASC')
                                                 ->get(['operaciondemandas.*']);
 
@@ -31,12 +34,32 @@ class OperacionesController extends Controller
 
     public function listaroperaciones() {
 
+        $hoy = Date('Y-m-j');
+        $operacionesd = Operaciondemanda::leftJoin('contrademandas', 'operaciondemandas.id_contra', '=', 'contrademandas.id')
+                                            ->join('demandas', 'contrademandas.id_demanda', '=', 'demandas.id')
+                                            ->where('demandas.fechaEntrega', '<=', $hoy)
+                                            ->orderBy('operaciondemandas.fecha', 'ASC')
+                                            ->get(['operaciondemandas.*']);
 
-    	$operacionesd = Operaciondemanda::orderBy('fecha', 'ASC')->get();
+        $operacioneso = Operacionoferta::leftJoin('contraofertas', 'operacionofertas.id_contra', '=', 'contraofertas.id')
+                                            ->join('ofertas', 'contraofertas.id_oferta', '=', 'ofertas.id')
+                                            ->where('ofertas.fechaEntrega', '<=', $hoy)
+                                            ->orderBy('operacionofertas.fecha', 'ASC')
+                                            ->get(['operacionofertas.*']);
 
-        $operacioneso = Operacionoferta::orderBy('fecha', 'ASC')->get();
+        $operacionescd = Operaciondemanda::leftJoin('contrademandas', 'operaciondemandas.id_contra', '=', 'contrademandas.id')
+                                            ->join('demandas', 'contrademandas.id_demanda', '=', 'demandas.id')
+                                            ->where('demandas.fechaEntrega', '>', $hoy)
+                                            ->orderBy('operaciondemandas.fecha', 'ASC')
+                                            ->get(['operaciondemandas.*']);
 
-    	return view('operaciones', array('operacioneso' => $operacioneso, 'operacionesd' => $operacionesd));
+        $operacionesco = Operacionoferta::leftJoin('contraofertas', 'operacionofertas.id_contra', '=', 'contraofertas.id')
+                                            ->join('ofertas', 'contraofertas.id_oferta', '=', 'ofertas.id')
+                                            ->where('ofertas.fechaEntrega', '>', $hoy)
+                                            ->orderBy('operacionofertas.fecha', 'ASC')
+                                            ->get(['operacionofertas.*']);
+
+    	return view('operaciones', array('operacioneso' => $operacioneso, 'operacionesd' => $operacionesd, 'operacionesco' => $operacionesco, 'operacionescd' => $operacionescd));
 
     }
 
