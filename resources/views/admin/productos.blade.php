@@ -36,7 +36,7 @@
                             <td name="descripcionProd">{{$prod->descripcion}}</td>
                             <td name="descripcion2Prod">{{$prod->descripcion2}}</td>
                             <td name="cat">{{$prod->categoria->descripcion}}</td>
-                            <td class="col-chica"><button type="button" id="editarProd" data-toggle="modal" onclick="editar({{$prod->id}},'{{$prod->nombre}}','{{$prod->descripcion}}','{{$prod->descripcion2}}',{{$prod->id_cat}});" class="btn btn-danger admin tabla" title="Editar Producto">Editar</button></td>
+                            <td class="col-chica"><button type="button" id="editarProd" data-toggle="modal" onclick="editarP({{$prod->id}},'{{$prod->nombre}}','{{$prod->descripcion}}','{{$prod->descripcion2}}',{{$prod->id_cat}});" class="btn btn-danger admin tabla" title="Editar Producto">Editar</button></td>
                         </tr>
                     </tbody>
             @endforeach
@@ -58,7 +58,7 @@
                         <tr>
                             <input type="hidden" name="id" value="{{$cat->id}}">
                             <td><input type="text" class="input-table" name="descripcion" value="{{$cat->descripcion}}" disabled></td>
-                            <td class="col-chica"><button type="button" id="editarCat" data-toggle="modal" data_target="#editarrCategoria" class="btn btn-danger admin tabla" title="Editar Categoría">Editar</button></td>
+                            <td class="col-chica"><button type="button" id="editarCat" data-toggle="modal" onclick="editarC({{$cat->id}},'{{$cat->descripcion}}')" class="btn btn-danger admin tabla" title="Editar Categoría">Editar</button></td>
                         </tr>
                     </tbody>
             @endforeach
@@ -80,7 +80,7 @@
                         <tr>
                             <input type="hidden" name="id" value="{{$med->id}}">
                             <td><input type="text" class="input-table" name="descripcion" value="{{$med->descripcion}}" disabled></td>
-                            <td class="col-chica"><button type="button" id="editarMed" data-toggle="modal" data_target="#editarrMedida" class="btn btn-danger admin tabla" title="Editar Unidad de Medida">Editar</button></td
+                            <td class="col-chica"><button type="button" id="editarMed" data-toggle="modal" onclick="editarM({{$med->id}},'{{$med->descripcion}}')" class="btn btn-danger admin tabla" title="Editar Unidad de Medida">Editar</button></td
                         </tr>
                     </tbody>
             @endforeach
@@ -162,7 +162,7 @@
                                         </div>
                                     </div>
                                     <div class="row model">
-                                        <button type="submit" class="btn btn-primary">Guardar</button>
+                                        <button type="submit" class="btn btn-primary">Agregar</button>
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                                     </div>
                                 </form>
@@ -191,7 +191,7 @@
                                         <label for="descripcion" class="col-md-4 control-label">Descripción</label>
 
                                         <div class="col-md-6">
-                                            <input id="descripcion" type="text" class="form-control" name="descripcion" value="{{ old('descripcion') }}" required autofocus>
+                                            <input type="text" class="form-control" name="descripcion" value="{{ old('descripcion') }}" required autofocus>
 
                                             @if ($errors->has('descripcion'))
                                                 <span class="help-block">
@@ -232,7 +232,7 @@
                                         <label for="descripcion" class="col-md-4 control-label">Descripción</label>
 
                                         <div class="col-md-6">
-                                            <input id="descripcion" type="text" class="form-control" name="descripcion" value="{{ old('descripcion') }}" required autofocus="autofocus">
+                                            <input type="text" class="form-control" name="descripcion" value="{{ old('descripcion') }}" required autofocus="autofocus">
 
                                             @if ($errors->has('descripcion'))
                                                 <span class="help-block">
@@ -340,5 +340,86 @@
           </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
       </div><!-- /.modal -->
+
+      <!-- Modal Editar Categorias -->
+    <div class="modal fade" id="editarCategoria" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title">Editar Categoría</h4>
+                </div>
+                <div class="modal-body">
+                              <div class="panel panel-default">
+                                  <div class="panel-body">
+                                      <form class="form-horizontal" id="formeditarCategoria" name="editarCategoria" method="POST" action="{{ url('admin/categoria/editar') }}">
+                                          {{ csrf_field() }}
+      
+                                          <div class="form-group{{ $errors->has('descripcion') ? ' has-error' : '' }}">
+                                              <label for="descripcion" class="col-md-4 control-label">Descripción</label>
+      
+                                              <div class="col-md-6">
+                                                    <input type="hidden" id='idCat' name="idCat" value="">
+                                                  <input id="desCat" type="text" class="form-control" name="descripcion" value="{{ old('descripcion') }}" required autofocus>
+      
+                                                  @if ($errors->has('descripcion'))
+                                                      <span class="help-block">
+                                                          <strong>Esta Categoría ya existe!</strong>
+                                                      </span>
+                                                  @endif
+                                              </div>
+                                          </div>
+                                          
+                                              <div class="row model">
+                                                  <button type="submit" class="btn btn-primary">Guardar</button>
+                                                  <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                                              </div>
+                                          
+                                      </form>
+                                  </div>
+                              </div>
+                </div>
+              </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+          </div><!-- /.modal -->
   
+        <!-- Modal Editar Medida -->
+    <div class="modal fade" id="editarMedida" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title">Editar Medida</h4>
+                </div>
+                <div class="modal-body">
+                              <div class="panel panel-default">
+                                  <div class="panel-body">
+                                      <form class="form-horizontal" id="formeditarMedida" name="editarMedida" method="POST" action="{{ url('admin/medida/editar') }}">
+                                          {{ csrf_field() }}
+      
+                                          <div class="form-group{{ $errors->has('descripcion') ? ' has-error' : '' }}">
+                                              <label for="descripcion" class="col-md-4 control-label">Descripción</label>
+      
+                                              <div class="col-md-6">
+                                                    <input type="hidden" id='idMed' name="idMed" value="">
+                                                  <input type="text" id="desMed" class="form-control" name="descripcion" value="{{ old('descripcion') }}" required autofocus="autofocus">
+      
+                                                  @if ($errors->has('descripcion'))
+                                                      <span class="help-block">
+                                                          <strong>Esta Unidad de Medida ya existe!</strong>
+                                                      </span>
+                                                  @endif
+                                              </div>
+                                          </div>
+                                          <div class="row model">
+                                              <button type="submit" class="btn btn-primary">Guardar</button>
+                                                  <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                                          </div>
+                                      </form>
+                                  </div>
+                              </div>
+                </div>
+              </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+          </div><!-- /.modal -->
 @endsection

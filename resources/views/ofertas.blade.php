@@ -65,7 +65,7 @@
                                 <td>{{$of->cobro->descripcion}}</td>
                                 <td>{{$of->plazo}}</td>
                                 <td>@if(Auth::user()->activo === 1 && Auth::user()->id != $of->user->id && Auth::user()->admin === 0)
-                                        <button type="button" id="ofertar" data-toggle="modal" onclick="ofertar({{$of->id}},{{$of->cantidad}},{{$of->precio}})" class="btn btn-success admin tabla">Ofertar</button>
+                                        <button type="button" id="ofertar" data-toggle="modal" onclick="ofertar({{$of->id}},{{$of->cantidad}},{{$of->precio}},{{$of->id_puesto}},{{$of->id_cobro}},{{$of->plazo}})" class="btn btn-success admin tabla">Ofertar</button>
                                     @else
                                         <button type="button" id="ofertar" data-toggle="modal" data_target="#modalOfertar" disabled class="btn btn-success admin tabla" title="Su Usuario no está ACTIVO o esta Oferta es suya">Ofertar</button>
                                     @endif</td>
@@ -119,7 +119,7 @@
                                 <td>{{$of->cobro->descripcion}}</td>
                                 <td>{{$of->plazo}}</td>
                                 <td>@if(Auth::user()->activo === 1 && Auth::user()->id != $of->user->id && Auth::user()->admin === 0)
-                                        <button type="button" id="ofertar" data-toggle="modal" onclick="ofertar({{$of->id}},{{$of->cantidad}},{{$of->precio}})" class="btn btn-success admin tabla">Ofertar</button>
+                                        <button type="button" id="ofertar" data-toggle="modal" onclick="ofertar({{$of->id}},{{$of->cantidad}},{{$of->precio}},{{$of->id_puesto}},{{$of->id_cobro}},{{$of->plazo}})" class="btn btn-success admin tabla">Ofertar</button>
                                     @else
                                         <button type="button" id="ofertar" data-toggle="modal" data_target="#modalOfertar" disabled class="btn btn-success admin tabla" title="Su Usuario no está ACTIVO o esta Oferta es suya">Ofertar</button>
                                     @endif</td>
@@ -186,10 +186,14 @@
                                     <label for="puestoCo" class="col-md-4 control-label">Puesto</label>
 
                                     <div class="col-md-6">
-	                                <select class="form-control" name="puestoCo" value="{{ old('puestoCo') }}" required>
+	                                <select class="form-control" id="idPuesto" name="puestoCo" value="{{ old('puestoCo') }}" required>
 	                                    <option hidden value=""> -- Producto Puesto en -- </option>
-	                                    @foreach ($puestos as $puesto)
-                                        <option value="{{$puesto->id}}" >{{$puesto->descripcion}}</option>
+                                        @foreach ($puestos as $puesto)
+                                        @if($puesto->id === "this.form.idPuesto.value")
+                                        <option value="{{$puesto->id}}" selected>{{$puesto->descripcion}}</option>
+                                        @else
+                                        <option value="{{$puesto->id}}">{{$puesto->descripcion}}</option>
+                                        @endif
                                         @endforeach
 	                                </select>
 	                                @if ($errors->has('id_puesto'))
@@ -204,10 +208,14 @@
                                     <label for="cobroCo" class="col-md-4 control-label">Cobro</label>
 
                                     <div class="col-md-6">
-                                    <select class="form-control" name="cobroCo" value="{{ old('cobroCo') }}" required>
+                                    <select class="form-control" id="idCobro" name="cobroCo" value="{{ old('cobroCo') }}" required>
                                         <option hidden value=""> -- Forma de Cobro -- </option>
                                         @foreach ($cobros as $cobro)
-                                        <option value="{{$cobro->id}}" >{{$cobro->descripcion}}</option>
+                                        @if($cobro->id === "this.form.idCobro.value")
+                                        <option value="{{$cobro->id}}" selected>{{$cobro->descripcion}}</option>
+                                        @else
+                                        <option value="{{$cobro->id}}">{{$cobro->descripcion}}</option>
+                                        @endif
                                         @endforeach
                                     </select>
                                     @if ($errors->has('cobroCo'))
@@ -219,21 +227,22 @@
                                     <span class="glyphicon glyphicon-info-sign" alt="Indicar la forma de Cobro que desea" title="Indicar la forma de Cobro que desea"></span>
                                     <div class="col-md-12">
                                         <div class="checkbox">
+                                        <input type="text" id="idPlazo" hidden value="">
                                         <ul class="filtro-usu">
                                             <label>
-                                                <input type="checkbox" name="plazoCo" value="Contado" checked=""> Contado    
+                                                <input type="checkbox" id="plazo1" name="plazoCo" value="Contado" checked=""> Contado    
                                             </label>&nbsp;&nbsp;&nbsp;&nbsp;
                                             <label>
-                                                <input type="checkbox" name="plazoCo" value="30"> 30 días    
+                                                <input type="checkbox" id="plazo2" name="plazoCo" value="30"> 30 días    
                                             </label>&nbsp;&nbsp;&nbsp;&nbsp;
                                             <label>
-                                                <input type="checkbox" name="plazoCo" value="60"> 60 días    
+                                                <input type="checkbox" id="plazo3" name="plazoCo" value="60"> 60 días    
                                             </label>&nbsp;&nbsp;&nbsp;&nbsp;
                                             <label> 
-                                                <input type="checkbox" name="plazoCo" value="90"> 90 días    
+                                                <input type="checkbox" id="plazo4" name="plazoCo" value="90"> 90 días    
                                             </label>&nbsp;&nbsp;&nbsp;&nbsp;
                                             <label> 
-                                                <input type="checkbox" name="plazoCo" value="Más de 90"> Más de 90 días    
+                                                <input type="checkbox" id="plazo5" name="plazoCo" value="Más de 90"> Más de 90 días    
                                             </label>
                                         </ul>
                                         </div>

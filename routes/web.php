@@ -97,18 +97,17 @@ Route::group(['middleware' => 'admin'], function() {
 	Route::post('admin/puesto/store', 'ProductoController@storePuesto');
 	Route::post('admin/modo/store', 'ProductoController@storeModo');
 	Route::post('admin/cobro/store', 'ProductoController@storeCobro');
-	Route::post('admin/puesto/eliminar', 'ProductoController@eliminarPuesto');
-	Route::post('admin/cobro/eliminar', 'ProductoController@eliminarCobro');
-	Route::post('admin/modo/eliminar', 'ProductoController@eliminarModo');
+	Route::post('admin/puesto/editar', 'ProductoController@editarPuesto');
+	Route::post('admin/cobro/editar', 'ProductoController@editarCobro');
+	Route::post('admin/modo/editar', 'ProductoController@editarModo');
 
 	//Rutas de Administrador con Respecto a Productos
 	Route::post('admin/producto/store', 'ProductoController@storeProd');
 	Route::post('admin/categoria/store', 'ProductoController@storeCat');
 	Route::post('admin/medida/store', 'ProductoController@storeMed');
-	Route::post('admin/medida/eliminar', 'ProductoController@eliminarMedida');
-	Route::post('admin/producto/eliminar', 'ProductoController@eliminar');
+	Route::post('admin/medida/editar', 'ProductoController@editarMedida');
 	Route::post('admin/producto/editar', 'ProductoController@editar');
-	Route::post('admin/categoria/eliminar', 'ProductoController@eliminarCat');
+	Route::post('admin/categoria/editar', 'ProductoController@editarCat');
 	
 });
 

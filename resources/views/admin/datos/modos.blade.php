@@ -27,12 +27,9 @@
                     @foreach($modos as $modo)        
                             <tbody>
                                 <tr>
-                                    <form class="form-horizontal" name="eliminarModos" method="POST" action="/admin/modo/eliminar">
-                                    {{ csrf_field() }}
                                     <input type="hidden" name="id" value="{{$modo->id}}">
                                     <td>{{$modo->descripcion}}</td>
-                                    <td class="col-chica"><button type="submit" class="btn btn-danger admin tabla" title="Eliminar Modo" onclick="return confirm('¿Seguro que deseas eliminar este Modo?')">X</button></td>
-                                    </form>
+                                    <td class="col-chica"><button type="button" class="btn btn-danger admin tabla" title="Editar Modo" onclick="editarMod({{$modo->id}},'{{$modo->descripcion}}')">Editar</button></td>
                                 </tr>
                             </tbody>
                     @endforeach
@@ -80,6 +77,46 @@
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
+
+    <!-- Modal Cobros -->
+    <div class="modal fade" id="editarModo" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title">Editar Modo</h4>
+                </div>
+                <div class="modal-body">
+                   <div class="panel panel-default">
+                        <div class="panel-body">
+                            <form class="form-horizontal" id="formeditarModo" name="editarModo" method="POST" action="{{ url('admin/modo/editar') }}">
+                                {{ csrf_field() }}
+
+                                <div class="form-group{{ $errors->has('descripcion') ? ' has-error' : '' }}">
+                                    <label for="descripcion" class="col-md-4 control-label">Descripción</label>
+
+                                    <div class="col-md-6">
+                                        <input type="hidden" id="idModo" name="idModo" value="">
+                                        <input id="desModo" type="text" class="form-control" name="descripcion" value="{{ old('descripcion') }}" required autofocus>
+
+                                        @if ($errors->has('descripcion'))
+                                            <span class="help-block">
+                                                <strong>Este Modo ya existe</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="row model">
+                                    <button type="submit" class="btn btn-primary">Guardar</button>
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                  </div>
+              </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+          </div><!-- /.modal -->
     <hr>
     <a type="button" href="/index" class="btn btn-primary admin" title="Volver">Volver</a>
 @endsection

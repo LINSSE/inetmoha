@@ -27,12 +27,9 @@
                     @foreach($cobros as $cobro)        
                             <tbody>
                                 <tr>
-                                    <form class="form-horizontal" name="eliminarCobros" method="POST" action="/admin/cobro/eliminar">
-                                    {{ csrf_field() }}
                                     <input type="hidden" name="id" value="{{$cobro->id}}">
                                     <td>{{$cobro->descripcion}}</td>
-                                    <td class="col-chica"><button type="submit" class="btn btn-danger admin tabla" title="Eliminar Cobro" onclick="return confirm('¿Seguro que deseas eliminar este Tipo de Cobro?')">X</button></td>
-                                    </form>
+                                    <td class="col-chica"><button type="button" class="btn btn-danger admin tabla" title="Editar Cobro" onclick="editarCob({{$cobro->id}},'{{$cobro->descripcion}}')">Editar</button></td>                                    </form>
                                 </tr>
                             </tbody>
                     @endforeach
@@ -77,6 +74,45 @@
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
+
+    <!-- Modal Editar Cobros -->
+    <div class="modal fade" id="editarCobro" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Editar forma de Cobro</h4>
+                    </div>
+                    <div class="modal-body">
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <form class="form-horizontal" id="formeditarCobro" name="editarCobro" method="POST" action="{{ url('admin/cobro/editar') }}">
+                                        {{ csrf_field() }}
+                                        <div class="form-group{{ $errors->has('descripcion') ? ' has-error' : '' }}">
+                                            <label for="descripcion" class="col-md-4 control-label">Descripción</label>
+    
+                                            <div class="col-md-6">
+                                                <input type="hidden" id="idCobro" name="idCobro" value="">
+                                                <input id="desCobro" type="text" class="form-control" name="descripcion" value="{{ old('descripcion') }}" required autofocus>
+    
+                                                @if ($errors->has('descripcion'))
+                                                    <span class="help-block">
+                                                        <strong>Este tipo de Cobro ya existe</strong>
+                                                    </span>
+                                                @endif
+                                            </div>
+                                        </div>
+                                            <div class="row model">
+                                                <button type="submit" class="btn btn-primary">Guardar</button>
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                                            </div>
+                                    </form>
+                                </div>
+                            </div>
+                    </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
     <hr>
     <a type="button" href="/index" class="btn btn-primary admin" title="Volver">Volver</a>
 @endsection

@@ -111,48 +111,48 @@ class ProductoController extends Controller
         return back();
     }
 
-    public function eliminarModo(Request $request)
+    public function editarModo(Request $request)
     {
-        $id = $request->id;
-        $modo = Modo::FindOrFail($id);
-        $modo->delete();
-        Session::flash('modo', 'Modo eliminado!');
+        $id = $request->idModo;
+        $desc = ucwords(strtolower($request->descripcion));
+        $mod = Modo::where('id', $id)->update(['descripcion' => $desc]);
+        Session::flash('modo', 'Modo editado!');
         return back();
     }
 
-    public function eliminarPuesto(Request $request)
+    public function editarPuesto(Request $request)
     {
-        $id = $request->id;
-        $puesto = Puesto::FindOrFail($id);
-        $puesto->delete();
-        Session::flash('puesto', 'Puesto eliminado!');
+        $id = $request->idPuesto;
+        $desc = ucwords(strtolower($request->descripcion));
+        $puesto = Puesto::where('id', $id)->update(['descripcion' => $desc]);
+        Session::flash('puesto', 'Puesto editado!');
         return back();
     }
 
-    public function eliminarCat(Request $request)
+    public function editarCat(Request $request)
     {
-        $id = $request->id;
-        $cat = Categoria::FindOrFail($id);
-        $cat->delete();
-        Session::flash('mensaje', 'Categoría eliminada!');
+        $id = $request->idCat;
+        $desc = ucwords(strtolower($request->descripcion));
+        $cat = Categoria::where('id', $id)->update(['descripcion' => $desc]);
+        Session::flash('mensaje', 'Categoría editada!');
         return back();
     }
 
-    public function eliminarMedida(Request $request)
+    public function editarMedida(Request $request)
     {
-        $id = $request->id;
-        $med = Medida::FindOrFail($id);
-        $med->delete();
-        Session::flash('mensaje', 'Medida eliminada!');
+        $id = $request->idMed;
+        $desc = ucwords(strtolower($request->descripcion));
+        $med = Medida::where('id', $id)->update(['descripcion' => $desc]);
+        Session::flash('medida', 'Medida editada!');
         return back();
     }
 
-    public function eliminarCobro(Request $request)
+    public function editarCobro(Request $request)
     {
-        $id = $request->id;
-        $cobro = Cobro::FindOrFail($id);
-        $cobro->delete();
-        Session::flash('cobro', 'Cobro eliminado!');
+        $id = $request->idCobro;
+        $desc = ucwords(strtolower($request->descripcion));
+        $cob = Cobro::where('id', $id)->update(['descripcion' => $desc]);
+        Session::flash('cobro', 'Cobro editado!');
         return back();
     }
 }

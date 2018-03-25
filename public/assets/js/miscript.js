@@ -79,15 +79,27 @@ $(document).ready(function(){
         $(this).find('#formagregarDemanda')[0].reset(); //para limpiar campos del modal
     });
  
-    ofertar = function (id, cantidad, precio) {
+    ofertar = function (id, cantidad, precio, puesto, cobro, plazo) {
             $('#id_oferta').val(id);
             $('#cantOferta').val(cantidad);
             $('#cantidadCo').val(cantidad);
             $('#precioCo').val(precio);
+            $('#idPuesto').val(puesto);
+            $('#idCobro').val(cobro);
+            $('#idPlazo').val(plazo);
+            
+            var plazos = document.getElementsByName('plazoCo');
+            
+            for (var x = 0; x < plazos.length; x++) {
+                plazos[x].checked = false;
+               if (plazos[x].value == plazo) {
+                plazos[x].checked = true;
+               }
+            }
         $('#modalOfertar').modal('show'); //show the modal
       }
     
-    editar = function (idProd, nombreProducto, descripcionProd, descripcion2Prod, id_cat) {
+    editarP = function (idProd, nombreProducto, descripcionProd, descripcion2Prod, id_cat) {
         
         $('#idProd').val(idProd);
         $('#nombreProd').val(nombreProducto);
@@ -95,6 +107,36 @@ $(document).ready(function(){
         $('#desc2Prod').val(descripcion2Prod);
         $('#id_cat').val(id_cat);
         $('#editarProducto').modal('show'); //show the modal
+    }
+
+    editarC = function (idCat, desc) {
+        $('#idCat').val(idCat);
+        $('#desCat').val(desc);
+        $('#editarCategoria').modal('show');
+    }
+
+    editarM = function (idMed, desc) {
+        $('#idMed').val(idMed);
+        $('#desMed').val(desc);
+        $('#editarMedida').modal('show');
+    }
+
+    editarMod = function (idMod, desc) {
+        $('#idModo').val(idMod);
+        $('#desModo').val(desc);
+        $('#editarModo').modal('show');
+    }
+
+    editarCob = function (idCob, desc) {
+        $('#idCobro').val(idCob);
+        $('#desCobro').val(desc);
+        $('#editarCobro').modal('show');
+    }
+
+    editarPues = function (idPues, desc) {
+        $('#idPuesto').val(idPues);
+        $('#desPuesto').val(desc);
+        $('#editarPuesto').modal('show');
     }
 
     $("#cantidad").change(function(event){
