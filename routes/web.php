@@ -47,11 +47,11 @@ Route::group(['middleware' => 'auth'], function() {
 
 	//Contraofertas
 	Route::post('usuario/contraOferta', 'ContraofertaController@store');
-	Route::post('usuario/eliminarCoferta', 'ContraofertaController@eliminar');
+	Route::get('usuario/eliminarCoferta/{id}', 'ContraofertaController@eliminar');
 	Route::get('usuario/detalleOferta/{id}', 'ContraofertaController@detalleOferta');
 	Route::get('usuario/aceptarOferta/{id}', 'ContraofertaController@aceptarOferta');
 	Route::get('usuario/rechazarOferta/{id}', 'ContraofertaController@rechazarOferta');
-	Route::post('usuario/editarCoferta', 'ContraofertaController@editarCoferta');
+	Route::get('usuario/editarCoferta/{id}', 'ContraofertaController@editarCoferta');
 
 	//Demandas
 	Route::post('usuario/nuevaDemanda', 'DemandasController@store');
@@ -66,6 +66,10 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::get('usuario/aceptarDemanda/{id}', 'ContrademandaController@aceptarDemanda');
 	Route::get('usuario/rechazarDemanda/{id}', 'ContrademandaController@rechazarDemanda');
 	Route::post('usuario/editarCdemanda', 'ContrademandaController@editarCdemanda');
+
+	//Precios
+	Route::get('preciosDia', 'PreciosController@filtrarPrecios');
+	Route::get('preciosOf', 'PreciosController@filtrarPrecios');
 });
 
 

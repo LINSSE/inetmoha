@@ -53,11 +53,10 @@ class ContraofertaController extends Controller
 
     public function detalleOferta($id)  {
 
-    	 $cofertas = Contraoferta::where('id_oferta', $id)->where('estado', '=', '0')->get();
-         $cofacep = Contraoferta::where('id_oferta', $id)->where('estado', '=', '1')->orwhere('estado', '=', '3')->get();
+    	 $cofertas = Contraoferta::where('id_oferta', $id)->get();
     	 $of = Oferta::Find($id);
 
-    	 return view('/usuario/detalleContraOferta', array('cofertas' => $cofertas, 'cofacep' => $cofacep, 'of' => $of));
+    	 return view('/usuario/detalleContraOferta', array('cofertas' => $cofertas, 'of' => $of));
     }
 
     public function aceptarOferta ($id) {
@@ -133,33 +132,42 @@ class ContraofertaController extends Controller
         return back();
     }
 
-    public function eliminar(Request $request) {
+    public function eliminar($id) {
 
-        $id = $request->id;
-        $co = Contraoferta::FindOrFail($id);
-        $co->delete();
+        try {
 
-        Session::flash('oferta', 'Su Contra Oferta ha sido eliminada!');
+            $co = Contraoferta::FindOrFail($id);
+            $co->delete();
+
+            Session::flash('oferta', 'Su Contra Oferta ha sido eliminada!');
+        } catch (\Throwable $e) {
+            
+            throw $e;
+        }
+
         return back();
     }
 
-    public function editarCoferta(Request $request) {
+    public function editarCoferta($id) {
 
         DB::beginTransaction();
 
         try {
 
-            $id = $request->id;
             $co = Contraoferta::Find($id);
             $of = Oferta::Find($co->id_oferta);
 
-            $cant = $of->cantidad - $co->cantidad;
+            if($co->estado == 1) {
+                $row = Contraoferta::where('id', '=', $co->id)->update(['estado' => '3']);
+            } else {
+                $cant = $of->cantidad - $co->cantidad;
 
-            $this->actualizarOferta($cant, $co);            
-            $this->generarOperacion($co);
+                $this->actualizarOferta($cant, $co);            
+                $this->generarOperacion($co);
 
-            $row = Contraoferta::where('id', '=', $co->id)->update(['estado' => '3']);
-
+                $row = Contraoferta::where('id', '=', $co->id)->update(['estado' => '3']);
+            }
+            
             $user = Auth::user();
             Mail::to($co->oferta->user->email)->send(new ProductosRecibidosMail($co, $user));
             DB::commit();

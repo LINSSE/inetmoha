@@ -108,9 +108,9 @@
                       {{ csrf_field() }}
                       <input type="hidden" name="id" value="{{$cda->id}}">
                       @if($cda->estado == 1)
-                        <td><input type="checkbox" name="recibido" value="3" onclick="submitFormDem('/usuario/editarCdemanda'); confirm('¿Confirma que ha recibido los productos?')" title="Seleccione cuando haya recibido la mercaderia"></td>
+                        <td><input type="checkbox" name="recibido" value="3" onclick="confirmarDem('/usuario/editarCdemanda')" title="Seleccione cuando haya recibido los Productos"></td>
                       @elseif($cda->estado == 3)
-                        <td><input type="checkbox" name="recibido" value="3" title="Seleccione cuando haya recibido la mercaderia" checked disabled></td>
+                        <td><input type="checkbox" name="recibido" value="3" title="Los Productos ya fueron recibidos" checked disabled></td>
                       @endif
                       </form>
                       @if($cda->user->razonsocial === '')

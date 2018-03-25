@@ -35,7 +35,12 @@
             </div>
             <div class="col-md-6">
                 <h1 class="h1-tabla">Precios del Día</h1>
-                <h5 class="text-center">Precios de Operaciones concretada en la última semana</h5>
+                <h5 class="text-center">Seleccione un día para ver los precios de cada Producto</h5>
+                <div id="imaginary_container"> 
+                    <form class="form-horizontal" method="GET" action="/preciosDia">
+                        <input onchange="submit()" placeholder="Seleccione un Día" onfocus="(this.type='date')" type="text" class="form-control precioDia" onblur="if(this.value==''){this.type='text'}" name="precioDia" value="">
+                    </form>
+                </div>
                 <div class="table-responsive">
                     <table class="table">
                         <thead>
@@ -63,7 +68,13 @@
         <div class="row">
             <div class="col-md-6">
                 <h1 class="h1-tabla">Precios Ofrecidos</h1>
-                <h5 class="text-center">Precios de Productos Demandados</h5>
+                <h5 class="text-center">Seleccione un intervalo de fechas para filtrar los Precios de los Productos</h5>
+                <div id="imaginary_container"> 
+                    <form class="form-horizontal" method="GET" action="/preciosOf">
+                        <input placeholder="Desde" onfocus="(this.type='date')" type="text" class="form-control precioDia" onblur="if(this.value==''){this.type='text'}" id="fechai" name="fechai" value="">
+                        <input onchange="submit()" placeholder="Hasta" onfocus="(this.type='date')" type="text" class="form-control precioDia" onblur="if(this.value==''){this.type='text'}" id="fechaf" name="fechaf" value="" disabled="true">
+                    </form>
+                </div>
                 <div class="table-responsive">
                     <table class="table">
                         <thead>

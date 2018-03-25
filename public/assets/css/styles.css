@@ -332,7 +332,7 @@ h4.info {
 }
 
 #imaginary_container {
-    margin-top:1%;
+    margin: 1%;
 }
 
 .stylish-input-group .input-group-addon {
@@ -424,4 +424,10 @@ table tr th {
 
 .desc:after {
   content: " ↓";
+}
+
+.form-control.precioDia {
+  width: 33%;
+  text-align: center;
+  margin: 0 auto;
 }

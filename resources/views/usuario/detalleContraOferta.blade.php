@@ -63,8 +63,9 @@
                         <th style="cursor:default;"></th>
                     </tr>
                 </thead>
+                <tbody>
                 @foreach($cofertas as $co)
-                   <tbody>
+                    @if($co->estado == 0)
                        <tr> 
                        	@if($co->user->razonsocial === '')
                         <td>{{$co->user->apellido}} {{$co->user->name}}</td>
@@ -81,8 +82,9 @@
                           <td><a type="button" href="/usuario/aceptarOferta/{{$co->id}}" class="btn btn-success admin tabla" title="Aceptar Contra Oferta">Aceptar</a><br><a type="button" href="/usuario/rechazarOferta/{{$co->id}}" class="btn btn-danger admin tabla" title="Rechazar Contra Oferta">Rechazar</a></td>
                         @endif
                        </tr>
-                   </tbody>
+                    @endif
                @endforeach
+            </tbody>
             </table>
         </div>
     </div>
@@ -100,8 +102,9 @@
                         <th>Plazo (días)</th>
                     </tr>
                 </thead>
-                @foreach($cofacep as $coa)
-                   <tbody>
+                <tbody>
+                @foreach($cofertas as $coa)
+                    @if($coa->estado == 1 || $coa->estado == 3)
                        <tr> 
                         @if($coa->estado == 3)
                         <td><span class="glyphicon glyphicon-info-sign" alt="El Producto fue RECIBIDO por el Comprador" title="El Producto fue RECIBIDO por el Comprador"></span></td>
@@ -118,8 +121,9 @@
                         <td>{{$coa->cobro->descripcion}}</td>
                         <td>{{$coa->plazo}}</td>                        
                        </tr>
-                   </tbody>
+                    @endif
                @endforeach
+                </tbody>
             </table>
         </div>
     </div>

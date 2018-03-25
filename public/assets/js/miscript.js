@@ -113,14 +113,25 @@ $(document).ready(function(){
         $('#modalDemandar').modal('show'); //show the modal
       }
 
-    submitFormDem = function (action) {
-        document.getElementById('editarCdemanda').action = action;
-        document.getElementById('editarCdemanda').submit();
+    confirmarOf = function (action, op) {
+        if (op == '0') {
+            if (confirm('¿Confirma que ha recibido los Productos?')) {
+                document.getElementById('eliminarCoferta').action = action;
+                document.getElementById('eliminarCoferta').submit();
+            }
+        } else { 
+            if (confirm('¿Confirma que desea eliminar esta Contra Oferta?')) {
+                document.getElementById('eliminarCoferta').action = action;
+                document.getElementById('eliminarCoferta').submit();
+            }
+        }
     }
 
-    submitFormOf = function (action) {
-        document.getElementById('eliminarCoferta').action = action;
-        document.getElementById('eliminarCoferta').submit();
+    confirmarDem = function (action) {
+        if (confirm('¿Confirma que ha recibido los Productos?')) {
+            document.getElementById('editarCdemanda').action = action;
+            document.getElementById('editarCdemanda').submit();
+        }
     }
 
     $("#cantidadD").change(function(event){
@@ -188,5 +199,12 @@ $(document).ready(function(){
         if (asc) element.addClass("asc");
         else element.addClass("desc");
       }
+
+      $("#fechai").change(function(event){
+        var fecha = document.getElementById("fechai").value;
+        $("#fechaf").attr("disabled", false);
+        $("#fechaf").attr("min", fecha);
+       });
+
 
 });

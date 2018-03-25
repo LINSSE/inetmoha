@@ -48,7 +48,7 @@
                                     <td>{{$of->puesto->descripcion}}</td>
                                     <td>{{$of->cobro->descripcion}}</td>
                                     <td>{{$of->plazo}}</td>
-                                    <td><a type="button" href="/usuario/detalleOferta/{{$of->id}}" class="btn btn-info admin tabla" title="Ver Contra-Ofertas">Ver Contra Ofertas</a></td>
+                                    <td><a type="button" href="/usuario/detalleOferta/{{$of->id}}" class="btn btn-info admin tabla" title="Ver Contra Ofertas">Ver Contra Ofertas</a></td>
 	                            	@if($of->cantidad != $of->cantidadOriginal)
                                         <td><button type="submit" class="btn btn-danger admin tabla" title="No puede eliminar esta Oferta porque ya tiene Operaciones Concretadas" disabled>X</button></td>
                                     @else
@@ -85,7 +85,7 @@
                     <tbody>
                     @foreach($cofertas as $cof)
                         <tr>
-                            <form class="form-horizontal" id="eliminarCoferta" name="eliminarCoferta" method="POST" action="">
+                            <form class="form-horizontal" id="eliminarCoferta" name="eliminarCoferta" method="GET" action="">
                             {{ csrf_field() }}
                             <input type="hidden" name="id" value="{{$cof->id}}">
                             <td>{{$cof->oferta->producto->nombre}} {{$cof->oferta->producto->descripcion}} {{$cof->oferta->producto->descripcion2}}</td>
@@ -97,7 +97,7 @@
                             <td>{{$cof->cobro->descripcion}}</td>
                             <td>{{$cof->plazo}}</td>                            
                             @if($cof->estado == 1)
-                                <td><input type="checkbox" name="recibido" value="3" onclick="submitFormOf('/usuario/editarCoferta'); return confirm('¿Confirma que ha recibido los productos?')" title="Seleccione cuando haya recibido la mercaderia"></td>
+                                <td><input type="checkbox" name="recibido" value="3" onclick="confirmarOf('/usuario/editarCoferta/{{$cof->id}}', 0)" title="Seleccione cuando haya recibido la mercaderia"></td>
                                 <td>ACEPTADA</td>
                                 <td><button href="" type="submit" class="btn btn-danger admin tabla" title="No puede Eliminar esta Contra Oferta porque ya fue ACEPTADA" disabled>X</button></td>
                             @elseif($cof->estado == 2)
@@ -109,9 +109,9 @@
                                 <td>RECIBIDO</td>
                                 <td><button type="submit" class="btn btn-danger admin tabla" title="No puede Eliminar esta Contra Oferta porque ya fue RECIBIDA" disabled>X</button></td>
                             @else
-                                <td><input type="checkbox" name="recibido" value="3" title="Seleccione cuando haya recibido la mercaderia" onclick="submitFormOf('/usuario/editarCoferta'); return confirm('¿Confirma que ha recibido los productos?')"></td>
+                                <td><input type="checkbox" name="recibido" value="3" title="Seleccione cuando haya recibido la mercaderia" onclick="confirmarOf('/usuario/editarCoferta/{{$cof->id}}', 0)"></td>
                                 <td>EN ESPERA</td>
-                                <td><button type="submit" class="btn btn-danger admin tabla" title="Eliminar Contra Oferta" onclick="submitFormOf('/usuario/eliminarCoferta'); return confirm('¿Seguro que deseas eliminar esta Contra Oferta?')">X</button></td>
+                                <td><button type="submit" class="btn btn-danger admin tabla" title="Eliminar Contra Oferta" onclick="confirmarOf('/usuario/eliminarCoferta/{{$cof->id}}', 1)">X</button></td>
                             @endif
                             </form>
                         </tr>

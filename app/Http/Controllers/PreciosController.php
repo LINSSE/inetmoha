@@ -28,14 +28,13 @@ class PreciosController extends Controller
 		$fecha = date('Y-m-j', $fecha);//Doy formato a la fecha resultante
 
 		//Obtengo precios del Día
-		$preciosd = Operacionoferta::join('contraofertas', 'operacionofertas.id_contra', '=', 'contraofertas.id')
+		$preciosd = Operacionoferta::leftJoin('contraofertas', 'operacionofertas.id_contra', '=', 'contraofertas.id')
 										->join('ofertas', 'contraofertas.id_oferta', '=', 'ofertas.id')
 										->join('productos', 'ofertas.id_prod', '=', 'productos.id')
 										->join('modos', 'ofertas.id_modo', '=', 'modos.id')
 										->join('medidas', 'ofertas.id_medida', '=', 'medidas.id')
 										->select(DB::raw('CONCAT(productos.nombre, " ", productos.descripcion, " ", productos.descripcion2, " ", modos.descripcion, " ", "X", " ", ofertas.peso, " ",  medidas.descripcion) as nombre'), DB::raw('max(contraofertas.precio) as max'), DB::raw('min(contraofertas.precio) as min'), DB::raw('CAST(avg(contraofertas.precio) as int) AS prom'))
-										->whereDate('operacionofertas.fecha', '>', $fecha)
-										->where('contraofertas.estado', '=', '1')
+										->whereDate('operacionofertas.fecha', '=', $hoy)
 										->groupBy('productos.nombre')
 										->groupBy('productos.descripcion')
 										->groupBy('productos.descripcion2')
@@ -45,11 +44,28 @@ class PreciosController extends Controller
 										->orderBy('productos.nombre', 'DESC')
 										->get(['operacionofertas.*']);
 
-		//Precios Demandados
-		$precioso = Demanda::leftJoin('productos', 'demandas.id_prod', '=', 'productos.id')
+		//Precios Ofrecidos
+		$precioso = Contraoferta::leftJoin('ofertas', 'contraofertas.id_oferta', '=', 'ofertas.id')
+										->join('productos', 'ofertas.id_prod', '=', 'productos.id')
+										->join('modos', 'ofertas.id_modo', '=', 'modos.id')
+										->join('medidas', 'ofertas.id_medida', '=', 'medidas.id')
+										->select(DB::raw('CONCAT(productos.nombre, " ", productos.descripcion, " ", productos.descripcion2, " ", modos.descripcion, " ", "X", " ", ofertas.peso, " ",  medidas.descripcion) as nombre'), DB::raw('max(contraofertas.precio) as max'), DB::raw('min(contraofertas.precio) as min'), DB::raw('CAST(avg(contraofertas.precio) as int) AS prom'))
+										->groupBy('productos.nombre')
+										->groupBy('productos.descripcion')
+										->groupBy('productos.descripcion2')
+										->groupBy('modos.descripcion')
+										->groupBy('ofertas.peso')
+										->groupBy('medidas.descripcion')
+										->orderBy('productos.nombre', 'DESC')
+										->get(['contraofertas.*']);
+
+		//Tendencia Históricos
+		$preciost = Demanda::leftJoin('productos', 'demandas.id_prod', '=', 'productos.id')
 										->join('modos', 'demandas.id_modo', '=', 'modos.id')
 										->join('medidas', 'demandas.id_medida', '=', 'medidas.id')
+										->join('puestos', 'demandas.id_puesto', '=', 'puestos.id')
 										->select(DB::raw('CONCAT(productos.nombre, " ", productos.descripcion, " ", productos.descripcion2, " ", modos.descripcion, " ", "X", " ", demandas.peso, " ",  medidas.descripcion) as nombre'), DB::raw('max(demandas.precio) as max'), DB::raw('min(demandas.precio) as min'), DB::raw('CAST(avg(demandas.precio) as int) AS prom'))
+										->where('puestos.descripcion', 'LIKE', '%buenos aires%')
 										->groupBy('productos.nombre')
 										->groupBy('productos.descripcion')
 										->groupBy('productos.descripcion2')
@@ -58,6 +74,60 @@ class PreciosController extends Controller
 										->groupBy('medidas.descripcion')
 										->orderBy('productos.nombre', 'DESC')
 										->get(['demandas.*']);
+
+		return view('precios', array('preciosd' => $preciosd, 'precioso' => $precioso, 'preciost' => $preciost));
+	}
+
+	public function filtrarPrecios(Request $request) {
+		
+		if(empty($request->precioDia)){
+			$fecha = Date('Y-m-j');
+		}else{
+			$fecha = $request->precioDia;
+		}
+		
+		if(empty($request->fechai)){
+			$hoy = Date('Y-m-j');
+		
+			$mes = strtotime('-1 month', strtotime($hoy));
+			$fechai = strtotime('Y-m-j', $mes);
+			$fechaf = $hoy;
+		}else{
+			$fechai = $request->fechai;
+			$fechaf = $request->fechaf;
+		}
+		
+
+		$preciosd = Operacionoferta::leftJoin('contraofertas', 'operacionofertas.id_contra', '=', 'contraofertas.id')
+										->join('ofertas', 'contraofertas.id_oferta', '=', 'ofertas.id')
+										->join('productos', 'ofertas.id_prod', '=', 'productos.id')
+										->join('modos', 'ofertas.id_modo', '=', 'modos.id')
+										->join('medidas', 'ofertas.id_medida', '=', 'medidas.id')
+										->select(DB::raw('CONCAT(productos.nombre, " ", productos.descripcion, " ", productos.descripcion2, " ", modos.descripcion, " ", "X", " ", ofertas.peso, " ",  medidas.descripcion) as nombre'), DB::raw('max(contraofertas.precio) as max'), DB::raw('min(contraofertas.precio) as min'), DB::raw('CAST(avg(contraofertas.precio) as int) AS prom'))
+										->whereDate('operacionofertas.fecha', '=', $fecha)
+										->groupBy('productos.nombre')
+										->groupBy('productos.descripcion')
+										->groupBy('productos.descripcion2')
+										->groupBy('modos.descripcion')
+										->groupBy('ofertas.peso')
+										->groupBy('medidas.descripcion')
+										->orderBy('productos.nombre', 'DESC')
+										->get(['operacionofertas.*']);
+		//Precios Demandados
+		$precioso = Contraoferta::leftJoin('ofertas', 'contraofertas.id_oferta', '=', 'ofertas.id')
+										->join('productos', 'ofertas.id_prod', '=', 'productos.id')
+										->join('modos', 'ofertas.id_modo', '=', 'modos.id')
+										->join('medidas', 'ofertas.id_medida', '=', 'medidas.id')
+										->select(DB::raw('CONCAT(productos.nombre, " ", productos.descripcion, " ", productos.descripcion2, " ", modos.descripcion, " ", "X", " ", ofertas.peso, " ",  medidas.descripcion) as nombre'), DB::raw('max(contraofertas.precio) as max'), DB::raw('min(contraofertas.precio) as min'), DB::raw('CAST(avg(contraofertas.precio) as int) AS prom'))
+										->whereBetween('contraofertas.created_at', [$fechai, $fechaf])
+										->groupBy('productos.nombre')
+										->groupBy('productos.descripcion')
+										->groupBy('productos.descripcion2')
+										->groupBy('modos.descripcion')
+										->groupBy('ofertas.peso')
+										->groupBy('medidas.descripcion')
+										->orderBy('productos.nombre', 'DESC')
+										->get(['contraofertas.*']);
 
 		//Tendencia Históricos
 		$preciost = Demanda::leftJoin('productos', 'demandas.id_prod', '=', 'productos.id')
