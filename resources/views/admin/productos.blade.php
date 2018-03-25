@@ -32,11 +32,11 @@
                     <tbody>
                         <tr>
                             <input type="hidden" name="id" value="{{$prod->id}}">
-                            <td>{{$prod->nombre}}</td>
-                            <td>{{$prod->descripcion}}</td>
-                            <td>{{$prod->descripcion2}}</td>
-                            <td>{{$prod->categoria->descripcion}}</td>
-                            <td class="col-chica"><button type="button" id="editarProd" data-toggle="modal" data_target="#agregarProducto" class="btn btn-danger admin tabla" title="Editar Producto">Editar</button></td>
+                            <td name="nombreProducto">{{$prod->nombre}}</td>
+                            <td name="descripcionProd">{{$prod->descripcion}}</td>
+                            <td name="descripcion2Prod">{{$prod->descripcion2}}</td>
+                            <td name="cat">{{$prod->categoria->descripcion}}</td>
+                            <td class="col-chica"><button type="button" id="editarProd" data-toggle="modal" onclick="editar({{$prod->id}},'{{$prod->nombre}}','{{$prod->descripcion}}','{{$prod->descripcion2}}',{{$prod->id_cat}});" class="btn btn-danger admin tabla" title="Editar Producto">Editar</button></td>
                         </tr>
                     </tbody>
             @endforeach
@@ -102,12 +102,12 @@
                             <div class="panel-body">
                                 <form class="form-horizontal" id="formagregarProducto" name="agregarProducto" method="POST" action="{{ url('admin/producto/store') }}">
                                     {{ csrf_field() }}
-                                    <input type="hidden" id='id_prod' name="id_prod" value="">
+                                    <input type="hidden" name="id_prod" value="">
                                     <div class="form-group{{ $errors->has('nombre') ? ' has-error' : '' }}">
                                         <label for="nombre" class="col-md-4 control-label">Nombre</label>
 
                                         <div class="col-md-6">
-                                            <input id="nombre" type="text" class="form-control" id="nombreProd" name="nombre" value="{{ old('nombre') }}" placeholder="Ej: Papa" required autofocus>
+                                            <input type="text" class="form-control" name="nombre" value="{{ old('nombre') }}" placeholder="Ej: Papa" required autofocus>
 
                                             @if ($errors->has('nombre'))
                                                 <span class="help-block">
@@ -120,7 +120,7 @@
                                         <label for="descripcion" class="col-md-4 control-label">Descripción</label>
 
                                         <div class="col-md-6">
-                                            <input id="descripcion" type="text" class="form-control" id="descProd" name="descripcion" value="{{ old('descripcion') }}" placeholder="Ej: Blanca" required >
+                                            <input type="text" class="form-control" name="descripcion" value="{{ old('descripcion') }}" placeholder="Ej: Blanca" required >
 
                                             @if ($errors->has('descripcion'))
                                                 <span class="help-block">
@@ -133,7 +133,7 @@
                                         <label for="descripcion2" class="col-md-4 control-label">Descripción Alternativa</label>
 
                                         <div class="col-md-6">
-                                            <input id="descripcion2" type="text" class="form-control" id="desc2Prod" name="descripcion2" value="{{ old('descripcion2') }}" placeholder="Ej: Grande" >
+                                            <input type="text" class="form-control" name="descripcion2" value="{{ old('descripcion2') }}" placeholder="Ej: Grande" >
 
                                             @if ($errors->has('descripcion2'))
                                                 <span class="help-block">
@@ -146,7 +146,7 @@
                                         <label for="id_cat" class="col-md-4 control-label">Categoría</label>
 
                                         <div class="col-md-6">
-                                        <select class="form-control" id="id_cat" name="id_cat" value="{{ old('id_cat') }}" required>
+                                        <select class="form-control" name="id_cat" value="{{ old('id_cat') }}" required>
                                             <option disabled selected hidden> -- Seleccione una Categoría -- </option>
                                             @foreach($categorias as $categoria)
                                             <option value="{{$categoria->id}}">{{$categoria->descripcion}}</option>
@@ -252,5 +252,93 @@
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
-    
+
+    <!-- Modal Editar Producto -->
+    <div class="modal fade" id="editarProducto" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title">Editar Producto</h4>
+            </div>
+            <div class="modal-body">
+                <div class="panel panel-default">
+                              <div class="panel-body">
+                                  <form class="form-horizontal" id="formeditarProducto" name="editarProducto" method="POST" action="{{ url('admin/producto/editar') }}">
+                                      {{ csrf_field() }}
+                                      <input type="hidden" id='idProd' name="idProd" value="">
+                                      <div class="form-group{{ $errors->has('nombre') ? ' has-error' : '' }}">
+                                          <label for="nombre" class="col-md-4 control-label">Nombre</label>
+  
+                                          <div class="col-md-6">
+                                              <input type="text" class="form-control" id="nombreProd" name="nombre" value="{{ old('nombre') }}" placeholder="Ej: Papa" required autofocus>
+  
+                                              @if ($errors->has('nombre'))
+                                                  <span class="help-block">
+                                                      <strong>{{ $errors->first('nombre') }}</strong>
+                                                  </span>
+                                              @endif
+                                          </div>
+                                      </div>
+                                      <div class="form-group{{ $errors->has('descripcion') ? ' has-error' : '' }}">
+                                          <label for="descripcion" class="col-md-4 control-label">Descripción</label>
+  
+                                          <div class="col-md-6">
+                                              <input type="text" class="form-control" id="descProd" name="descripcion" value="{{ old('descripcion') }}" placeholder="Ej: Blanca" required >
+  
+                                              @if ($errors->has('descripcion'))
+                                                  <span class="help-block">
+                                                      <strong>{{ $errors->first('descripcion') }}</strong>
+                                                  </span>
+                                              @endif
+                                          </div>
+                                      </div>
+                                      <div class="form-group{{ $errors->has('descripcion2') ? ' has-error' : '' }}">
+                                          <label for="descripcion2" class="col-md-4 control-label">Descripción Alternativa</label>
+  
+                                          <div class="col-md-6">
+                                              <input type="text" class="form-control" id="desc2Prod" name="descripcion2" value="{{ old('descripcion2') }}" placeholder="Ej: Grande" >
+  
+                                              @if ($errors->has('descripcion2'))
+                                                  <span class="help-block">
+                                                      <strong>{{ $errors->first('descripcion2') }}</strong>
+                                                  </span>
+                                              @endif
+                                          </div>
+                                      </div>
+                                      <div class="form-group{{ $errors->has('id_cat') ? ' has-error' : '' }}">
+                                          <label for="id_cat" class="col-md-4 control-label">Categoría</label>
+  
+                                          <div class="col-md-6">
+                                          
+                                          <select class="form-control" id="id_cat" name="idcat" value="{{ old('id_cat') }}" required>
+                                              <option hidden value=""> -- Seleccione una Categoría -- </option>
+                                              @foreach($categorias as $categoria)
+                                              @if($categoria->id == "this.id_cat.value")
+                                              <option value="{{$categoria->id}}" selected>{{$categoria->descripcion}}</option>
+                                              @else
+                                              <option value="{{$categoria->id}}">{{$categoria->descripcion}}</option>
+                                              @endif
+                                              @endforeach
+                                          </select>
+  
+                                              @if ($errors->has('id_cat'))
+                                                  <span class="help-block">
+                                                      <strong>{{ $errors->first('id_cat') }}</strong>
+                                                  </span>
+                                              @endif
+                                          </div>
+                                      </div>
+                                      <div class="row model">
+                                          <button type="submit" class="btn btn-primary">Guardar</button>
+                                          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                                      </div>
+                                  </form>
+                              </div>
+                          </div>          
+            </div>
+          </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+      </div><!-- /.modal -->
+  
 @endsection

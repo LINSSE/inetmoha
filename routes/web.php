@@ -107,6 +107,7 @@ Route::group(['middleware' => 'admin'], function() {
 	Route::post('admin/medida/store', 'ProductoController@storeMed');
 	Route::post('admin/medida/eliminar', 'ProductoController@eliminarMedida');
 	Route::post('admin/producto/eliminar', 'ProductoController@eliminar');
+	Route::post('admin/producto/editar', 'ProductoController@editar');
 	Route::post('admin/categoria/eliminar', 'ProductoController@eliminarCat');
 	
 });

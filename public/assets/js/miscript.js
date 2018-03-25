@@ -13,11 +13,6 @@ $(document).ready(function(){
             $('#agregarProducto').load("agregarProducto")//load a view into a modal
         $('#agregarProducto').modal('show'); //show the modal
       });
-    
-      $('#editarProd').on('click', function () {
-        $('#agregarProducto').load("agregarProducto")//load a view into a modal
-    $('#agregarProducto').modal('show'); //show the modal
-    });
 
     $('#agregarProducto').on('hidden.bs.modal', function(){ 
         $(this).find('#formagregarProducto')[0].reset(); //para limpiar campos del modal
@@ -92,12 +87,14 @@ $(document).ready(function(){
         $('#modalOfertar').modal('show'); //show the modal
       }
     
-    editarProducto = function (id, nombre, desc, desc2) {
-        $('#id_prod').val(id);
-        $('#nombreProd').val(nombre);
-        $('#descProd').val(desc);
-        $('#desc2Prod').val(desc2);
-    $('#agregarProducto').modal('show'); //show the modal
+    editar = function (idProd, nombreProducto, descripcionProd, descripcion2Prod, id_cat) {
+        
+        $('#idProd').val(idProd);
+        $('#nombreProd').val(nombreProducto);
+        $('#descProd').val(descripcionProd);
+        $('#desc2Prod').val(descripcion2Prod);
+        $('#id_cat').val(id_cat);
+        $('#editarProducto').modal('show'); //show the modal
     }
 
     $("#cantidad").change(function(event){

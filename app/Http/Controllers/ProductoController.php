@@ -100,8 +100,13 @@ class ProductoController extends Controller
 
     public function editar(Request $request)
     {
-        $id = $request->id;
-        //$prod = Producto::where('id', '=', $id)->update([])
+        $id = $request->idProd;
+        $nombre = ucwords(strtolower($request->nombre));
+        $descripcion = ucwords(strtolower($request->descripcion));
+        $descripcion2 = ucwords(strtolower($request->descripcion2));
+        $id_cat = $request->idcat;
+        
+        $prod = Producto::where('id', '=', $id)->update(['nombre' => $nombre, 'descripcion' => $descripcion, 'descripcion2' => $descripcion2, 'id_cat' => $id_cat]);
         Session::flash('mensaje', 'Producto editado!');
         return back();
     }

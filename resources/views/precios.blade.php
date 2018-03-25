@@ -69,11 +69,16 @@
             <div class="col-md-6">
                 <h1 class="h1-tabla">Precios Ofrecidos</h1>
                 <h5 class="text-center">Seleccione un intervalo de fechas para filtrar los Precios de los Productos</h5>
+                <div class="row">
                 <div id="imaginary_container"> 
                     <form class="form-horizontal" method="GET" action="/preciosOf">
-                        <input placeholder="Desde" onfocus="(this.type='date')" type="text" class="form-control precioDia" onblur="if(this.value==''){this.type='text'}" id="fechai" name="fechai" value="">
-                        <input onchange="submit()" placeholder="Hasta" onfocus="(this.type='date')" type="text" class="form-control precioDia" onblur="if(this.value==''){this.type='text'}" id="fechaf" name="fechaf" value="" disabled="true">
+                        <div class="col-md-6 fecha">
+                        <input placeholder="Desde" onfocus="(this.type='date')" type="text" class="form-control fecha" onblur="if(this.value==''){this.type='text'}" id="fechai" name="fechai" value="">
+                        
+                        <input onchange="submit()" placeholder="Hasta" onfocus="(this.type='date')" type="text" class="form-control fecha" onblur="if(this.value==''){this.type='text'}" id="fechaf" name="fechaf" value="" disabled="true">
+                        </div>
                     </form>
+                </div>
                 </div>
                 <div class="table-responsive">
                     <table class="table">
