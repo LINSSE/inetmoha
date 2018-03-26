@@ -61,11 +61,11 @@ Route::group(['middleware' => 'auth'], function() {
 
 	//Contrademandas
 	Route::post('usuario/contraDemanda', 'ContrademandaController@store');
-	Route::post('usuario/eliminarCdemanda/{id}', 'ContrademandaController@eliminar');
+	Route::post('usuario/eliminarCdemanda', 'ContrademandaController@eliminar');
 	Route::get('usuario/detalleDemanda/{id}', 'ContrademandaController@detalleDemanda');
 	Route::get('usuario/aceptarDemanda/{id}', 'ContrademandaController@aceptarDemanda');
 	Route::get('usuario/rechazarDemanda/{id}', 'ContrademandaController@rechazarDemanda');
-	Route::post('usuario/editarCdemanda', 'ContrademandaController@editarCdemanda');
+	Route::get('usuario/editarCdemanda/{id}', 'ContrademandaController@editarCdemanda');
 
 	//Precios
 	Route::get('preciosDia', 'PreciosController@filtrarPrecios');

@@ -133,8 +133,9 @@ class ContrademandaController extends Controller
         return back();
     }
 
-    public function eliminar($id) {
+    public function eliminar(Request $request) {
 
+        $id = $request->id;
         $cdem = Contrademanda::FindOrFail($id);
         $cdem->delete();
 
@@ -142,13 +143,12 @@ class ContrademandaController extends Controller
         return back();
     }
 
-    public function editarCdemanda(Request $request) {
+    public function editarCdemanda($id) {
 
         DB::beginTransaction();
 
         try {
-
-            $id = $request->id;
+            
             $cd = Contrademanda::FindOrFail($id);
             $row = Contrademanda::where('id', $cd->id)->update(['estado' => '3']);
 

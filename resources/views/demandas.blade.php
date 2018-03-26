@@ -66,9 +66,9 @@
                                 <td>{{$dem->cobro->descripcion}}</td>
                                 <td>{{$dem->plazo}}</td>
                                 <td>@if(Auth::user()->activo === 1 && Auth::user()->id != $dem->user->id && Auth::user()->admin === 0)
-                                        <button type="button" id="ofertar" data-toggle="modal" onclick="demandar({{$dem->id}},{{$dem->cantidad}},{{$dem->precio}})" class="btn btn-success admin tabla">Demandar</button>
+                                        <button type="button" id="demandar" data-toggle="modal" onclick="demandar({{$dem->id}},{{$dem->cantidad}},{{$dem->precio}},{{$dem->id_puesto}},{{$dem->id_cobro}},'{{$dem->plazo}}')" class="btn btn-success admin tabla">Demandar</button>
                                     @else
-                                        <button type="button" id="ofertar" data-toggle="modal" data_target="#modalOfertar" disabled class="btn btn-success admin tabla" title="Su Usuario no está ACTIVO o esta Oferta es suya">Demandar</button>
+                                        <button type="button" id="demandar" data-toggle="modal" data_target="#modalDemandar" disabled class="btn btn-success admin tabla" title="Su Usuario no está ACTIVO o esta Demanda es suya">Demandar</button>
                                     @endif</td>
                             </tr>
                         </tbody>
@@ -120,9 +120,9 @@
                                 <td>{{$dem->cobro->descripcion}}</td>
                                 <td>{{$dem->plazo}}</td>
                                 <td>@if(Auth::user()->activo === 1 && Auth::user()->id != $dem->user->id && Auth::user()->admin === 0)
-                                        <button type="button" id="ofertar" data-toggle="modal" onclick="demandar({{$dem->id}},{{$dem->cantidad}},{{$dem->precio}})" class="btn btn-success admin tabla">Demandar</button>
+                                        <button type="button" id="demandar" data-toggle="modal" onclick="demandar({{$dem->id}},{{$dem->cantidad}},{{$dem->precio}},{{$dem->id_puesto}},{{$dem->id_cobro}},'{{$dem->plazo}}')" class="btn btn-success admin tabla">Demandar</button>
                                     @else
-                                        <button type="button" id="ofertar" data-toggle="modal" data_target="#modalOfertar" disabled class="btn btn-success admin tabla" title="Su Usuario no está ACTIVO o esta Oferta es suya">Demandar</button>
+                                        <button type="button" id="demandar" data-toggle="modal" data_target="#modalDemandar" disabled class="btn btn-success admin tabla" title="Su Usuario no está ACTIVO o esta Demanda es suya">Demandar</button>
                                     @endif</td>
                             </tr>
                         </tbody>
@@ -186,12 +186,16 @@
                                     <label for="puestoCd" class="col-md-4 control-label">Puesto</label>
 
                                     <div class="col-md-6">
-	                                <select class="form-control" name="puestoCd" value="{{ old('puestoCd') }}" required>
-	                                    <option hidden value=""> -- Producto Puesto en -- </option>
-	                                    @foreach ($puestos as $puesto)
-                                        <option value="{{$puesto->id}}" >{{$puesto->descripcion}}</option>
+                                    <select class="form-control" id="idPuestoD" name="puestoCd" value="{{ old('puestoCd') }}" required>
+                                        <option hidden value=""> -- Producto Puesto en -- </option>
+                                        @foreach ($puestos as $puesto)
+                                        @if($puesto->id === "this.form.idPuestoD.value")
+                                        <option value="{{$puesto->id}}" selected>{{$puesto->descripcion}}</option>
+                                        @else
+                                        <option value="{{$puesto->id}}">{{$puesto->descripcion}}</option>
+                                        @endif
                                         @endforeach
-	                                </select>
+                                    </select>
 	                                @if ($errors->has('id_puesto'))
 	                                    <span class="help-block">
 	                                	    <strong>{{ $errors->first('id_puesto') }}</strong>
@@ -204,10 +208,14 @@
                                     <label for="cobroCd" class="col-md-4 control-label">Cobro</label>
 
                                     <div class="col-md-6">
-                                    <select class="form-control" name="cobroCd" value="{{ old('cobroCd') }}" required>
+                                    <select class="form-control" id="idCobroD" name="cobroCd" value="{{ old('cobroCd') }}" required>
                                         <option hidden value=""> -- Forma de Cobro -- </option>
                                         @foreach ($cobros as $cobro)
-                                        <option value="{{$cobro->id}}" >{{$cobro->descripcion}}</option>
+                                        @if($cobro->id === "this.form.idCobroD.value")
+                                        <option value="{{$cobro->id}}" selected>{{$cobro->descripcion}}</option>
+                                        @else
+                                        <option value="{{$cobro->id}}">{{$cobro->descripcion}}</option>
+                                        @endif
                                         @endforeach
                                     </select>
                                     @if ($errors->has('cobroCd'))
@@ -219,21 +227,22 @@
                                     <span class="glyphicon glyphicon-info-sign" alt="Indicar la forma de Cobro que desea" title="Indicar la forma de Cobro que desea"></span>
                                     <div class="col-md-12">
                                         <div class="checkbox">
+                                        <input type="text" id="idPlazoD" hidden value="">
                                         <ul class="filtro-usu">
                                             <label>
-                                                <input type="checkbox" name="plazoCd" value="Contado" checked=""> Contado    
+                                                <input type="checkbox" id="plazoD1" name="plazoCd" value="Contado" checked=""> Contado    
                                             </label>&nbsp;&nbsp;&nbsp;&nbsp;
                                             <label>
-                                                <input type="checkbox" name="plazoCd" value="30"> 30 días    
+                                                <input type="checkbox" id="plazoD2" name="plazoCd" value="30"> 30 días    
                                             </label>&nbsp;&nbsp;&nbsp;&nbsp;
                                             <label>
-                                                <input type="checkbox" name="plazoCd" value="60"> 60 días    
+                                                <input type="checkbox" id="plazoD3" name="plazoCd" value="60"> 60 días    
                                             </label>&nbsp;&nbsp;&nbsp;&nbsp;
                                             <label> 
-                                                <input type="checkbox" name="plazoCd" value="90"> 90 días    
+                                                <input type="checkbox" id="plazoD4" name="plazoCd" value="90"> 90 días    
                                             </label>&nbsp;&nbsp;&nbsp;&nbsp;
                                             <label> 
-                                                <input type="checkbox" name="plazoCd" value="Más de 90"> Más de 90 días    
+                                                <input type="checkbox" id="plazoD5" name="plazoCd" value="Más de 90"> Más de 90 días    
                                             </label>
                                         </ul>
                                         </div>

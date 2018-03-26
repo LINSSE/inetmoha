@@ -104,11 +104,11 @@
                 <tbody>
                 @foreach($cdacep as $cda)
                      <tr>
-                      <form class="form-horizontal" id="editarCdemanda" name="editarCdemanda" method="POST" action="">
+                      <form class="form-horizontal" id="editarCdemanda" name="editarCdemanda" method="GET" action="">
                       {{ csrf_field() }}
                       <input type="hidden" name="id" value="{{$cda->id}}">
                       @if($cda->estado == 1)
-                        <td><input type="checkbox" name="recibido" value="3" onclick="confirmarDem('/usuario/editarCdemanda')" title="Seleccione cuando haya recibido los Productos"></td>
+                        <td><input type="checkbox" name="recibido" value="3" onclick="confirmarDem('/usuario/editarCdemanda/{{$cda->id}}')" title="Seleccione cuando haya recibido los Productos"></td>
                       @elseif($cda->estado == 3)
                         <td><input type="checkbox" name="recibido" value="3" title="Los Productos ya fueron recibidos" checked disabled></td>
                       @endif

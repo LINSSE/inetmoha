@@ -99,6 +99,26 @@ $(document).ready(function(){
         $('#modalOfertar').modal('show'); //show the modal
       }
     
+    demandar = function (id, cantidad, precio, puesto, cobro, plazo) {
+            $('#id_demanda').val(id);
+            $('#cantDemanda').val(cantidad);
+            $('#cantidadCd').val(cantidad);
+            $('#precioCd').val(precio);
+            $('#idPuestoD').val(puesto);
+            $('#idCobroD').val(cobro);
+            $('#idPlazoD').val(plazo);
+            
+            var plazos = document.getElementsByName('plazoCd');
+            
+            for (var x = 0; x < plazos.length; x++) {
+                plazos[x].checked = false;
+                if (plazos[x].value == plazo) {
+                    plazos[x].checked = true;
+                }
+            }
+        $('#modalDemandar').modal('show'); //show the modal
+    }
+
     editarP = function (idProd, nombreProducto, descripcionProd, descripcion2Prod, id_cat) {
         
         $('#idProd').val(idProd);
@@ -143,14 +163,6 @@ $(document).ready(function(){
         var cant = document.getElementById("cantOferta").value;
         $("#cantidad").attr("max", cant);
     });
-
-    demandar = function (id, cantidad, precio) {
-            $('#id_demanda').val(id);
-            $('#cantDemanda').val(cantidad);
-            $('#cantidadCd').val(cantidad);
-            $('#precioCd').val(precio);
-        $('#modalDemandar').modal('show'); //show the modal
-      }
 
     confirmarOf = function (action, op) {
         if (op == '0') {
