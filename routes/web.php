@@ -22,9 +22,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 //Rutas Publicas
 Route::get('/index', 'PaginasController@index');
 Route::get('ofertas', 'OfertasController@ofertas');
-Route::get('precios', 'PreciosController@precios');
+Route::get('precios', 'PreciosController@filtrarprecios');
 Route::get('demandas', 'DemandasController@demandas');
-Route::get('operaciones', 'OperacionesController@listaroperaciones');
+Route::get('operaciones', 'OperacionesController@buscarOperaciones');
 Route::get('email/nuevoOperador', 'AdminController@enviarMail');
 Route::get('ciudades/{id}', 'ProvinciasController@getCiudades');
 
@@ -70,8 +70,9 @@ Route::group(['middleware' => 'auth'], function() {
 	//Precios
 	Route::get('preciosDia', 'PreciosController@filtrarPrecios');
 	Route::get('preciosOf', 'PreciosController@filtrarPrecios');
-	Route::get('precios/graficar/{id}', 'PreciosController@graficarPrecios');
+	Route::get('precios/graficar/{id}/{fd}/{fh}', 'PreciosController@graficarPrecios');
 });
+
 
 
 //Rutas de Administrador

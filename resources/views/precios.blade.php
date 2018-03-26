@@ -73,9 +73,11 @@
                 <div id="imaginary_container"> 
                     <form class="form-horizontal" method="GET" action="/preciosOf">
                         <div class="col-md-6 fecha">
-                        <input placeholder="Desde" onfocus="(this.type='date')" type="text" class="form-control fecha" onblur="if(this.value==''){this.type='text'}" id="fechai" name="fechai" value="">
-                        
-                        <input onchange="submit()" placeholder="Hasta" onfocus="(this.type='date')" type="text" class="form-control fecha" onblur="if(this.value==''){this.type='text'}" id="fechaf" name="fechaf" value="" disabled="true">
+                        <input placeholder="Desde" onfocus="(this.type='date')" type="text" class="form-control fecha" onblur="if(this.value==''){this.type='text'}" id="fechai" name="fechai" value="">                        
+                        <input placeholder="Hasta" onfocus="(this.type='date')" type="text" class="form-control fecha" onblur="if(this.value==''){this.type='text'}" id="fechaf" name="fechaf" value="" disabled="true">
+                        <button type="submit" class="lupa" id="lupa">
+                            <span class="glyphicon glyphicon-search lupa"></span>
+                        </button>
                         </div>
                     </form>
                 </div>
@@ -92,15 +94,21 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <form id="graficarPrecios" class="form-horizontal" method="GET" action="/precios/graficar">
+                                <input type="hidden" id="fechaDesde" name="fechaDesde" value="{{$fechaDes}}">
+                                <input type="hidden" id="fechaHasta" name="fechaHasta" value="{{$fechaHas}}">
                             @foreach($precioso as $pr)
                             <tr>
+                                
+                                <input type="hidden" id="prod_id" name="prod_id" value="{{$pr->id}}">
                                 <td>{{$pr->nombre}} </td>
                                 <td>$ {{$pr->min}} </td>
                                 <td>$ {{$pr->prom}} </td>
                                 <td>$ {{$pr->max}} </td>
-                                <td><a type="button" href="/precios/graficar/2">gra</a></td>
+                                <td><a type="button" id="btnGraf" onclick="graficar({{$pr->id}},'{{$fechaDes}}','{{$fechaHas}}')">gra</a></td>
                             </tr>
                             @endforeach
+                            </form>
                         </tbody>
                     </table>
                 </div>

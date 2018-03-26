@@ -1,70 +1,11 @@
-@extends('layouts.principal')
+<link rel="stylesheet" href="{{ asset('assets/css/styles.css')}}">
+<link rel="stylesheet" href="{{ asset('assets/bootstrap/css/bootstrap.min.css')}}">
 
-@section('content')
+<script type="text/javascript" src="{{ asset('assets/js/jquery.min.js')}}"></script>
+<script type="text/javascript" src="{{ asset('assets/js/miscript.js')}}"></script>
+<script type="text/javascript" src="{{ asset('assets/bootstrap/js/bootstrap.min.js')}}"></script>
 
-<script src="https://code.highcharts.com/highcharts.js"></script>
-
-<script type="text/javascript">
-
-    $(function () { 
-
-        var max = <?php echo $max; ?>;
-        var min = <?php echo $min; ?>;
-        var prom = <?php echo $prom; ?>;
-        var nombre = <?php echo $nombre; ?>;
-
-    $('#container').highcharts({
-
-        chart: {
-
-            type: 'line'
-
-        },
-
-        title: {
-
-            text: 'Max precios de prod'
-
-        },
-
-        xAxis: {
-
-            type: 'datetime',
-
-            title: {
-                text: nombre
-            },
-
-        },
-
-        yAxis: {
-
-            title: {
-
-                text: 'precios'
-
-            }, 
-
-            categories: ['min', 'prom', 'max']
-
-        },
-
-        series: [{
-            
-            name: 'Mínimo',
-
-            data: [min, prom, max],
-
-            pointStart: Date.parse("2018 03 22")
-
-        }]
-
-    });
-
-});
-
-</script>
-
+{!! Charts::assets() !!}
 <div class="container">
 
     <div class="row">
@@ -73,11 +14,11 @@
 
             <div class="panel panel-default">
 
-                <div class="panel-heading">Dashboard</div>
+                <div class="panel-heading">Gráfico</div>
 
                 <div class="panel-body">
 
-                    <div id="container"></div>
+                    {!! $chart->render() !!}
 
                 </div>
 
@@ -88,5 +29,3 @@
     </div>
 
 </div>
-
-@endsection

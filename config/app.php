@@ -175,6 +175,7 @@ return [
         Orangehill\Iseed\IseedServiceProvider::class,
         Chumper\Zipper\ZipperServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
+        ConsoleTVs\Charts\ChartsServiceProvider::class,
         
 
         /*
@@ -238,7 +239,8 @@ return [
         'Html' => Collective\Html\HtmlFacade::class,
         'Zipper' => Chumper\Zipper\Zipper::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
-        'PHPUnit_Framework_Assert' => \PHPUnit\Framework\Assert::class
+        'PHPUnit_Framework_Assert' => \PHPUnit\Framework\Assert::class,
+        'Charts' => ConsoleTVs\Charts\Facades\Charts::class
     ],
 
 ];

@@ -251,12 +251,29 @@ $(document).ready(function(){
         else element.addClass("desc");
       }
 
-      $("#fechai").change(function(event){
+      $("#fechai").change(function(){
         var fecha = document.getElementById("fechai").value;
         $("#fechaf").attr("disabled", false);
         $("#fechaf").attr("min", fecha);
        });
 
+     graficar = function(id, fechad, fechah) {
+        if (fechad === '') {
+            
+            var d = new Date();
+            month = '' + (d.getMonth() - 1);
+            day = '' + d.getDate();
+            year = d.getFullYear();
 
+            if (month.length < 2) {month = '0' + month};
+            if (day.length < 2) {day = '0' + day};
 
+            fechad = year+"-"+month+"-"+day;
+        }
+        if (fechah === '') {
+            var fechah = new Date().toISOString().slice(0, 10);
+        }
+        window.open("/precios/graficar/"+id+"/"+fechad+"/"+fechah, "_blank","width=600,height=400");
+        
+     }
 });
