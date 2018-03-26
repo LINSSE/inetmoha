@@ -88,6 +88,7 @@
                                 <th>Min </th>
                                 <th>Medio </th>
                                 <th>Max </th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -97,6 +98,7 @@
                                 <td>$ {{$pr->min}} </td>
                                 <td>$ {{$pr->prom}} </td>
                                 <td>$ {{$pr->max}} </td>
+                                <td><a type="button" href="/precios/graficar/2">gra</a></td>
                             </tr>
                             @endforeach
                         </tbody>

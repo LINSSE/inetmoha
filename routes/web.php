@@ -70,6 +70,7 @@ Route::group(['middleware' => 'auth'], function() {
 	//Precios
 	Route::get('preciosDia', 'PreciosController@filtrarPrecios');
 	Route::get('preciosOf', 'PreciosController@filtrarPrecios');
+	Route::get('precios/graficar/{id}', 'PreciosController@graficarPrecios');
 });
 
 

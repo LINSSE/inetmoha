@@ -118,7 +118,7 @@ class PreciosController extends Controller
 										->join('productos', 'ofertas.id_prod', '=', 'productos.id')
 										->join('modos', 'ofertas.id_modo', '=', 'modos.id')
 										->join('medidas', 'ofertas.id_medida', '=', 'medidas.id')
-										->select(DB::raw('CONCAT(productos.nombre, " ", productos.descripcion, " ", productos.descripcion2, " ", modos.descripcion, " ", "X", " ", ofertas.peso, " ",  medidas.descripcion) as nombre'), DB::raw('max(contraofertas.precio) as max'), DB::raw('min(contraofertas.precio) as min'), DB::raw('CAST(avg(contraofertas.precio) as int) AS prom'))
+										->select(DB::raw("productos.id as id"), DB::raw('CONCAT(productos.nombre, " ", productos.descripcion, " ", productos.descripcion2, " ", modos.descripcion, " ", "X", " ", ofertas.peso, " ",  medidas.descripcion) as nombre'), DB::raw('max(contraofertas.precio) as max'), DB::raw('min(contraofertas.precio) as min'), DB::raw('CAST(avg(contraofertas.precio) as int) AS prom'))
 										->whereBetween('contraofertas.created_at', [$fechai, $fechaf])
 										->groupBy('productos.nombre')
 										->groupBy('productos.descripcion')
@@ -147,4 +147,34 @@ class PreciosController extends Controller
 
 		return view('precios', array('preciosd' => $preciosd, 'precioso' => $precioso, 'preciost' => $preciost));
 	}
+	
+
+	public function graficarPrecios($id) {
+		$viewer = Contraoferta::leftJoin('ofertas', 'contraofertas.id_oferta', '=', 'ofertas.id')
+		->join('productos', 'ofertas.id_prod', '=', 'productos.id')
+		->join('modos', 'ofertas.id_modo', '=', 'modos.id')
+		->join('medidas', 'ofertas.id_medida', '=', 'medidas.id')
+		->select(DB::raw('CONCAT(productos.nombre, " ", productos.descripcion, " ", productos.descripcion2, " ", modos.descripcion, " ", "X", " ", ofertas.peso, " ",  medidas.descripcion) as nombre'), DB::raw('max(contraofertas.precio) as max'), DB::raw('min(contraofertas.precio) as min'), DB::raw('CAST(avg(contraofertas.precio) as int) AS prom'))
+		->where('productos.id', $id)
+		->groupBy('productos.nombre')
+		->groupBy('productos.descripcion')
+		->groupBy('productos.descripcion2')
+		->groupBy('modos.descripcion')
+		->groupBy('ofertas.peso')
+		->groupBy('medidas.descripcion')
+		->orderBy('contraofertas.created_at', 'DESC')
+		->get(['contraofertas.*'])->toArray();
+		
+		$max = array_column($viewer, 'max');
+		$min = array_column($viewer, 'min');
+		$prom = array_column($viewer, 'prom');
+		$nombre = array_column($viewer, 'nombre');
+
+		return view('/reportes/precios')->with('max',json_encode($max,JSON_NUMERIC_CHECK))
+										->with('min',json_encode($min,JSON_NUMERIC_CHECK))
+										->with('prom',json_encode($prom,JSON_NUMERIC_CHECK))
+										->with('nombre',json_encode($nombre,JSON_NUMERIC_CHECK));
+
+	}
+	
 }
