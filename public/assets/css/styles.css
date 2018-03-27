@@ -448,3 +448,11 @@ table tr th {
   border: none;
   background-color: transparent;  
 }
+
+#btnGraf:hover {
+  cursor: pointer;
+}
+
+.icono-grafico {
+  background-color: white;
+}

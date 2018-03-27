@@ -38,7 +38,7 @@ class OperacionesController extends Controller
 
         $buscar = $request->buscar;
         
-        $operacioneso = Operacionoferta::join('contraofertas', 'operacionofertas.id_contra', '=', 'contraofertas.id')
+        $operacioneso = Operacionoferta::leftJoin('contraofertas', 'operacionofertas.id_contra', '=', 'contraofertas.id')
                                         ->join('ofertas', 'contraofertas.id_oferta', '=', 'ofertas.id')
                                         ->join('productos', 'ofertas.id_prod', '=', 'productos.id')
                                         ->join('categorias', 'productos.id_cat', '=', 'categorias.id')
@@ -46,7 +46,7 @@ class OperacionesController extends Controller
                                         ->join('puestos', 'ofertas.id_puesto', '=', 'puestos.id')
                                         ->join('modos', 'ofertas.id_modo', '=', 'modos.id')
                                         ->join('cobros', 'contraofertas.id_cobro', '=', 'cobros.id')
-                                        ->where('operacionofertas.fecha', '<=', $hoy )
+                                        ->where('ofertas.fechaEntrega', '<=', $hoy )
                                             ->where(function ($query) use ($buscar){
                                                 $query->where('productos.nombre', 'like', '%'.ucwords(strtolower($buscar)).'%')
                                                 ->orwhere('productos.descripcion', 'like', '%'.ucwords(strtolower($buscar)).'%')
@@ -60,10 +60,11 @@ class OperacionesController extends Controller
                                                 ->orwhere('puestos.descripcion', 'like', '%'.ucwords(strtolower($buscar)).'%')
                                                 ->orwhere('operacionofertas.fecha', 'like', '%'.$buscar.'%');
                                              })
+                                        ->limit(50)
                                         ->orderBy('operacionofertas.fecha', 'ASC')
                                         ->get(['operacionofertas.*']);
 
-        $operacionesco = Operacionoferta::join('contraofertas', 'operacionofertas.id_contra', '=', 'contraofertas.id')
+        $operacionesco = Operacionoferta::leftJoin('contraofertas', 'operacionofertas.id_contra', '=', 'contraofertas.id')
                                         ->join('ofertas', 'contraofertas.id_oferta', '=', 'ofertas.id')
                                         ->join('productos', 'ofertas.id_prod', '=', 'productos.id')
                                         ->join('categorias', 'productos.id_cat', '=', 'categorias.id')
@@ -71,7 +72,7 @@ class OperacionesController extends Controller
                                         ->join('puestos', 'ofertas.id_puesto', '=', 'puestos.id')
                                         ->join('modos', 'ofertas.id_modo', '=', 'modos.id')
                                         ->join('cobros', 'contraofertas.id_cobro', '=', 'cobros.id')
-                                        ->where('operacionofertas.fecha', '>', $hoy )
+                                        ->where('ofertas.fechaEntrega', '>', $hoy )
                                             ->where(function ($query) use ($buscar){
                                                 $query->where('productos.nombre', 'like', '%'.ucwords(strtolower($buscar)).'%')
                                                 ->orwhere('productos.descripcion', 'like', '%'.ucwords(strtolower($buscar)).'%')
@@ -85,10 +86,11 @@ class OperacionesController extends Controller
                                                 ->orwhere('puestos.descripcion', 'like', '%'.ucwords(strtolower($buscar)).'%')
                                                 ->orwhere('operacionofertas.fecha', 'like', '%'.$buscar.'%');
                                              })
+                                        ->limit(50)
                                         ->orderBy('operacionofertas.fecha', 'ASC')
                                         ->get(['operacionofertas.*']);
 
-        $operacionesd = Operaciondemanda::join('contrademandas', 'operaciondemandas.id_contra', '=', 'contrademandas.id')
+        $operacionesd = Operaciondemanda::leftJoin('contrademandas', 'operaciondemandas.id_contra', '=', 'contrademandas.id')
                                         ->join('demandas', 'contrademandas.id_demanda', '=', 'demandas.id')
                                         ->join('productos', 'demandas.id_prod', '=', 'productos.id')
                                         ->join('categorias', 'productos.id_cat', '=', 'categorias.id')
@@ -96,7 +98,7 @@ class OperacionesController extends Controller
                                         ->join('puestos', 'demandas.id_puesto', '=', 'puestos.id')
                                         ->join('modos', 'demandas.id_modo', '=', 'modos.id')
                                         ->join('cobros', 'contrademandas.id_cobro', '=', 'cobros.id')
-                                        ->where('operaciondemandas.fecha', '<=', $hoy )
+                                        ->where('demandas.fechaEntrega', '<=', $hoy )
                                             ->where(function ($query) use ($buscar){
                                                 $query->where('productos.nombre', 'like', '%'.ucwords(strtolower($buscar)).'%')
                                                 ->orwhere('productos.descripcion', 'like', '%'.ucwords(strtolower($buscar)).'%')
@@ -110,10 +112,11 @@ class OperacionesController extends Controller
                                                 ->orwhere('puestos.descripcion', 'like', '%'.ucwords(strtolower($buscar)).'%')
                                                 ->orwhere('operaciondemandas.fecha', 'like', '%'.$buscar.'%');
                                              })
+                                        ->limit(50)
                                         ->orderBy('operaciondemandas.fecha', 'ASC')
                                         ->get(['operaciondemandas.*']);
 
-        $operacionescd = Operaciondemanda::join('contrademandas', 'operaciondemandas.id_contra', '=', 'contrademandas.id')
+        $operacionescd = Operaciondemanda::leftJoin('contrademandas', 'operaciondemandas.id_contra', '=', 'contrademandas.id')
                                         ->join('demandas', 'contrademandas.id_demanda', '=', 'demandas.id')
                                         ->join('productos', 'demandas.id_prod', '=', 'productos.id')
                                         ->join('categorias', 'productos.id_cat', '=', 'categorias.id')
@@ -121,7 +124,7 @@ class OperacionesController extends Controller
                                         ->join('puestos', 'demandas.id_puesto', '=', 'puestos.id')
                                         ->join('modos', 'demandas.id_modo', '=', 'modos.id')
                                         ->join('cobros', 'contrademandas.id_cobro', '=', 'cobros.id')
-                                        ->where('operaciondemandas.fecha', '>', $hoy )
+                                        ->where('demandas.fechaEntrega', '>', $hoy )
                                             ->where(function ($query) use ($buscar){
                                                 $query->where('productos.nombre', 'like', '%'.ucwords(strtolower($buscar)).'%')
                                                 ->orwhere('productos.descripcion', 'like', '%'.ucwords(strtolower($buscar)).'%')
@@ -135,6 +138,7 @@ class OperacionesController extends Controller
                                                 ->orwhere('puestos.descripcion', 'like', '%'.ucwords(strtolower($buscar)).'%')
                                                 ->orwhere('operaciondemandas.fecha', 'like', '%'.$buscar.'%');
                                              })
+                                        ->limit(50)
                                         ->orderBy('operaciondemandas.fecha', 'ASC')
                                         ->get(['operaciondemandas.*']);
 

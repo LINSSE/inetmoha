@@ -22,7 +22,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 //Rutas Publicas
 Route::get('/index', 'PaginasController@index');
 Route::get('ofertas', 'OfertasController@ofertas');
-Route::get('precios', 'PreciosController@filtrarprecios');
+Route::get('precios', 'PreciosController@filtrarPrecios');
 Route::get('demandas', 'DemandasController@demandas');
 Route::get('operaciones', 'OperacionesController@buscarOperaciones');
 Route::get('email/nuevoOperador', 'AdminController@enviarMail');

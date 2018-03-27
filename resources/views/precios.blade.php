@@ -90,7 +90,7 @@
                                 <th>Min </th>
                                 <th>Medio </th>
                                 <th>Max </th>
-                                <th></th>
+                                <th style="cursor:default;"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -99,18 +99,18 @@
                                 <input type="hidden" id="fechaHasta" name="fechaHasta" value="{{$fechaHas}}">
                             @foreach($precioso as $pr)
                             <tr>
-                                
                                 <input type="hidden" id="prod_id" name="prod_id" value="{{$pr->id}}">
                                 <td>{{$pr->nombre}} </td>
                                 <td>$ {{$pr->min}} </td>
                                 <td>$ {{$pr->prom}} </td>
                                 <td>$ {{$pr->max}} </td>
-                                <td><a type="button" id="btnGraf" onclick="graficar({{$pr->id}},'{{$fechaDes}}','{{$fechaHas}}')">gra</a></td>
+                            <td><a type="button" id="btnGraf" onclick="graficar({{$pr->id}},'{{$fechaDes}}','{{$fechaHas}}')"><img class="icono-grafico" src="{{url('recursos/images/graficos24.png')}}"/a></td>
                             </tr>
                             @endforeach
                             </form>
                         </tbody>
                     </table>
+                    {!! $precioso->links() !!}
                 </div>
             </div>
             <div class="col-md-6">

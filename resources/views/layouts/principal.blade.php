@@ -19,8 +19,6 @@
     <script type="text/javascript" src="{{ asset('assets/js/miscript.js')}}"></script>
     <script type="text/javascript" src="{{ asset('assets/bootstrap/js/bootstrap.min.js')}}"></script>
     
-    {!! Charts::assets() !!}
-    
 </head>
 
 <body>

@@ -14,8 +14,6 @@
 
             <div class="panel panel-default">
 
-                <div class="panel-heading">Gráfico</div>
-
                 <div class="panel-body">
 
                     {!! $chart->render() !!}
