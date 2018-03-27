@@ -60,6 +60,7 @@
 	                        </tbody>
 	                    @endforeach
                     </table>
+                    {!! $ofertas->links() !!}
                 </div>
             </div>
         <hr>
@@ -118,6 +119,7 @@
                     @endforeach
                     </tbody>
                 </table>
+                {!! $cofertas->links() !!}
             </div>
         </div>
     </div>

@@ -13,13 +13,15 @@ class OperacionesController extends Controller
 {
     public function misoperaciones() {
 
-    	$id = Auth::user()->id;
+        $id = Auth::user()->id;
 
-        $operacioneso = Operacionoferta::leftJoin('contraofertas', 'operacionofertas.id_contra', '=', 'contraofertas.id')
+        $operacioneso = Operacionoferta::leftJoin('operaciondemandas', 'operacionofertas.id', '=', 'operaciondemandas.id')
+                                                ->join('contraofertas', 'operacionofertas.id_contra', '=', 'contraofertas.id')
                                                 ->join('ofertas', 'contraofertas.id_oferta', '=', 'ofertas.id')
                                                 ->where('ofertas.id_op', '=', $id)
                                                 ->orwhere('contraofertas.id_comprador', '=', $id)
                                                 ->orderBy('operacionofertas.fecha', 'ASC')
+                                                ->limit(50)
                                                 ->get(['operacionofertas.*']);
 
         $operacionesd = Operaciondemanda::leftJoin('contrademandas', 'operaciondemandas.id_contra', '=', 'contrademandas.id')
@@ -27,6 +29,7 @@ class OperacionesController extends Controller
                                                 ->where('demandas.id_op', '=', $id)
                                                 ->orwhere('contrademandas.id_comprador', '=', $id)
                                                 ->orderBy('operaciondemandas.fecha', 'ASC')
+                                                ->limit(50)
                                                 ->get(['operaciondemandas.*']);
 
     	return view('usuario/operaciones', array('operacioneso' => $operacioneso, 'operacionesd' => $operacionesd));
@@ -141,6 +144,7 @@ class OperacionesController extends Controller
                                         ->limit(50)
                                         ->orderBy('operaciondemandas.fecha', 'ASC')
                                         ->get(['operaciondemandas.*']);
+        
 
         return view('operaciones', array('operacioneso' => $operacioneso, 'operacionesd' => $operacionesd, 'operacionesco' => $operacionesco, 'operacionescd' => $operacionescd));
     }

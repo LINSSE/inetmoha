@@ -59,6 +59,7 @@
                 @endforeach
                 </tbody>
             </table>
+            {!! $demandas->links() !!}
         </div>
     </div>
     <div class="col-md-12">
@@ -111,6 +112,7 @@
                 @endforeach
                 </tbody>
             </table>
+            {!! $cdemandas->links() !!}
         </div>
     </div>
 </div>

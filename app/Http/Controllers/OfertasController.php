@@ -53,11 +53,11 @@ class OfertasController extends Controller
 
     public function misofertas() {
 
-    	$ofertas = Oferta::where('id_op', '=', (Auth::user()->id))->orderBy('fechaEntrega', 'ASC')->get();
+    	$ofertas = Oferta::where('id_op', '=', (Auth::user()->id))->orderBy('fechaEntrega', 'ASC')->paginate(10);
         $cofertas = Contraoferta::leftJoin('ofertas', 'contraofertas.id_oferta', '=', 'ofertas.id')
                                         ->where('contraofertas.id_comprador', '=', (Auth::user()->id))
                                         ->orderBy('ofertas.fechaEntrega', 'ASC')
-                                        ->get(['contraofertas.*']);
+                                        ->paginate(10);
         
     	$productos = Producto::All();
         $modos = Modo::orderBy('descripcion', 'ASC')->get();
@@ -66,17 +66,6 @@ class OfertasController extends Controller
         $medidas = Medida::orderBy('descripcion', 'ASC')->get();
 
     	return view('usuario/ofertas', array('ofertas' => $ofertas, 'productos' => $productos, 'modos' => $modos, 'cobros' => $cobros, 'puestos' => $puestos, 'medidas' => $medidas, 'cofertas' => $cofertas));
-    }
-
-    public function ofertas () {
-
-        $hoy = Date('Y-m-j');
-        $ofertas = Oferta::where('cantidad', '>', 0)->orderBy('fechaEntrega', 'ASC')->get();
-        
-        $cobros = Cobro::orderBy('descripcion', 'ASC')->get();
-        $puestos = Puesto::orderBy('descripcion', 'ASC')->get();
-
-        return view('ofertas', array('ofertas' => $ofertas, 'cobros' => $cobros, 'puestos' => $puestos));
     }
 
     public function buscarOfertas(Request $request) {
@@ -88,8 +77,8 @@ class OfertasController extends Controller
                             ->leftjoin('modos','ofertas.id_modo','=','modos.id')
                             ->leftjoin('cobros','ofertas.id_cobro','=','cobros.id')
                             ->leftjoin('puestos','ofertas.id_puesto','=','puestos.id')
-                                     ->whereDate('ofertas.fechaEntrega', '<=', $hoy)
                                      ->where('ofertas.cantidad', '>', 0)
+                                     ->where('ofertas.abierta', '=', 0)
                                      ->where(function ($query) use ($buscar){
                                         $query->where('productos.nombre', 'like', '%'.ucwords(strtolower($buscar)).'%')
                                         ->orwhere('users.name', 'like', '%'.ucwords(strtolower($buscar)).'%')
@@ -101,11 +90,32 @@ class OfertasController extends Controller
                                         ->orwhere('ofertas.fechaEntrega', 'like', '%'.$buscar.'%');
                                      })
                                      ->orderBy('ofertas.fechaEntrega', 'ASC')
-                                     ->get(['ofertas.*']);
+                                     ->paginate(10);
         
+        $ofertasa = Oferta::leftjoin('productos','ofertas.id_prod','=','productos.id')
+                            ->leftjoin('users','ofertas.id_op','=','users.id')
+                            ->leftjoin('modos','ofertas.id_modo','=','modos.id')
+                            ->leftjoin('cobros','ofertas.id_cobro','=','cobros.id')
+                            ->leftjoin('puestos','ofertas.id_puesto','=','puestos.id')
+                                    ->where('ofertas.cantidad', '>', 0)
+                                    ->where('ofertas.abierta', '=', 1)
+                                    ->where(function ($query) use ($buscar){
+                                        $query->where('productos.nombre', 'like', '%'.ucwords(strtolower($buscar)).'%')
+                                        ->orwhere('users.name', 'like', '%'.ucwords(strtolower($buscar)).'%')
+                                        ->orwhere('users.apellido', 'like', '%'.ucwords(strtolower($buscar)).'%')
+                                        ->orwhere('users.razonsocial', 'like', '%'.ucwords(strtolower($buscar)).'%')
+                                        ->orwhere('modos.descripcion', 'like', '%'.ucwords(strtolower($buscar)).'%')
+                                        ->orwhere('cobros.descripcion', 'like', '%'.ucwords(strtolower($buscar)).'%')
+                                        ->orwhere('puestos.descripcion', 'like', '%'.ucwords(strtolower($buscar)).'%')
+                                        ->orwhere('ofertas.fechaEntrega', 'like', '%'.$buscar.'%');
+                                    })
+                                    ->orderBy('ofertas.fechaEntrega', 'ASC')
+                                    ->paginate(10);
+
         $cobros = Cobro::orderBy('descripcion', 'ASC')->get();
+        $puestos = Puesto::orderBy('descripcion', 'ASC')->get();
         
-        return view('ofertas', array('ofertas' => $ofertas, 'cobros' => $cobros));
+        return view('ofertas', array('ofertas' => $ofertas, 'ofertasa' => $ofertasa, 'cobros' => $cobros, 'puestos' => $puestos));
     }
 
     public function eliminar(Request $request) {

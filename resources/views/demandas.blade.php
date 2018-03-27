@@ -46,7 +46,6 @@
                         </tr>
                     </thead>
                     @foreach($demandas as $dem)
-                    @if($dem->abierta === 0)
                         <tbody>
                             <tr>
                                 <input type="hidden" name="id" value="{{$dem->id}}">
@@ -72,9 +71,9 @@
                                     @endif</td>
                             </tr>
                         </tbody>
-                    @endif
                     @endforeach
                 </table>
+                {!! $demandas->links() !!}
             </div>
         </div>
     </div>
@@ -99,8 +98,7 @@
                             <th></th>
                         </tr>
                     </thead>
-                    @foreach($demandas as $dem)
-                        @if($dem->abierta === 1)
+                    @foreach($demandasa as $dem)
                         <tbody>
                             <tr>
                                 <input type="hidden" name="id" value="{{$dem->id}}">
@@ -126,9 +124,9 @@
                                     @endif</td>
                             </tr>
                         </tbody>
-                        @endif
                     @endforeach
                 </table>
+                {!! $demandasa->links() !!}
             </div>
         </div>
     </div>

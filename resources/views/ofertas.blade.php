@@ -46,7 +46,6 @@
                     </thead>
                     <tbody>
                     @foreach($ofertas as $of)
-                        @if($of->abierta === 0)
                             <tr>
                                 <input type="hidden" name="id" value="{{$of->id}}">
                                 <input type="hidden" name="iduser" value="{{$of->user->id}}">
@@ -70,10 +69,10 @@
                                         <button type="button" data-toggle="modal" data_target="#modalOfertar" disabled class="btn btn-success admin tabla" title="Su Usuario no está ACTIVO o esta Oferta es suya">Ofertar</button>
                                     @endif</td>
                             </tr>
-                        @endif
                     @endforeach
                     </tbody>
                 </table>
+                {!! $ofertas->links() !!}
             </div>
         </div>
     </div>
@@ -98,8 +97,7 @@
                             <th style="cursor:default;"></th>
                         </tr>
                     </thead>
-                    @foreach($ofertas as $of)
-                        @if($of->abierta === 1)
+                    @foreach($ofertasa as $of)
                         <tbody>
                             <tr>
                                 <input type="hidden" name="id" value="{{$of->id}}">
@@ -125,9 +123,9 @@
                                     @endif</td>
                             </tr>
                         </tbody>
-                        @endif
                     @endforeach
                 </table>
+                {!! $ofertasa->links() !!}
             </div>
         </div>
     </div>
@@ -230,7 +228,7 @@
                                         <input type="text" id="idPlazo" hidden value="">
                                         <ul class="filtro-usu">
                                             <label>
-                                                <input type="checkbox" id="plazo1" name="plazoCo" value="Contado" checked=""> Contado    
+                                                <input type="checkbox" id="plazo1" name="plazoCo" value="Contado"> Contado    
                                             </label>&nbsp;&nbsp;&nbsp;&nbsp;
                                             <label>
                                                 <input type="checkbox" id="plazo2" name="plazoCo" value="30"> 30 días    
