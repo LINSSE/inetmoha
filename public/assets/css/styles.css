@@ -429,13 +429,14 @@ table tr th {
 .form-control.precioDia {
   width: 33%;
   text-align: center;
-  margin: 0 auto;
+  margin-left: 70px;
+  margin-bottom: 5px;
+  display: inline;  
 }
 
 .form-control.fecha {
-  width: 33%;
+  width: 30%;
   text-align: center;
-  margin-left: 70px;
   margin-bottom: 5px;
   display: inline;
 }

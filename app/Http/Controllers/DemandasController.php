@@ -53,11 +53,11 @@ class DemandasController extends Controller
 
     public function misdemandas() {
 
-    	$demandas = Demanda::where('id_op', '=', (Auth::user()->id))->orderBy('fechaEntrega', 'ASC')->paginate(10);
+    	$demandas = Demanda::where('id_op', '=', (Auth::user()->id))->orderBy('fechaEntrega', 'ASC')->paginate(10, array('demandas.*'), 'd');
         $cdemandas = Contrademanda::leftJoin('demandas', 'contrademandas.id_demanda', '=', 'demandas.id')
                                         ->where('contrademandas.id_comprador', '=', (Auth::user()->id))
                                         ->orderBy('demandas.fechaEntrega', 'ASC')
-                                        ->paginate(10);
+                                        ->paginate(10, array('contrademandas.*'), 'cd');
 
         $productos = Producto::All();
         $modos = Modo::orderBy('descripcion', 'ASC')->get();
@@ -88,7 +88,7 @@ class DemandasController extends Controller
                                         ->orwhere('demandas.fechaEntrega', 'like', '%'.$buscar.'%');
                                      })
                                      ->orderBy('demandas.fechaEntrega', 'ASC')
-                                     ->paginate(10);
+                                     ->paginate(10, array('demandas.*'), 'd');
                                      
         $demandasa = Demanda::leftjoin('productos','demandas.id_prod','=','productos.id')
                             ->leftjoin('users','demandas.id_op','=','users.id')
@@ -107,7 +107,7 @@ class DemandasController extends Controller
                                         ->orwhere('demandas.fechaEntrega', 'like', '%'.$buscar.'%');
                                     })
                                     ->orderBy('demandas.fechaEntrega', 'ASC')
-                                    ->paginate(10);
+                                    ->paginate(10, array('demandas.*'), 'da');
         
             $cobros = Cobro::orderBy('descripcion', 'ASC')->get();
             $puestos = Puesto::orderBy('descripcion', 'ASC')->get();

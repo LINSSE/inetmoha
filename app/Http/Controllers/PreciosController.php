@@ -15,26 +15,22 @@ use Charts;
 class PreciosController extends Controller
 {
     
-	public function filtrarPrecios(Request $request) {
+	public function buscarPrecios(Request $request) {
 		
+		$buscar = $request->buscar;
+
 		if(empty($request->precioDia)){
 			$fecha = Date('Y-m-j');
 		}else{
 			$fecha = $request->precioDia;
 		}
 		
-		if(empty($request->fechai && $request->fechaf)){
+		if(empty($request->fechai) || empty($request->fechaf)){
 			$hoy = Date('Y-m-j');
 
 			$from = new DateTime($hoy);
 			$from->sub(new DateInterval('P1M'));
-			//$hoy = $from->format('Y-m-d H:i:s');
-
-			//$mes = strtotime('-1 month', strtotime($hoy));
-			//$mes = new DateTime($mes);
 			$fechaDes = $from->format('Y-m-d H:i:s');
-
-			//$fechaDes = strtotime('Y-m-j', $mes);
 			$hoy = new DateTime($hoy);
 			$fechaHas = $hoy->format('Y-m-d H:i:s');
 		}else{
@@ -50,6 +46,7 @@ class PreciosController extends Controller
 										->join('medidas', 'ofertas.id_medida', '=', 'medidas.id')
 										->select(DB::raw('CONCAT(productos.nombre, " ", productos.descripcion, " ", productos.descripcion2, " ", modos.descripcion, " ", "X", " ", ofertas.peso, " ",  medidas.descripcion) as nombre'), DB::raw('max(contraofertas.precio) as max'), DB::raw('min(contraofertas.precio) as min'), DB::raw('CAST(avg(contraofertas.precio) as int) AS prom'))
 										->whereDate('operacionofertas.fecha', '=', $fecha)
+										->where('productos.nombre', 'LIKE', '%'.$buscar.'%')
 										->groupBy('productos.nombre')
 										->groupBy('productos.descripcion')
 										->groupBy('productos.descripcion2')
@@ -57,7 +54,7 @@ class PreciosController extends Controller
 										->groupBy('ofertas.peso')
 										->groupBy('medidas.descripcion')
 										->orderBy('productos.nombre', 'DESC')
-										->paginate(10);
+										->paginate(3, array('operacionofertas.*'), 'pd');
 		//Precios Demandados
 		$precioso = Contraoferta::leftJoin('ofertas', 'contraofertas.id_oferta', '=', 'ofertas.id')
 										->join('productos', 'ofertas.id_prod', '=', 'productos.id')
@@ -66,6 +63,7 @@ class PreciosController extends Controller
 										->select(DB::raw('productos.id as id'), DB::raw('CONCAT(productos.nombre, " ", productos.descripcion, " ", productos.descripcion2, " ", modos.descripcion, " ", "X", " ", ofertas.peso, " ",  medidas.descripcion) as nombre'), DB::raw('max(contraofertas.precio) as max'), DB::raw('min(contraofertas.precio) as min'), DB::raw('CAST(avg(contraofertas.precio) as int) AS prom'))
 										->whereDate('contraofertas.created_at', '>=', $fechaDes)
 										->whereDate('contraofertas.created_at', '<=', $fechaHas)
+										->where('productos.nombre', 'LIKE', '%'.$buscar.'%')
 										->groupBy('productos.nombre')
 										->groupBy('productos.id')
 										->groupBy('productos.descripcion')
@@ -74,7 +72,7 @@ class PreciosController extends Controller
 										->groupBy('ofertas.peso')
 										->groupBy('medidas.descripcion')
 										->orderBy('contraofertas.created_at', 'ASC')
-										->paginate(10);
+										->paginate(3, array('contraofertas.*'), 'po');
 
 		//Tendencia Históricos
 		$preciost = Demanda::leftJoin('productos', 'demandas.id_prod', '=', 'productos.id')
@@ -83,6 +81,8 @@ class PreciosController extends Controller
 										->join('puestos', 'demandas.id_puesto', '=', 'puestos.id')
 										->select(DB::raw('CONCAT(productos.nombre, " ", productos.descripcion, " ", productos.descripcion2, " ", modos.descripcion, " ", "X", " ", demandas.peso, " ",  medidas.descripcion) as nombre'), DB::raw('max(demandas.precio) as max'), DB::raw('min(demandas.precio) as min'), DB::raw('CAST(avg(demandas.precio) as int) AS prom'))
 										->where('puestos.descripcion', 'LIKE', '%buenos aires%')
+										->whereDate('demandas.fechaEntrega', '=', $request->preciot)
+										->where('productos.nombre', 'LIKE', '%'.$buscar.'%')
 										->groupBy('productos.nombre')
 										->groupBy('productos.descripcion')
 										->groupBy('productos.descripcion2')
@@ -90,7 +90,7 @@ class PreciosController extends Controller
 										->groupBy('demandas.peso')
 										->groupBy('medidas.descripcion')
 										->orderBy('productos.nombre', 'DESC')
-										->paginate(10);
+										->paginate(3, array('demandas.*'), 'tp');
 
 		return view('precios', array('preciosd' => $preciosd, 'precioso' => $precioso, 'preciost' => $preciost, 'fechaDes' => $fechaDes, 'fechaHas' => $fechaHas));
 	}
@@ -108,25 +108,32 @@ class PreciosController extends Controller
 				->where('productos.id', $id)
 				->whereDate('contraofertas.created_at', '>=', $fd)
 				->whereDate('contraofertas.created_at', '<=', $fh)
-				->groupBy('contraofertas.created_at')
-				->groupBy('productos.nombre')				
+				->groupBy('productos.nombre')
+				->groupBy('contraofertas.created_at')			
 				->groupBy('productos.descripcion')
 				->groupBy('productos.descripcion2')
 				->groupBy('modos.descripcion')
 				->groupBy('ofertas.peso')
 				->groupBy('medidas.descripcion')
-				->orderBy('contraofertas.created_at', 'DESC')
-				->get(['contraofertas.*'])->toArray();
+				->orderBy('contraofertas.created_at', 'ASC')
+				->get(['contraofertas.*']);
 
-				$max = array_column($data, 'max');
+				/* $max = array_column($data, 'max');
 				$min = array_column($data, 'min');
 				$prom = array_column($data, 'prom');
 				$nombre = array_column($data, 'nombre');
 				$fecha = array_column($data, 'fecha');
 
-				$nombre = $nombre[0];
+				$nombre = $nombre[0]; */
+				
+				$chart = Charts::create('bar', 'highcharts')
+							->title('My nice chart')
+							->elementLabel('My nice label')
+							->labels('fechas')
+							->values($data->pluck('sum'))
+							->responsive(true);
 		
-		$chart = Charts::multi('line', 'highcharts')
+		/* $chart = Charts::multi('line', 'highcharts')
 				// Setup the chart settings
 				->title($nombre)
 				->elementLabel('Precios en $')
@@ -137,11 +144,9 @@ class PreciosController extends Controller
 				// You could always set them manually
 				// ->colors(['#2196F3', '#F44336', '#FFC107'])
 				// Setup the diferent datasets (this is a multi chart)
-				->dataset('Mínimo', $min)
-				->dataset('Promedio', $prom)
-				->dataset('Máximo', $max)
+				->dataset('Fechas', [$min, $prom, $max])
 				// Setup what the values mean
-				->labels($fecha);
+				->labels($fecha); */
 
         return view('/reportes/precios', ['chart' => $chart]);
 

@@ -72,7 +72,7 @@
                     @endforeach
                     </tbody>
                 </table>
-                {!! $ofertas->links() !!}
+                {!! $ofertas->appends(array_except(Request::query(), 'o'))->links() !!}
             </div>
         </div>
     </div>
@@ -125,7 +125,7 @@
                         </tbody>
                     @endforeach
                 </table>
-                {!! $ofertasa->links() !!}
+                {!! $ofertasa->appends(array_except(Request::query(), 'oa'))->links() !!}
             </div>
         </div>
     </div>

@@ -73,7 +73,7 @@
                         </tbody>
                     @endforeach
                 </table>
-                {!! $demandas->links() !!}
+                {!! $demandas->appends(array_except(Request::query(), 'd'))->links() !!}
             </div>
         </div>
     </div>
@@ -126,7 +126,7 @@
                         </tbody>
                     @endforeach
                 </table>
-                {!! $demandasa->links() !!}
+                {!! $demandasa->appends(array_except(Request::query(), 'da'))->links() !!}
             </div>
         </div>
     </div>

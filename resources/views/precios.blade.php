@@ -36,10 +36,18 @@
             <div class="col-md-6">
                 <h1 class="h1-tabla">Precios del Día</h1>
                 <h5 class="text-center">Seleccione un día para ver los precios de cada Producto</h5>
+                <div class="row">
                 <div id="imaginary_container"> 
-                    <form class="form-horizontal" method="GET" action="/preciosDia">
-                        <input onchange="submit()" placeholder="Seleccione un Día" onfocus="(this.type='date')" type="text" class="form-control precioDia" onblur="if(this.value==''){this.type='text'}" name="precioDia" value="">
+                    <form class="form-horizontal" method="GET" action="/precios">
+                        <div class="col-md-6 fecha">
+                        <input type="text" class="form-control fecha" name="buscar" placeholder="Buscar Producto" onfocus="this.placeholder=''" onblur="this.placeholder='Buscar Producto'">
+                        <input placeholder="Seleccione un Día" onfocus="(this.type='date')" class="form-control fecha" type="text" class="form-control precioDia" onblur="if(this.value==''){this.type='text'}" name="precioDia" value="">
+                        <button type="submit" class="lupa" id="lupa">
+                            <span type"submit" class="glyphicon glyphicon-search lupa"></span>
+                        </button>
+                        </div>
                     </form>
+                </div>
                 </div>
                 <div class="table-responsive">
                     <table class="table">
@@ -62,6 +70,7 @@
                             @endforeach
                         </tbody>
                     </table>
+                    {!! $preciosd->appends(array_except(Request::query(), 'pd'))->links() !!}
                 </div>
             </div>
         </div>
@@ -71,8 +80,9 @@
                 <h5 class="text-center">Seleccione un intervalo de fechas para filtrar los Precios de los Productos</h5>
                 <div class="row">
                 <div id="imaginary_container"> 
-                    <form class="form-horizontal" method="GET" action="/preciosOf">
+                    <form class="form-horizontal" method="GET" action="/precios">
                         <div class="col-md-6 fecha">
+                        <input type="text" class="form-control fecha" name="buscar" placeholder="Buscar Producto" onfocus="this.placeholder=''" onblur="this.placeholder='Buscar Producto'">
                         <input placeholder="Desde" onfocus="(this.type='date')" type="text" class="form-control fecha" onblur="if(this.value==''){this.type='text'}" id="fechai" name="fechai" value="">                        
                         <input placeholder="Hasta" onfocus="(this.type='date')" type="text" class="form-control fecha" onblur="if(this.value==''){this.type='text'}" id="fechaf" name="fechaf" value="" disabled="true">
                         <button type="submit" class="lupa" id="lupa">
@@ -94,7 +104,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <form id="graficarPrecios" class="form-horizontal" method="GET" action="/precios/graficar">
+                            <form id="graficarPrecios" class="form-horizontal" method="GET" action="/precios">
                                 <input type="hidden" id="fechaDesde" name="fechaDesde" value="{{$fechaDes}}">
                                 <input type="hidden" id="fechaHasta" name="fechaHasta" value="{{$fechaHas}}">
                             @foreach($precioso as $pr)
@@ -110,12 +120,25 @@
                             </form>
                         </tbody>
                     </table>
-                    {!! $precioso->links() !!}
+                    {!! $precioso->appends(array_except(Request::query(), 'po'))->links() !!}
                 </div>
             </div>
             <div class="col-md-6">
                 <h1 class="h1-tabla">Tendencias de Precios</h1>
                 <h5 class="text-center">Precios de Productos en base a Mercado destino Buenos Aires</h5>
+                <div class="row">
+                <div id="imaginary_container"> 
+                    <form class="form-horizontal" method="GET" action="/preciosDia">
+                        <div class="col-md-6 fecha">
+                        <input type="text" class="form-control fecha" name="buscar" placeholder="Buscar Producto" onfocus="this.placeholder=''" onblur="this.placeholder='Buscar Producto'">
+                        <input placeholder="Seleccione un Día" onfocus="(this.type='date')" class="form-control fecha" type="text" class="form-control precioDia" onblur="if(this.value==''){this.type='text'}" name="preciot" value="">
+                        <button type="submit" class="lupa" id="lupa">
+                            <span class="glyphicon glyphicon-search lupa"></span>
+                        </button>
+                        </div>
+                    </form>
+                </div>
+                </div>
                 <div class="table-responsive">
                     <table class="table">
                         <thead>
@@ -137,6 +160,7 @@
                             @endforeach
                         </tbody>
                     </table>
+                    {!! $preciost->appends(array_except(Request::query(), 'tp'))->links() !!}
                 </div>
             </div>
         </div>

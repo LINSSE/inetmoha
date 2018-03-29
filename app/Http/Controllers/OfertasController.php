@@ -53,11 +53,11 @@ class OfertasController extends Controller
 
     public function misofertas() {
 
-    	$ofertas = Oferta::where('id_op', '=', (Auth::user()->id))->orderBy('fechaEntrega', 'ASC')->paginate(10);
-        $cofertas = Contraoferta::leftJoin('ofertas', 'contraofertas.id_oferta', '=', 'ofertas.id')
+    	$ofertas = Oferta::where('id_op', '=', (Auth::user()->id))->orderBy('fechaEntrega', 'ASC')->paginate(10, ['*'], 'o');
+        $cofertas = Contraoferta::join('ofertas', 'contraofertas.id_oferta', '=', 'ofertas.id')
                                         ->where('contraofertas.id_comprador', '=', (Auth::user()->id))
                                         ->orderBy('ofertas.fechaEntrega', 'ASC')
-                                        ->paginate(10);
+                                        ->paginate(10, array('contraofertas.*'), 'co');
         
     	$productos = Producto::All();
         $modos = Modo::orderBy('descripcion', 'ASC')->get();
@@ -90,7 +90,7 @@ class OfertasController extends Controller
                                         ->orwhere('ofertas.fechaEntrega', 'like', '%'.$buscar.'%');
                                      })
                                      ->orderBy('ofertas.fechaEntrega', 'ASC')
-                                     ->paginate(10);
+                                     ->paginate(10, array('ofertas.*'), 'o');
         
         $ofertasa = Oferta::leftjoin('productos','ofertas.id_prod','=','productos.id')
                             ->leftjoin('users','ofertas.id_op','=','users.id')
@@ -110,7 +110,7 @@ class OfertasController extends Controller
                                         ->orwhere('ofertas.fechaEntrega', 'like', '%'.$buscar.'%');
                                     })
                                     ->orderBy('ofertas.fechaEntrega', 'ASC')
-                                    ->paginate(10);
+                                    ->paginate(10, array('ofertas.*'), 'oa');
 
         $cobros = Cobro::orderBy('descripcion', 'ASC')->get();
         $puestos = Puesto::orderBy('descripcion', 'ASC')->get();

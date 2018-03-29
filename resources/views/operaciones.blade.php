@@ -74,7 +74,7 @@
     <div class="row">
         <div class="col-md-12">
             <h1 class="h1-tabla">Operaciones Comprometidas</h1>
-            <h5><span class="glyphicon glyphicon-info-sign" alt="Aquí se muestran las Operaciones Concretadas con Fecha de Entrega hasta el día de hoy" title="Aquí se muestran las Operaciones Concretadas con Fecha de Entrega hasta el día de hoy"></span>Aquí se muestran las Operaciones Concretadas con Fecha de Entrega hasta el día de hoy</h5> 
+            <h5><span class="glyphicon glyphicon-info-sign" alt="Aquí se muestran las Operaciones Concretadas con Fecha de Entrega posteriores al día de hoy" title="Aquí se muestran las Operaciones Concretadas con Fecha de Entrega posteriores al día de hoy"></span>Aquí se muestran las Operaciones Concretadas con Fecha de Entrega posteriores al día de hoy</h5> 
             <div class="table-responsive">
                 <table class="table">
                     <thead>

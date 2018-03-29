@@ -105,7 +105,7 @@ class ContraofertaController extends Controller
         $op->save();
 
         $user = Auth::user();
-        Mail::to($co->user->email)->send(new OfertaAceptada($user, $co));
+        //Mail::to($co->user->email)->send(new OfertaAceptada($user, $co));
 
         return true;
     }
@@ -169,7 +169,7 @@ class ContraofertaController extends Controller
             }
             
             $user = Auth::user();
-            Mail::to($co->oferta->user->email)->send(new ProductosRecibidosMail($co, $user));
+           // Mail::to($co->oferta->user->email)->send(new ProductosRecibidosMail($co, $user));
             DB::commit();
             
         } catch (\Throwable $e) {
