@@ -68,7 +68,7 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::get('usuario/editarCdemanda/{id}', 'ContrademandaController@editarCdemanda');
 
 	//Precios
-	Route::get('precios/graficar/{id}/{fd}/{fh}', 'PreciosController@graficarPrecios');
+	Route::get('precios/graficar/{id}/{nombre}/{fd}/{fh}', 'PreciosController@graficarPrecios');
 });
 
 

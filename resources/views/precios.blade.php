@@ -114,7 +114,7 @@
                                 <td>$ {{$pr->min}} </td>
                                 <td>$ {{$pr->prom}} </td>
                                 <td>$ {{$pr->max}} </td>
-                            <td><a type="button" id="btnGraf" onclick="graficar({{$pr->id}},'{{$fechaDes}}','{{$fechaHas}}')"><img class="icono-grafico" src="{{url('recursos/images/graficos24.png')}}"/a></td>
+                            <td><a type="button" id="btnGraf" onclick="graficar({{$pr->id}},'{{$pr->nombre}}','{{$fechaDes}}','{{$fechaHas}}')"><img class="icono-grafico" src="{{url('recursos/images/graficos24.png')}}"/a></td>
                             </tr>
                             @endforeach
                             </form>
