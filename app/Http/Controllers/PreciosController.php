@@ -120,9 +120,6 @@ class PreciosController extends Controller
 				->orderBy('contraofertas.created_at', 'ASC')
 				->get(['contraofertas.*'])->toArray();
 
-				//$chart = Charts::Database($data)
-					//->aggregateColumn('precio', 'sum');
-
 				$max = array_column($data, 'max');
 				$min = array_column($data, 'min');
 				$prom = array_column($data, 'prom');
@@ -149,8 +146,6 @@ class PreciosController extends Controller
 				->labels($fecha);
 
         return view('/reportes/precios', ['chart' => $chart]);
-
-	   //return view('prueba', ['data' => $data]);
 
 	}
 	

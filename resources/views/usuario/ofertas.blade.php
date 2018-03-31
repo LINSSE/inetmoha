@@ -110,9 +110,15 @@
                                 <td>RECIBIDO</td>
                                 <td><button type="submit" class="btn btn-danger admin tabla" title="No puede Eliminar esta Contra Oferta porque ya fue RECIBIDA" disabled>X</button></td>
                             @else
-                                <td><input type="checkbox" name="recibido" value="3" title="Seleccione cuando haya recibido la mercaderia" onclick="confirmarOf('/usuario/editarCoferta/{{$cof->id}}', 0)"></td>
-                                <td>EN ESPERA</td>
-                                <td><button type="submit" class="btn btn-danger admin tabla" title="Eliminar Contra Oferta" onclick="confirmarOf('/usuario/eliminarCoferta/{{$cof->id}}', 1)">X</button></td>
+                                @if($cof->oferta->cantidad < $cof->cantidad)
+                                    <td><input type="checkbox" disabled name="recibido" value="3" title="La cantidad solicitada es mayor a la disponible" onclick="confirmarOf('/usuario/editarCoferta/{{$cof->id}}', 0)"> <span class="glyphicon glyphicon-info-sign" alt="La cantidad solicitada es mayor a la disponible" title="La cantidad solicitada es mayor a la disponible"></span></td>
+                                    <td>EN ESPERA</td>
+                                    <td><button type="submit" class="btn btn-danger admin tabla" title="Eliminar Contra Oferta" onclick="confirmarOf('/usuario/eliminarCoferta/{{$cof->id}}', 1)">X</button></td>
+                                @else
+                                    <td><input type="checkbox" name="recibido" value="3" title="Seleccione cuando haya recibido la mercaderia" onclick="confirmarOf('/usuario/editarCoferta/{{$cof->id}}', 0)"></td>
+                                    <td>EN ESPERA</td>
+                                    <td><button type="submit" class="btn btn-danger admin tabla" title="Eliminar Contra Oferta" onclick="confirmarOf('/usuario/eliminarCoferta/{{$cof->id}}', 1)">X</button></td>
+                                @endif
                             @endif
                             </form>
                         </tr>
