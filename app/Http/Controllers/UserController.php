@@ -25,46 +25,71 @@ class UserController extends Controller
         return view('usuario/perfil', array('user' => $user));
     }
 
-    public function listarOperadores(){
-        $users = User::where('id', '!=', Auth::id())->orderBy('apellido', 'razonsocial', 'ASC')->get();
-
-        return view('/admin/operadores', array('users' => $users));
-    }
-
     public function buscarOperadores(Request $request) {
         $buscar = $request->buscar;
         $buscar2 = $request->usuarios;
 
         if (!empty($buscar2)) {
-            $users = User::where(function($q) use ($buscar) {
-                            $q->where('apellido', 'like', '%'.ucwords(strtolower($buscar)).'%')
-                            ->orwhere('email', 'like', '%'.$buscar.'%')
-                            ->orwhere('dni', 'like', '%'.$buscar.'%')
-                            ->orwhere('email', 'like', '%'.$buscar.'%')
-                            ->orwhere('telefono', 'like', '%'.$buscar.'%')
-                            ->orwhere('razonsocial', 'like', '%'.$buscar.'%')
-                            ->orwhere('domicilio', 'like', '%'.$buscar.'%')
-                            ->orwhere('name', 'like', '%'.ucwords(strtolower($buscar)).'%')->get();
-                        })
-                        ->where(function($q) use ($buscar2) {
-                        $q->whereIn('tipo_us', $buscar2)->get();
-                        })
-                        ->orderBy('apellido', 'razonsocial', 'ASC')->get();
+            $usersa = User::where('id', '!=', Auth::id())->where('activo', '=', 1)
+                            ->where(function($q) use ($buscar) {
+                                $q->where('apellido', 'like', '%'.ucwords(strtolower($buscar)).'%')
+                                ->orwhere('email', 'like', '%'.$buscar.'%')
+                                ->orwhere('dni', 'like', '%'.$buscar.'%')
+                                ->orwhere('email', 'like', '%'.$buscar.'%')
+                                ->orwhere('telefono', 'like', '%'.$buscar.'%')
+                                ->orwhere('razonsocial', 'like', '%'.$buscar.'%')
+                                ->orwhere('domicilio', 'like', '%'.$buscar.'%')
+                                ->orwhere('name', 'like', '%'.ucwords(strtolower($buscar)).'%')->get();
+                            })
+                            ->where(function($q) use ($buscar2) {
+                            $q->whereIn('tipo_us', $buscar2)->get();
+                            })
+                            ->orderBy('apellido', 'razonsocial', 'ASC')->paginate(5, array('users.*'), 'a');
+            
+            $usersi = User::where('id', '!=', Auth::id())->where('activo', '=', 0)
+                            ->where(function($q) use ($buscar) {
+                                $q->where('apellido', 'like', '%'.ucwords(strtolower($buscar)).'%')
+                                ->orwhere('email', 'like', '%'.$buscar.'%')
+                                ->orwhere('dni', 'like', '%'.$buscar.'%')
+                                ->orwhere('email', 'like', '%'.$buscar.'%')
+                                ->orwhere('telefono', 'like', '%'.$buscar.'%')
+                                ->orwhere('razonsocial', 'like', '%'.$buscar.'%')
+                                ->orwhere('domicilio', 'like', '%'.$buscar.'%')
+                                ->orwhere('name', 'like', '%'.ucwords(strtolower($buscar)).'%')->get();
+                            })
+                            ->where(function($q) use ($buscar2) {
+                            $q->whereIn('tipo_us', $buscar2)->get();
+                            })
+                            ->orderBy('apellido', 'razonsocial', 'ASC')->paginate(5, array('users.*'), 'i');
         }
         else {
-            $users = User::where(function($q) use ($buscar) {
-                            $q->where('apellido', 'like', '%'.ucwords(strtolower($buscar)).'%')
-                            ->orwhere('email', 'like', '%'.$buscar.'%')
-                            ->orwhere('dni', 'like', '%'.$buscar.'%')
-                            ->orwhere('email', 'like', '%'.$buscar.'%')
-                            ->orwhere('telefono', 'like', '%'.$buscar.'%')
-                            ->orwhere('razonsocial', 'like', '%'.$buscar.'%')
-                            ->orwhere('domicilio', 'like', '%'.$buscar.'%')
-                            ->orwhere('name', 'like', '%'.ucwords(strtolower($buscar)).'%')->get();
-                        })
-                        ->orderBy('apellido', 'razonsocial', 'ASC')->get();
+            $usersa = User::where('id', '!=', Auth::id())->where('activo', '=', 1)
+                            ->where(function($q) use ($buscar) {
+                                $q->where('apellido', 'like', '%'.ucwords(strtolower($buscar)).'%')
+                                ->orwhere('email', 'like', '%'.$buscar.'%')
+                                ->orwhere('dni', 'like', '%'.$buscar.'%')
+                                ->orwhere('email', 'like', '%'.$buscar.'%')
+                                ->orwhere('telefono', 'like', '%'.$buscar.'%')
+                                ->orwhere('razonsocial', 'like', '%'.$buscar.'%')
+                                ->orwhere('domicilio', 'like', '%'.$buscar.'%')
+                                ->orwhere('name', 'like', '%'.ucwords(strtolower($buscar)).'%')->get();
+                            })
+                            ->orderBy('apellido', 'razonsocial', 'ASC')->paginate(5, array('users.*'), 'a');
+
+            $usersi = User::where('id', '!=', Auth::id())->where('activo', '=', 0)
+                            ->where(function($q) use ($buscar) {
+                                $q->where('apellido', 'like', '%'.ucwords(strtolower($buscar)).'%')
+                                ->orwhere('email', 'like', '%'.$buscar.'%')
+                                ->orwhere('dni', 'like', '%'.$buscar.'%')
+                                ->orwhere('email', 'like', '%'.$buscar.'%')
+                                ->orwhere('telefono', 'like', '%'.$buscar.'%')
+                                ->orwhere('razonsocial', 'like', '%'.$buscar.'%')
+                                ->orwhere('domicilio', 'like', '%'.$buscar.'%')
+                                ->orwhere('name', 'like', '%'.ucwords(strtolower($buscar)).'%')->get();
+                            })
+                            ->orderBy('apellido', 'razonsocial', 'ASC')->paginate(5, array('users.*'), 'i');
         }
-        return view('admin/operadores', array('users' => $users));
+        return view('/admin/operadores', array('usersa' => $usersa, 'usersi' => $usersi));
     }
 
     /**

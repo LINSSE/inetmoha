@@ -34,6 +34,7 @@
                             </tbody>
                     @endforeach
                 </table>
+                {!! $cobros->appends(array_except(Request::query(), 'c'))->links() !!}
     	</div>
     </div>
 

@@ -67,7 +67,7 @@ class RegisterController extends Controller
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
             'razonsocial' => 'string|max:255|unique:users',
-            'dni' => 'required|integer|unique:users',
+            'dni' => 'required|unique:users',
         ]);
     }
 

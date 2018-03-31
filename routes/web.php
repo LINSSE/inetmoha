@@ -82,9 +82,9 @@ Route::group(['middleware' => 'admin'], function() {
 	Route::post('admin/activar/{id}', 'AdminController@activar');
 	Route::post('admin/desactivar/{id}', 'AdminController@desactivar');
 	Route::post('admin/reasignar', 'AdminController@reasignar');
-	Route::get('admin/buscarOperadores', 'UserController@buscarOperadores');
+	Route::get('admin/operadores', 'UserController@buscarOperadores');
 
-	Route::get('admin/operadores', 'UserController@listarOperadores');
+	//Route::get('admin/operadores', 'UserController@listarOperadores');
 	Route::get('admin/ofertas', 'AdminController@ofertas');
 	Route::get('admin/demandas', 'AdminController@demandas');
 	Route::get('admin/productos', 'AdminController@productos');

@@ -34,6 +34,7 @@
                             </tbody>
                     @endforeach
                 </table>
+                {!! $modos->appends(array_except(Request::query(), 'm'))->links() !!}
     	</div>
     </div>
 

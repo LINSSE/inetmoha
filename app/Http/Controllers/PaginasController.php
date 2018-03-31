@@ -15,24 +15,24 @@ class PaginasController extends Controller
 		return view('index');
 	}
 
-	public function operadores () {
-		$admin = User::where('admin', '=', 1)->first();
-		$users = User::where('id', '!=', $admin->id)->orderBy('apellido', 'ASC')->get();
-        return view('operadores', array('users' => $users));
-	}
-
 	public function cobros () {
-		$cobros = Cobro::orderBy('descripcion', 'ASC')->get();
+		
+		$cobros = Cobro::orderBy('descripcion', 'ASC')->paginate(5, array('cobros.*'), 'c');
+
 		return view('admin/datos/cobros', array('cobros' => $cobros));
 	}
 
 	public function modos () {
-		$modos = Modo::orderBy('descripcion', 'ASC')->get();
+
+		$modos = Modo::orderBy('descripcion', 'ASC')->paginate(5, array('modos.*'), 'm');
+
 		return view('admin/datos/modos', array('modos' => $modos));
 	}
 
 	public function puestos () {
-		$puestos = Puesto::orderBy('descripcion', 'ASC')->get();
+
+		$puestos = Puesto::orderBy('descripcion', 'ASC')->paginate(5, array('puestos.*'), 'p');
+
 		return view('admin/datos/puestos', array('puestos' => $puestos));
 	}
 }

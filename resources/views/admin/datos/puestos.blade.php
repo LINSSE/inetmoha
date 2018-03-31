@@ -35,6 +35,7 @@
                     </tbody>
                 @endforeach
             </table>
+            {!! $puestos->appends(array_except(Request::query(), 'p'))->links() !!}
     	</div>
     </div>
 

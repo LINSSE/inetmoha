@@ -77,6 +77,7 @@ class DemandasController extends Controller
                             ->leftjoin('cobros','demandas.id_cobro','=','cobros.id')
                             ->leftjoin('puestos','demandas.id_puesto','=','puestos.id')
                                      ->where('demandas.abierta', '=', 0)
+                                     ->where('demandas.cantidad', '>', 0)
                                      ->where(function ($query) use ($buscar){
                                         $query->where('productos.nombre', 'like', '%'.ucwords(strtolower($buscar)).'%')
                                         ->orwhere('users.name', 'like', '%'.ucwords(strtolower($buscar)).'%')
@@ -96,6 +97,7 @@ class DemandasController extends Controller
                             ->leftjoin('cobros','demandas.id_cobro','=','cobros.id')
                             ->leftjoin('puestos','demandas.id_puesto','=','puestos.id')
                                     ->where('demandas.abierta', '=', 1)
+                                    ->where('demandas.cantidad', '>', 0)
                                     ->where(function ($query) use ($buscar){
                                         $query->where('productos.nombre', 'like', '%'.ucwords(strtolower($buscar)).'%')
                                         ->orwhere('users.name', 'like', '%'.ucwords(strtolower($buscar)).'%')

@@ -41,6 +41,7 @@
                     </tbody>
             @endforeach
         </table>
+        {!! $productos->appends(array_except(Request::query(), 'p'))->links() !!}
     </div>
     <div class="col-md-3 admin prod">    
         <h4 class="h4tit">Categorías</h4>
@@ -63,6 +64,7 @@
                     </tbody>
             @endforeach
         </table>
+        {!! $categorias->appends(array_except(Request::query(), 'c'))->links() !!}
     </div>
     <div class="col-md-3 admin prod">
         <h4 class="h4tit">Unidades de Medida</h4>
@@ -85,6 +87,7 @@
                     </tbody>
             @endforeach
         </table>
+        {!! $medidas->appends(array_except(Request::query(), 'm'))->links() !!}
     </div>
     </div>
     <hr>

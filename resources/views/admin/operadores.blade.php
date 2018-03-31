@@ -4,7 +4,7 @@
     <div class="row">
     <div class="col-sm-6 col-sm-offset-3">
             <div id="imaginary_container"> 
-                <form class="form-horizontal" method="GET" action="/admin/buscarOperadores">
+                <form class="form-horizontal" method="GET" action="/admin/operadores">
                 <div class="input-group stylish-input-group">
                     <input type="text" class="form-control" autofocus="autofocus" name="buscar" placeholder="Buscar..." >
                     <span class="input-group-addon">
@@ -54,8 +54,7 @@
                             <th style="cursor:default;"></th>
                         </tr>
                     </thead>
-                    @foreach($users as $user)
-                    @if ($user->activo === 0)
+                    @foreach($usersi as $user)
                         <form class="form-horizontal" method="POST" action="/admin/activar/{{$user->id}}">
                             {{ csrf_field() }}
                             <input type="hidden" name="id" value="{{$user->id}}">
@@ -75,9 +74,9 @@
                                 </tr>
                             </tbody>
                         </form>
-                    @endif
                     @endforeach
                 </table>
+                {!! $usersi->appends(array_except(Request::query(), 'i'))->links() !!}
             </div>
     </div>
     </div>
@@ -102,8 +101,7 @@
                             <th style="cursor:default;"></th>
                         </tr>
                     </thead>
-                    @foreach($users as $user)
-                    @if ($user->activo === 1 and $user->admin === 0)
+                    @foreach($usersa as $user)
                         <form class="form-horizontal" method="POST" action="/admin/desactivar/{{$user->id}}">
                             {{ csrf_field() }}
                             <input type="hidden" name="id" value="{{$user->id}}">
@@ -123,9 +121,9 @@
                                 </tr>
                             </tbody>
                         </form>
-                    @endif
                     @endforeach
                 </table>
+                {!! $usersa->appends(array_except(Request::query(), 'a'))->links() !!}
             </div>
     </div>
     </div>
