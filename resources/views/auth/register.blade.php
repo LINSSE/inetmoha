@@ -171,8 +171,7 @@
                                     <option value="{{$tipo_us->id}}">{{$tipo_us->descripcion}}</option>
                                 @endforeach
                             </select>
-
-
+                            
                                 @if ($errors->has('tipo_us'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('tipo_us') }}</strong>

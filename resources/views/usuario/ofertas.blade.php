@@ -109,15 +109,15 @@
                             <td>{{$cof->plazo}}</td>                            
                             @if($cof->estado == 1)
                                 <td><input type="checkbox" name="recibido" value="3" onclick="confirmarOf('/usuario/editarCoferta/{{$cof->id}}', 0)" title="Seleccione cuando haya recibido la mercaderia"></td>
-                                <td style="color: green; font-weight: bold;">ACEPTADA</td>
+                                <td style="color: #00b100; font-weight: bold;">ACEPTADA</td>
                                 <td><button href="" type="submit" class="btn btn-danger admin tabla" title="No puede Eliminar esta Contra Oferta porque ya fue ACEPTADA" disabled>X</button></td>
                             @elseif($cof->estado == 2)
                                 <td><input type="checkbox" name="recibido" value="3" title="Seleccione cuando haya recibido los Productos" disabled></td>
-                                <td style="color: red; font-weight: bold;">RECHAZADA</td>
+                                <td style="color: #c12e2a; font-weight: bold;">RECHAZADA</td>
                                 <td><button type="submit" class="btn btn-danger admin tabla" title="No puede Eliminar esta Contra Oferta porque ya fue RECHAZADA" disabled>X</button></td>
                             @elseif($cof->estado == 3)
                                 <td><input type="checkbox" name="recibido" value="3" title="Productos Recibidos" checked disabled></td>
-                                <td style="color: blue; font-weight: bold;">RECIBIDO</td>
+                                <td style="color: #0e68af; font-weight: bold;">RECIBIDO</td>
                                 <td><button type="submit" class="btn btn-danger admin tabla" title="No puede Eliminar esta Contra Oferta porque ya fue RECIBIDA" disabled>X</button></td>
                             @else
                                 @if($cof->oferta->cantidad < $cof->cantidad)

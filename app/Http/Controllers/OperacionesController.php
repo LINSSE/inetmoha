@@ -20,7 +20,7 @@ class OperacionesController extends Controller
                                                 ->join('ofertas', 'contraofertas.id_oferta', '=', 'ofertas.id')
                                                 ->where('ofertas.id_op', '=', $id)
                                                 ->orwhere('contraofertas.id_comprador', '=', $id)
-                                                ->orderBy('operacionofertas.fecha', 'ASC')
+                                                ->orderBy('operacionofertas.fecha', 'DESC')
                                                 ->limit(50)
                                                 ->get(['operacionofertas.*']);
 
@@ -28,7 +28,7 @@ class OperacionesController extends Controller
                                                 ->join('demandas', 'contrademandas.id_demanda', '=', 'demandas.id')
                                                 ->where('demandas.id_op', '=', $id)
                                                 ->orwhere('contrademandas.id_comprador', '=', $id)
-                                                ->orderBy('operaciondemandas.fecha', 'ASC')
+                                                ->orderBy('operaciondemandas.fecha', 'DESC')
                                                 ->limit(50)
                                                 ->get(['operaciondemandas.*']);
 
