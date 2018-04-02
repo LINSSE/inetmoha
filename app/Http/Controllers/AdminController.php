@@ -9,6 +9,7 @@ use MOHA\Producto;
 use MOHA\Categoria;
 use MOHA\Medida;
 use \Chumper\Zipper\Zipper;
+use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
@@ -68,12 +69,8 @@ class AdminController extends Controller
         $productos = Producto::orderBy('descripcion', 'ASC')->paginate(5, array('productos.*'), 'p');
         $categorias = Categoria::orderBy('descripcion', 'ASC')->paginate(5, array('categorias.*'), 'c');
         $medidas = Medida::orderBy('descripcion', 'ASC')->paginate(5, array('medidas.*'), 'm');
-    	return view('admin/productos', array('productos' => $productos, 'categorias' => $categorias, 'medidas' => $medidas));
-    }
 
-    public function operaciones(){
-    	
-    	return view('admin/operaciones');
+    	return view('admin/productos', array('productos' => $productos, 'categorias' => $categorias, 'medidas' => $medidas));
     }
 
     public function nuevoOperador() {
@@ -84,5 +81,78 @@ class AdminController extends Controller
        $this->call('GET','email/nuevoOperador');
         return View('email/nuevoOperador');
     }
+
+    public function pendientes() {
+
+        $hoy = Date('Y-m-j');
+
+        $users = User::leftJoin('ofertas', 'ofertas.id_op', '=', 'users.id')
+                            ->join('contraofertas', 'ofertas.id', '=', 'contraofertas.id_oferta')
+                            ->where('contraofertas.estado', '=', '0')
+                            ->whereDate('ofertas.fechaEntrega', '<', $hoy)
+                            ->where('users.pendientes', '=', 0)
+                            ->groupBy('users.id')
+                            ->groupBy('users.apellido')
+                            ->groupBy('users.razonsocial')
+                            ->groupBy('users.name')
+                            ->groupBy('users.dni')
+                            ->groupBy('users.domicilio')
+                            ->groupBy('users.id_ciudad')
+                            ->groupBy('users.id_provincia')
+                            ->groupBy('users.tipo_us')
+                            ->groupBy('users.email')
+                            ->groupBy('users.activo')
+                            ->groupBy('users.pendientes')
+                            ->groupBy('users.password')
+                            ->groupBy('users.telefono') 
+                            ->groupBy('users.admin')
+                            ->groupBy('users.remember_token')
+                            ->groupBy('users.created_at')
+                            ->groupBy('users.updated_at')
+                            ->orderBy('users.apellido', 'users.razonsocial', 'ASC')
+                            ->paginate(10, array('users.*'), 'u');
+        
+        $usersd = User::leftJoin('ofertas', 'ofertas.id_op', '=', 'users.id')
+                            ->join('contraofertas', 'ofertas.id', '=', 'contraofertas.id_oferta')
+                            ->where('contraofertas.estado', '!=', '0')
+                            ->whereDate('ofertas.fechaEntrega', '<', $hoy)
+                            ->where('users.pendientes', '=', 1)
+                            ->groupBy('users.id')
+                            ->groupBy('users.apellido')
+                            ->groupBy('users.razonsocial')
+                            ->groupBy('users.name')
+                            ->groupBy('users.dni')
+                            ->groupBy('users.domicilio')
+                            ->groupBy('users.id_ciudad')
+                            ->groupBy('users.id_provincia')
+                            ->groupBy('users.tipo_us')
+                            ->groupBy('users.email')
+                            ->groupBy('users.activo')
+                            ->groupBy('users.pendientes')
+                            ->groupBy('users.password')
+                            ->groupBy('users.telefono') 
+                            ->groupBy('users.admin')
+                            ->groupBy('users.remember_token')
+                            ->groupBy('users.created_at')
+                            ->groupBy('users.updated_at')
+                            ->orderBy('users.apellido', 'users.razonsocial', 'ASC')
+                            ->paginate(10, array('users.*'), 'ud');
+
+        return view('admin/pendientes', array('users' => $users, 'usersd' => $usersd));
+
+    }
     
+    public function pendientesActivar($id) {
+
+        $row = User::where('id', '=', $id)->Update(['pendientes' => 0]);
+
+        return back();
+    }
+
+    public function pendientesDesactivar($id) {
+        
+        $row = User::where('id', '=', $id)->Update(['pendientes' => 1]);
+
+        return back();
+    }
 }

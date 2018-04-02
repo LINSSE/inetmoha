@@ -28,6 +28,7 @@ class CreateUsersTable extends Migration
             $table->integer('tipo_us')->unsigned();
             $table->boolean('activo')->default(false);
             $table->boolean('admin')->default(false);
+            $table->boolean('pendientes')->default(false);
             $table->rememberToken();
             $table->timestamps();
 

@@ -13,12 +13,12 @@ class Contrademanda extends Model
 
     public function demanda()
     {
-        return $this->hasOne('MOHA\Demanda', 'id', 'id_demanda');
+        return $this->belongsTo('MOHA\Demanda', 'id_demanda'); //
     }
 
     public function user()
     {
-        return $this->hasOne('MOHA\User', 'id', 'id_comprador');
+        return $this->belongsTo('MOHA\User', 'id_comprador'); //
     }
 
     public function cobro()

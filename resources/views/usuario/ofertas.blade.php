@@ -3,14 +3,24 @@
 @section('content')
     
 	@if(Session::has('oferta'))
-            <div class="alert alert-success alert-dismissible fade in" role="alert">
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <strong>{{Session::get('oferta')}}</strong>
-            </div>
-        @endif
+        <div class="alert alert-success alert-dismissible fade in" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <strong>{{Session::get('oferta')}}</strong>
+        </div>
+    @endif
 	<div class="row">
-        @if(Auth::user()->activo === 1)
+        @if(Auth::user()->activo === 1 && Auth::user()->pendientes === 0)
             <button type="button" id="agregarOfer" data-toggle="modal" data_target="#agregarOferta" class="btn btn-success admin">Nueva Oferta</button>
+        @elseif(Auth::user()->pendientes === 1)
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="alert alert-danger activo" role="alert">
+                    <strong>Su cuenta no está Habilitada para realizar Nuevas Ofertas debido a que posee Contra Ofertas sin contestar.</strong><br>
+                    <strong>Por favor regularice su situación Aceptando o Rechazando las Contra Ofertas que tenga pendiente.</strong>
+                    </div>
+                </div>
+            </div>
+            <button type="button" id="agregarOfer" data-toggle="modal" disabled="" data_target="#agregarOferta" class="btn btn-success admin">Nueva Oferta</button>
         @else
             <button type="button" id="agregarOfer" data-toggle="modal" disabled="" data_target="#agregarOferta" class="btn btn-success admin">Nueva Oferta</button>
         @endif
@@ -99,24 +109,24 @@
                             <td>{{$cof->plazo}}</td>                            
                             @if($cof->estado == 1)
                                 <td><input type="checkbox" name="recibido" value="3" onclick="confirmarOf('/usuario/editarCoferta/{{$cof->id}}', 0)" title="Seleccione cuando haya recibido la mercaderia"></td>
-                                <td>ACEPTADA</td>
+                                <td style="color: green; font-weight: bold;">ACEPTADA</td>
                                 <td><button href="" type="submit" class="btn btn-danger admin tabla" title="No puede Eliminar esta Contra Oferta porque ya fue ACEPTADA" disabled>X</button></td>
                             @elseif($cof->estado == 2)
-                                <td><input type="checkbox" name="recibido" value="3" title="Seleccione cuando haya recibido la mercaderia" disabled></td>
-                                <td>RECHAZADA</td>
+                                <td><input type="checkbox" name="recibido" value="3" title="Seleccione cuando haya recibido los Productos" disabled></td>
+                                <td style="color: red; font-weight: bold;">RECHAZADA</td>
                                 <td><button type="submit" class="btn btn-danger admin tabla" title="No puede Eliminar esta Contra Oferta porque ya fue RECHAZADA" disabled>X</button></td>
                             @elseif($cof->estado == 3)
-                                <td><input type="checkbox" name="recibido" value="3" title="Seleccione cuando haya recibido la mercaderia" checked disabled></td>
-                                <td>RECIBIDO</td>
+                                <td><input type="checkbox" name="recibido" value="3" title="Productos Recibidos" checked disabled></td>
+                                <td style="color: blue; font-weight: bold;">RECIBIDO</td>
                                 <td><button type="submit" class="btn btn-danger admin tabla" title="No puede Eliminar esta Contra Oferta porque ya fue RECIBIDA" disabled>X</button></td>
                             @else
                                 @if($cof->oferta->cantidad < $cof->cantidad)
                                     <td><input type="checkbox" disabled name="recibido" value="3" title="La cantidad solicitada es mayor a la disponible" onclick="confirmarOf('/usuario/editarCoferta/{{$cof->id}}', 0)"> <span class="glyphicon glyphicon-info-sign" alt="La cantidad solicitada es mayor a la disponible" title="La cantidad solicitada es mayor a la disponible"></span></td>
-                                    <td>EN ESPERA</td>
+                                    <td style="color: gold; font-weight: bold;">EN ESPERA</td>
                                     <td><button type="submit" class="btn btn-danger admin tabla" title="Eliminar Contra Oferta" onclick="confirmarOf('/usuario/eliminarCoferta/{{$cof->id}}', 1)">X</button></td>
                                 @else
-                                    <td><input type="checkbox" name="recibido" value="3" title="Seleccione cuando haya recibido la mercaderia" onclick="confirmarOf('/usuario/editarCoferta/{{$cof->id}}', 0)"></td>
-                                    <td>EN ESPERA</td>
+                                    <td><input type="checkbox" name="recibido" value="3" title="Seleccione cuando haya recibido los Productos" onclick="confirmarOf('/usuario/editarCoferta/{{$cof->id}}', 0)"></td>
+                                    <td style="color: gold; font-weight: bold;">EN ESPERA</td>
                                     <td><button type="submit" class="btn btn-danger admin tabla" title="Eliminar Contra Oferta" onclick="confirmarOf('/usuario/eliminarCoferta/{{$cof->id}}', 1)">X</button></td>
                                 @endif
                             @endif

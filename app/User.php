@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'apellido', 'razonsocial', 'email', 'password', 'dni', 'domicilio', 'telefono', 'id_ciudad', 'id_provincia', 'tipo_us', 'activo',
+        'name', 'apellido', 'razonsocial', 'email', 'password', 'dni', 'domicilio', 'telefono', 'id_ciudad', 'id_provincia', 'tipo_us', 'activo', 'pendientes',
     ];
 
     /**
@@ -57,6 +57,11 @@ class User extends Authenticatable
     public function contraoferta()
     {
         return $this->hasMany('MOHA\Contraoferta', 'id', 'id_comprador');
+    }
+
+    public function contrademanda()
+    {
+        return $this->hasMany('MOHA\Contrademanda', 'id', 'id_comprador');
     }
 
     public function tipoUsuario()

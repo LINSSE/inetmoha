@@ -12,7 +12,7 @@ class Demanda extends Model
 
     public function user()
     {
-        return $this->hasOne('MOHA\User', 'id', 'id_op');
+        return $this->belongsTo('MOHA\User', 'id_op'); //
     }
 
     public function producto()
@@ -40,8 +40,8 @@ class Demanda extends Model
         return $this->hasOne('MOHA\Medida', 'id', 'id_medida');
     }
 
-    public function contrad()
+    public function contrademanda()
     {
-        return $this->belongsTo('MOHA\Contradmanda', 'id_demanda');
+        return $this->hasMany('MOHA\Contradmanda', 'id_demanda', 'id');
     }
 }

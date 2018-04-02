@@ -78,6 +78,10 @@ Route::group(['middleware' => 'admin'], function() {
 
 	//Route::get('admin/principal', 'AdminController@index');
 
+	Route::get('admin/pendientes', 'AdminController@pendientes');
+	Route::get('admin/pendientes/activar/{id}', 'AdminController@pendientesActivar');
+	Route::get('admin/pendientes/desactivar/{id}', 'AdminController@pendientesDesactivar');
+
 	//Rutas de Administrador con Respecto a Operadores
 	Route::post('admin/activar/{id}', 'AdminController@activar');
 	Route::post('admin/desactivar/{id}', 'AdminController@desactivar');

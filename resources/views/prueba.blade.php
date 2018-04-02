@@ -1,3 +1,5 @@
-@foreach($data as $d)
-dd{{$d->max}}
+@foreach($ofertas as $oferta)
+    @foreach($oferta->contraoferta as $of)
+    dd{{$of->estado}}
+    @endforeach
 @endforeach

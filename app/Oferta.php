@@ -13,7 +13,7 @@ class Oferta extends Model
     
     public function user()
     {
-        return $this->hasOne('MOHA\User', 'id', 'id_op');
+        return $this->belongsTo('MOHA\User', 'id_op');  //
     }
 
     public function producto()
@@ -41,9 +41,9 @@ class Oferta extends Model
         return $this->hasOne('MOHA\Medida', 'id', 'id_medida');
     }
 
-    public function contrao()
+    public function contraoferta()
     {
-        return $this->belongsTo('MOHA\Contraoferta', 'id_oferta');
+        return $this->hasMany('MOHA\Contraoferta', 'id_oferta', 'id');
     }
 
 }
