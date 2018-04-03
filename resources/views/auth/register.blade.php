@@ -26,7 +26,7 @@
                             <label for="dni" class="col-md-4 control-label">DNI/CUIT</label>
 
                             <div class="col-md-6">
-                                <input id="dni" type="tel" class="form-control" name="dni" value="{{ old('dni') }}" required autofocus maxlength="11" minlength="8" inputmode="numeric" placeholder="Ingrese DNI o CUIT según corresponda" title="Ingrese DNI o CUIT según corresponda">
+                                <input id="dni" type="tel" class="form-control" name="dni" value="{{ old('dni') }}" required autofocus maxlength="11" minlength="8" inputmode="numeric" pattern="[0-9]{8,11}" placeholder="Ingrese DNI o CUIT según corresponda" title="Ingrese DNI o CUIT según corresponda">
 
                                 @if ($errors->has('dni'))
                                     <span class="help-block">
@@ -97,7 +97,7 @@
                             <label for="telefono" class="col-md-4 control-label">Teléfono</label>
 
                             <div class="col-md-6">
-                                <input id="telefono" type="tel" class="form-control" name="telefono" value="{{ old('telefono') }}" required minlength="6" maxlength="13" inputmode="numeric" placeholder="Teléfono">
+                                <input id="telefono" type="tel" class="form-control" name="telefono" value="{{ old('telefono') }}" required minlength="6" maxlength="13" inputmode="numeric" pattern="[0-9]{6,13}" placeholder="Teléfono">
 
                                 @if ($errors->has('telefono'))
                                     <span class="help-block">
@@ -171,7 +171,7 @@
                                     <option value="{{$tipo_us->id}}">{{$tipo_us->descripcion}}</option>
                                 @endforeach
                             </select>
-                            
+
                                 @if ($errors->has('tipo_us'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('tipo_us') }}</strong>
