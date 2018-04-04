@@ -21,16 +21,14 @@ class OperacionesController extends Controller
                                                 ->where('ofertas.id_op', '=', $id)
                                                 ->orwhere('contraofertas.id_comprador', '=', $id)
                                                 ->orderBy('operacionofertas.fecha', 'DESC')
-                                                ->limit(50)
-                                                ->get(['operacionofertas.*']);
+                                                ->paginate(10, array('operacionofertas.*'), 'of');
 
         $operacionesd = Operaciondemanda::leftJoin('contrademandas', 'operaciondemandas.id_contra', '=', 'contrademandas.id')
                                                 ->join('demandas', 'contrademandas.id_demanda', '=', 'demandas.id')
                                                 ->where('demandas.id_op', '=', $id)
                                                 ->orwhere('contrademandas.id_comprador', '=', $id)
                                                 ->orderBy('operaciondemandas.fecha', 'DESC')
-                                                ->limit(50)
-                                                ->get(['operaciondemandas.*']);
+                                                ->paginate(10, array('operaciondemandas.*'), 'dem');
 
     	return view('usuario/operaciones', array('operacioneso' => $operacioneso, 'operacionesd' => $operacionesd));
     }
