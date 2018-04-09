@@ -38,7 +38,7 @@
                 <h5 class="text-center">Seleccione un día para ver los precios de cada Producto</h5>
                 <div class="row">
                 <div id="imaginary_container"> 
-                    <form class="form-horizontal" method="GET" action="/precios">
+                    <form class="form-horizontal" method="GET" action="{{ url('/precios') }}">
                         <div class="col-md-6 fecha">
                         <input type="text" class="form-control fecha" name="buscar" placeholder="Buscar Producto" onfocus="this.placeholder=''" onblur="this.placeholder='Buscar Producto'">
                         <input placeholder="Seleccione un Día" onfocus="(this.type='date')" class="form-control fecha" type="text" class="form-control precioDia" onblur="if(this.value==''){this.type='text'}" name="precioDia" value="">
@@ -80,7 +80,7 @@
                 <h5 class="text-center">Seleccione un intervalo de fechas para filtrar los Precios de los Productos</h5>
                 <div class="row">
                 <div id="imaginary_container"> 
-                    <form class="form-horizontal" method="GET" action="/precios">
+                    <form class="form-horizontal" method="GET" action="{{ url('/precios') }}">
                         <div class="col-md-6 fecha">
                         <input type="text" class="form-control fecha" name="buscar" placeholder="Buscar Producto" onfocus="this.placeholder=''" onblur="this.placeholder='Buscar Producto'">
                         <input placeholder="Desde" onfocus="(this.type='date')" type="text" class="form-control fecha" onblur="if(this.value==''){this.type='text'}" id="fechai" name="fechai" value="">                        
@@ -104,7 +104,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <form id="graficarPrecios" class="form-horizontal" method="GET" action="/precios">
+                            <form id="graficarPrecios" class="form-horizontal" method="GET" action="{{ url('/precios') }}">
                                 <input type="hidden" id="fechaDesde" name="fechaDesde" value="{{$fechaDes}}">
                                 <input type="hidden" id="fechaHasta" name="fechaHasta" value="{{$fechaHas}}">
                             @foreach($precioso as $pr)
@@ -128,7 +128,7 @@
                 <h5 class="text-center">Precios de Productos en base a Mercado destino Buenos Aires</h5>
                 <div class="row">
                 <div id="imaginary_container"> 
-                    <form class="form-horizontal" method="GET" action="/preciosDia">
+                    <form class="form-horizontal" method="GET" action="{{ url('/preciosDia') }}">
                         <div class="col-md-6 fecha">
                         <input type="text" class="form-control fecha" name="buscar" placeholder="Buscar Producto" onfocus="this.placeholder=''" onblur="this.placeholder='Buscar Producto'">
                         <input placeholder="Seleccione un Día" onfocus="(this.type='date')" class="form-control fecha" type="text" class="form-control precioDia" onblur="if(this.value==''){this.type='text'}" name="preciot" value="">
@@ -167,5 +167,5 @@
     </div>
     @endguest
     <hr>
-<a type="button" href="/index" class="btn btn-primary admin" title="Volver">Volver</a>
+<a type="button" href="{{ url('/') }}" class="btn btn-primary admin" title="Volver">Volver</a>
 @stop

@@ -13,7 +13,7 @@
     <div class="row">
         <div class="col-sm-6 col-sm-offset-3">
             <div id="imaginary_container"> 
-                <form class="form-horizontal" method="GET" action="/usuario/buscarOfertas">
+                <form class="form-horizontal" method="GET" action="{{ url('/usuario/buscarOfertas') }}">
                 <div class="input-group stylish-input-group">
                     <input type="text" class="form-control" autofocus="autofocus" name="buscar" placeholder="Buscar..." >
                     <span class="input-group-addon">
@@ -142,7 +142,7 @@
       <div class="modal-body ofertar">
                     <div class="panel panel-default">
                         <div class="panel-body">
-                            <form class="form-horizontal" name="formOfertar" id="formOfertar" method="POST" action="/usuario/contraOferta">
+                            <form class="form-horizontal" name="formOfertar" id="formOfertar" method="POST" action="{{ url('/usuario/contraOferta') }}">
                                 {{ csrf_field() }}
 
                                 <input type="hidden" id="id_oferta" name="id_oferta" value="">
@@ -261,5 +261,5 @@
 
     @endguest
     <hr>
-    <a type="button" href="/index" class="btn btn-primary admin" title="Volver">Volver</a>
+    <a type="button" href="{{ url('/') }}" class="btn btn-primary admin" title="Volver">Volver</a>
 @stop

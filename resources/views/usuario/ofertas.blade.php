@@ -46,7 +46,7 @@
                         @foreach($ofertas as $of)
 	                        <tbody>
 	                            <tr>
-	                            	<form class="form-horizontal" name="eliminarOferta" method="POST" action="/usuario/eliminarOferta">
+	                            	<form class="form-horizontal" name="eliminarOferta" method="POST" action="{{ url('/usuario/eliminarOferta') }}">
                                     {{ csrf_field() }}
                                     <input type="hidden" name="id" value="{{$of->id}}">
 	                            	<td>{{$of->producto->nombre}} {{$of->producto->descripcion}} {{$of->producto->descripcion2}}</td>
@@ -58,7 +58,7 @@
                                     <td>{{$of->puesto->descripcion}}</td>
                                     <td>{{$of->cobro->descripcion}}</td>
                                     <td>{{$of->plazo}}</td>
-                                    <td><a type="button" href="/usuario/detalleOferta/{{$of->id}}" class="btn btn-info admin tabla" title="Ver Contra Ofertas">Ver Contra Ofertas</a></td>
+                                    <td><a type="button" href="{{ url('/usuario/detalleOferta/{{$of->id}}') }}" class="btn btn-info admin tabla" title="Ver Contra Ofertas">Ver Contra Ofertas</a></td>
 	                            	@if($of->cantidad != $of->cantidadOriginal)
                                         <td><button type="submit" class="btn btn-danger admin tabla" title="No puede eliminar esta Oferta porque ya tiene Operaciones Concretadas" disabled>X</button></td>
                                     @else
@@ -140,7 +140,7 @@
         </div>
     </div>
     <hr>
-    <a type="button" href="/index" class="btn btn-primary admin" title="Volver">Volver</a>
+    <a type="button" href="{{ url('/') }}" class="btn btn-primary admin" title="Volver">Volver</a>
         
     <!-- Modal Nueva Oferta -->
 <div class="modal fade" id="agregarOferta" tabindex="-1" role="dialog">
@@ -153,7 +153,7 @@
       <div class="modal-body">
                     <div class="panel panel-default">
                         <div class="panel-body">
-                            <form class="form-horizontal" id="formagregarOferta" name="formagregarOferta" method="POST" action="/usuario/nuevaOferta">
+                            <form class="form-horizontal" id="formagregarOferta" name="formagregarOferta" method="POST" action="{{ url('/usuario/nuevaOferta') }}">
                                 {{ csrf_field() }}
 
                                 <div class="form-group{{ $errors->has('id_prod') ? ' has-error' : '' }}">

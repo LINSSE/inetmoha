@@ -18,17 +18,18 @@
     <script type="text/javascript" src="{{ asset('assets/js/jquery.min.js')}}"></script>
     <script type="text/javascript" src="{{ asset('assets/js/miscript.js')}}"></script>
     <script type="text/javascript" src="{{ asset('assets/bootstrap/js/bootstrap.min.js')}}"></script>
-    
+   
 </head>
 
 <body>
+        
     <div class="container-fluid trans">
-    
+        
     <nav class="navbar navbar-default">
         
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand navbar-link" href="/" target="_parent"><h3>MOHA</h3></a>
+                <a class="navbar-brand navbar-link" href="{{ url('/') }}" target="_parent"><h3>MOHA</h3></a>
                 <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
             </div>
             
@@ -44,7 +45,6 @@
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
-                                    <!-- <li role="presentation"><a href="/admin/principal">Administración</a></li> -->
                                     <li>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
@@ -122,8 +122,8 @@
         <footer>
             <div class="row">
                 <div class="col-md-4 col-sm-6 footer-navigation">
-                    <h3><a href="index"><span>MOHA </span></a></h3>
-                    <p class="links"><a href="/">Inicio </a><strong> · </strong><a href="/ofertas">Ofertas </a><strong> · </strong><a href="/demandas">Demandas </a><strong> · </strong><a href="/precios">Precios </a><strong> · </strong><a href="/operaciones">Operaciones </a></p>
+                    <h3><a href="{{ url('/') }}"><span>MOHA </span></a></h3>
+                    <p class="links"><a href="{{ url('/') }}">Inicio </a><strong> · </strong><a href="{{ url('/ofertas') }}">Ofertas </a><strong> · </strong><a href="{{ url('/demandas') }}">Demandas </a><strong> · </strong><a href="{{ url('/precios') }}">Precios </a><strong> · </strong><a href="{{ url('/operaciones') }}">Operaciones </a></p>
                     <p
                     class="company-name">MOHA © <?php echo Date("Y"); ?></p>
                 </div>

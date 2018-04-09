@@ -7,7 +7,7 @@
                 <div class="panel-heading">Mis Datos</div>
 
                 <div class="panel-body">
-                <form class="form-horizontal" method="POST" action="/usuario/editarPerfil">
+                <form class="form-horizontal" method="POST" action="{{ url('/usuario/editarPerfil') }}">
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('razonsocial') ? ' has-error' : '' }}">
@@ -167,5 +167,5 @@
 
      </div>  
      <hr>
-     <a type="button" href="/index" class="btn btn-primary admin" title="Volver">Volver</a> 
+     <a type="button" href="{{ url('/') }}" class="btn btn-primary admin" title="Volver">Volver</a> 
 @endsection

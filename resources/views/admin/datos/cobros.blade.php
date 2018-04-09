@@ -115,5 +115,5 @@
           </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
     <hr>
-    <a type="button" href="/index" class="btn btn-primary admin" title="Volver">Volver</a>
+    <a type="button" href="{{ url('/') }}" class="btn btn-primary admin" title="Volver">Volver</a>
 @endsection

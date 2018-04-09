@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col-sm-6 col-sm-offset-3">
             <div id="imaginary_container"> 
-                <form class="form-horizontal" method="GET" action="/usuario/buscarOperaciones">
+                <form class="form-horizontal" method="GET" action="{{ url('/usuario/buscarOperaciones') }}">
                 <div class="input-group stylish-input-group">
                     <input type="text" class="form-control" autofocus="autofocus" name="buscar" placeholder="Buscar..." >
                     <span class="input-group-addon">
@@ -124,5 +124,5 @@
     </div>
     @endguest
     <hr>
-    <a type="button" href="/index" class="btn btn-primary admin" title="Volver">Volver</a>
+    <a type="button" href="{{ url('/') }}" class="btn btn-primary admin" title="Volver">Volver</a>
 @stop

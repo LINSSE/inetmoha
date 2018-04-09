@@ -91,7 +91,7 @@
     </div>
     </div>
     <hr>
-    <a type="button" href="/index" class="btn btn-primary admin" title="Volver">Volver</a>
+    <a type="button" href="{{ url('/') }}" class="btn btn-primary admin" title="Volver">Volver</a>
     <!-- Modal Producto -->
     <div class="modal fade" id="agregarProducto" tabindex="-1" role="dialog">
       <div class="modal-dialog" role="document">

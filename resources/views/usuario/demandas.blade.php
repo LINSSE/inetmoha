@@ -35,7 +35,7 @@
                 <tbody>
                 @foreach($demandas as $dem)
                     <tr>
-                        <form class="form-horizontal" name="eliminarDemandas" method="POST" action="/usuario/eliminarDemanda">
+                        <form class="form-horizontal" name="eliminarDemandas" method="POST" action="{{ url('/usuario/eliminarDemanda') }}">
                         {{ csrf_field() }}
                         <input type="hidden" name="id" value="{{$dem->id}}">
                         <td>{{$dem->producto->nombre}} {{$dem->producto->descripcion}} {{$dem->producto->descripcion2}}</td>
@@ -48,7 +48,7 @@
                         <td>{{$dem->cobro->descripcion}}</td>
                         <td>{{$dem->plazo}}</td>
                         
-                        <td><a type="button" href="/usuario/detalleDemanda/{{$dem->id}}" class="btn btn-info admin tabla" title="Ver Contra-Demandas">Ver Contra Demandas</a></td>
+                        <td><a type="button" href="{{ url('/usuario/detalleDemanda/{{$dem->id}}') }}" class="btn btn-info admin tabla" title="Ver Contra-Demandas">Ver Contra Demandas</a></td>
                         @if($dem->cantidad != $dem->cantidadOriginal)
                             <td><button type="submit" class="btn btn-danger admin tabla" title="No puede eliminar esta Demanda porque ya tiene Operaciones Concretadas" disabled>X</button></td>
                         @else
@@ -83,7 +83,7 @@
                 <tbody>
                 @foreach($cdemandas as $cdem)
                     <tr>
-                        <form class="form-horizontal" name="eliminarCdemanda" method="POST" action="/usuario/eliminarCdemanda">
+                        <form class="form-horizontal" name="eliminarCdemanda" method="POST" action="{{ url('/usuario/eliminarCdemanda') }}">
                         {{ csrf_field() }}
                         <input type="hidden" name="id" value="{{$cdem->id}}">
                         <td>{{$cdem->demanda->producto->nombre}} {{$cdem->demanda->producto->descripcion}} {{$cdem->demanda->producto->descripcion2}}</td>
@@ -117,7 +117,7 @@
     </div>
 </div>
 <hr>
-<a type="button" href="/index" class="btn btn-primary admin" title="Volver">Volver</a>
+<a type="button" href="{{ url('/') }}" class="btn btn-primary admin" title="Volver">Volver</a>
 
 <!-- Modal Nueva Demanda -->
 <div class="modal fade" id="agregarDemanda" tabindex="-1" role="dialog">
@@ -130,7 +130,7 @@
       <div class="modal-body">
                     <div class="panel panel-default">
                         <div class="panel-body">
-                            <form class="form-horizontal" id="formagregarDemanda" name="formagregarDemanda" method="POST" action="/usuario/nuevaDemanda">
+                            <form class="form-horizontal" id="formagregarDemanda" name="formagregarDemanda" method="POST" action="{{ url('/usuario/nuevaDemanda') }}">
                                 {{ csrf_field() }}
 
                                 <div class="form-group{{ $errors->has('id_prod') ? ' has-error' : '' }}">

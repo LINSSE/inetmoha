@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost:8000/'),
+    'url' => env('APP_URL', 'http://localhost/inetmoha/public/'),
 
     /*
     |--------------------------------------------------------------------------
@@ -176,6 +176,7 @@ return [
         Chumper\Zipper\ZipperServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
         ConsoleTVs\Charts\ChartsServiceProvider::class,
+        Ipunkt\LaravelAnalytics\AnalyticsServiceProvider::class,
         
 
         /*
@@ -240,7 +241,8 @@ return [
         'Zipper' => Chumper\Zipper\Zipper::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         'PHPUnit_Framework_Assert' => \PHPUnit\Framework\Assert::class,
-        'Charts' => ConsoleTVs\Charts\Facades\Charts::class
+        'Charts' => ConsoleTVs\Charts\Facades\Charts::class,
+        'Analytics' => Ipunkt\LaravelAnalytics\AnalyticsFacade::class,
     ],
 
 ];
