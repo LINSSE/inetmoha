@@ -77,9 +77,9 @@
                         <td>{{$co->cobro->descripcion}}</td>
                         <td>{{$co->plazo}}</td>
                         @if($of->cantidad < $co->cantidad)
-                         	<td><a type="button" href="{{ url('/usuario/aceptarOferta/{{$co->id}}') }}" class="btn btn-success admin tabla" title="La cantidad disponible no es suficiente" disabled>Aceptar</a><br><a type="button" href="{{ url('/usuario/rechazarOferta/{{$co->id}}') }}" class="btn btn-danger admin tabla" title="Rechazar Contra Oferta">Rechazar</a></td>
+                         	<td><a type="button" href="/usuario/aceptarOferta/{{$co->id}}" class="btn btn-success admin tabla" title="La cantidad disponible no es suficiente" disabled>Aceptar</a><br><a type="button" href="/usuario/rechazarOferta/{{$co->id}}" class="btn btn-danger admin tabla" title="Rechazar Contra Oferta">Rechazar</a></td>
                         @else
-                          <td><a type="button" href="{{ url('/usuario/aceptarOferta/{{$co->id}}') }}" class="btn btn-success admin tabla" title="Aceptar Contra Oferta">Aceptar</a><br><a type="button" href="{{ url('/usuario/rechazarOferta/{{$co->id}}') }}" class="btn btn-danger admin tabla" title="Rechazar Contra Oferta">Rechazar</a></td>
+                          <td><a type="button" href="/usuario/aceptarOferta/{{$co->id}}" class="btn btn-success admin tabla" title="Aceptar Contra Oferta">Aceptar</a><br><a type="button" href="/usuario/rechazarOferta/{{$co->id}}" class="btn btn-danger admin tabla" title="Rechazar Contra Oferta">Rechazar</a></td>
                         @endif
                        </tr>
                     @endif

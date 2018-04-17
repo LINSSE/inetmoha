@@ -66,7 +66,7 @@
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
-                                    <li role="presentation"><a href="/usuario/show/{{Auth::user()->id}}">Perfil</a></li>
+                                    <li role="presentation"><a href="/inetmoha/public/usuario/show/{{Auth::user()->id}}">Perfil</a></li>
                                     <li>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();

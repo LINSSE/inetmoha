@@ -48,7 +48,7 @@
                         <td>{{$dem->cobro->descripcion}}</td>
                         <td>{{$dem->plazo}}</td>
                         
-                        <td><a type="button" href="{{ url('/usuario/detalleDemanda/{{$dem->id}}') }}" class="btn btn-info admin tabla" title="Ver Contra-Demandas">Ver Contra Demandas</a></td>
+                        <td><a type="button" href="/usuario/detalleDemanda/{{$dem->id}}" class="btn btn-info admin tabla" title="Ver Contra-Demandas">Ver Contra Demandas</a></td>
                         @if($dem->cantidad != $dem->cantidadOriginal)
                             <td><button type="submit" class="btn btn-danger admin tabla" title="No puede eliminar esta Demanda porque ya tiene Operaciones Concretadas" disabled>X</button></td>
                         @else

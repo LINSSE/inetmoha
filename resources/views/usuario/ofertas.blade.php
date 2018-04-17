@@ -58,7 +58,7 @@
                                     <td>{{$of->puesto->descripcion}}</td>
                                     <td>{{$of->cobro->descripcion}}</td>
                                     <td>{{$of->plazo}}</td>
-                                    <td><a type="button" href="{{ url('/usuario/detalleOferta/{{$of->id}}') }}" class="btn btn-info admin tabla" title="Ver Contra Ofertas">Ver Contra Ofertas</a></td>
+                                    <td><a type="button" href="/usuario/detalleOferta/{{$of->id}}" class="btn btn-info admin tabla" title="Ver Contra Ofertas">Ver Contra Ofertas</a></td>
 	                            	@if($of->cantidad != $of->cantidadOriginal)
                                         <td><button type="submit" class="btn btn-danger admin tabla" title="No puede eliminar esta Oferta porque ya tiene Operaciones Concretadas" disabled>X</button></td>
                                     @else
