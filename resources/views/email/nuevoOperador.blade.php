@@ -4,9 +4,9 @@
 <center><h4 style="color:white;">Mercado Horticola</h4></center>
 </div>
 <br>
-<h3>Nuevo Operador Registrado en MOHA WEB</h3>
+<h3>Nuevo Operador Registrado en METH WEB</h3>
 <br>
-<p style="color:gray;">Un nuevo Operador se ha registrado en MOHA WEB.</p>
+<p style="color:gray;">Un nuevo Operador se ha registrado en METH WEB.</p>
 <br>
 <p style="color:gray;">Ingrese al Panel de Administración para comprobar los datos del Nuevo Operador y ACTIVARLO.</p>
 <br>

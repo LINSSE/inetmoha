@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>INET-MOHA</title>
+    <title>METH - Mercado Electrónico de Transacciones Hortícolas</title>
     
     <link rel="stylesheet" href="{{ asset('assets/css/styles.css')}}">
     <link rel="stylesheet" href="{{ asset('assets/bootstrap/css/bootstrap.min.css')}}">
@@ -29,7 +29,7 @@
         
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand navbar-link" href="{{ url('/') }}" target="_parent"><h3>MOHA</h3></a>
+                <a class="navbar-brand navbar-link" href="{{ url('/') }}" target="_parent"><img src="{{url('recursos/images/banner.png')}}" class="img-logo"></a>
                 <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
             </div>
             
@@ -122,10 +122,10 @@
         <footer>
             <div class="row">
                 <div class="col-md-4 col-sm-6 footer-navigation">
-                    <h3><a href="{{ url('/') }}"><span>MOHA </span></a></h3>
+                    <h3><a href="{{ url('/') }}"><span>METH </span></a></h3>
                     <p class="links"><a href="{{ url('/') }}">Inicio </a><strong> · </strong><a href="{{ url('/ofertas') }}">Ofertas </a><strong> · </strong><a href="{{ url('/demandas') }}">Demandas </a><strong> · </strong><a href="{{ url('/precios') }}">Precios </a><strong> · </strong><a href="{{ url('/operaciones') }}">Operaciones </a></p>
                     <p
-                    class="company-name">MOHA © <?php echo Date("Y"); ?></p>
+                    class="company-name">METH © <?php echo Date("Y"); ?></p>
                 </div>
                 <div class="col-md-4 col-sm-6 footer-contacts">
                     <div><span class="fa fa-map-marker footer-contacts-icon"> </span>
@@ -140,7 +140,7 @@
                 </div>
                 <div class="clearfix visible-sm-block"></div>
                 <div class="col-md-4 footer-about">
-                    <img class="img-responsive img-logo-ctes" src="{{url('recursos/images/logo.png')}}"><span><h4>Ministerio de Produccion</h4></span>
+                    <img class="img-responsive img-logo-ctes" src="{{url('recursos/images/logo.png')}}"><span><h4>Ministerio de Producción</h4></span>
                     
                     <p> 
                     </p>

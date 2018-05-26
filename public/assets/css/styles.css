@@ -54,6 +54,7 @@ a.btn.btn-default.menu:hover {
 
 div.col-md-12.menu{
   padding:0;
+  margin-top: 10px;
 }
 
 div.col-md-6.admin {
@@ -175,6 +176,11 @@ img.img-logo-ctes{
   float:left;
 }
 
+.img-logo {
+  width: 450px;
+  height: auto;
+}
+
 p.links{
   margin-top:40px;
 }
@@ -183,12 +189,16 @@ div.col-md-12{
   padding:0px;
 }
 
+div.col-md-12.center{
+  text-align: center;
+}
+
 span{
   color:#0e68af;
 }
 
 .container.datos{
-  width: 60%;
+  width: 100%;
 }
 
 ul.nav.navbar-nav {
@@ -439,6 +449,11 @@ table tr th {
 
 .col-md-6.fecha {
   width: 100%;
+}
+
+.col-md-6.logo {
+  width: 100%;
+  height: auto;
 }
 
 .button.lupa {

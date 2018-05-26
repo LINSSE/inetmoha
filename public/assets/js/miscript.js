@@ -273,7 +273,7 @@ $(document).ready(function(){
         if (fechah === '') {
             var fechah = new Date().toISOString().slice(0, 10);
         }
-        window.open("/precios/graficar/"+id+"/"+nombre+"/"+fechad+"/"+fechah, "_blank","width=600,height=400");
+        window.open("precios/graficar/"+id+"/"+nombre+"/"+fechad+"/"+fechah, "_blank","width=600,height=400");
         
      }
 });

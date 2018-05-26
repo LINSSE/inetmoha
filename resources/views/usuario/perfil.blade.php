@@ -1,6 +1,7 @@
 @extends('layouts.principal')
 
 @section('content')
+    @if($user->id === Auth::user()->id)
     <div class="container datos">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
@@ -154,7 +155,7 @@
                         <hr>
 
                         <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
+                            <div class="col-md-12 center">
                                 <button type="submit" class="btn btn-primary" disabled>Actualizar</button>
                             </div>
                         </div>
@@ -165,7 +166,16 @@
         </div>
     </div>
 
-     </div>  
+     </div> 
+     @else
+        <div class="row">
+            <div class="col-md-12">
+                <div class="alert alert-danger activo" role="alert">
+                <strong>No tiene autorización para ingresar en este Perfil</strong>
+                </div>
+            </div>
+        </div>
+     @endif 
      <hr>
      <a type="button" href="{{ url('/') }}" class="btn btn-primary admin" title="Volver">Volver</a> 
 @endsection
