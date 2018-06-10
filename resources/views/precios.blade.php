@@ -128,7 +128,7 @@
                 <h5 class="text-center">Precios de Productos en base a Mercado destino Buenos Aires</h5>
                 <div class="row">
                 <div id="imaginary_container"> 
-                    <form class="form-horizontal" method="GET" action="{{ url('/preciosDia') }}">
+                    <form class="form-horizontal" method="GET" action="{{ url('/precios') }}">
                         <div class="col-md-6 fecha">
                         <input type="text" class="form-control fecha" name="buscar" placeholder="Buscar Producto" onfocus="this.placeholder=''" onblur="this.placeholder='Buscar Producto'">
                         <input placeholder="Seleccione un Día" onfocus="(this.type='date')" class="form-control fecha" type="text" class="form-control precioDia" onblur="if(this.value==''){this.type='text'}" name="preciot" value="">

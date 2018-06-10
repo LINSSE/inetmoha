@@ -4,7 +4,7 @@
     <div class="row">
     <div class="col-sm-6 col-sm-offset-3">
             <div id="imaginary_container"> 
-                <form class="form-horizontal" method="GET" action="{{ url('/admin/operadores') }}">
+                <form class="form-horizontal" method="GET" action="/admin/operadores">
                 <div class="input-group stylish-input-group">
                     <input type="text" class="form-control" autofocus="autofocus" name="buscar" placeholder="Buscar..." >
                     <span class="input-group-addon">
@@ -55,7 +55,7 @@
                         </tr>
                     </thead>
                     @foreach($usersi as $user)
-                        <form class="form-horizontal" method="POST" action="{{ url('/admin/activar/{{$user->id}}') }}">
+                        <form class="form-horizontal" method="POST" action="/admin/activar/{{$user->id}}">
                             {{ csrf_field() }}
                             <input type="hidden" name="id" value="{{$user->id}}">
                             <tbody>
@@ -102,7 +102,7 @@
                         </tr>
                     </thead>
                     @foreach($usersa as $user)
-                        <form class="form-horizontal" method="POST" action="{{ url('/admin/desactivar/{{$user->id}}') }}">
+                        <form class="form-horizontal" method="POST" action="/admin/desactivar/{{$user->id}}">
                             {{ csrf_field() }}
                             <input type="hidden" name="id" value="{{$user->id}}">
                             <tbody>

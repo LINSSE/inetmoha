@@ -28,7 +28,7 @@
                         </tr>
                     </thead>
                     @foreach($users as $user)
-                    <form class="form-horizontal" method="GET" action="{{ url('/admin/pendientes/desactivar/{{$user->id}}') }}">
+                    <form class="form-horizontal" method="GET" action="/admin/pendientes/desactivar/{{$user->id}}">
                         {{ csrf_field() }}
                         <input type="hidden" name="id" value="{{$user->id}}">
                         <tbody>
@@ -74,7 +74,7 @@
                     </tr>
                 </thead>
                 @foreach($usersd as $user)
-            <form class="form-horizontal" method="GET" action="{{ url('/admin/pendientes/activar/{{$user->id}}') }}">
+            <form class="form-horizontal" method="GET" action="/admin/pendientes/activar/{{$user->id}}">
                     {{ csrf_field() }}
                     <input type="hidden" name="id" value="{{$user->id}}">
                     <tbody>

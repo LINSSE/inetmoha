@@ -24,6 +24,12 @@ class PreciosController extends Controller
 		}else{
 			$fecha = $request->precioDia;
 		}
+
+		if(empty($request->preciot)){
+			$preciot = Date('Y-m-j');
+		}else{
+			$preciot = $request->preciot;
+		}
 		
 		if(empty($request->fechai) || empty($request->fechaf)){
 			$hoy = Date('Y-m-j');
@@ -81,7 +87,7 @@ class PreciosController extends Controller
 										->join('puestos', 'demandas.id_puesto', '=', 'puestos.id')
 										->select(DB::raw('CONCAT(productos.nombre, " ", productos.descripcion, " ", productos.descripcion2, " ", modos.descripcion, " ", "X", " ", demandas.peso, " ",  medidas.descripcion) as nombre'), DB::raw('max(demandas.precio) as max'), DB::raw('min(demandas.precio) as min'), DB::raw('CAST(avg(demandas.precio) as int) AS prom'))
 										->where('puestos.descripcion', 'LIKE', '%buenos aires%')
-										->whereDate('demandas.fechaEntrega', '=', $request->preciot)
+										->whereDate('demandas.fechaEntrega', '=', $preciot)
 										->where('productos.nombre', 'LIKE', '%'.$buscar.'%')
 										->groupBy('productos.nombre')
 										->groupBy('productos.descripcion')

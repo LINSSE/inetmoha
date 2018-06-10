@@ -53,7 +53,9 @@ class ContrademandaController extends Controller
     public function detalledemanda($id)  {
 
     	 $cdemandas = Contrademanda::where('id_demanda', $id)->where('estado', '=', '0')->get();
-         $cdacep = Contrademanda::where('id_demanda', $id)->where('estado', '=', '1')->orwhere('estado', '=', '3')->get();
+         $cdacep = Contrademanda::where('id_demanda', $id)->where(function ($query){
+                                        $query->where('estado', '=', '1')->orwhere('estado', '=', '3');
+                                        })->get();
     	 $dem = Demanda::Find($id);
 
     	 return view('/usuario/detalleContrademanda', array('cdemandas' => $cdemandas, 'cdacep' => $cdacep, 'dem' => $dem));

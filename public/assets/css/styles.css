@@ -294,7 +294,8 @@ div.container-fluid.trans {
 }
 
 .row.model {
-  margin-left: 200px !important;
+  /*margin-left: 200px !important;*/
+  text-align: center;
 }
 
 .h4tit {
