@@ -89,7 +89,7 @@ class OfertasController extends Controller
                                         ->orwhere('puestos.descripcion', 'like', '%'.ucwords(strtolower($buscar)).'%')
                                         ->orwhere('ofertas.fechaEntrega', 'like', '%'.$buscar.'%');
                                      })
-                                     ->orderBy('ofertas.fechaEntrega', 'ASC')
+                                     ->orderBy('ofertas.fechaEntrega', 'DESC')
                                      ->paginate(10, array('ofertas.*'), 'o');
         
         $ofertasa = Oferta::leftjoin('productos','ofertas.id_prod','=','productos.id')
@@ -109,7 +109,7 @@ class OfertasController extends Controller
                                         ->orwhere('puestos.descripcion', 'like', '%'.ucwords(strtolower($buscar)).'%')
                                         ->orwhere('ofertas.fechaEntrega', 'like', '%'.$buscar.'%');
                                     })
-                                    ->orderBy('ofertas.fechaEntrega', 'ASC')
+                                    ->orderBy('ofertas.fechaEntrega', 'DESC')
                                     ->paginate(10, array('ofertas.*'), 'oa');
 
         $cobros = Cobro::orderBy('descripcion', 'ASC')->get();

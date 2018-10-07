@@ -44,7 +44,7 @@ class PreciosController extends Controller
 			$fechaHas = $request->fechaf;
 		}
 		
-
+		//Precios del  Día
 		$preciosd = Operacionoferta::leftJoin('contraofertas', 'operacionofertas.id_contra', '=', 'contraofertas.id')
 										->join('ofertas', 'contraofertas.id_oferta', '=', 'ofertas.id')
 										->join('productos', 'ofertas.id_prod', '=', 'productos.id')
@@ -61,7 +61,7 @@ class PreciosController extends Controller
 										->groupBy('medidas.descripcion')
 										->orderBy('productos.nombre', 'DESC')
 										->paginate(5, array('operacionofertas.*'), 'pd');
-		//Precios Demandados
+		//Precios Ofrecidos
 		$precioso = Contraoferta::leftJoin('ofertas', 'contraofertas.id_oferta', '=', 'ofertas.id')
 										->join('productos', 'ofertas.id_prod', '=', 'productos.id')
 										->join('modos', 'ofertas.id_modo', '=', 'modos.id')
@@ -80,7 +80,7 @@ class PreciosController extends Controller
 										->orderBy('contraofertas.created_at', 'ASC')
 										->paginate(5, array('contraofertas.*'), 'po');
 
-		//Tendencia Históricos
+		//Precios Demandados
 		$preciost = Demanda::leftJoin('productos', 'demandas.id_prod', '=', 'productos.id')
 										->join('modos', 'demandas.id_modo', '=', 'modos.id')
 										->join('medidas', 'demandas.id_medida', '=', 'medidas.id')

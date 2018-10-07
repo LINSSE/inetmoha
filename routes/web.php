@@ -116,12 +116,5 @@ Route::group(['middleware' => 'admin'], function() {
 });
 
 //Rutas de pruebas
-use MOHA\User;
-
-Route::get('admin', 'ContraofertaController@prueba');
-Route::get('prueba', function(){
-	 
-	return view('prueba');
-});
 
 ?>
