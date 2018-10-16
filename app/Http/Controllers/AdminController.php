@@ -40,7 +40,7 @@ class AdminController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Desactivar usuarios.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
