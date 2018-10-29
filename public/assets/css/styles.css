@@ -270,6 +270,10 @@ ul.nav.nav-tabs.nav-justified {
   background-color: rgba(218, 218, 218, 0.38);
 }
 
+.panel-height {
+  height: 100%;
+}
+
 div.container-fluid.trans {
   background-color: rgb(255, 255, 255);
   width: 100%;

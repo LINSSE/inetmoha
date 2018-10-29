@@ -18,19 +18,19 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Registro</div>
 
-                <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="{{ route('register') }}">
+                <div class="panel-body panel-height">
+                    <form class="form-horizontal" id="registrarUsuario" method="POST" action="{{ route('register') }}">
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('dni') ? ' has-error' : '' }}">
-                            <label for="dni" class="col-md-4 control-label">DNI/CUIT</label>
+                            <label for="dni" class="col-md-4 control-label">CUIT</label>
 
                             <div class="col-md-6">
-                                <input id="dni" type="tel" class="form-control" name="dni" value="{{ old('dni') }}" required autofocus maxlength="11" minlength="8" inputmode="numeric" pattern="[0-9]{8,11}" placeholder="Ingrese DNI o CUIT según corresponda" title="Ingrese DNI o CUIT según corresponda">
+                                <input id="dni" type="tel" class="form-control" name="dni" value="{{ old('dni') }}" required autofocus maxlength="11" minlength="11" inputmode="numeric" pattern="[0-9]{8,11}" placeholder="Ingrese el CUIT" title="Ingrese el CUIT">
 
                                 @if ($errors->has('dni'))
                                     <span class="help-block">
-                                        <strong>{{ 'El DNI o CUIT ya ha sido registrado. Debe ingresar 8 dígitos si es un DNI u 11 dígitos si es un CUIT. Sin güiones' }}</strong>
+                                        <strong>{{ 'El CUIT ya ha sido registrado. Debe ingresar 11 dígitos. Sin güiones' }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -160,21 +160,45 @@
 
                         <hr>
                         
-                        <div class="form-group{{ $errors->has('tipo_us') ? ' has-error' : '' }}">
-                            <label for="tipo_us" class="col-md-4 control-label">Tipo de Usuario</label>
+                        <div class="form-group{{ $errors->has('tipo') ? ' has-error' : '' }}">
+                            <label for="tipo" class="col-md-4 control-label">Tipo de Usuario</label>
 
                             <div class="col-md-6">
-                            <select class="form-control" name="tipo_us" value="{{ old('tipo_us') }}" required>
-                                <option disabled selected hidden> -- Seleccione Tipo de Usuario -- </option>
-                                <!--Cargar tipos de Usuarios (Operador-Despachante-Representante)  -->
-                                @foreach ($tipousuarios as $tipo_us)
-                                    <option value="{{$tipo_us->id}}">{{$tipo_us->descripcion}}</option>
+                                <div class="checkbox" id="representantes" >
+                                    <ul class="tipo-us">
+                                        <label>
+                                            <input type="checkbox" name="tipo[]" value="1" checked="true" required=""> Independiente    
+                                        </label>
+                                        <br>
+                                        <label>
+                                            <input type="checkbox" name="tipo[]" value="3" required=""> Con Representante    
+                                        </label>
+                                    </ul>                                    
+                                </div>
+                            </div>
+
+                            @if ($errors->has('tipo'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('tipo') }}</strong>
+                                    <strong>Debe seleccionar un tipo de Usuario</strong>
+                                </span>
+                            @endif
+                        </div>
+
+                        <div class="form-group{{ $errors->has('rep') ? ' has-error' : '' }}" id="rep" style="display: none;">
+                            <label for="rep" class="col-md-4 control-label">Representantes</label>
+
+                            <div class="col-md-6">
+                            <select class="form-control" name="rep" value="{{ old('rep') }}" required>
+                                <option disabled selected hidden> -- Seleccione un Representante -- </option>
+                                @foreach ($representantes as $rep)
+                                    <option value="{{$rep->id}}">{{$rep->razonsocial}}</option>
                                 @endforeach
                             </select>
 
-                                @if ($errors->has('tipo_us'))
+                                @if ($errors->has('rep'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('tipo_us') }}</strong>
+                                        <strong>{{ $errors->first('rep') }}</strong>
                                     </span>
                                 @endif
                             </div>

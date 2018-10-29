@@ -33,8 +33,9 @@ class RegisterController extends Controller
     public function showRegistrationForm()
     {   
         $provincias = Provincia::orderBy('nombre', 'ASC')->get();
-        $tipousuarios = TipoUsuario::orderBy('descripcion', 'ASC')->get();
-        return view('auth.register', array('tipousuarios' => $tipousuarios, 'provincias' => $provincias));
+        //$tipousuarios = TipoUsuario::orderBy('descripcion', 'ASC')->get();
+        $representantes = User::where('tipo_us', '=', 3)->orderBy('razonsocial', 'ASC')->get();
+        return view('auth.register', array('representantes' => $representantes, 'provincias' => $provincias));
     }
 
     /**

@@ -202,6 +202,10 @@ $(document).ready(function(){
         $('input[name="' + this.name + '"]').not(this).prop('checked', false);
     });
 
+    $("#registrarUsuario input:checkbox").on('click', function() {
+        $('input[name="' + this.name + '"]').not(this).prop('checked', false);
+    });
+
     $('#modalDemandar').on('hidden.bs.modal', function(){ 
         $(this).find('#formDemandar')[0].reset(); //para limpiar campos del modal
     });
@@ -276,4 +280,35 @@ $(document).ready(function(){
         window.open("precios/graficar/"+id+"/"+nombre+"/"+fechad+"/"+fechah, "_blank","width=600,height=400");
         
      }
+
+     // $("input:checkbox:checked").each(function() {
+     //         alert($(this).val());
+     //    });
+
+    //  $("#registrarUsuario input:checkbox:checked").each(function() {
+    //     var estado = $(this).val();
+    //     if(estado === 3) {
+    //         document.getElementById("rep").style.display = "";    
+    //     }
+    // });
+
+    $('#registrarUsuario input[type=checkbox]').on('change', function() {
+        if ($(this).val() === "3" ) {
+            document.getElementById("rep").style.display = "";
+        }
+        else {
+            document.getElementById("rep").style.display = "none";   
+        }
+
+        var requiredCheckboxes = $('input[type=checkbox]');
+        
+            if(requiredCheckboxes.is(':checked')) {
+                requiredCheckboxes.removeAttr('required');
+            } else {
+                requiredCheckboxes.attr('required', 'required');
+            }
+        
+
+    });
+
 });
