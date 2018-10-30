@@ -12,7 +12,7 @@
                             <th>Apellido </th>
                             <th>Nombre </th>
                             <th>Email </th>
-                            <th>DNI </th>
+                            <th>CUIT </th>
                             <th>Telefono </th>
                             <th>Domicilio </th>
                             <th>Ciudad </th>
@@ -27,7 +27,7 @@
                             <td>{{$user->apellido}}</td>
                             <td>{{$user->name}}</td>
                             <td>{{$user->email}}</td>
-                            <td>{{$user->dni}}</td>
+                            <td>{{$user->cuit}}</td>
                             <td>{{$user->telefono}}</td>
                             <td>{{$user->domicilio}}</td>
                             <td>{{$user->ciudad->nombre}}</td>

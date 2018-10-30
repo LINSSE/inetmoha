@@ -1,17 +1,7 @@
 @extends('layouts.principal')
 
 @section('content')
-@if(Session::has('desp'))
-            <div class="alert alert-success alert-dismissible fade in" role="alert">
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <strong>{{Session::get('desp')}}</strong>
-            </div>
-    @elseif(Session::has('rep'))
-            <div class="alert alert-success alert-dismissible fade in" role="alert">
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <strong>{{Session::get('rep')}}</strong>
-            </div>
-    @endif
+
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
@@ -22,13 +12,13 @@
                     <form class="form-horizontal" id="registrarUsuario" method="POST" action="{{ route('register') }}">
                         {{ csrf_field() }}
 
-                        <div class="form-group{{ $errors->has('dni') ? ' has-error' : '' }}">
-                            <label for="dni" class="col-md-4 control-label">CUIT</label>
+                        <div class="form-group{{ $errors->has('cuit') ? ' has-error' : '' }}">
+                            <label for="cuit" class="col-md-4 control-label">CUIT</label>
 
                             <div class="col-md-6">
-                                <input id="dni" type="tel" class="form-control" name="dni" value="{{ old('dni') }}" required autofocus maxlength="11" minlength="11" inputmode="numeric" pattern="[0-9]{8,11}" placeholder="Ingrese el CUIT" title="Ingrese el CUIT">
+                                <input id="cuit" type="tel" class="form-control" name="cuit" value="{{ old('cuit') }}" required autofocus maxlength="11" minlength="11" inputmode="numeric" pattern="[0-9]{11}" placeholder="Ingrese el CUIT" title="Ingrese el CUIT">
 
-                                @if ($errors->has('dni'))
+                                @if ($errors->has('cuit'))
                                     <span class="help-block">
                                         <strong>{{ 'El CUIT ya ha sido registrado. Debe ingresar 11 dígitos. Sin güiones' }}</strong>
                                     </span>
@@ -160,29 +150,32 @@
 
                         <hr>
                         
-                        <div class="form-group{{ $errors->has('tipo') ? ' has-error' : '' }}">
+                        <div class="form-group{{ $errors->has('tipo') ? ' has-error' : '' }}" id="tipo" >
                             <label for="tipo" class="col-md-4 control-label">Tipo de Usuario</label>
 
                             <div class="col-md-6">
-                                <div class="checkbox" id="representantes" >
-                                    <ul class="tipo-us">
-                                        <label>
-                                            <input type="checkbox" name="tipo[]" value="1" checked="true" required=""> Independiente    
-                                        </label>
-                                        <br>
-                                        <label>
-                                            <input type="checkbox" name="tipo[]" value="3" required=""> Con Representante    
-                                        </label>
-                                    </ul>                                    
-                                </div>
-                            </div>
+                            <select class="form-control" name="tipo" id="tipo" value="{{ old('tipo') }}" required>
+                                <option disabled selected hidden> -- Seleccione un tipo de Usuario -- </option>
+                                <option value="1">Independiente</option>
+                                <option value="3">Con Representante</option>
+                            </select>
 
-                            @if ($errors->has('tipo'))
-                                <span class="help-block">
-                                    <strong>{{ $errors->first('tipo') }}</strong>
-                                    <strong>Debe seleccionar un tipo de Usuario</strong>
-                                </span>
-                            @endif
+                                @if ($errors->has('tipo'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('tipo') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('is_rep') ? ' has-error' : '' }}" id="is_rep" style="display: none;">
+                            <div class="alert alert-success" role="alert">
+                              <strong>Si desea registrarse como Operador y Representante, por favor seleccione la siguiente opción. De lo contrario se registrará sólo como Operador.</strong>
+                            </div>
+                            <label for="i_rep" class="col-md-4 control-label">Soy Representante</label>
+                            <div class="col-md-6">
+                                <input type="checkbox" class="form-control" name="is_rep" id="ch_is_rep">
+                            </div>
                         </div>
 
                         <div class="form-group{{ $errors->has('rep') ? ' has-error' : '' }}" id="rep" style="display: none;">
@@ -192,13 +185,65 @@
                             <select class="form-control" name="rep" value="{{ old('rep') }}" required>
                                 <option disabled selected hidden> -- Seleccione un Representante -- </option>
                                 @foreach ($representantes as $rep)
-                                    <option value="{{$rep->id}}">{{$rep->razonsocial}}</option>
+                                    <option value="{{$rep->id}}">{{$rep->razonsocial}} - {{$rep->cuit}}</option>
                                 @endforeach
                             </select>
 
                                 @if ($errors->has('rep'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('rep') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <div class="form-group{{ $errors->has('tipo_reg') ? ' has-error' : '' }}" id="tipo_reg" >
+                            <label for="tipo_reg" class="col-md-4 control-label">Tipo de Registro</label>
+
+                            <div class="col-md-6">
+                            <select class="form-control" name="tipo_reg" id="tipo_reg" value="{{ old('tipo_reg') }}" required>
+                                <option disabled selected hidden> -- Seleccione un Tipo de Registro -- </option>
+                                <option value="1">RENSAP</option>
+                                <option value="2">MATRICULA</option>
+                            </select>
+
+                                @if ($errors->has('tipo_reg'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('tipo_reg') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('renspa') ? ' has-error' : '' }}" id="renspa" style="display: none;">
+                            
+                            <label for="renspa" class="col-md-4 control-label">Renspa</label>
+                               
+                            <div class="col-md-6">
+                            <input type="text" class="form-control" minlength="17" maxlength="17" name="rensapa" id="ren" value="{{ old('renspa') }}" placeholder="xx.xxx.x.xxxxx/xx" pattern="[0-9]{2}\.[0-9]{3}\.[0-9]{1}\.[0-9]{5}\/[0-9]{2}" oninvalid="this.setCustomValidity('Debe ingresar un número de Renspa con el siguiente formato xx.xxx.x.xxxxx/xx')"
+    oninput="this.setCustomValidity('')" required>
+
+                                @if ($errors->has('renspa'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('renspa') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('matricula') ? ' has-error' : '' }}" id="matricula" style="display: none;">
+                            
+                            <label for="matricula" class="col-md-4 control-label">Matrícula</label>
+
+                            <div class="col-md-6">
+                            <input type="numeric" class="form-control" minlength="5" maxlength="6" name="matricula" id="mat" value="{{ old('matricula') }}" placeholder="xxxxxx" pattern="[0-9]{5,6}" oninvalid="this.setCustomValidity('Debe ingresar un número de Matrícula con el siguiente formato xxxxxx')"
+    oninput="this.setCustomValidity('')" required>
+
+                                @if ($errors->has('matricula'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('matricula') }}</strong>
                                     </span>
                                 @endif
                             </div>

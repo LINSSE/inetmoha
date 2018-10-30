@@ -81,15 +81,15 @@
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('dni') ? ' has-error' : '' }}">
-                            <label for="dni" class="col-md-4 control-label">DNI/CUIT</label>
+                        <div class="form-group{{ $errors->has('cuit') ? ' has-error' : '' }}">
+                            <label for="cuit" class="col-md-4 control-label">CUIT</label>
 
                             <div class="col-md-6">
-                                <input disabled id="dni" type="text" class="form-control" name="dni" value="{{ $user->dni }}"  maxlength="11" minlength="8" inputmode="numeric">
+                                <input disabled id="cuit" type="text" class="form-control" name="cuit" value="{{ $user->cuit }}"  maxlength="11" minlength="8" inputmode="numeric">
 
-                                @if ($errors->has('dni'))
+                                @if ($errors->has('cuit'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('dni') }}</strong>
+                                        <strong>{{ $errors->first('cuit') }}</strong>
                                     </span>
                                 @endif
                             </div>

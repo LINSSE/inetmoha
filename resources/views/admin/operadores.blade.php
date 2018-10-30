@@ -45,7 +45,7 @@
                             <th>Nombre </th>
                             <th>Razón Social </th>
                             <th>Email </th>
-                            <th>DNI/CUIT </th>
+                            <th>CUIT </th>
                             <th>Teléfono </th>
                             <th>Domicilio </th>
                             <th>Ciudad </th>
@@ -64,7 +64,7 @@
                                     <td>{{$user->name}}</td>
                                     <td>{{$user->razonsocial}}</td>
                                     <td>{{$user->email}}</td>
-                                    <td>{{$user->dni}}</td>
+                                    <td>{{$user->cuit}}</td>
                                     <td>{{$user->telefono}}</td>
                                     <td>{{$user->domicilio}}</td>
                                     <td>{{$user->ciudad->nombre}}</td>
@@ -92,7 +92,7 @@
                             <th>Nombre </th>
                             <th>Razón Social </th>
                             <th>Email </th>
-                            <th>DNI/CUIT </th>
+                            <th>CUIT </th>
                             <th>Teléfono </th>
                             <th>Domicilio </th>
                             <th>Ciudad </th>
@@ -111,7 +111,7 @@
                                     <td>{{$user->name}}</td>
                                     <td>{{$user->razonsocial}}</td>
                                     <td>{{$user->email}}</td>
-                                    <td>{{$user->dni}}</td>
+                                    <td>{{$user->cuit}}</td>
                                     <td>{{$user->telefono}}</td>
                                     <td>{{$user->domicilio}}</td>
                                     <td>{{$user->ciudad->nombre}}</td>

@@ -20,12 +20,13 @@ class CreateUsersTable extends Migration
             $table->string('razonsocial')->nullable();
             $table->string('email')->unique();
             $table->string('password');
-            $table->bigInteger('dni');
+            $table->bigInteger('cuit');
             $table->bigInteger('telefono');
             $table->string('domicilio');
             $table->integer('id_provincia')->unsigned();
             $table->integer('id_ciudad')->unsigned();
             $table->integer('tipo_us')->unsigned();
+            $table->string('registro');
             $table->boolean('activo')->default(false);
             $table->boolean('admin')->default(false);
             $table->boolean('pendientes')->default(false);

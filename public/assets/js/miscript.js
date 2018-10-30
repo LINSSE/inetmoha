@@ -281,34 +281,29 @@ $(document).ready(function(){
         
      }
 
-     // $("input:checkbox:checked").each(function() {
-     //         alert($(this).val());
-     //    });
-
-    //  $("#registrarUsuario input:checkbox:checked").each(function() {
-    //     var estado = $(this).val();
-    //     if(estado === 3) {
-    //         document.getElementById("rep").style.display = "";    
-    //     }
-    // });
-
-    $('#registrarUsuario input[type=checkbox]').on('change', function() {
-        if ($(this).val() === "3" ) {
+    $('#tipo').on('change', function() {
+        if ($("#tipo option:selected").val() === "3" ) {
             document.getElementById("rep").style.display = "";
+            document.getElementById("is_rep").style.display = "none";
+            $('#ch_is_rep').prop('checked', false);
         }
         else {
-            document.getElementById("rep").style.display = "none";   
+            document.getElementById("rep").style.display = "none";
+            document.getElementById("is_rep").style.display = "";
         }
+    });
 
-        var requiredCheckboxes = $('input[type=checkbox]');
-        
-            if(requiredCheckboxes.is(':checked')) {
-                requiredCheckboxes.removeAttr('required');
-            } else {
-                requiredCheckboxes.attr('required', 'required');
-            }
-        
-
+    $('#tipo_reg').on('change', function() {
+        if ($("#tipo_reg option:selected").val() === "1" ) {
+            document.getElementById("renspa").style.display = "";
+            document.getElementById("matricula").style.display = "none";
+            document.getElementById("mat").value = "";
+        }
+        else {
+            document.getElementById("matricula").style.display = ""; 
+            document.getElementById("renspa").style.display = "none";
+            document.getElementById("ren").value = "";  
+        }
     });
 
 });

@@ -90,12 +90,13 @@ class RegisterController extends Controller
                 'razonsocial' => ucwords(strtolower($data['razonsocial'])),
                 'email' => $data['email'],
                 'password' => bcrypt($data['password']),
-                'dni' => $data['dni'],
+                'cuit' => $data['cuit'],
                 'telefono' => $data['telefono'],
                 'domicilio' => ucwords(strtolower($data['domicilio'])),
                 'id_provincia' => $data['id_provincia'], 
                 'id_ciudad' => $data['id_ciudad'],
                 'tipo_us' => $data['tipo_us'],
+                'registro' => $data['tipo_us'],
                 
             ]);
 
