@@ -80,6 +80,11 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        if($data['id_rep'] == null)
+        {
+            $id_rep = 0;
+        }
+
         DB::beginTransaction();
 
         try {
@@ -96,8 +101,9 @@ class RegisterController extends Controller
                 'id_provincia' => $data['id_provincia'], 
                 'id_ciudad' => $data['id_ciudad'],
                 'tipo_us' => $data['tipo_us'],
-                'registro' => $data['tipo_us'],
-                
+                'registro' => $data['registro'],
+                'id_rep' => $data['id_rep'],
+                'is_rep' => $data['is_rep']                
             ]);
 
             Mail::to($user->email)->send(new Bienvenido());

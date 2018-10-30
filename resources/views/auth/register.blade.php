@@ -6,7 +6,7 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Registro</div>
+                <div class="panel-heading">Registrarme</div>
 
                 <div class="panel-body panel-height">
                     <form class="form-horizontal" id="registrarUsuario" method="POST" action="{{ route('register') }}">
@@ -182,7 +182,7 @@
                             <label for="rep" class="col-md-4 control-label">Representantes</label>
 
                             <div class="col-md-6">
-                            <select class="form-control" name="rep" value="{{ old('rep') }}" required>
+                            <select class="form-control" name="id_rep" value="{{ old('id_rep') }}" required>
                                 <option disabled selected hidden> -- Seleccione un Representante -- </option>
                                 @foreach ($representantes as $rep)
                                     <option value="{{$rep->id}}">{{$rep->razonsocial}} - {{$rep->cuit}}</option>
@@ -222,12 +222,12 @@
                             <label for="renspa" class="col-md-4 control-label">Renspa</label>
                                
                             <div class="col-md-6">
-                            <input type="text" class="form-control" minlength="17" maxlength="17" name="rensapa" id="ren" value="{{ old('renspa') }}" placeholder="xx.xxx.x.xxxxx/xx" pattern="[0-9]{2}\.[0-9]{3}\.[0-9]{1}\.[0-9]{5}\/[0-9]{2}" oninvalid="this.setCustomValidity('Debe ingresar un número de Renspa con el siguiente formato xx.xxx.x.xxxxx/xx')"
+                            <input type="text" class="form-control" minlength="17" maxlength="17" name="registro" id="ren" value="{{ old('renspa') }}" placeholder="xx.xxx.x.xxxxx/xx" pattern="[0-9]{2}\.[0-9]{3}\.[0-9]{1}\.[0-9]{5}\/[0-9]{2}" oninvalid="this.setCustomValidity('Debe ingresar un número de Renspa con el siguiente formato xx.xxx.x.xxxxx/xx')"
     oninput="this.setCustomValidity('')" required>
 
-                                @if ($errors->has('renspa'))
+                                @if ($errors->has('registro'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('renspa') }}</strong>
+                                        <strong>{{ $errors->first('registro') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -238,12 +238,12 @@
                             <label for="matricula" class="col-md-4 control-label">Matrícula</label>
 
                             <div class="col-md-6">
-                            <input type="numeric" class="form-control" minlength="5" maxlength="6" name="matricula" id="mat" value="{{ old('matricula') }}" placeholder="xxxxxx" pattern="[0-9]{5,6}" oninvalid="this.setCustomValidity('Debe ingresar un número de Matrícula con el siguiente formato xxxxxx')"
+                            <input type="numeric" class="form-control" minlength="5" maxlength="6" name="registro" id="mat" value="{{ old('matricula') }}" placeholder="xxxxxx" pattern="[0-9]{5,6}" oninvalid="this.setCustomValidity('Debe ingresar un número de Matrícula con el siguiente formato xxxxxx')"
     oninput="this.setCustomValidity('')" required>
 
-                                @if ($errors->has('matricula'))
+                                @if ($errors->has('registro'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('matricula') }}</strong>
+                                        <strong>{{ $errors->first('registro') }}</strong>
                                     </span>
                                 @endif
                             </div>

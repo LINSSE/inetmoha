@@ -27,6 +27,8 @@ class CreateUsersTable extends Migration
             $table->integer('id_ciudad')->unsigned();
             $table->integer('tipo_us')->unsigned();
             $table->string('registro');
+            $table->integer('id_rep')->unsigned();
+            $table->boolean('is_rep')->default(false);
             $table->boolean('activo')->default(false);
             $table->boolean('admin')->default(false);
             $table->boolean('pendientes')->default(false);
@@ -34,6 +36,7 @@ class CreateUsersTable extends Migration
             $table->timestamps();
 
             $table->foreign('tipo_us')->references('id')->on('tipo_usuarios')->onDelete('cascade');
+            $table->foreign('id_rep')->references('id')->on('representantes')->onDelete('cascade');
             $table->foreign('id_ciudad')->references('id')->on('ciudades')->onDelete('cascade');
             $table->foreign('id_provincia')->references('id')->on('provincias')->onDelete('cascade');
         });

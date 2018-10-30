@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'apellido', 'razonsocial', 'email', 'password', 'cuit', 'domicilio', 'telefono', 'id_ciudad', 'id_provincia', 'tipo_us', 'registro', 'activo', 'pendientes',
+        'name', 'apellido', 'razonsocial', 'email', 'password', 'cuit', 'domicilio', 'telefono', 'id_ciudad', 'id_provincia', 'tipo_us', 'registro', 'id_rep', 'is_rep', 'activo', 'pendientes',
     ];
 
     /**
@@ -67,5 +67,10 @@ class User extends Authenticatable
     public function tipoUsuario()
     {
         return $this->belongsTo('MOHA\TipoUsuario', 'tipo_us');
+    }
+
+    public function representante()
+    {
+        return $this->hasOne('MOHA\Representante', 'id', 'id_rep');
     }
 }
