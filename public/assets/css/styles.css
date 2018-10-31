@@ -139,7 +139,6 @@ div.col-md-3.admin.prod {
 
 nav.navbar.navbar-default{
   margin-bottom:0px;
-  min-height:70px;
   border-radius: 0px;
 }
 
@@ -177,7 +176,7 @@ img.img-logo-ctes{
 }
 
 .img-logo {
-  width: 450px;
+  width: 70%;
   height: auto;
 }
 
@@ -208,7 +207,8 @@ ul.nav.navbar-nav {
 }
 
 .navbar-header{
-  height: 70px;
+  width: 100%;
+  height: auto;
 }
 
 .navbar-default .navbar-nav>li>a {
@@ -280,6 +280,11 @@ div.container-fluid.trans {
   margin-top: 0px;
   padding: 0px;
 }
+
+.container-fluid.header {
+  background-color: rgb(127, 184, 71);  
+}
+
 
 .alert.alert-danger.activo {
   margin-bottom: 0px;
