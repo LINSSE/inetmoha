@@ -30,11 +30,11 @@ class UserController extends Controller
         $buscar2 = $request->usuarios;
 
         if (!empty($buscar2)) {
-            $usersa = User::where('id', '!=', Auth::id())->where('activo', '=', 1)
+            $usersa = User::where('id', '!=', Auth::id())->where('id', '!=', 2)->where('activo', '=', 1)
                             ->where(function($q) use ($buscar) {
                                 $q->where('apellido', 'like', '%'.ucwords(strtolower($buscar)).'%')
                                 ->orwhere('email', 'like', '%'.$buscar.'%')
-                                ->orwhere('dni', 'like', '%'.$buscar.'%')
+                                ->orwhere('cuit', 'like', '%'.$buscar.'%')
                                 ->orwhere('email', 'like', '%'.$buscar.'%')
                                 ->orwhere('telefono', 'like', '%'.$buscar.'%')
                                 ->orwhere('razonsocial', 'like', '%'.$buscar.'%')
@@ -46,11 +46,11 @@ class UserController extends Controller
                             })
                             ->orderBy('apellido', 'razonsocial', 'ASC')->paginate(5, array('users.*'), 'a');
             
-            $usersi = User::where('id', '!=', Auth::id())->where('activo', '=', 0)
+            $usersi = User::where('id', '!=', Auth::id())->where('id', '!=', 2)->where('activo', '=', 0)
                             ->where(function($q) use ($buscar) {
                                 $q->where('apellido', 'like', '%'.ucwords(strtolower($buscar)).'%')
                                 ->orwhere('email', 'like', '%'.$buscar.'%')
-                                ->orwhere('dni', 'like', '%'.$buscar.'%')
+                                ->orwhere('cuit', 'like', '%'.$buscar.'%')
                                 ->orwhere('email', 'like', '%'.$buscar.'%')
                                 ->orwhere('telefono', 'like', '%'.$buscar.'%')
                                 ->orwhere('razonsocial', 'like', '%'.$buscar.'%')
@@ -63,11 +63,11 @@ class UserController extends Controller
                             ->orderBy('apellido', 'razonsocial', 'ASC')->paginate(5, array('users.*'), 'i');
         }
         else {
-            $usersa = User::where('id', '!=', Auth::id())->where('activo', '=', 1)
+            $usersa = User::where('id', '!=', Auth::id())->where('id', '!=', 2)->where('activo', '=', 1)
                             ->where(function($q) use ($buscar) {
                                 $q->where('apellido', 'like', '%'.ucwords(strtolower($buscar)).'%')
                                 ->orwhere('email', 'like', '%'.$buscar.'%')
-                                ->orwhere('dni', 'like', '%'.$buscar.'%')
+                                ->orwhere('cuit', 'like', '%'.$buscar.'%')
                                 ->orwhere('email', 'like', '%'.$buscar.'%')
                                 ->orwhere('telefono', 'like', '%'.$buscar.'%')
                                 ->orwhere('razonsocial', 'like', '%'.$buscar.'%')
@@ -76,11 +76,11 @@ class UserController extends Controller
                             })
                             ->orderBy('apellido', 'razonsocial', 'ASC')->paginate(5, array('users.*'), 'a');
 
-            $usersi = User::where('id', '!=', Auth::id())->where('activo', '=', 0)
+            $usersi = User::where('id', '!=', Auth::id())->where('id', '!=', 2)->where('activo', '=', 0)
                             ->where(function($q) use ($buscar) {
                                 $q->where('apellido', 'like', '%'.ucwords(strtolower($buscar)).'%')
                                 ->orwhere('email', 'like', '%'.$buscar.'%')
-                                ->orwhere('dni', 'like', '%'.$buscar.'%')
+                                ->orwhere('cuit', 'like', '%'.$buscar.'%')
                                 ->orwhere('email', 'like', '%'.$buscar.'%')
                                 ->orwhere('telefono', 'like', '%'.$buscar.'%')
                                 ->orwhere('razonsocial', 'like', '%'.$buscar.'%')
@@ -103,7 +103,7 @@ class UserController extends Controller
         $user = User::FindOrFail(Auth::user()->id);
         $user->name = $request->name;
         $user->apellido = $request->apellido;
-        $user->dni = $request->dni;
+        $user->cuit = $request->cuit;
         $user->domicilio = $request->domicilio;
         $user->telefono = $request->telefono;
         $user->id_ciudad = $request->id_ciudad;
