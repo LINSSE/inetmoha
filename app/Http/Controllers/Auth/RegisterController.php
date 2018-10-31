@@ -5,6 +5,7 @@ namespace MOHA\Http\Controllers\Auth;
 use MOHA\User;
 use MOHA\Provincia;
 use MOHA\TipoUsuario;
+use MOHA\Representante;
 use MOHA\Mail\Bienvenido;
 use MOHA\Mail\UsuarioRegistrado;
 use MOHA\Http\Controllers\Controller;
@@ -34,7 +35,7 @@ class RegisterController extends Controller
     {   
         $provincias = Provincia::orderBy('nombre', 'ASC')->get();
         //$tipousuarios = TipoUsuario::orderBy('descripcion', 'ASC')->get();
-        $representantes = User::where('tipo_us', '=', 3)->orderBy('razonsocial', 'ASC')->get();
+        $representantes = Representante::where('id', '!=', 1)->get();
         return view('auth.register', array('representantes' => $representantes, 'provincias' => $provincias));
     }
 
@@ -68,7 +69,7 @@ class RegisterController extends Controller
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
             'razonsocial' => 'string|max:255|unique:users',
-            'dni' => 'required|unique:users',
+            'cuit' => 'required|unique:users',
         ]);
     }
 
@@ -80,9 +81,31 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        if($data['id_rep'] == null)
+        if(!isset($data['id_rep']))
         {
-            $id_rep = 0;
+            $id_rep = 1;
+        }
+        else
+        {
+            $id_rep = $data['id_rep'];   
+        }
+
+        if(!isset($data['is_rep']))
+        {
+            $is_rep = false;
+        }
+        else
+        {
+            $is_rep = true;      
+        }
+
+        if($data['renspa'] != "")
+        {
+            $registro = $data['renspa'];
+        }
+        else 
+        {
+            $registro = $data['matricula'];   
         }
 
         DB::beginTransaction();
@@ -101,16 +124,24 @@ class RegisterController extends Controller
                 'id_provincia' => $data['id_provincia'], 
                 'id_ciudad' => $data['id_ciudad'],
                 'tipo_us' => $data['tipo_us'],
-                'registro' => $data['registro'],
-                'id_rep' => $data['id_rep'],
-                'is_rep' => $data['is_rep']                
+                'registro' => $registro,
+                'id_rep' => $id_rep,
+                'is_rep' => $is_rep,                
             ]);
+
+            if($is_rep)
+            {
+                $rep = New Representante();
+                $rep->id_user = User::all()->last()->id;
+
+                $rep->save();
+            }
 
             Mail::to($user->email)->send(new Bienvenido());
 
             Mail::to(config('mail.username'))->send(new UsuarioRegistrado());
             
-            Session::flash('message','correcto');
+            Session::flash('message','Usuario registrado con éxito!');
 
             DB::commit();
 
@@ -118,6 +149,7 @@ class RegisterController extends Controller
 
             DB::rollback();
             throw $e;
+            Session::flash('message', 'Verifique los datos ingresados');
         }
 
         return $user;

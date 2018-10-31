@@ -27,7 +27,7 @@ class CreateUsersTable extends Migration
             $table->integer('id_ciudad')->unsigned();
             $table->integer('tipo_us')->unsigned();
             $table->string('registro');
-            $table->integer('id_rep')->unsigned();
+            $table->integer('id_rep')->unsigned()->nullable();
             $table->boolean('is_rep')->default(false);
             $table->boolean('activo')->default(false);
             $table->boolean('admin')->default(false);

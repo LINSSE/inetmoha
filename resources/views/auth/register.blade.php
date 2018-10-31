@@ -3,6 +3,12 @@
 @section('content')
 
 <div class="container">
+    @if(Session::has('message'))
+            <div class="alert alert-success alert-dismissible fade in" role="alert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <strong>{{Session::get('message')}}</strong>
+            </div>
+        @endif
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
@@ -150,11 +156,11 @@
 
                         <hr>
                         
-                        <div class="form-group{{ $errors->has('tipo') ? ' has-error' : '' }}" id="tipo" >
+                        <div class="form-group{{ $errors->has('tipo') ? ' has-error' : '' }}" id="tipo_us" >
                             <label for="tipo" class="col-md-4 control-label">Tipo de Usuario</label>
 
                             <div class="col-md-6">
-                            <select class="form-control" name="tipo" id="tipo" value="{{ old('tipo') }}" required>
+                            <select class="form-control" name="tipo_us" id="tipo" value="{{ old('tipo') }}" required>
                                 <option disabled selected hidden> -- Seleccione un tipo de Usuario -- </option>
                                 <option value="1">Independiente</option>
                                 <option value="3">Con Representante</option>
@@ -174,7 +180,7 @@
                             </div>
                             <label for="i_rep" class="col-md-4 control-label">Soy Representante</label>
                             <div class="col-md-6">
-                                <input type="checkbox" class="form-control" name="is_rep" id="ch_is_rep">
+                                <input type="checkbox" class="form-control" name="is_rep" id="ch_is_rep" value="true">
                             </div>
                         </div>
 
@@ -182,11 +188,14 @@
                             <label for="rep" class="col-md-4 control-label">Representantes</label>
 
                             <div class="col-md-6">
-                            <select class="form-control" name="id_rep" value="{{ old('id_rep') }}" required>
+                            <select class="form-control" name="id_rep" id="id_rep" value="{{ old('id_rep') }}" >
                                 <option disabled selected hidden> -- Seleccione un Representante -- </option>
-                                @foreach ($representantes as $rep)
-                                    <option value="{{$rep->id}}">{{$rep->razonsocial}} - {{$rep->cuit}}</option>
-                                @endforeach
+                                @forelse($representantes as $rep)
+                                    <option value="{{$rep->id}}">{{$rep->user->razonsocial}} - {{$rep->user->cuit}}</option>
+                                @empty
+                                    <option value="1" >No existe ningún Representante</option>
+                                @endforelse
+                                
                             </select>
 
                                 @if ($errors->has('rep'))
@@ -222,8 +231,8 @@
                             <label for="renspa" class="col-md-4 control-label">Renspa</label>
                                
                             <div class="col-md-6">
-                            <input type="text" class="form-control" minlength="17" maxlength="17" name="registro" id="ren" value="{{ old('renspa') }}" placeholder="xx.xxx.x.xxxxx/xx" pattern="[0-9]{2}\.[0-9]{3}\.[0-9]{1}\.[0-9]{5}\/[0-9]{2}" oninvalid="this.setCustomValidity('Debe ingresar un número de Renspa con el siguiente formato xx.xxx.x.xxxxx/xx')"
-    oninput="this.setCustomValidity('')" required>
+                            <input type="text" class="form-control" minlength="17" maxlength="17" name="renspa" id="ren" value="{{ old('renspa') }}" placeholder="xx.xxx.x.xxxxx/xx" pattern="[0-9]{2}\.[0-9]{3}\.[0-9]{1}\.[0-9]{5}\/[0-9]{2}" oninvalid="this.setCustomValidity('Debe ingresar un número de Renspa con el siguiente formato xx.xxx.x.xxxxx/xx')"
+    oninput="this.setCustomValidity('')" >
 
                                 @if ($errors->has('registro'))
                                     <span class="help-block">
@@ -238,8 +247,8 @@
                             <label for="matricula" class="col-md-4 control-label">Matrícula</label>
 
                             <div class="col-md-6">
-                            <input type="numeric" class="form-control" minlength="5" maxlength="6" name="registro" id="mat" value="{{ old('matricula') }}" placeholder="xxxxxx" pattern="[0-9]{5,6}" oninvalid="this.setCustomValidity('Debe ingresar un número de Matrícula con el siguiente formato xxxxxx')"
-    oninput="this.setCustomValidity('')" required>
+                            <input type="numeric" class="form-control" minlength="5" maxlength="6" name="matricula" id="mat" value="{{ old('matricula') }}" placeholder="xxxxxx" pattern="[0-9]{5,6}" oninvalid="this.setCustomValidity('Debe ingresar un número de Matrícula con el siguiente formato xxxxxx')"
+    oninput="this.setCustomValidity('')" >
 
                                 @if ($errors->has('registro'))
                                     <span class="help-block">

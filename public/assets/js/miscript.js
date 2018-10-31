@@ -284,11 +284,13 @@ $(document).ready(function(){
     $('#tipo').on('change', function() {
         if ($("#tipo option:selected").val() === "3" ) {
             document.getElementById("rep").style.display = "";
+            $('#id_rep').prop('required', 'required');
             document.getElementById("is_rep").style.display = "none";
             $('#ch_is_rep').prop('checked', false);
         }
         else {
             document.getElementById("rep").style.display = "none";
+            $('#id_rep').prop('required', '');
             document.getElementById("is_rep").style.display = "";
         }
     });
@@ -296,13 +298,17 @@ $(document).ready(function(){
     $('#tipo_reg').on('change', function() {
         if ($("#tipo_reg option:selected").val() === "1" ) {
             document.getElementById("renspa").style.display = "";
+            $('#ren').prop('required', 'required');
             document.getElementById("matricula").style.display = "none";
             document.getElementById("mat").value = "";
+            $('#mat').prop('required', '');
         }
         else {
             document.getElementById("matricula").style.display = ""; 
+            $('#mat').prop('required', 'required');
             document.getElementById("renspa").style.display = "none";
             document.getElementById("ren").value = "";  
+            $('#ren').prop('required', '');
         }
     });
 
