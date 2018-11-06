@@ -39,12 +39,13 @@ class UserController extends Controller
                                 ->orwhere('telefono', 'like', '%'.$buscar.'%')
                                 ->orwhere('razonsocial', 'like', '%'.$buscar.'%')
                                 ->orwhere('domicilio', 'like', '%'.$buscar.'%')
+                                ->orwhere('registro', 'like', '%'.$buscar.'%')
                                 ->orwhere('name', 'like', '%'.ucwords(strtolower($buscar)).'%')->get();
                             })
                             ->where(function($q) use ($buscar2) {
                             $q->whereIn('tipo_us', $buscar2)->get();
                             })
-                            ->orderBy('apellido', 'razonsocial', 'ASC')->paginate(5, array('users.*'), 'a');
+                            ->orderBy('apellido', 'razonsocial', 'ASC')->paginate(10, array('users.*'), 'a');
             
             $usersi = User::where('id', '!=', Auth::id())->where('id', '!=', 2)->where('activo', '=', 0)
                             ->where(function($q) use ($buscar) {
@@ -55,12 +56,13 @@ class UserController extends Controller
                                 ->orwhere('telefono', 'like', '%'.$buscar.'%')
                                 ->orwhere('razonsocial', 'like', '%'.$buscar.'%')
                                 ->orwhere('domicilio', 'like', '%'.$buscar.'%')
+                                ->orwhere('registro', 'like', '%'.$buscar.'%')
                                 ->orwhere('name', 'like', '%'.ucwords(strtolower($buscar)).'%')->get();
                             })
                             ->where(function($q) use ($buscar2) {
                             $q->whereIn('tipo_us', $buscar2)->get();
                             })
-                            ->orderBy('apellido', 'razonsocial', 'ASC')->paginate(5, array('users.*'), 'i');
+                            ->orderBy('apellido', 'razonsocial', 'ASC')->paginate(10, array('users.*'), 'i');
         }
         else {
             $usersa = User::where('id', '!=', Auth::id())->where('id', '!=', 2)->where('activo', '=', 1)
@@ -72,9 +74,10 @@ class UserController extends Controller
                                 ->orwhere('telefono', 'like', '%'.$buscar.'%')
                                 ->orwhere('razonsocial', 'like', '%'.$buscar.'%')
                                 ->orwhere('domicilio', 'like', '%'.$buscar.'%')
+                                ->orwhere('registro', 'like', '%'.$buscar.'%')
                                 ->orwhere('name', 'like', '%'.ucwords(strtolower($buscar)).'%')->get();
                             })
-                            ->orderBy('apellido', 'razonsocial', 'ASC')->paginate(5, array('users.*'), 'a');
+                            ->orderBy('apellido', 'razonsocial', 'ASC')->paginate(10, array('users.*'), 'a');
 
             $usersi = User::where('id', '!=', Auth::id())->where('id', '!=', 2)->where('activo', '=', 0)
                             ->where(function($q) use ($buscar) {
@@ -85,9 +88,10 @@ class UserController extends Controller
                                 ->orwhere('telefono', 'like', '%'.$buscar.'%')
                                 ->orwhere('razonsocial', 'like', '%'.$buscar.'%')
                                 ->orwhere('domicilio', 'like', '%'.$buscar.'%')
+                                ->orwhere('registro', 'like', '%'.$buscar.'%')
                                 ->orwhere('name', 'like', '%'.ucwords(strtolower($buscar)).'%')->get();
                             })
-                            ->orderBy('apellido', 'razonsocial', 'ASC')->paginate(5, array('users.*'), 'i');
+                            ->orderBy('apellido', 'razonsocial', 'ASC')->paginate(10, array('users.*'), 'i');
         }
         return view('/admin/operadores', array('usersa' => $usersa, 'usersi' => $usersi));
     }

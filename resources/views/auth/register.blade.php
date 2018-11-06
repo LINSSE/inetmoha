@@ -22,7 +22,7 @@
                             <label for="cuit" class="col-md-4 control-label">CUIT</label>
 
                             <div class="col-md-6">
-                                <input id="cuit" type="tel" class="form-control" name="cuit" value="{{ old('cuit') }}" required autofocus maxlength="11" minlength="11" inputmode="numeric" pattern="[0-9]{11}" placeholder="Ingrese el CUIT" title="Ingrese el CUIT">
+                                <input id="cuit" type="tel" class="form-control" name="cuit" value="{{ old('cuit') }}" required autofocus maxlength="11" minlength="11" inputmode="numeric" pattern="[0-9]{11}" placeholder="Ingrese el CUIT sin güiones" title="Ingrese el CUIT sin güiones">
 
                                 @if ($errors->has('cuit'))
                                     <span class="help-block">
@@ -30,14 +30,13 @@
                                     </span>
                                 @endif
                             </div>
-                            <span class="glyphicon glyphicon-info-sign" alt="Ingrese solo números" title="Ingrese solo números"></span>
                         </div>
 
                         <div class="form-group{{ $errors->has('razonsocial') ? ' has-error' : '' }}">
                             <label for="razonsocial" class="col-md-4 control-label">Razón Social</label>
 
                             <div class="col-md-6">
-                                <input id="razonsocial" type="text" class="form-control" name="razonsocial" value="{{ old('razonsocial') }}" placeholder="Ingrese Razón Social si corresponde">
+                                <input id="razonsocial" type="text" class="form-control" name="razonsocial" value="{{ old('razonsocial') }}" placeholder="Ingrese Razón Social">
 
                                 @if ($errors->has('razonsocial'))
                                     <span class="help-block">
@@ -214,7 +213,7 @@
                             <div class="col-md-6">
                             <select class="form-control" name="tipo_reg" id="tipo_reg" value="{{ old('tipo_reg') }}" required>
                                 <option disabled selected hidden> -- Seleccione un Tipo de Registro -- </option>
-                                <option value="1">RENSAP</option>
+                                <option value="1">RENSPA</option>
                                 <option value="2">MATRICULA</option>
                             </select>
 

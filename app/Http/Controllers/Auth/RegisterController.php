@@ -113,14 +113,14 @@ class RegisterController extends Controller
         try {
 
             $user = User::create([
-                'name' => ucwords(strtolower($data['name'])),
-                'apellido' => ucwords(strtolower($data['apellido'])),
-                'razonsocial' => ucwords(strtolower($data['razonsocial'])),
+                'name' => ucwords(mb_strtolower($data['name'])),
+                'apellido' => ucwords(mb_strtolower($data['apellido'])),
+                'razonsocial' => ucwords(mb_strtolower($data['razonsocial'])),
                 'email' => $data['email'],
                 'password' => bcrypt($data['password']),
                 'cuit' => $data['cuit'],
                 'telefono' => $data['telefono'],
-                'domicilio' => ucwords(strtolower($data['domicilio'])),
+                'domicilio' => ucwords(mb_strtolower($data['domicilio'])),
                 'id_provincia' => $data['id_provincia'], 
                 'id_ciudad' => $data['id_ciudad'],
                 'tipo_us' => $data['tipo_us'],

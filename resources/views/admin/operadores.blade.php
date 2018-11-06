@@ -51,6 +51,7 @@
                             <th>Ciudad </th>
                             <th>Provincia </th>
                             <th>Tipo de Usuario</th>
+                            <th>Registro</th>
                             <th style="cursor:default;"></th>
                         </tr>
                     </thead>
@@ -70,6 +71,7 @@
                                     <td>{{$user->ciudad->nombre}}</td>
                                     <td>{{$user->provincia->nombre}}</td>
                                     <td>{{$user->tipoUsuario->descripcion}}</td>
+                                    <td>{{$user->registro}}</td>
                                     <td><button type="submit" class="btn btn-success" title="Haga click para ACTIVAR éste Operador">Activar</button></td>
                                 </tr>
                             </tbody>

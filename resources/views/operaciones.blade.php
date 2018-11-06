@@ -97,7 +97,7 @@
                                         <td>{{$op->contra->oferta->modo->descripcion}} X {{$op->contra->oferta->peso}} {{$op->contra->oferta->medida->descripcion}}</td>
                                         <td>{{$op->contra->oferta->producto->categoria->descripcion}}</td>
                                         <td>{{$op->contra->cantidad}}</td>
-                                        <td>{{$op->fecha}}</td>
+                                        <td>{{$op->contra->oferta->fechaEntrega}}</td>
                                         <td>$ {{$op->contra->precio}}</td>
                                         <td>{{$op->contra->cobro->descripcion}}</td>
                                         <td>{{$op->contra->plazo}}</td>
@@ -110,7 +110,7 @@
                                         <td>{{$op->contra->demanda->modo->descripcion}} X {{$op->contra->demanda->peso}} {{$op->contra->demanda->medida->descripcion}}</td>
                                         <td>{{$op->contra->demanda->producto->categoria->descripcion}}</td>
                                         <td>{{$op->contra->cantidad}}</td>
-                                        <td>{{$op->fecha}}</td>
+                                        <td>{{$op->contra->demanda->fechaEntrega}}</td>
                                         <td>$ {{$op->contra->precio}}</td>
                                         <td>{{$op->contra->cobro->descripcion}}</td>
                                         <td>{{$op->contra->plazo}}</td>
