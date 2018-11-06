@@ -211,15 +211,15 @@
                             <label for="tipo_reg" class="col-md-4 control-label">Tipo de Registro</label>
 
                             <div class="col-md-6">
-                            <select class="form-control" name="tipo_reg" id="tipo_reg" value="{{ old('tipo_reg') }}" required>
+                            <select class="form-control" name="registro" id="tipo_reg" value="{{ old('tipo_reg') }}" required>
                                 <option disabled selected hidden> -- Seleccione un Tipo de Registro -- </option>
                                 <option value="1">RENSPA</option>
                                 <option value="2">MATRICULA</option>
                             </select>
 
-                                @if ($errors->has('tipo_reg'))
+                                @if ($errors->has('registro'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('tipo_reg') }}</strong>
+                                        <strong>{{ 'El registro ingresado ya existe.' }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -233,9 +233,9 @@
                             <input type="text" class="form-control" minlength="17" maxlength="17" name="renspa" id="ren" value="{{ old('renspa') }}" placeholder="xx.xxx.x.xxxxx/xx" pattern="[0-9]{2}\.[0-9]{3}\.[0-9]{1}\.[0-9]{5}\/[0-9]{2}" oninvalid="this.setCustomValidity('Debe ingresar un número de Renspa con el siguiente formato xx.xxx.x.xxxxx/xx')"
     oninput="this.setCustomValidity('')" >
 
-                                @if ($errors->has('registro'))
+                                @if ($errors->has('renspa'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('registro') }}</strong>
+                                        <strong>{{ 'El registro ingresado ya existe.' }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -249,9 +249,9 @@
                             <input type="numeric" class="form-control" minlength="5" maxlength="6" name="matricula" id="mat" value="{{ old('matricula') }}" placeholder="xxxxxx" pattern="[0-9]{5,6}" oninvalid="this.setCustomValidity('Debe ingresar un número de Matrícula con el siguiente formato xxxxxx')"
     oninput="this.setCustomValidity('')" >
 
-                                @if ($errors->has('registro'))
+                                @if ($errors->has('matricula'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('registro') }}</strong>
+                                        <strong>{{ 'El registro ingresado ya existe.' }}</strong>
                                     </span>
                                 @endif
                             </div>

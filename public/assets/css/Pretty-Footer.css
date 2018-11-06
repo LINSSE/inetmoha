@@ -53,7 +53,7 @@ footer{
 .footer-contacts p a{
   color:#0e68af;
   text-decoration:none;
-  font-size: small;
+  font-size: 16px;
 }
 
 .fa.footer-contacts-icon{
