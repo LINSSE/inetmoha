@@ -85,18 +85,22 @@ span.new-line-span{
   padding-top: 30px;
 }
 
+.footer-logo {
+  text-align: center;
+}
+
 .footer-about p{
-  line-height:20px;
-  color:#92999f;
-  font-size:13px;
-  font-weight:normal;
-  margin:0;
+  line-height: 30px;
+  color: #fff;
+  font-size: 20px;
+  margin: 0;
+  text-align: center;
 }
 
 div.social-links{
   margin-top:20px;
   color:#fff;
-  margin-top: 100px;
+  margin-top: 250px;
   text-align: center;
 }
 

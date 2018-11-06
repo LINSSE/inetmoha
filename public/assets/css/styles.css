@@ -171,8 +171,16 @@ div.container-fluid.principal{
 }
 
 img.img-logo-ctes{
-  width:70px;
-  float:left;
+  width: 30%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+.footer-right {
+  text-align: center;
 }
 
 .img-logo {

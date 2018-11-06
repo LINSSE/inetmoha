@@ -128,8 +128,7 @@
                 <div class="col-md-4 col-sm-6 footer-navigation">
                     <h3><a href="{{ url('/') }}"><span>METHA </span></a></h3>
                     <p class="links"><a href="{{ url('/') }}">Inicio </a><strong> · </strong><a href="{{ url('/ofertas') }}">Ofertas </a><strong> · </strong><a href="{{ url('/demandas') }}">Demandas </a><strong> · </strong><a href="{{ url('/precios') }}">Precios </a><strong> · </strong><a href="{{ url('/operaciones') }}">Operaciones </a></p>
-                    <p
-                    class="company-name">METHA © <?php echo Date("Y"); ?></p>
+                    <p class="company-name">METHA © <?php echo Date("Y"); ?></p>
                 </div>
                 <div class="col-md-4 col-sm-6 footer-contacts">
                     <div><span class="fa fa-map-marker footer-contacts-icon"> </span>
@@ -144,10 +143,13 @@
                 </div>
                 <div class="clearfix visible-sm-block"></div>
                 <div class="col-md-4 footer-about">
-                    <img class="img-responsive img-logo-ctes" src="{{url('recursos/images/logo.png')}}"><span><h4>Ministerio de Producción</h4></span>
-                    
-                    <p> 
-                    </p>
+                    <div class="col-md-12 footer-logo">
+                        <img class="img-responsive img-logo-ctes" src="{{url('recursos/images/logo.png')}}">
+                    </div>
+                    <div class="col-md-12">
+                        <p class="titulos-logo">Dirección de Cooperativas</p>
+                        <p class="titulos-logo">Ministerio de Producción</p>
+                    </div>
                     <div class="social-links social-icons"><a href="https://www.facebook.com/Ministerio-de-Producción-de-Corrientes-1424236394481898/"><i class="fa fa-facebook"></i></a><a href="https://twitter.com/uopcorrientes"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-linkedin"></i></a></div>
                 </div>
             </div>
