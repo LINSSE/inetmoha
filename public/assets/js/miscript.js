@@ -299,16 +299,20 @@ $(document).ready(function(){
         if ($("#tipo_reg option:selected").val() === "1" ) {
             document.getElementById("renspa").style.display = "";
             $('#ren').prop('required', 'required');
+            $('#ren').prop('name', 'registro');
             document.getElementById("matricula").style.display = "none";
             document.getElementById("mat").value = "";
             $('#mat').prop('required', '');
+            $('#mat').prop('name', 'matricula');
         }
         else {
             document.getElementById("matricula").style.display = ""; 
             $('#mat').prop('required', 'required');
+            $('#mat').prop('name', 'registro');
             document.getElementById("renspa").style.display = "none";
             document.getElementById("ren").value = "";  
             $('#ren').prop('required', '');
+            $('#ren').prop('name', 'renspa');
         }
     });
 

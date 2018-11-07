@@ -14,6 +14,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\DB;
 use Session;
+use Illuminate\Http\Request;
 
 
 class RegisterController extends Controller
@@ -70,6 +71,7 @@ class RegisterController extends Controller
             'password' => 'required|string|min:6|confirmed',
             'razonsocial' => 'string|max:255|unique:users',
             'cuit' => 'required|unique:users',
+            'registro' => 'required|unique:users',
         ]);
     }
 
@@ -99,14 +101,14 @@ class RegisterController extends Controller
             $is_rep = true;      
         }
 
-        if($data['renspa'] != "")
-        {
-            $registro = $data['renspa'];
-        }
-        else 
-        {
-            $registro = $data['matricula'];   
-        }
+        // if($data['renspa'] != "")
+        // {
+        //     $registro = $data['renspa'];
+        // }
+        // else 
+        // {
+        //     $registro = $data['matricula'];   
+        // }
 
         DB::beginTransaction();
 
@@ -124,7 +126,7 @@ class RegisterController extends Controller
                 'id_provincia' => $data['id_provincia'], 
                 'id_ciudad' => $data['id_ciudad'],
                 'tipo_us' => $data['tipo_us'],
-                'registro' => $registro,
+                'registro' => $data['registro'],
                 'id_rep' => $id_rep,
                 'is_rep' => $is_rep,                
             ]);
